@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Probate Real Estate Investing | ToInvested - Find Off-Market Deals</title>
+    <meta name="description" content="Learn how to find and close off-market deals through probate properties. Step-by-step guide to probate real estate investing for beginners and experienced investors.">
+    <link rel="canonical" href="https://toinvested.com/probate/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --navy: #0A0E17; --navy-light: #111827; --navy-card: #151C2C;
+            --gold: #C9A84C; --gold-light: #D4B967; --gold-dark: #A88A3D;
+            --white: #FFFFFF; --gray: #94A3B8; --gray-light: #CBD5E1;
+            --green: #22C55E; --red: #EF4444;
+            --font-heading: 'Playfair Display', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); background: var(--navy); color: var(--white); font-size: 18px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+        a { color: var(--gold); text-decoration: none; transition: color 0.3s; }
+        a:hover { color: var(--gold-light); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .container-narrow { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+        .gold { color: var(--gold); }
+
+        /* NAV */
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10,14,23,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(201,168,76,0.1); }
+        .nav-inner { max-width: 1400px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 72px; }
+        .nav-logo { font-family: var(--font-heading); font-size: 24px; font-weight: 700; color: var(--gold); }
+        .nav-links { display: flex; align-items: center; gap: 32px; }
+        .nav-links a { color: var(--gray-light); font-size: 15px; font-weight: 500; }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-cta { background: var(--gold); color: var(--navy) !important; padding: 10px 24px; border-radius: 8px; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .nav-cta:hover { background: var(--gold-light); color: var(--navy) !important; }
+        .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+        .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--white); margin: 6px 0; transition: 0.3s; }
+
+        /* SECTIONS */
+        .section-label { text-align: center; color: var(--gold); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+        .section-title { text-align: center; font-family: var(--font-heading); font-size: clamp(28px, 4vw, 48px); font-weight: 700; margin-bottom: 16px; }
+        .section-sub { text-align: center; color: var(--gray); font-size: 18px; max-width: 600px; margin: 0 auto 60px; }
+
+        .btn { display: inline-block; padding: 16px 32px; border-radius: 12px; font-weight: 700; font-size: 16px; text-align: center; cursor: pointer; transition: all 0.3s; border: none; }
+        .btn-gold { background: var(--gold); color: var(--navy); }
+        .btn-gold:hover { background: var(--gold-light); color: var(--navy); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.3); }
+        .btn-outline { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.2); }
+        .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+        /* HERO */
+        .hero { padding: 160px 0 100px; text-align: center; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%); pointer-events: none; }
+        .hero-badge { display: inline-block; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3); color: var(--gold); padding: 8px 20px; border-radius: 50px; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 32px; }
+        .hero h1 { font-family: var(--font-heading); font-size: clamp(36px, 5vw, 60px); font-weight: 700; line-height: 1.15; margin-bottom: 24px; max-width: 900px; margin-left: auto; margin-right: auto; }
+        .hero p { font-size: 20px; color: var(--gray); max-width: 640px; margin: 0 auto 40px; }
+
+        /* WHAT IS PROBATE */
+        .intro-section { padding: 80px 0; }
+        .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-top: 48px; }
+        .intro-content h3 { font-family: var(--font-heading); font-size: 32px; font-weight: 700; margin-bottom: 20px; }
+        .intro-content p { color: var(--gray); font-size: 17px; margin-bottom: 16px; }
+        .intro-highlight { background: var(--navy-card); border-left: 4px solid var(--gold); border-radius: 0 12px 12px 0; padding: 24px; margin-top: 24px; }
+        .intro-highlight p { color: var(--gray-light); font-size: 16px; margin-bottom: 0; }
+        .intro-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .intro-stat { background: var(--navy-card); border: 1px solid rgba(201,168,76,0.15); border-radius: 16px; padding: 32px; text-align: center; }
+        .intro-stat .number { font-family: var(--font-heading); font-size: 42px; font-weight: 700; color: var(--gold); }
+        .intro-stat .label { color: var(--gray); font-size: 14px; margin-top: 4px; }
+
+        /* STEP BY STEP PROCESS */
+        .process-section { padding: 80px 0; }
+        .process-timeline { max-width: 800px; margin: 48px auto 0; position: relative; }
+        .process-timeline::before { content: ''; position: absolute; left: 32px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--gold), rgba(201,168,76,0.1)); }
+        .process-step { display: flex; gap: 32px; margin-bottom: 40px; position: relative; }
+        .process-step:last-child { margin-bottom: 0; }
+        .step-marker { width: 64px; height: 64px; border-radius: 50%; background: rgba(201,168,76,0.1); border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; color: var(--gold); flex-shrink: 0; font-family: var(--font-heading); z-index: 1; }
+        .step-content { background: var(--navy-card); border: 1px solid rgba(255,255,255,0.06); border-radius: 20px; padding: 32px; flex: 1; }
+        .step-content h3 { font-size: 22px; font-weight: 700; margin-bottom: 12px; }
+        .step-content p { color: var(--gray); font-size: 16px; margin-bottom: 12px; }
+        .step-tips { background: rgba(201,168,76,0.05); border-radius: 12px; padding: 16px; margin-top: 16px; }
+        .step-tips .tip-label { font-size: 13px; color: var(--gold); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .step-tips ul { list-style: none; }
+        .step-tips ul li { padding: 4px 0; font-size: 15px; color: var(--gray-light); display: flex; align-items: flex-start; gap: 8px; }
+        .step-tips ul li::before { content: '\2192'; color: var(--gold); flex-shrink: 0; }
+
+        /* PROS AND CONS */
+        .proscons-section { padding: 80px 0; }
+        .proscons-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 48px; max-width: 900px; margin-left: auto; margin-right: auto; }
+        .pros-card, .cons-card { background: var(--navy-card); border-radius: 20px; padding: 40px 32px; position: relative; overflow: hidden; }
+        .pros-card { border: 1px solid rgba(34,197,94,0.2); }
+        .pros-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--green), transparent); }
+        .cons-card { border: 1px solid rgba(239,68,68,0.2); }
+        .cons-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--red), transparent); }
+        .proscons-title { font-size: 22px; font-weight: 700; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+        .proscons-title .icon { font-size: 28px; }
+        .proscons-list { list-style: none; }
+        .proscons-list li { padding: 10px 0; font-size: 16px; color: var(--gray-light); display: flex; align-items: flex-start; gap: 12px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+        .proscons-list li:last-child { border-bottom: none; }
+        .proscons-list .pro-check { color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+        .proscons-list .con-x { color: var(--red); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+
+        /* MISTAKES */
+        .mistakes-section { padding: 80px 0; }
+        .mistakes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 48px; }
+        .mistake-card { background: var(--navy-card); border: 1px solid rgba(239,68,68,0.15); border-radius: 20px; padding: 36px 28px; position: relative; }
+        .mistake-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--red), transparent); border-radius: 20px 20px 0 0; }
+        .mistake-number { font-size: 48px; font-weight: 800; color: rgba(239,68,68,0.15); font-family: var(--font-heading); margin-bottom: 12px; line-height: 1; }
+        .mistake-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+        .mistake-card p { color: var(--gray); font-size: 16px; }
+
+        /* LEGAL CONSIDERATIONS */
+        .legal-section { padding: 80px 0; }
+        .legal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+        .legal-card { background: var(--navy-card); border: 1px solid rgba(201,168,76,0.15); border-radius: 20px; padding: 36px 28px; text-align: center; }
+        .legal-icon { width: 64px; height: 64px; border-radius: 16px; background: rgba(201,168,76,0.1); display: flex; align-items: center; justify-content: center; font-size: 32px; margin: 0 auto 20px; }
+        .legal-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+        .legal-card p { color: var(--gray); font-size: 15px; }
+
+        /* CTA */
+        .cta-section { padding: 100px 0; text-align: center; position: relative; }
+        .cta-section::before { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; height: 400px; background: radial-gradient(ellipse at center bottom, rgba(201,168,76,0.06) 0%, transparent 70%); pointer-events: none; }
+        .cta-box { background: var(--navy-card); border: 2px solid var(--gold); border-radius: 24px; padding: 60px; max-width: 800px; margin: 0 auto; position: relative; }
+        .cta-box h2 { font-family: var(--font-heading); font-size: clamp(28px, 3vw, 40px); font-weight: 700; margin-bottom: 16px; }
+        .cta-box p { color: var(--gray); font-size: 18px; margin-bottom: 32px; max-width: 560px; margin-left: auto; margin-right: auto; }
+        .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+        /* FOOTER */
+        .footer { background: var(--navy-light); border-top: 1px solid rgba(255,255,255,0.06); padding: 80px 0 40px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr repeat(3, 1fr); gap: 40px; margin-bottom: 60px; }
+        .footer-brand .footer-logo { font-family: var(--font-heading); font-size: 28px; font-weight: 700; color: var(--gold); margin-bottom: 16px; }
+        .footer-brand p { color: var(--gray); font-size: 15px; line-height: 1.7; }
+        .footer-col h4 { color: var(--white); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 20px; }
+        .footer-col a { display: block; color: var(--gray); font-size: 15px; padding: 6px 0; }
+        .footer-col a:hover { color: var(--gold); }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06); }
+        .footer-bottom p { color: var(--gray); font-size: 14px; }
+        .footer-bottom-links { display: flex; gap: 24px; }
+        .footer-bottom-links a { color: var(--gray); font-size: 14px; }
+
+        /* ANIMATIONS */
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .intro-grid { grid-template-columns: 1fr; max-width: 600px; margin: 48px auto 0; }
+            .proscons-grid { grid-template-columns: 1fr; max-width: 500px; }
+            .mistakes-grid { grid-template-columns: 1fr; max-width: 560px; margin: 48px auto 0; }
+            .legal-grid { grid-template-columns: 1fr; max-width: 480px; margin: 48px auto 0; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 900px) {
+            .nav-links { display: none; position: fixed; top: 72px; left: 0; right: 0; background: var(--navy); flex-direction: column; padding: 24px; gap: 16px; border-bottom: 1px solid rgba(201,168,76,0.1); }
+            .nav-links.open { display: flex; }
+            .nav-toggle { display: block; }
+        }
+        @media (max-width: 768px) {
+            .hero { padding: 120px 0 60px; }
+            .intro-stats { grid-template-columns: 1fr; }
+            .process-timeline::before { display: none; }
+            .process-step { flex-direction: column; gap: 16px; }
+            .step-marker { margin: 0 auto; }
+            .cta-box { padding: 40px 24px; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAV -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">ToInvested</a>
+            <div class="nav-links" id="navLinks">
+                <a href="/tools/">Tools</a>
+                <a href="/membership/">Membership</a>
+                <a href="/coaching/">Coaching</a>
+                <a href="/consulting/">Consulting</a>
+                <a href="/membership/" class="nav-cta">Get Started</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">Off-Market Strategy</div>
+            <h1>Probate Real Estate<br><span class="gold">Investing</span></h1>
+            <p>Find off-market deals through probate properties. Less competition, motivated sellers, and significant equity opportunities for savvy investors.</p>
+            <a href="#process" class="btn btn-gold" style="padding: 18px 48px; font-size: 18px;">Learn the Process</a>
+        </div>
+    </section>
+
+    <!-- WHAT IS PROBATE INVESTING -->
+    <section class="intro-section">
+        <div class="container">
+            <div class="section-label fade-in">The Opportunity</div>
+            <h2 class="section-title fade-in">What Is <span class="gold">Probate Investing?</span></h2>
+            <p class="section-sub fade-in">Probate properties are one of the most overlooked and profitable niches in real estate investing.</p>
+            <div class="intro-grid">
+                <div class="intro-content fade-in">
+                    <h3>Turning Legal Process Into Investment Opportunity</h3>
+                    <p>When a property owner passes away, their estate typically goes through probate -- the legal process of settling their affairs and distributing assets. During this process, heirs often need to sell properties quickly to settle debts, pay estate taxes, or divide assets among beneficiaries.</p>
+                    <p>This creates a unique opportunity for investors. Probate properties are often sold below market value because heirs are motivated by speed and simplicity over maximizing price. Many of these properties have been owned for decades, meaning significant equity has built up.</p>
+                    <div class="intro-highlight">
+                        <p><strong style="color: var(--gold);">Key insight:</strong> Probate deals aren't listed on the MLS. They require direct outreach to personal representatives and heirs, which means far less competition than traditional markets.</p>
+                    </div>
+                </div>
+                <div class="intro-stats fade-in">
+                    <div class="intro-stat">
+                        <div class="number">2.5M+</div>
+                        <div class="label">Probate cases filed annually in the U.S.</div>
+                    </div>
+                    <div class="intro-stat">
+                        <div class="number">20-40%</div>
+                        <div class="label">Typical discount below market value</div>
+                    </div>
+                    <div class="intro-stat">
+                        <div class="number">85%</div>
+                        <div class="label">Of heirs live out of state from the property</div>
+                    </div>
+                    <div class="intro-stat">
+                        <div class="number">6-12mo</div>
+                        <div class="label">Average probate process timeline</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STEP BY STEP PROCESS -->
+    <section class="process-section" id="process">
+        <div class="container">
+            <div class="section-label fade-in">The Playbook</div>
+            <h2 class="section-title fade-in">Step-by-Step <span class="gold">Probate Investing Process</span></h2>
+            <p class="section-sub fade-in">Follow this proven process to find, negotiate, and close probate deals.</p>
+            <div class="process-timeline">
+                <div class="process-step fade-in">
+                    <div class="step-marker">1</div>
+                    <div class="step-content">
+                        <h3>Finding Probate Leads</h3>
+                        <p>Probate records are public information. You can access them through your county courthouse, online court databases, or specialized lead services. Focus on cases that have been filed within the last 30-90 days for the freshest opportunities.</p>
+                        <div class="step-tips">
+                            <div class="tip-label">Pro Tips</div>
+                            <ul>
+                                <li>Visit the county probate court and request recent filings</li>
+                                <li>Use online probate lead services for automated lead generation</li>
+                                <li>Build relationships with probate attorneys who can refer cases</li>
+                                <li>Focus on estates that include real property in your target area</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="process-step fade-in">
+                    <div class="step-marker">2</div>
+                    <div class="step-content">
+                        <h3>Contacting Heirs &amp; Personal Representatives</h3>
+                        <p>Approach with empathy and professionalism. These are families going through a difficult time. Your communication should be helpful, not predatory. Offer a solution to their problem, not a hard sell.</p>
+                        <div class="step-tips">
+                            <div class="tip-label">Pro Tips</div>
+                            <ul>
+                                <li>Send a personalized letter expressing condolences first</li>
+                                <li>Wait 30-45 days after filing before making contact</li>
+                                <li>Position yourself as a problem-solver, not a deal-hunter</li>
+                                <li>Follow up consistently -- most deals close after the 4th-7th touch</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="process-step fade-in">
+                    <div class="step-marker">3</div>
+                    <div class="step-content">
+                        <h3>Making Offers</h3>
+                        <p>Once you've established rapport and understand the seller's situation, make a fair offer that solves their problem. Factor in property condition, needed repairs, holding costs, and your exit strategy when determining your offer price.</p>
+                        <div class="step-tips">
+                            <div class="tip-label">Pro Tips</div>
+                            <ul>
+                                <li>Get a thorough property inspection before finalizing your offer</li>
+                                <li>Use the 70% rule as a starting point (70% of ARV minus repairs)</li>
+                                <li>Offer flexible closing timelines to accommodate the probate process</li>
+                                <li>Consider offering to handle cleanout and personal property removal</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="process-step fade-in">
+                    <div class="step-marker">4</div>
+                    <div class="step-content">
+                        <h3>Closing the Deal</h3>
+                        <p>Probate closings have additional legal requirements. You'll need court approval in many states, and the personal representative must have the legal authority to sell. Work with a title company and attorney experienced in probate transactions.</p>
+                        <div class="step-tips">
+                            <div class="tip-label">Pro Tips</div>
+                            <ul>
+                                <li>Use a title company experienced in probate closings</li>
+                                <li>Verify the personal representative has letters testamentary</li>
+                                <li>Budget extra time for court approval if required in your state</li>
+                                <li>Get title insurance to protect against unknown heirs or claims</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROS AND CONS -->
+    <section class="proscons-section">
+        <div class="container">
+            <div class="section-label fade-in">Honest Assessment</div>
+            <h2 class="section-title fade-in">Pros &amp; Cons of <span class="gold">Probate Investing</span></h2>
+            <p class="section-sub fade-in">Like any strategy, probate investing has both advantages and challenges. Know what you're getting into.</p>
+            <div class="proscons-grid">
+                <div class="pros-card fade-in">
+                    <div class="proscons-title"><span class="icon">&#10003;</span> Advantages</div>
+                    <ul class="proscons-list">
+                        <li><span class="pro-check">&#10003;</span> Less competition than MLS and auction properties</li>
+                        <li><span class="pro-check">&#10003;</span> Motivated sellers who prioritize speed over price</li>
+                        <li><span class="pro-check">&#10003;</span> Significant equity due to long-term ownership</li>
+                        <li><span class="pro-check">&#10003;</span> Properties often purchased 20-40% below market value</li>
+                        <li><span class="pro-check">&#10003;</span> Consistent deal flow -- people pass away in every market</li>
+                        <li><span class="pro-check">&#10003;</span> Works in any market condition (recession-resistant)</li>
+                        <li><span class="pro-check">&#10003;</span> Multiple exit strategies: flip, rent, wholesale, or hold</li>
+                    </ul>
+                </div>
+                <div class="cons-card fade-in">
+                    <div class="proscons-title"><span class="icon">&#10007;</span> Challenges</div>
+                    <ul class="proscons-list">
+                        <li><span class="con-x">&#10007;</span> Longer timeline due to legal and court processes</li>
+                        <li><span class="con-x">&#10007;</span> Requires sensitivity and emotional intelligence</li>
+                        <li><span class="con-x">&#10007;</span> Properties often need significant repairs and updates</li>
+                        <li><span class="con-x">&#10007;</span> Court approval may be required (adds time and cost)</li>
+                        <li><span class="con-x">&#10007;</span> Multiple heirs can complicate decision-making</li>
+                        <li><span class="con-x">&#10007;</span> Legal complexity varies significantly by state</li>
+                        <li><span class="con-x">&#10007;</span> Lead generation requires consistent effort and systems</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMON MISTAKES -->
+    <section class="mistakes-section">
+        <div class="container">
+            <div class="section-label fade-in">Avoid These Pitfalls</div>
+            <h2 class="section-title fade-in">Common Mistakes <span class="gold">to Avoid</span></h2>
+            <p class="section-sub fade-in">Learn from the mistakes of others so you don't lose money or reputation.</p>
+            <div class="mistakes-grid">
+                <div class="mistake-card fade-in">
+                    <div class="mistake-number">01</div>
+                    <h3>Being Insensitive in Your Outreach</h3>
+                    <p>Sending aggressive marketing materials to grieving families destroys your reputation. Lead with empathy, be patient, and position yourself as a helpful resource, not a vulture circling a deal.</p>
+                </div>
+                <div class="mistake-card fade-in">
+                    <div class="mistake-number">02</div>
+                    <h3>Skipping Due Diligence on Title</h3>
+                    <p>Probate properties can have title issues: unknown heirs, tax liens, second mortgages, or mechanic's liens. Always get a thorough title search and purchase title insurance. The cheapest deal can become the most expensive mistake.</p>
+                </div>
+                <div class="mistake-card fade-in">
+                    <div class="mistake-number">03</div>
+                    <h3>Not Understanding Your State's Laws</h3>
+                    <p>Probate laws vary dramatically by state. Some states require court confirmation of sales, others allow independent administration. Some have mandatory waiting periods. Know the rules before you spend time and money pursuing deals.</p>
+                </div>
+                <div class="mistake-card fade-in">
+                    <div class="mistake-number">04</div>
+                    <h3>Underestimating Repair Costs</h3>
+                    <p>Probate properties have often been neglected during the owner's illness or after their passing. Expect deferred maintenance, outdated systems, and potential hidden issues. Always budget 10-20% more than your initial repair estimate.</p>
+                </div>
+                <div class="mistake-card fade-in">
+                    <div class="mistake-number">05</div>
+                    <h3>Dealing with the Wrong Person</h3>
+                    <p>Only the personal representative (executor) has legal authority to sell estate property. Heirs, no matter how motivated, cannot sell property they don't yet legally own. Verify authority with the probate court before proceeding.</p>
+                </div>
+                <div class="mistake-card fade-in">
+                    <div class="mistake-number">06</div>
+                    <h3>Giving Up After One Mailing</h3>
+                    <p>Probate investing is a nurture game. The personal representative may not be ready to sell for months. Build a follow-up system with multiple touches over 6-12 months. The money is in the follow-up.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LEGAL CONSIDERATIONS -->
+    <section class="legal-section">
+        <div class="container">
+            <div class="section-label fade-in">Know the Rules</div>
+            <h2 class="section-title fade-in">Legal Considerations <span class="gold">You Must Know</span></h2>
+            <p class="section-sub fade-in">Probate investing requires understanding the legal framework. Work with qualified professionals.</p>
+            <div class="legal-grid">
+                <div class="legal-card fade-in">
+                    <div class="legal-icon">&#9878;</div>
+                    <h3>Court Authority</h3>
+                    <p>The probate court oversees the entire process. In supervised administration states, the court must approve every sale. Understand whether your state requires independent or dependent administration.</p>
+                </div>
+                <div class="legal-card fade-in">
+                    <div class="legal-icon">&#128196;</div>
+                    <h3>Letters Testamentary</h3>
+                    <p>This document grants the personal representative legal authority to act on behalf of the estate. Always verify these letters are current and haven't been revoked before entering a purchase agreement.</p>
+                </div>
+                <div class="legal-card fade-in">
+                    <div class="legal-icon">&#128101;</div>
+                    <h3>Heir Notification</h3>
+                    <p>All heirs and beneficiaries must be properly notified of the sale in most jurisdictions. Failure to notify can result in the sale being challenged or reversed after closing. Your attorney should handle this.</p>
+                </div>
+                <div class="legal-card fade-in">
+                    <div class="legal-icon">&#128200;</div>
+                    <h3>Fair Market Value</h3>
+                    <p>Some courts require an appraisal to establish fair market value before approving a sale. The sale price typically must be within a certain percentage of the appraised value to receive court approval.</p>
+                </div>
+                <div class="legal-card fade-in">
+                    <div class="legal-icon">&#128336;</div>
+                    <h3>Overbid Process</h3>
+                    <p>In some states (notably California), probate sales include an overbid hearing where other buyers can outbid you. Understand the overbid process and increments in your jurisdiction before making offers.</p>
+                </div>
+                <div class="legal-card fade-in">
+                    <div class="legal-icon">&#128274;</div>
+                    <h3>Title Insurance</h3>
+                    <p>Always obtain title insurance on probate properties. Hidden heirs, undiscovered wills, and creditor claims can surface years after closing. Title insurance protects your investment from these risks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-box fade-in">
+                <div class="section-label">Ready to Start?</div>
+                <h2>Master Probate Investing with <span class="gold">Expert Guidance</span></h2>
+                <p>Get 1-on-1 coaching, deal analysis tools, and a community of investors who are actively closing probate deals. Don't go it alone.</p>
+                <div class="cta-buttons">
+                    <a href="/membership/" class="btn btn-gold" style="padding: 18px 40px;">Join ToInvested</a>
+                    <a href="/coaching/" class="btn btn-outline" style="padding: 18px 40px;">Get 1-on-1 Coaching</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">ToInvested</div>
+                    <p>AI-powered real estate analysis tools helping investors build generational wealth through smarter deal decisions.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <a href="/tools/">Tools</a>
+                    <a href="/membership/">Membership</a>
+                    <a href="/coaching/">Coaching</a>
+                    <a href="/consulting/">Consulting</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <a href="/tax-strategy/">Tax Strategy</a>
+                    <a href="/legal-protection/">Legal Protection</a>
+                    <a href="/hard-money-lending/">Hard Money Lending</a>
+                    <a href="/blog/">Blog</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a href="/privacy/">Privacy Policy</a>
+                    <a href="/terms/">Terms of Service</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ToInvested &mdash; A YPN Inc Company. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="/privacy/">Privacy</a>
+                    <a href="/terms/">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile nav toggle
+        document.getElementById('navToggle').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('open');
+        });
+
+        // Scroll animations
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

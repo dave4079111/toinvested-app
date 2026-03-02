@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Insurance for Real Estate Investors | ToInvested</title>
+    <meta name="description" content="Protect your real estate portfolio and your family with the right life insurance strategy. Learn about term, whole, and universal life insurance for investors.">
+    <link rel="canonical" href="https://toinvested.com/life-insurance/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --navy: #0A0E17; --navy-light: #111827; --navy-card: #151C2C;
+            --gold: #C9A84C; --gold-light: #D4B967; --gold-dark: #A88A3D;
+            --white: #FFFFFF; --gray: #94A3B8; --gray-light: #CBD5E1;
+            --green: #22C55E; --red: #EF4444;
+            --font-heading: 'Playfair Display', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); background: var(--navy); color: var(--white); font-size: 18px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+        a { color: var(--gold); text-decoration: none; transition: color 0.3s; }
+        a:hover { color: var(--gold-light); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .container-narrow { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+        .gold { color: var(--gold); }
+
+        /* NAV */
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10,14,23,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(201,168,76,0.1); }
+        .nav-inner { max-width: 1400px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 72px; }
+        .nav-logo { font-family: var(--font-heading); font-size: 24px; font-weight: 700; color: var(--gold); }
+        .nav-links { display: flex; align-items: center; gap: 32px; }
+        .nav-links a { color: var(--gray-light); font-size: 15px; font-weight: 500; }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-cta { background: var(--gold); color: var(--navy) !important; padding: 10px 24px; border-radius: 8px; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .nav-cta:hover { background: var(--gold-light); color: var(--navy) !important; }
+        .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+        .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--white); margin: 6px 0; transition: 0.3s; }
+
+        /* SECTIONS */
+        .section-label { text-align: center; color: var(--gold); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+        .section-title { text-align: center; font-family: var(--font-heading); font-size: clamp(28px, 4vw, 48px); font-weight: 700; margin-bottom: 16px; }
+        .section-sub { text-align: center; color: var(--gray); font-size: 18px; max-width: 600px; margin: 0 auto 60px; }
+
+        .btn { display: inline-block; padding: 16px 32px; border-radius: 12px; font-weight: 700; font-size: 16px; text-align: center; cursor: pointer; transition: all 0.3s; border: none; }
+        .btn-gold { background: var(--gold); color: var(--navy); }
+        .btn-gold:hover { background: var(--gold-light); color: var(--navy); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.3); }
+        .btn-outline { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.2); }
+        .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+        /* HERO */
+        .hero { padding: 160px 0 100px; text-align: center; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%); pointer-events: none; }
+        .hero-badge { display: inline-block; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3); color: var(--gold); padding: 8px 20px; border-radius: 50px; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 32px; }
+        .hero h1 { font-family: var(--font-heading); font-size: clamp(36px, 5vw, 60px); font-weight: 700; line-height: 1.15; margin-bottom: 24px; max-width: 900px; margin-left: auto; margin-right: auto; }
+        .hero p { font-size: 20px; color: var(--gray); max-width: 640px; margin: 0 auto 40px; }
+
+        /* WHY INVESTORS NEED */
+        .why-section { padding: 80px 0; }
+        .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-top: 48px; }
+        .why-content h3 { font-family: var(--font-heading); font-size: 32px; font-weight: 700; margin-bottom: 20px; }
+        .why-content p { color: var(--gray); font-size: 17px; margin-bottom: 16px; }
+        .why-list { list-style: none; margin-top: 24px; }
+        .why-list li { padding: 12px 0; color: var(--gray-light); font-size: 17px; display: flex; align-items: flex-start; gap: 12px; }
+        .why-list li::before { content: '\2713'; color: var(--gold); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+        .why-visual { background: var(--navy-card); border: 1px solid rgba(201,168,76,0.15); border-radius: 24px; padding: 48px; }
+        .stat-item { text-align: center; padding: 24px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .stat-item:last-child { border-bottom: none; }
+        .stat-number { font-family: var(--font-heading); font-size: 42px; font-weight: 700; color: var(--gold); }
+        .stat-label { color: var(--gray); font-size: 15px; margin-top: 4px; }
+
+        /* TYPES COMPARISON */
+        .types-section { padding: 80px 0; }
+        .types-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+        .type-card { background: var(--navy-card); border: 1px solid rgba(255,255,255,0.06); border-radius: 20px; padding: 40px 32px; transition: transform 0.3s, box-shadow 0.3s; position: relative; overflow: hidden; }
+        .type-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
+        .type-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        .type-card.recommended { border-color: var(--gold); }
+        .type-card.recommended::after { content: 'MOST POPULAR'; position: absolute; top: 16px; right: -32px; background: var(--gold); color: var(--navy); font-size: 11px; font-weight: 700; padding: 4px 40px; transform: rotate(45deg); letter-spacing: 1px; }
+        .type-icon { width: 64px; height: 64px; border-radius: 16px; background: rgba(201,168,76,0.1); display: flex; align-items: center; justify-content: center; font-size: 32px; margin-bottom: 20px; }
+        .type-card h3 { font-family: var(--font-heading); font-size: 24px; font-weight: 700; margin-bottom: 12px; }
+        .type-card .type-desc { color: var(--gray); font-size: 16px; margin-bottom: 24px; }
+        .type-features { list-style: none; margin-bottom: 24px; }
+        .type-features li { padding: 8px 0; font-size: 15px; color: var(--gray-light); display: flex; align-items: flex-start; gap: 10px; }
+        .type-features li .check { color: var(--green); font-weight: 700; flex-shrink: 0; }
+        .type-features li .neutral { color: var(--gray); font-weight: 700; flex-shrink: 0; }
+        .type-detail { background: rgba(201,168,76,0.05); border-radius: 12px; padding: 16px; margin-top: 16px; }
+        .type-detail .label { font-size: 13px; color: var(--gold); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+        .type-detail .value { font-size: 16px; color: var(--white); }
+
+        /* BENEFITS */
+        .benefits-section { padding: 80px 0; }
+        .benefits-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 48px; }
+        .benefit-card { background: var(--navy-card); border: 1px solid rgba(201,168,76,0.15); border-radius: 20px; padding: 40px 32px; }
+        .benefit-icon { width: 56px; height: 56px; border-radius: 16px; background: rgba(201,168,76,0.1); display: flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 20px; }
+        .benefit-card h3 { font-size: 22px; font-weight: 700; margin-bottom: 12px; }
+        .benefit-card p { color: var(--gray); font-size: 16px; }
+
+        /* CONSIDERATIONS */
+        .considerations-section { padding: 80px 0; }
+        .considerations-list { max-width: 800px; margin: 48px auto 0; }
+        .consideration-item { background: var(--navy-card); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 32px; margin-bottom: 16px; display: flex; gap: 20px; align-items: flex-start; }
+        .consideration-number { width: 48px; height: 48px; border-radius: 50%; background: rgba(201,168,76,0.1); border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; color: var(--gold); flex-shrink: 0; font-family: var(--font-heading); }
+        .consideration-content h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+        .consideration-content p { color: var(--gray); font-size: 16px; }
+
+        /* CTA */
+        .cta-section { padding: 100px 0; text-align: center; position: relative; }
+        .cta-section::before { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; height: 400px; background: radial-gradient(ellipse at center bottom, rgba(201,168,76,0.06) 0%, transparent 70%); pointer-events: none; }
+        .cta-box { background: var(--navy-card); border: 2px solid var(--gold); border-radius: 24px; padding: 60px; max-width: 800px; margin: 0 auto; position: relative; }
+        .cta-box h2 { font-family: var(--font-heading); font-size: clamp(28px, 3vw, 40px); font-weight: 700; margin-bottom: 16px; }
+        .cta-box p { color: var(--gray); font-size: 18px; margin-bottom: 32px; max-width: 560px; margin-left: auto; margin-right: auto; }
+        .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+        /* MEMBERSHIP CTA */
+        .membership-cta { padding: 80px 0; text-align: center; }
+        .membership-box { background: linear-gradient(180deg, rgba(201,168,76,0.08) 0%, var(--navy-card) 100%); border: 1px solid rgba(201,168,76,0.2); border-radius: 24px; padding: 60px; }
+        .membership-box h2 { font-family: var(--font-heading); font-size: clamp(24px, 3vw, 36px); font-weight: 700; margin-bottom: 16px; }
+        .membership-box p { color: var(--gray); font-size: 18px; margin-bottom: 32px; max-width: 560px; margin-left: auto; margin-right: auto; }
+
+        /* FOOTER */
+        .footer { background: var(--navy-light); border-top: 1px solid rgba(255,255,255,0.06); padding: 80px 0 40px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr repeat(3, 1fr); gap: 40px; margin-bottom: 60px; }
+        .footer-brand .footer-logo { font-family: var(--font-heading); font-size: 28px; font-weight: 700; color: var(--gold); margin-bottom: 16px; }
+        .footer-brand p { color: var(--gray); font-size: 15px; line-height: 1.7; }
+        .footer-col h4 { color: var(--white); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 20px; }
+        .footer-col a { display: block; color: var(--gray); font-size: 15px; padding: 6px 0; }
+        .footer-col a:hover { color: var(--gold); }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06); }
+        .footer-bottom p { color: var(--gray); font-size: 14px; }
+        .footer-bottom-links { display: flex; gap: 24px; }
+        .footer-bottom-links a { color: var(--gray); font-size: 14px; }
+
+        /* ANIMATIONS */
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .why-grid { grid-template-columns: 1fr; max-width: 600px; margin: 48px auto 0; }
+            .types-grid { grid-template-columns: 1fr; max-width: 480px; margin: 48px auto 0; }
+            .benefits-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 900px) {
+            .nav-links { display: none; position: fixed; top: 72px; left: 0; right: 0; background: var(--navy); flex-direction: column; padding: 24px; gap: 16px; border-bottom: 1px solid rgba(201,168,76,0.1); }
+            .nav-links.open { display: flex; }
+            .nav-toggle { display: block; }
+        }
+        @media (max-width: 768px) {
+            .hero { padding: 120px 0 60px; }
+            .cta-box { padding: 40px 24px; }
+            .membership-box { padding: 40px 24px; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAV -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">ToInvested</a>
+            <div class="nav-links" id="navLinks">
+                <a href="/tools/">Tools</a>
+                <a href="/membership/">Membership</a>
+                <a href="/coaching/">Coaching</a>
+                <a href="/consulting/">Consulting</a>
+                <a href="/membership/" class="nav-cta">Get Started</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">Wealth Protection</div>
+            <h1>Life Insurance for<br><span class="gold">Real Estate Investors</span></h1>
+            <p>Protect your portfolio, your family, and your legacy. The right life insurance strategy is the foundation every serious investor needs.</p>
+            <a href="#consultation" class="btn btn-gold" style="padding: 18px 48px; font-size: 18px;">Get a Free Consultation</a>
+        </div>
+    </section>
+
+    <!-- WHY INVESTORS NEED LIFE INSURANCE -->
+    <section class="why-section">
+        <div class="container">
+            <div class="section-label fade-in">Essential Knowledge</div>
+            <h2 class="section-title fade-in">Why Real Estate Investors <span class="gold">Need Life Insurance</span></h2>
+            <p class="section-sub fade-in">Your properties are assets, but they also carry debt. Life insurance ensures your family inherits wealth, not financial burden.</p>
+            <div class="why-grid">
+                <div class="why-content fade-in">
+                    <h3>Your Portfolio is Your Family's Future</h3>
+                    <p>As a real estate investor, you've built something significant. But what happens to your portfolio if something happens to you? Without the right coverage, your family could be forced to sell properties at a loss just to cover mortgage obligations.</p>
+                    <p>Life insurance isn't just a safety net -- it's a strategic tool that smart investors use to protect their empire and ensure smooth wealth transfer to the next generation.</p>
+                    <ul class="why-list">
+                        <li>Cover outstanding mortgage balances on investment properties</li>
+                        <li>Provide liquidity for estate taxes without forced property sales</li>
+                        <li>Fund ongoing property management and maintenance costs</li>
+                        <li>Replace your income while your family decides next steps</li>
+                        <li>Ensure business continuity for your real estate operations</li>
+                    </ul>
+                </div>
+                <div class="why-visual fade-in">
+                    <div class="stat-item">
+                        <div class="stat-number">67%</div>
+                        <div class="stat-label">of investors are underinsured for their portfolio size</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">$1.2M</div>
+                        <div class="stat-label">average coverage gap for multi-property investors</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">42%</div>
+                        <div class="stat-label">of heirs sell properties within 12 months without insurance</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TYPES OF LIFE INSURANCE -->
+    <section class="types-section">
+        <div class="container">
+            <div class="section-label fade-in">Compare Your Options</div>
+            <h2 class="section-title fade-in">Types of Life Insurance <span class="gold">for Investors</span></h2>
+            <p class="section-sub fade-in">Each type serves a different purpose in your overall investment and estate planning strategy.</p>
+            <div class="types-grid">
+                <!-- TERM LIFE -->
+                <div class="type-card recommended fade-in">
+                    <div class="type-icon">&#9201;</div>
+                    <h3>Term Life Insurance</h3>
+                    <p class="type-desc">Pure protection for a set period. The most affordable way to cover your mortgage debt and income replacement needs.</p>
+                    <ul class="type-features">
+                        <li><span class="check">&#10003;</span> Lowest premiums of any type</li>
+                        <li><span class="check">&#10003;</span> Coverage periods of 10, 20, or 30 years</li>
+                        <li><span class="check">&#10003;</span> Ideal for matching mortgage terms</li>
+                        <li><span class="check">&#10003;</span> Easy to understand and compare</li>
+                        <li><span class="neutral">&#8212;</span> No cash value accumulation</li>
+                        <li><span class="neutral">&#8212;</span> Coverage ends when term expires</li>
+                    </ul>
+                    <div class="type-detail">
+                        <div class="label">Best For</div>
+                        <div class="value">Covering specific debts, income replacement during active investing years</div>
+                    </div>
+                </div>
+
+                <!-- WHOLE LIFE -->
+                <div class="type-card fade-in">
+                    <div class="type-icon">&#127970;</div>
+                    <h3>Whole Life Insurance</h3>
+                    <p class="type-desc">Permanent coverage with a guaranteed cash value component. Build wealth inside the policy while staying protected.</p>
+                    <ul class="type-features">
+                        <li><span class="check">&#10003;</span> Lifetime coverage guaranteed</li>
+                        <li><span class="check">&#10003;</span> Cash value grows tax-deferred</li>
+                        <li><span class="check">&#10003;</span> Borrow against cash value for deals</li>
+                        <li><span class="check">&#10003;</span> Fixed, predictable premiums</li>
+                        <li><span class="neutral">&#8212;</span> Higher premiums than term</li>
+                        <li><span class="neutral">&#8212;</span> Slower cash value growth early on</li>
+                    </ul>
+                    <div class="type-detail">
+                        <div class="label">Best For</div>
+                        <div class="value">Estate planning, tax-advantaged wealth building, infinite banking strategy</div>
+                    </div>
+                </div>
+
+                <!-- UNIVERSAL LIFE -->
+                <div class="type-card fade-in">
+                    <div class="type-icon">&#9881;</div>
+                    <h3>Universal Life Insurance</h3>
+                    <p class="type-desc">Flexible permanent coverage with adjustable premiums and death benefits. Adapts as your portfolio grows.</p>
+                    <ul class="type-features">
+                        <li><span class="check">&#10003;</span> Flexible premium payments</li>
+                        <li><span class="check">&#10003;</span> Adjustable death benefit</li>
+                        <li><span class="check">&#10003;</span> Cash value with interest potential</li>
+                        <li><span class="check">&#10003;</span> Scales with your portfolio</li>
+                        <li><span class="neutral">&#8212;</span> More complex to manage</li>
+                        <li><span class="neutral">&#8212;</span> Returns vary by market conditions</li>
+                    </ul>
+                    <div class="type-detail">
+                        <div class="label">Best For</div>
+                        <div class="value">Growing portfolios, investors wanting flexibility, indexed growth potential</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFITS FOR INVESTORS -->
+    <section class="benefits-section">
+        <div class="container">
+            <div class="section-label fade-in">Strategic Advantages</div>
+            <h2 class="section-title fade-in">How Life Insurance <span class="gold">Strengthens Your Portfolio</span></h2>
+            <p class="section-sub fade-in">Beyond basic protection, life insurance is a powerful tool in your overall wealth-building strategy.</p>
+            <div class="benefits-grid">
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">&#127968;</div>
+                    <h3>Estate Planning</h3>
+                    <p>Structure your insurance within your estate plan to maximize wealth transfer. Life insurance proceeds bypass probate, providing immediate liquidity for your heirs without the delays and costs of court proceedings. Pair with an irrevocable life insurance trust (ILIT) to keep proceeds out of your taxable estate.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">&#128176;</div>
+                    <h3>Debt Coverage</h3>
+                    <p>Ensure every mortgage on every property is covered. If you carry $2M in real estate debt across multiple properties, your family won't be forced into distressed sales. Your insurance pays off the balances, and your heirs inherit free-and-clear assets that generate passive income.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">&#128106;</div>
+                    <h3>Wealth Transfer</h3>
+                    <p>Create a tax-efficient wealth transfer strategy that preserves your real estate holdings for the next generation. Life insurance provides the cash your heirs need to pay estate taxes, legal fees, and transition costs without liquidating a single property.</p>
+                </div>
+                <div class="benefit-card fade-in">
+                    <div class="benefit-icon">&#9981;</div>
+                    <h3>Business Continuity</h3>
+                    <p>If you have partners or employees in your real estate business, key-person insurance and buy-sell agreements funded by life insurance protect everyone. Your partners can buy out your share, your team stays employed, and your family receives fair market value.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEY CONSIDERATIONS -->
+    <section class="considerations-section">
+        <div class="container">
+            <div class="section-label fade-in">Before You Buy</div>
+            <h2 class="section-title fade-in">Key Considerations <span class="gold">for Investors</span></h2>
+            <p class="section-sub fade-in">Don't buy the wrong policy. Here's what every real estate investor should evaluate before choosing coverage.</p>
+            <div class="considerations-list">
+                <div class="consideration-item fade-in">
+                    <div class="consideration-number">1</div>
+                    <div class="consideration-content">
+                        <h3>Calculate Your Total Debt Exposure</h3>
+                        <p>Add up every mortgage, line of credit, and business loan tied to your real estate portfolio. Your coverage should at minimum match this total. Don't forget to include projected debt from deals in your pipeline.</p>
+                    </div>
+                </div>
+                <div class="consideration-item fade-in">
+                    <div class="consideration-number">2</div>
+                    <div class="consideration-content">
+                        <h3>Match Policy Terms to Your Strategy</h3>
+                        <p>If you plan to pay off all mortgages in 15 years, a 20-year term may be sufficient. If you'll always carry leverage, consider permanent coverage. Your insurance timeline should reflect your investing timeline.</p>
+                    </div>
+                </div>
+                <div class="consideration-item fade-in">
+                    <div class="consideration-number">3</div>
+                    <div class="consideration-content">
+                        <h3>Consider Your Entity Structure</h3>
+                        <p>Properties held in LLCs, trusts, or corporations have different insurance implications. Work with a professional who understands real estate entity structures to ensure your coverage works with your legal setup, not against it.</p>
+                    </div>
+                </div>
+                <div class="consideration-item fade-in">
+                    <div class="consideration-number">4</div>
+                    <div class="consideration-content">
+                        <h3>Factor In Income Replacement</h3>
+                        <p>Beyond debt coverage, your family needs income replacement. If your rental properties require active management, factor in the cost of hiring property management until your heirs can take over or decide to sell.</p>
+                    </div>
+                </div>
+                <div class="consideration-item fade-in">
+                    <div class="consideration-number">5</div>
+                    <div class="consideration-content">
+                        <h3>Review and Update Annually</h3>
+                        <p>Your portfolio changes every year. New acquisitions, refinances, and dispositions all affect your coverage needs. Schedule an annual insurance review alongside your portfolio review to stay properly covered.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA - FREE CONSULTATION -->
+    <section class="cta-section" id="consultation">
+        <div class="container">
+            <div class="cta-box fade-in">
+                <div class="section-label">Take Action Today</div>
+                <h2>Get a <span class="gold">Free Consultation</span></h2>
+                <p>Don't leave your portfolio unprotected. Connect with an insurance professional who understands real estate investors and get a personalized coverage recommendation.</p>
+                <div class="cta-buttons">
+                    <a href="/coaching/" class="btn btn-gold" style="padding: 18px 40px;">Schedule a Consultation</a>
+                    <a href="/consulting/" class="btn btn-outline" style="padding: 18px 40px;">Talk to a Consultant</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MEMBERSHIP CTA -->
+    <section class="membership-cta">
+        <div class="container">
+            <div class="membership-box fade-in">
+                <div class="section-label">Protect &amp; Grow Your Wealth</div>
+                <h2>Join ToInvested and Get Access to <span class="gold">All Our Tools</span></h2>
+                <p>Members get AI-powered deal analysis, portfolio tracking, coaching access, and resources on insurance, tax strategy, legal protection, and more.</p>
+                <a href="/membership/" class="btn btn-gold" style="padding: 18px 48px; font-size: 18px;">Explore Membership Plans</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">ToInvested</div>
+                    <p>AI-powered real estate analysis tools helping investors build generational wealth through smarter deal decisions.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <a href="/tools/">Tools</a>
+                    <a href="/membership/">Membership</a>
+                    <a href="/coaching/">Coaching</a>
+                    <a href="/consulting/">Consulting</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <a href="/tax-strategy/">Tax Strategy</a>
+                    <a href="/legal-protection/">Legal Protection</a>
+                    <a href="/hard-money-lending/">Hard Money Lending</a>
+                    <a href="/blog/">Blog</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a href="/privacy/">Privacy Policy</a>
+                    <a href="/terms/">Terms of Service</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ToInvested &mdash; A YPN Inc Company. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="/privacy/">Privacy</a>
+                    <a href="/terms/">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile nav toggle
+        document.getElementById('navToggle').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('open');
+        });
+
+        // Scroll animations
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

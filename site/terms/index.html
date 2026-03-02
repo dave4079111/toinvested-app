@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service | ToInvested</title>
+<meta name="description" content="ToInvested Terms of Service — Read our terms and conditions for using our real estate investment analysis platform, tools, and educational services.">
+<meta property="og:title" content="Terms of Service | ToInvested">
+<meta property="og:description" content="ToInvested Terms of Service — Terms and conditions for using our platform and services.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://toinvested.com/terms/">
+<meta property="og:site_name" content="ToInvested">
+<link rel="canonical" href="https://toinvested.com/terms/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+/* ===================== RESET & BASE ===================== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 18px; }
+body {
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #0A0E17;
+  color: #E0E0E0;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', Georgia, serif;
+  line-height: 1.2;
+  color: #FFFFFF;
+}
+a { color: #C9A84C; text-decoration: none; transition: color 0.3s ease; }
+a:hover { color: #D4B967; }
+img { max-width: 100%; height: auto; display: block; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.container-narrow { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+/* ===================== NAVIGATION ===================== */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 16px 0;
+  transition: all 0.4s ease;
+  background: rgba(10, 14, 23, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #C9A84C;
+  letter-spacing: 1px;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+}
+.nav-links a {
+  color: #C0C0C0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+.nav-links a:hover { color: #C9A84C; }
+.nav-cta {
+  background: linear-gradient(135deg, #C9A84C, #B8943A);
+  color: #0A0E17 !important;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(201, 168, 76, 0.3);
+  color: #0A0E17 !important;
+}
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+  z-index: 1010;
+}
+.hamburger span {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: #C9A84C;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+.mobile-drawer {
+  display: none;
+  position: fixed;
+  top: 0; right: -100%;
+  width: 300px;
+  height: 100vh;
+  background: rgba(10, 14, 23, 0.98);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  z-index: 1005;
+  padding: 80px 30px 40px;
+  transition: right 0.4s ease;
+  border-left: 1px solid rgba(201, 168, 76, 0.2);
+}
+.mobile-drawer.open { right: 0; }
+.mobile-drawer a {
+  display: block;
+  color: #E0E0E0;
+  font-size: 1.1rem;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-weight: 500;
+}
+.mobile-drawer a:hover { color: #C9A84C; }
+.mobile-drawer .nav-cta {
+  display: inline-block;
+  margin-top: 20px;
+  text-align: center;
+  width: 100%;
+}
+.drawer-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1002;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.drawer-overlay.open { opacity: 1; }
+
+/* ===================== PAGE HEADER ===================== */
+.page-header {
+  padding: 160px 0 60px;
+  text-align: center;
+  position: relative;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 40%, rgba(201,168,76,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 60%, rgba(30,50,120,0.04) 0%, transparent 60%);
+}
+.page-header h1 {
+  font-size: 2.8rem;
+  margin-bottom: 16px;
+}
+.page-header h1 .gold { color: #C9A84C; }
+.page-header .subtitle {
+  color: #8A8F9E;
+  font-size: 0.95rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* ===================== LEGAL CONTENT ===================== */
+.legal-content {
+  padding: 60px 0 100px;
+}
+.legal-content h2 {
+  font-size: 1.5rem;
+  margin: 56px 0 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+  color: #FFFFFF;
+}
+.legal-content h2:first-child {
+  margin-top: 0;
+}
+.legal-content h3 {
+  font-size: 1.15rem;
+  margin: 32px 0 12px;
+  color: #D4B967;
+}
+.legal-content p {
+  margin-bottom: 18px;
+  color: #B0B5C3;
+  font-size: 0.95rem;
+}
+.legal-content ul, .legal-content ol {
+  margin: 0 0 18px 24px;
+  color: #B0B5C3;
+  font-size: 0.95rem;
+}
+.legal-content li {
+  margin-bottom: 8px;
+  padding-left: 4px;
+}
+.legal-content a {
+  color: #C9A84C;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.legal-content a:hover {
+  color: #D4B967;
+}
+.legal-content .disclaimer-box {
+  background: #151C2C;
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: 12px;
+  padding: 32px;
+  margin: 28px 0;
+}
+.legal-content .disclaimer-box h3 {
+  color: #C9A84C;
+  margin-top: 0;
+  font-size: 1.05rem;
+}
+.legal-content .disclaimer-box p {
+  margin-bottom: 0;
+}
+.legal-content .contact-box {
+  background: #151C2C;
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  border-radius: 12px;
+  padding: 32px;
+  margin: 40px 0 0;
+}
+.legal-content .contact-box h3 {
+  color: #FFFFFF;
+  margin-top: 0;
+}
+.legal-content .contact-box p {
+  margin-bottom: 8px;
+}
+
+/* ===================== FOOTER ===================== */
+.footer {
+  background: #060910;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 80px 0 40px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 40px;
+  margin-bottom: 48px;
+}
+.footer-col h4 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #C9A84C;
+  margin-bottom: 18px;
+}
+.footer-col a {
+  display: block;
+  color: #6A7080;
+  font-size: 0.85rem;
+  padding: 4px 0;
+  transition: color 0.3s ease;
+}
+.footer-col a:hover { color: #C9A84C; }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding-top: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-copy {
+  font-size: 0.78rem;
+  color: #444;
+}
+.footer-socials {
+  display: flex;
+  gap: 16px;
+}
+.footer-socials a {
+  color: #555;
+  font-size: 0.85rem;
+  transition: color 0.3s ease;
+}
+.footer-socials a:hover { color: #C9A84C; }
+.footer-disclosure {
+  width: 100%;
+  text-align: center;
+  font-size: 0.7rem;
+  color: #333;
+  line-height: 1.6;
+  margin-top: 12px;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .mobile-drawer { display: block; }
+  .drawer-overlay { display: block; }
+  .footer-grid { grid-template-columns: repeat(3, 1fr); }
+  .page-header h1 { font-size: 2.2rem; }
+}
+@media (max-width: 600px) {
+  html { font-size: 16px; }
+  .page-header { padding: 130px 0 40px; }
+  .page-header h1 { font-size: 1.8rem; }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-bottom { justify-content: center; text-align: center; }
+  .legal-content h2 { font-size: 1.3rem; margin-top: 40px; }
+  .legal-content .disclaimer-box { padding: 24px; }
+  .legal-content .contact-box { padding: 24px; }
+}
+@media (max-width: 420px) {
+  .footer-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== NAVIGATION ===================== -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">ToInvested</a>
+    <ul class="nav-links">
+      <li><a href="/tools/">Tools</a></li>
+      <li><a href="/membership/">Membership</a></li>
+      <li><a href="/coaching/">Coaching</a></li>
+      <li><a href="/consulting/">Consulting</a></li>
+      <li><a href="/membership/" class="nav-cta">Get Started</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Drawer -->
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<div class="mobile-drawer" id="mobileDrawer">
+  <a href="/tools/">Tools</a>
+  <a href="/membership/">Membership</a>
+  <a href="/coaching/">Coaching</a>
+  <a href="/consulting/">Consulting</a>
+  <a href="/membership/" class="nav-cta">Get Started</a>
+</div>
+
+<!-- ===================== PAGE HEADER ===================== -->
+<section class="page-header">
+  <div class="container-narrow">
+    <h1>Terms of <span class="gold">Service</span></h1>
+    <p class="subtitle">Last updated: March 2026</p>
+  </div>
+</section>
+
+<!-- ===================== LEGAL CONTENT ===================== -->
+<section class="legal-content">
+  <div class="container-narrow">
+
+    <p>These Terms of Service ("Terms") govern your access to and use of the ToInvested website, applications, tools, and services (collectively, the "Platform") operated by YPN Inc ("Company," "we," "our," or "us"). By accessing or using the Platform, you agree to be bound by these Terms. If you do not agree to these Terms, you must not access or use the Platform.</p>
+
+    <div class="disclaimer-box">
+      <h3>Important Disclaimer</h3>
+      <p>ToInvested is an educational platform. We are not licensed financial advisors, investment advisors, tax professionals, real estate brokers, or legal professionals. All content, tools, analysis, and materials provided through the Platform are for <strong>educational and informational purposes only</strong> and do not constitute financial, investment, tax, or legal advice. Always consult with qualified licensed professionals before making any financial or investment decisions.</p>
+    </div>
+
+    <h2>1. Agreement to Terms</h2>
+
+    <p>By creating an account, subscribing to a membership, purchasing services, or otherwise using the Platform, you acknowledge that you have read, understood, and agree to be bound by these Terms, as well as our <a href="/privacy/">Privacy Policy</a>, which is incorporated herein by reference.</p>
+
+    <p>We reserve the right to modify these Terms at any time. Changes will be effective immediately upon posting to the Platform. Your continued use of the Platform after any modifications constitutes your acceptance of the revised Terms. We encourage you to review these Terms periodically.</p>
+
+    <p>You must be at least 18 years of age to use the Platform. By using the Platform, you represent and warrant that you are at least 18 years old and have the legal capacity to enter into these Terms.</p>
+
+    <h2>2. Use License</h2>
+
+    <p>Subject to your compliance with these Terms, we grant you a limited, non-exclusive, non-transferable, revocable license to access and use the Platform for your personal, non-commercial use.</p>
+
+    <p>This license does not include the right to:</p>
+    <ul>
+      <li>Modify, copy, or create derivative works based on the Platform or its content</li>
+      <li>Use any data mining, robots, scraping, or similar data gathering or extraction tools on the Platform</li>
+      <li>Download or copy account information for the benefit of any third party</li>
+      <li>Use the Platform or its content for any commercial purpose without our express written consent</li>
+      <li>Reverse engineer, decompile, or disassemble any software or technology used in the Platform</li>
+      <li>Remove, alter, or obscure any copyright, trademark, or other proprietary notices</li>
+      <li>Transfer your account or any rights under these Terms to another person</li>
+      <li>Use the Platform in any way that could damage, disable, overburden, or impair its functionality</li>
+    </ul>
+    <p>We reserve the right to terminate this license at any time for any reason, with or without notice.</p>
+
+    <h2>3. Account Terms</h2>
+
+    <p>To access certain features of the Platform, you may be required to create an account. When you create an account, you agree to:</p>
+    <ul>
+      <li>Provide accurate, current, and complete information during the registration process</li>
+      <li>Maintain and promptly update your account information to keep it accurate and current</li>
+      <li>Maintain the security and confidentiality of your login credentials</li>
+      <li>Accept responsibility for all activities that occur under your account</li>
+      <li>Notify us immediately of any unauthorized use of your account or any other security breach</li>
+    </ul>
+    <p>You are solely responsible for all activity on your account, whether or not you authorized it. We are not liable for any loss or damage arising from your failure to maintain the security of your account credentials.</p>
+
+    <p>We reserve the right to suspend or terminate your account at any time if we reasonably believe you have violated these Terms or engaged in any fraudulent, abusive, or illegal activity.</p>
+
+    <h2>4. Membership &amp; Payments</h2>
+
+    <h3>Subscription Plans</h3>
+    <p>ToInvested offers various membership plans and services, including free and paid tiers. Paid memberships may be billed on a monthly or annual basis, as indicated at the time of purchase.</p>
+
+    <h3>Billing &amp; Renewal</h3>
+    <ul>
+      <li>By subscribing to a paid plan, you authorize us to charge your designated payment method on a recurring basis at the then-current subscription rate</li>
+      <li>Subscriptions automatically renew at the end of each billing cycle unless you cancel before the renewal date</li>
+      <li>We reserve the right to change subscription pricing with 30 days' advance notice</li>
+    </ul>
+
+    <h3>Cancellation &amp; Refunds</h3>
+    <ul>
+      <li>You may cancel your subscription at any time through your account settings or by contacting us at <a href="mailto:support@toinvested.com">support@toinvested.com</a></li>
+      <li>Upon cancellation, you will continue to have access to paid features until the end of your current billing period</li>
+      <li>Refunds are handled on a case-by-case basis at our sole discretion. Generally, we do not provide refunds for partial billing periods</li>
+    </ul>
+
+    <h3>One-Time Purchases</h3>
+    <p>Certain services, such as coaching sessions, consulting engagements, and individual courses, may be offered as one-time purchases. All sales of one-time purchases are final unless otherwise stated at the time of purchase or required by applicable law.</p>
+
+    <h2>5. Intellectual Property</h2>
+
+    <p>All content, features, functionality, design, text, graphics, images, logos, icons, software, code, analysis tools, algorithms, educational materials, and other intellectual property on the Platform are owned by or licensed to YPN Inc and are protected by United States and international copyright, trademark, patent, trade secret, and other intellectual property laws.</p>
+
+    <p>The "ToInvested" name, logo, and all related names, logos, product and service names, designs, and slogans are trademarks of YPN Inc. You may not use these marks without our prior written permission.</p>
+
+    <h3>User-Generated Content</h3>
+    <p>If you submit, post, or share any content through the Platform (including forum posts, reviews, feedback, or analysis inputs), you grant us a non-exclusive, worldwide, royalty-free, perpetual, irrevocable license to use, reproduce, modify, adapt, publish, and display such content in connection with the Platform and our business operations.</p>
+
+    <p>You represent and warrant that you own or have the necessary rights to any content you submit, and that such content does not infringe upon the intellectual property rights of any third party.</p>
+
+    <h2>6. Disclaimer &mdash; Not Investment Advice</h2>
+
+    <div class="disclaimer-box">
+      <h3>Educational Purposes Only</h3>
+      <p>All content, tools, analysis, projections, calculations, AI-generated insights, coaching, consulting, courses, and other materials provided through the Platform are strictly for <strong>educational and informational purposes only</strong>. Nothing on the Platform should be construed as financial advice, investment advice, tax advice, legal advice, or any other type of professional advice.</p>
+    </div>
+
+    <p>ToInvested and YPN Inc are <strong>not</strong> registered or licensed as:</p>
+    <ul>
+      <li>Financial advisors or planners</li>
+      <li>Investment advisors or broker-dealers</li>
+      <li>Certified public accountants or tax professionals</li>
+      <li>Real estate brokers or agents</li>
+      <li>Attorneys or legal professionals</li>
+    </ul>
+
+    <p>The Platform may provide real estate investment analysis, property projections, market data, financial calculations, and AI-powered insights. These outputs are generated using algorithms, models, and data sources that may contain errors, inaccuracies, or outdated information. You should <strong>independently verify all information</strong> and consult with qualified, licensed professionals before making any financial, investment, real estate, tax, or legal decisions.</p>
+
+    <p>Past performance, projections, and analysis results do not guarantee future results. Real estate and other investments involve substantial risk, including the potential loss of principal. Market conditions, property values, interest rates, and other factors can change rapidly and unpredictably.</p>
+
+    <p>By using the Platform, you acknowledge and agree that any actions you take based on information provided by the Platform are at your own risk and sole discretion.</p>
+
+    <h2>7. Limitation of Liability</h2>
+
+    <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL YPN INC, ITS DIRECTORS, OFFICERS, EMPLOYEES, AGENTS, AFFILIATES, OR LICENSORS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO:</p>
+    <ul>
+      <li>Loss of profits, revenue, data, or business opportunities</li>
+      <li>Investment losses or financial damages resulting from decisions made based on Platform content, tools, or analysis</li>
+      <li>Damages arising from unauthorized access to or alteration of your data</li>
+      <li>Damages arising from any interruption or cessation of Platform services</li>
+      <li>Any errors, inaccuracies, or omissions in content, tools, or analysis results</li>
+    </ul>
+
+    <p>WHETHER ARISING FROM CONTRACT, TORT, NEGLIGENCE, STRICT LIABILITY, OR OTHERWISE, EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
+
+    <p>IN NO EVENT SHALL OUR TOTAL AGGREGATE LIABILITY TO YOU FOR ALL CLAIMS ARISING FROM OR RELATED TO THE PLATFORM EXCEED THE GREATER OF (A) THE AMOUNT YOU HAVE PAID TO US IN THE TWELVE (12) MONTHS IMMEDIATELY PRECEDING THE EVENT GIVING RISE TO THE CLAIM, OR (B) ONE HUNDRED DOLLARS ($100).</p>
+
+    <p>SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OR LIMITATION OF CERTAIN DAMAGES. IN SUCH JURISDICTIONS, OUR LIABILITY SHALL BE LIMITED TO THE MAXIMUM EXTENT PERMITTED BY LAW.</p>
+
+    <h2>8. Governing Law</h2>
+
+    <p>These Terms and any disputes arising out of or related to these Terms or the Platform shall be governed by and construed in accordance with the laws of the United States and the State in which YPN Inc is incorporated, without regard to its conflict of law provisions.</p>
+
+    <p>Any legal action or proceeding arising under these Terms shall be brought exclusively in the courts located within the jurisdiction of YPN Inc's principal place of business, and you hereby consent to the personal jurisdiction and venue of such courts.</p>
+
+    <h3>Dispute Resolution</h3>
+    <p>Before filing any legal claim, you agree to first attempt to resolve the dispute informally by contacting us at <a href="mailto:support@toinvested.com">support@toinvested.com</a>. We will attempt to resolve the dispute through good-faith negotiation within 30 days. If the dispute cannot be resolved informally, either party may proceed with formal legal action as described above.</p>
+
+    <h2>9. Termination</h2>
+
+    <p>We may terminate or suspend your access to the Platform immediately, without prior notice or liability, for any reason, including but not limited to:</p>
+    <ul>
+      <li>Violation of these Terms</li>
+      <li>Fraudulent, abusive, or illegal activity</li>
+      <li>Non-payment of applicable fees</li>
+      <li>Conduct that we reasonably determine to be harmful to other users, the Platform, or our business</li>
+      <li>Extended periods of account inactivity</li>
+    </ul>
+
+    <p>Upon termination:</p>
+    <ul>
+      <li>Your right to access and use the Platform will cease immediately</li>
+      <li>We may delete or deactivate your account and all associated data</li>
+      <li>Provisions of these Terms that by their nature should survive termination shall remain in effect, including intellectual property provisions, disclaimers, limitations of liability, and governing law</li>
+    </ul>
+
+    <p>You may terminate your account at any time by contacting us at <a href="mailto:support@toinvested.com">support@toinvested.com</a> or through your account settings. Termination of your account does not entitle you to a refund of any fees previously paid.</p>
+
+    <h2>10. Contact Us</h2>
+
+    <p>If you have any questions, concerns, or feedback regarding these Terms of Service, please contact us:</p>
+
+    <div class="contact-box">
+      <h3>ToInvested (a YPN Inc Company)</h3>
+      <p><strong>Email:</strong> <a href="mailto:support@toinvested.com">support@toinvested.com</a></p>
+      <p><strong>Website:</strong> <a href="https://toinvested.com">toinvested.com</a></p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>AI Tools</h4>
+        <a href="/tools/">All Tools</a>
+        <a href="/membership/">Membership</a>
+        <a href="/coaching/">Coaching</a>
+        <a href="/consulting/">Consulting</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="/tax-strategy/">Tax Strategy</a>
+        <a href="/legal-protection/">Legal Protection</a>
+        <a href="/hard-money-lending/">Hard Money Lending</a>
+        <a href="/blog/">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/membership/">Membership</a>
+        <a href="/coaching/">Coaching</a>
+        <a href="/consulting/">Consulting</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="/privacy/">Privacy Policy</a>
+        <a href="/terms/">Terms of Service</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="https://www.linkedin.com/company/toinvested" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://www.youtube.com/@toinvested" target="_blank" rel="noopener noreferrer">YouTube</a>
+        <a href="https://twitter.com/toinvested" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 ToInvested &mdash; A YPN Inc Company. All rights reserved.</p>
+      <p class="footer-disclosure">ToInvested.com provides AI-powered real estate investment analysis tools for educational purposes only. Content and analysis results do not constitute financial, investment, tax, or legal advice.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== JAVASCRIPT ===================== -->
+<script>
+(function() {
+  'use strict';
+
+  // --- Mobile Drawer ---
+  var hamburger = document.getElementById('hamburger');
+  var drawer = document.getElementById('mobileDrawer');
+  var overlay = document.getElementById('drawerOverlay');
+
+  function openDrawer() {
+    hamburger.classList.add('active');
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDrawer() {
+    hamburger.classList.remove('active');
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', function() {
+    if (drawer.classList.contains('open')) {
+      closeDrawer();
+    } else {
+      openDrawer();
+    }
+  });
+
+  overlay.addEventListener('click', closeDrawer);
+
+  // Close drawer on link click
+  var drawerLinks = drawer.querySelectorAll('a');
+  for (var i = 0; i < drawerLinks.length; i++) {
+    drawerLinks[i].addEventListener('click', closeDrawer);
+  }
+
+  // Close drawer on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && drawer.classList.contains('open')) {
+      closeDrawer();
+    }
+  });
+})();
+</script>
+</body>
+</html>

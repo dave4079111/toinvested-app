@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Investment Coach | ToInvested</title>
+<meta name="description" content="Get 24/7 AI-powered investment coaching. Analyze deals, get market insights, strategy recommendations, and portfolio reviews with our intelligent chatbot.">
+<meta property="og:title" content="AI Investment Coach | ToInvested">
+<meta property="og:description" content="Get 24/7 AI-powered investment coaching. Analyze deals, get market insights, and strategy recommendations.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://toinvested.com/ai-coach/">
+<meta property="og:site_name" content="ToInvested">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Investment Coach | ToInvested">
+<meta name="twitter:description" content="Get 24/7 AI-powered investment coaching. Analyze deals, get market insights, and strategy recommendations.">
+<link rel="canonical" href="https://toinvested.com/ai-coach/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --navy: #0A0E17;
+  --navy-light: #111827;
+  --navy-card: #141B2D;
+  --navy-border: #1E2A45;
+  --gold: #C9A84C;
+  --gold-light: #E8D48B;
+  --gold-dark: #A88B3A;
+  --gold-glow: rgba(201, 168, 76, 0.15);
+  --white: #F8F5F0;
+  --white-dim: #B8B5B0;
+  --gray: #8A8D95;
+  --green: #34D399;
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.3);
+  --shadow-gold: 0 4px 30px rgba(201,168,76,0.15);
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+html { scroll-behavior: smooth; font-size: 18px; }
+body {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--white);
+  background: var(--navy);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-heading); line-height: 1.2; color: #FFFFFF; }
+a { color: var(--gold); text-decoration: none; transition: color var(--transition); }
+a:hover { color: var(--gold-light); }
+img { max-width: 100%; height: auto; display: block; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* NAV */
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10,14,23,0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--navy-border); padding: 0 2rem; }
+.nav-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 72px; }
+.nav-logo { font-family: var(--font-heading); font-size: 1.6rem; font-weight: 700; color: var(--gold); letter-spacing: 0.5px; }
+.nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+.nav-links a { color: var(--white-dim); font-size: 0.95rem; font-weight: 500; transition: color var(--transition); }
+.nav-links a:hover { color: var(--gold); }
+.nav-cta { background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: var(--navy) !important; padding: 10px 24px; border-radius: 8px; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.3px; transition: transform var(--transition), box-shadow var(--transition); }
+.nav-cta:hover { transform: translateY(-1px); box-shadow: var(--shadow-gold); color: var(--navy) !important; }
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+.nav-toggle span { display: block; width: 24px; height: 2px; background: var(--gold); margin: 6px 0; transition: var(--transition); border-radius: 2px; }
+
+@media (max-width: 900px) {
+  .nav-toggle { display: block; }
+  .nav-links { position: fixed; top: 72px; left: 0; right: 0; background: rgba(10,14,23,0.98); flex-direction: column; padding: 2rem; gap: 1.5rem; transform: translateY(-120%); transition: transform var(--transition); border-bottom: 1px solid var(--navy-border); }
+  .nav-links.open { transform: translateY(0); }
+}
+
+/* HERO */
+.hero { position: relative; padding: 140px 0 80px; text-align: center; overflow: hidden; }
+.hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse 80% 60% at 50% 20%, rgba(201,168,76,0.06) 0%, transparent 60%); pointer-events: none; }
+.hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+.eyebrow { font-size: 0.78rem; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+.hero h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 700; margin-bottom: 20px; }
+.hero h1 em { font-style: normal; color: var(--gold); }
+.hero-sub { font-size: 1.15rem; color: var(--gray); max-width: 600px; margin: 0 auto 36px; }
+.btn-gold { display: inline-block; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: var(--navy); padding: 16px 36px; border-radius: 10px; font-weight: 700; font-size: 1rem; transition: transform var(--transition), box-shadow var(--transition); border: none; cursor: pointer; }
+.btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.3); color: var(--navy); }
+.btn-outline { display: inline-block; border: 1px solid var(--gold); color: var(--gold); padding: 16px 36px; border-radius: 10px; font-weight: 600; font-size: 1rem; transition: all var(--transition); background: transparent; cursor: pointer; }
+.btn-outline:hover { background: rgba(201,168,76,0.1); color: var(--gold-light); }
+.hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+/* FEATURES */
+.section-pad { padding: 100px 0; }
+.section-title { font-size: clamp(1.8rem, 4vw, 2.6rem); text-align: center; margin-bottom: 16px; }
+.section-sub { text-align: center; color: var(--gray); font-size: 1.1rem; max-width: 600px; margin: 0 auto 60px; }
+.features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.feature-card { background: var(--navy-card); border: 1px solid var(--navy-border); border-radius: var(--radius-lg); padding: 36px 28px; text-align: center; transition: border-color var(--transition), transform var(--transition); }
+.feature-card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-4px); }
+.feature-icon { font-size: 2.5rem; margin-bottom: 18px; }
+.feature-card h3 { font-size: 1.2rem; margin-bottom: 12px; font-weight: 600; }
+.feature-card p { font-size: 0.95rem; color: var(--gray); line-height: 1.6; }
+
+/* CHAT PREVIEW */
+.chat-section { padding: 80px 0 100px; }
+.chat-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.chat-text h2 { font-size: clamp(1.8rem, 4vw, 2.4rem); margin-bottom: 20px; }
+.chat-text p { color: var(--gray); font-size: 1.05rem; margin-bottom: 20px; }
+.chat-text ul { list-style: none; margin-bottom: 30px; }
+.chat-text li { padding: 8px 0; color: var(--white-dim); font-size: 0.95rem; }
+.chat-text li::before { content: '\2713'; color: var(--gold); font-weight: 700; margin-right: 10px; }
+.chat-mockup { background: var(--navy-card); border: 1px solid var(--navy-border); border-radius: var(--radius-lg); overflow: hidden; }
+.chat-header { background: rgba(201,168,76,0.08); padding: 16px 24px; border-bottom: 1px solid var(--navy-border); display: flex; align-items: center; gap: 12px; }
+.chat-avatar { width: 36px; height: 36px; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: var(--navy); font-weight: 700; }
+.chat-header-text { font-weight: 600; font-size: 0.95rem; }
+.chat-header-status { font-size: 0.78rem; color: var(--green); }
+.chat-body { padding: 24px; min-height: 300px; display: flex; flex-direction: column; gap: 16px; }
+.msg { max-width: 80%; padding: 14px 18px; border-radius: 16px; font-size: 0.9rem; line-height: 1.5; }
+.msg-user { background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.2); align-self: flex-end; color: var(--white); border-bottom-right-radius: 4px; }
+.msg-ai { background: var(--navy-light); border: 1px solid var(--navy-border); align-self: flex-start; color: var(--white-dim); border-bottom-left-radius: 4px; }
+.msg-ai strong { color: var(--gold); }
+.chat-input-bar { display: flex; gap: 10px; padding: 16px 24px; border-top: 1px solid var(--navy-border); background: rgba(0,0,0,0.15); }
+.chat-input { flex: 1; background: var(--navy-light); border: 1px solid var(--navy-border); border-radius: 8px; padding: 10px 14px; color: var(--white); font-family: var(--font-body); font-size: 0.9rem; outline: none; }
+.chat-send { background: var(--gold); color: var(--navy); border: none; border-radius: 8px; padding: 10px 18px; font-weight: 700; font-size: 0.85rem; cursor: pointer; }
+
+/* HOW IT WORKS */
+.steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.step-card { text-align: center; padding: 32px 24px; }
+.step-num { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: rgba(201,168,76,0.1); border: 2px solid var(--gold); border-radius: 50%; font-family: var(--font-heading); font-size: 1.2rem; font-weight: 700; color: var(--gold); margin-bottom: 20px; }
+.step-card h3 { font-size: 1.15rem; margin-bottom: 12px; }
+.step-card p { color: var(--gray); font-size: 0.95rem; }
+
+/* CTA */
+.cta-section { padding: 100px 0; text-align: center; position: relative; }
+.cta-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at center, rgba(201,168,76,0.06) 0%, transparent 70%); pointer-events: none; }
+.cta-section h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 16px; position: relative; }
+.cta-section p { color: var(--gray); font-size: 1.1rem; max-width: 500px; margin: 0 auto 36px; position: relative; }
+
+/* FOOTER */
+.footer { background: #060910; border-top: 1px solid rgba(255,255,255,0.06); padding: 80px 0 40px; }
+.footer-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 40px; margin-bottom: 48px; }
+.footer-col h4 { font-family: var(--font-body); font-size: 0.82rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
+.footer-col a { display: block; color: #6A7080; font-size: 0.85rem; padding: 4px 0; transition: color 0.3s ease; }
+.footer-col a:hover { color: var(--gold); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+.footer-copy { font-size: 0.78rem; color: #444; }
+.footer-socials { display: flex; gap: 16px; }
+.footer-socials a { color: #555; font-size: 0.85rem; }
+.footer-socials a:hover { color: var(--gold); }
+.footer-disclosure { width: 100%; text-align: center; font-size: 0.7rem; color: #3A3A3A; margin-top: 16px; line-height: 1.5; }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .features-grid { grid-template-columns: repeat(2, 1fr); }
+  .chat-wrapper { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 768px) {
+  html { font-size: 16px; }
+  .hero { padding: 120px 0 60px; }
+  .section-pad { padding: 70px 0; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-bottom { justify-content: center; text-align: center; }
+}
+@media (max-width: 480px) {
+  html { font-size: 15px; }
+  .container { padding: 0 16px; }
+  .features-grid { grid-template-columns: 1fr; }
+  .hero-buttons { flex-direction: column; align-items: center; }
+  .footer-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">ToInvested</a>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/tools/">Tools</a></li>
+      <li><a href="/membership/">Membership</a></li>
+      <li><a href="/coaching/">Coaching</a></li>
+      <li><a href="/consulting/">Consulting</a></li>
+      <li><a href="/membership/" class="nav-cta">Get Started</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <p class="eyebrow">AI-Powered Investment Coaching</p>
+      <h1>Your Personal <em>AI Investment Coach</em> &mdash; Available 24/7</h1>
+      <p class="hero-sub">Analyze deals, get instant market insights, and receive personalized investment strategy recommendations from our intelligent AI coaching system.</p>
+      <div class="hero-buttons">
+        <a href="/membership/" class="btn-gold">Try AI Coach Now</a>
+        <a href="#features" class="btn-outline">See How It Works</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad" id="features">
+  <div class="container">
+    <h2 class="section-title">What Your AI Coach Can Do</h2>
+    <p class="section-sub">Powered by advanced AI, your personal investment coach delivers expert-level analysis and guidance in seconds.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">&#128269;</div>
+        <h3>Instant Deal Analysis</h3>
+        <p>Drop in any property address or deal details and get a comprehensive analysis with cash flow projections, cap rates, and a buy/pass recommendation.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">&#128200;</div>
+        <h3>Market Insights</h3>
+        <p>Ask about any market, neighborhood, or trend. Get data-driven insights on rent growth, appreciation forecasts, and supply/demand dynamics.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">&#127919;</div>
+        <h3>Strategy Recommendations</h3>
+        <p>Whether you're considering BRRRR, flipping, buy-and-hold, or creative financing, your AI coach tailors strategies to your goals and capital.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">&#128188;</div>
+        <h3>Portfolio Review</h3>
+        <p>Upload your portfolio details and receive optimization suggestions, diversification analysis, and risk assessment across all your holdings.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="chat-section">
+  <div class="container">
+    <div class="chat-wrapper">
+      <div class="chat-text">
+        <h2>Like Having a <span style="color:var(--gold)">Expert Advisor</span> On Speed Dial</h2>
+        <p>Our AI Coach combines real estate expertise with cutting-edge artificial intelligence to give you instant, actionable investment guidance.</p>
+        <ul>
+          <li>Ask questions in plain English &mdash; no jargon required</li>
+          <li>Get analysis backed by real market data</li>
+          <li>Available 24/7, no scheduling required</li>
+          <li>Learns your investment preferences over time</li>
+          <li>Covers real estate, stocks, Bitcoin, and more</li>
+        </ul>
+        <a href="/membership/" class="btn-gold">Start Your Free Trial</a>
+      </div>
+      <div class="chat-mockup">
+        <div class="chat-header">
+          <div class="chat-avatar">AI</div>
+          <div>
+            <div class="chat-header-text">ToInvested AI Coach</div>
+            <div class="chat-header-status">&#9679; Online</div>
+          </div>
+        </div>
+        <div class="chat-body">
+          <div class="msg msg-user">I found a duplex at 123 Main St listed for $285,000. Good deal?</div>
+          <div class="msg msg-ai"><strong>Great question!</strong> Let me analyze that for you. Based on the market data for that area: median rent for a 2BR unit is ~$1,250/mo. At $285K with 25% down, your estimated monthly cash flow would be <strong>$387/door</strong> after PITI and reserves. That's a <strong>7.2% cap rate</strong> &mdash; above the 6% threshold I'd recommend. This looks like a solid deal worth pursuing.</div>
+          <div class="msg msg-user">What about the BRRRR strategy for this one?</div>
+          <div class="msg msg-ai">For a BRRRR approach, if the property needs light rehab (~$25K), your all-in cost would be $310K. With an ARV of $340K, you could refinance at 75% LTV and pull out <strong>$255K</strong> &mdash; recovering most of your capital while keeping <strong>$774/mo</strong> positive cash flow. I'd recommend getting a contractor estimate first.</div>
+        </div>
+        <div class="chat-input-bar">
+          <input type="text" class="chat-input" placeholder="Ask your AI coach anything..." disabled>
+          <button class="chat-send" disabled>Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad" style="background: rgba(201,168,76,0.02);">
+  <div class="container">
+    <h2 class="section-title">How It Works</h2>
+    <p class="section-sub">Getting started with your AI investment coach takes less than 60 seconds.</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Sign Up for Membership</h3>
+        <p>Choose your plan and get instant access to all AI tools including the investment coach chatbot.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>Ask Your Questions</h3>
+        <p>Type any investment question, paste a deal, or describe your goals. The AI coach understands natural language.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Get Expert Guidance</h3>
+        <p>Receive detailed, data-backed analysis and recommendations. Save conversations and track your progress over time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <h2>Ready to Make <span style="color:var(--gold)">Smarter Investments</span>?</h2>
+    <p>Join thousands of investors using AI-powered coaching to find better deals and build wealth faster.</p>
+    <div class="hero-buttons" style="position:relative;">
+      <a href="/membership/" class="btn-gold">Get Started Today</a>
+      <a href="/tools/" class="btn-outline">Explore All Tools</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>AI Tools</h4>
+        <a href="/property-analyzer/">Property Analyzer</a>
+        <a href="/flip-analyzer/">Fix &amp; Flip Analyzer</a>
+        <a href="/brrrr-analyzer/">BRRRR Analyzer</a>
+        <a href="/renovation-analyzer/">Renovation Analyzer</a>
+        <a href="/stock-analyzer/">Stock Analyzer</a>
+        <a href="/bitcoin-analyzer/">Bitcoin Analyzer</a>
+      </div>
+      <div class="footer-col">
+        <h4>Wealth Protection</h4>
+        <a href="/tax-strategy/">Tax Strategy</a>
+        <a href="/legal-protection/">Legal Protection</a>
+        <a href="/life-insurance/">Life Insurance</a>
+        <a href="/probate/">Probate</a>
+      </div>
+      <div class="footer-col">
+        <h4>Education</h4>
+        <a href="/education/">Education Hub</a>
+        <a href="/coaching/">Coaching</a>
+        <a href="/blog/">Blog</a>
+        <a href="/store/">Store</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/about/">About</a>
+        <a href="/consulting/">Consulting</a>
+        <a href="/contact/">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="/privacy/">Privacy Policy</a>
+        <a href="/terms/">Terms of Service</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 ToInvested by YPN Inc. All rights reserved.</p>
+      <div class="footer-socials">
+        <a href="https://www.linkedin.com/company/toinvested" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://www.youtube.com/@toinvested" target="_blank" rel="noopener noreferrer">YouTube</a>
+        <a href="https://twitter.com/toinvested" target="_blank" rel="noopener noreferrer">X</a>
+      </div>
+      <p class="footer-disclosure">ToInvested.com is a participant in the Amazon Services LLC Associates Program. Investment analysis results are for educational purposes only and do not constitute financial advice.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

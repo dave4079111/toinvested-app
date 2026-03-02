@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership Plans | ToInvested - AI-Powered Real Estate Investing</title>
+    <meta name="description" content="Join ToInvested's Wealth Builder membership. Get unlimited AI-powered deal analyses, portfolio tracking, community access, and expert coaching. Start free or go pro.">
+    <link rel="canonical" href="https://toinvested.com/membership/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --navy: #0A0E17;
+            --navy-light: #111827;
+            --navy-card: #141B2D;
+            --gold: #C9A84C;
+            --gold-light: #E8D48B;
+            --gold-dark: #A88A3D;
+            --white: #FFFFFF;
+            --gray: #94A3B8;
+            --gray-light: #CBD5E1;
+            --green: #22C55E;
+            --red: #EF4444;
+            --font-heading: 'Playfair Display', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body);
+            background: var(--navy);
+            color: var(--white);
+            font-size: 18px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: var(--gold); text-decoration: none; transition: color 0.3s; }
+        a:hover { color: var(--gold-light); }
+        img { max-width: 100%; height: auto; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .container-narrow { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        /* NAV */
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10,14,23,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(201,168,76,0.1); }
+        .nav-inner { max-width: 1400px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 72px; }
+        .nav-logo { font-family: var(--font-heading); font-size: 24px; font-weight: 700; color: var(--gold); }
+        .nav-links { display: flex; align-items: center; gap: 32px; }
+        .nav-links a { color: var(--gray-light); font-size: 15px; font-weight: 500; }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-cta { background: var(--gold); color: var(--navy); padding: 10px 24px; border-radius: 8px; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .nav-cta:hover { background: var(--gold-light); color: var(--navy); }
+        .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+        .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--white); margin: 6px 0; transition: 0.3s; }
+
+        /* HERO */
+        .hero { padding: 160px 0 100px; text-align: center; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%); pointer-events: none; }
+        .hero-badge { display: inline-block; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3); color: var(--gold); padding: 8px 20px; border-radius: 50px; font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 32px; }
+        .hero h1 { font-family: var(--font-heading); font-size: clamp(36px, 5vw, 64px); font-weight: 700; line-height: 1.15; margin-bottom: 24px; }
+        .hero h1 .gold { color: var(--gold); }
+        .hero p { font-size: 20px; color: var(--gray); max-width: 640px; margin: 0 auto 40px; }
+
+        /* PRICING CARDS */
+        .pricing-section { padding: 80px 0; }
+        .section-label { text-align: center; color: var(--gold); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+        .section-title { text-align: center; font-family: var(--font-heading); font-size: clamp(28px, 4vw, 48px); font-weight: 700; margin-bottom: 16px; }
+        .section-sub { text-align: center; color: var(--gray); font-size: 18px; max-width: 600px; margin: 0 auto 60px; }
+        .pricing-toggle { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 60px; }
+        .pricing-toggle span { font-size: 16px; color: var(--gray); font-weight: 500; }
+        .pricing-toggle span.active { color: var(--white); }
+        .toggle-switch { width: 56px; height: 30px; background: var(--navy-card); border: 2px solid var(--gold); border-radius: 50px; cursor: pointer; position: relative; transition: 0.3s; }
+        .toggle-switch::after { content: ''; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; background: var(--gold); border-radius: 50%; transition: 0.3s; }
+        .toggle-switch.annual::after { transform: translateX(26px); }
+        .save-badge { background: var(--green); color: var(--navy); font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 20px; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start; }
+        .pricing-card { background: var(--navy-card); border: 1px solid rgba(255,255,255,0.06); border-radius: 20px; padding: 40px 32px; position: relative; transition: transform 0.3s, box-shadow 0.3s; }
+        .pricing-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        .pricing-card.featured { border-color: var(--gold); background: linear-gradient(180deg, rgba(201,168,76,0.08) 0%, var(--navy-card) 100%); }
+        .pricing-card.featured::before { content: 'MOST POPULAR'; position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--gold); color: var(--navy); font-size: 12px; font-weight: 700; padding: 6px 20px; border-radius: 50px; letter-spacing: 1px; }
+        .card-tier { font-size: 14px; color: var(--gold); font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; }
+        .card-name { font-family: var(--font-heading); font-size: 28px; font-weight: 700; margin-bottom: 16px; }
+        .card-price { margin-bottom: 8px; }
+        .card-price .amount { font-size: 48px; font-weight: 700; }
+        .card-price .period { color: var(--gray); font-size: 16px; }
+        .card-price .original { color: var(--gray); text-decoration: line-through; font-size: 18px; margin-right: 8px; }
+        .card-desc { color: var(--gray); font-size: 16px; margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .card-features { list-style: none; margin-bottom: 32px; }
+        .card-features li { display: flex; align-items: flex-start; gap: 12px; padding: 8px 0; font-size: 16px; }
+        .card-features li .check { color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+        .card-features li .x-mark { color: var(--red); font-weight: 700; flex-shrink: 0; margin-top: 2px; opacity: 0.5; }
+        .card-features li.disabled { color: var(--gray); opacity: 0.5; }
+        .btn { display: inline-block; padding: 16px 32px; border-radius: 12px; font-weight: 700; font-size: 16px; text-align: center; cursor: pointer; transition: all 0.3s; border: none; width: 100%; }
+        .btn-gold { background: var(--gold); color: var(--navy); }
+        .btn-gold:hover { background: var(--gold-light); color: var(--navy); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.3); }
+        .btn-outline { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.2); }
+        .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+        .btn-white { background: var(--white); color: var(--navy); }
+        .btn-white:hover { background: var(--gray-light); color: var(--navy); }
+
+        /* COMPARISON TABLE */
+        .comparison-section { padding: 80px 0; }
+        .comparison-table { width: 100%; border-collapse: collapse; margin-top: 40px; }
+        .comparison-table thead th { padding: 20px 16px; font-size: 16px; font-weight: 700; text-align: center; color: var(--gold); border-bottom: 2px solid rgba(201,168,76,0.3); }
+        .comparison-table thead th:first-child { text-align: left; }
+        .comparison-table tbody td { padding: 16px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 16px; text-align: center; }
+        .comparison-table tbody td:first-child { text-align: left; color: var(--gray-light); }
+        .comparison-table tbody tr:hover { background: rgba(201,168,76,0.03); }
+        .table-check { color: var(--green); font-size: 20px; }
+        .table-x { color: var(--gray); font-size: 20px; opacity: 0.3; }
+
+        /* GUARANTEE */
+        .guarantee-section { padding: 80px 0; }
+        .guarantee-box { background: var(--navy-card); border: 2px solid var(--gold); border-radius: 24px; padding: 60px; text-align: center; max-width: 800px; margin: 0 auto; }
+        .guarantee-badge { width: 100px; height: 100px; border-radius: 50%; background: rgba(201,168,76,0.1); display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 48px; }
+        .guarantee-box h3 { font-family: var(--font-heading); font-size: 32px; margin-bottom: 16px; }
+        .guarantee-box p { color: var(--gray); font-size: 18px; max-width: 560px; margin: 0 auto; }
+
+        /* TESTIMONIALS */
+        .testimonials-section { padding: 80px 0; }
+        .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+        .testimonial-card { background: var(--navy-card); border: 1px solid rgba(255,255,255,0.06); border-radius: 20px; padding: 40px 32px; }
+        .testimonial-stars { color: var(--gold); font-size: 20px; margin-bottom: 20px; letter-spacing: 2px; }
+        .testimonial-text { font-size: 17px; line-height: 1.7; color: var(--gray-light); margin-bottom: 24px; font-style: italic; }
+        .testimonial-result { background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.2); border-radius: 12px; padding: 16px; margin-bottom: 24px; }
+        .testimonial-result .label { color: var(--green); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+        .testimonial-result .value { color: var(--white); font-size: 20px; font-weight: 700; }
+        .testimonial-author { display: flex; align-items: center; gap: 16px; }
+        .testimonial-avatar { width: 48px; height: 48px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--navy); font-size: 18px; }
+        .testimonial-name { font-weight: 600; font-size: 16px; }
+        .testimonial-role { color: var(--gray); font-size: 14px; }
+
+        /* FAQ */
+        .faq-section { padding: 80px 0; }
+        .faq-item { border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .faq-question { width: 100%; background: none; border: none; color: var(--white); padding: 24px 0; font-size: 18px; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: var(--font-body); }
+        .faq-question:hover { color: var(--gold); }
+        .faq-icon { font-size: 24px; transition: transform 0.3s; color: var(--gold); flex-shrink: 0; margin-left: 16px; }
+        .faq-item.open .faq-icon { transform: rotate(45deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s ease; }
+        .faq-answer-inner { padding: 0 0 24px; color: var(--gray); font-size: 17px; line-height: 1.7; }
+
+        /* FINAL CTA */
+        .final-cta { padding: 100px 0; text-align: center; position: relative; }
+        .final-cta::before { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; height: 400px; background: radial-gradient(ellipse at center bottom, rgba(201,168,76,0.06) 0%, transparent 70%); pointer-events: none; }
+        .final-cta h2 { font-family: var(--font-heading); font-size: clamp(32px, 4vw, 52px); font-weight: 700; margin-bottom: 20px; }
+        .final-cta p { color: var(--gray); font-size: 20px; max-width: 600px; margin: 0 auto 40px; }
+
+        /* FOOTER */
+        .footer { background: var(--navy-light); border-top: 1px solid rgba(255,255,255,0.06); padding: 80px 0 40px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr repeat(4, 1fr); gap: 40px; margin-bottom: 60px; }
+        .footer-brand .footer-logo { font-family: var(--font-heading); font-size: 28px; font-weight: 700; color: var(--gold); margin-bottom: 16px; }
+        .footer-brand p { color: var(--gray); font-size: 15px; line-height: 1.7; }
+        .footer-col h4 { color: var(--white); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 20px; }
+        .footer-col a { display: block; color: var(--gray); font-size: 15px; padding: 6px 0; }
+        .footer-col a:hover { color: var(--gold); }
+        .footer-disclosure { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 20px 24px; margin-bottom: 40px; }
+        .footer-disclosure p { color: var(--gray); font-size: 13px; line-height: 1.7; }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06); }
+        .footer-bottom p { color: var(--gray); font-size: 14px; }
+        .footer-bottom-links { display: flex; gap: 24px; }
+        .footer-bottom-links a { color: var(--gray); font-size: 14px; }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+            .pricing-card.featured { order: -1; }
+            .testimonials-grid { grid-template-columns: 1fr; max-width: 560px; margin: 48px auto 0; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: fixed; top: 72px; left: 0; right: 0; background: var(--navy); flex-direction: column; padding: 24px; gap: 16px; border-bottom: 1px solid rgba(201,168,76,0.1); }
+            .nav-links.open { display: flex; }
+            .nav-toggle { display: block; }
+            .hero { padding: 120px 0 60px; }
+            .comparison-table { font-size: 14px; }
+            .comparison-table thead th, .comparison-table tbody td { padding: 12px 8px; }
+            .guarantee-box { padding: 40px 24px; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAV -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">ToInvested</a>
+            <div class="nav-links" id="navLinks">
+                <a href="/tools/">AI Tools</a>
+                <a href="/hard-money-lending/">Financing</a>
+                <a href="/education/">Education</a>
+                <a href="/blog/">Blog</a>
+                <a href="/about/">About</a>
+                <a href="/coaching/">Coaching</a>
+                <a href="/membership/" class="nav-cta">Join Wealth Builder</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">Now with 7 AI-Powered Tools</div>
+            <h1>Invest Like You Have<br><span class="gold">a Team Behind You</span></h1>
+            <p>Stop second-guessing your real estate deals. Get AI-powered analysis, portfolio tracking, and a community of investors building generational wealth.</p>
+            <a href="#pricing" class="btn btn-gold" style="width:auto; padding: 18px 48px; font-size: 18px;">See Plans &amp; Pricing</a>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="pricing-section" id="pricing">
+        <div class="container">
+            <div class="section-label">Pricing</div>
+            <h2 class="section-title">Choose Your Wealth Building Plan</h2>
+            <p class="section-sub">Every plan includes our AI-powered analysis engine. Upgrade to unlock your full investing potential.</p>
+
+            <div class="pricing-toggle">
+                <span class="active" id="monthlyLabel">Monthly</span>
+                <div class="toggle-switch" id="billingToggle" role="button" tabindex="0" aria-label="Toggle annual billing"></div>
+                <span id="annualLabel">Annual</span>
+                <span class="save-badge">Save 17%</span>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- FREE -->
+                <div class="pricing-card">
+                    <div class="card-tier">Starter</div>
+                    <div class="card-name">Free</div>
+                    <div class="card-price">
+                        <span class="amount">$0</span>
+                        <span class="period">/forever</span>
+                    </div>
+                    <p class="card-desc">Get your feet wet with 3 free AI analyses per month. No credit card required.</p>
+                    <ul class="card-features">
+                        <li><span class="check">&#10003;</span> 3 AI analyses per month</li>
+                        <li><span class="check">&#10003;</span> Basic property metrics</li>
+                        <li><span class="check">&#10003;</span> Market snapshot data</li>
+                        <li><span class="check">&#10003;</span> Email support</li>
+                        <li class="disabled"><span class="x-mark">&#10007;</span> Portfolio tracker</li>
+                        <li class="disabled"><span class="x-mark">&#10007;</span> Community access</li>
+                        <li class="disabled"><span class="x-mark">&#10007;</span> Monthly strategy calls</li>
+                        <li class="disabled"><span class="x-mark">&#10007;</span> Coaching sessions</li>
+                    </ul>
+                    <a href="/tools/" class="btn btn-outline">Get Started Free</a>
+                </div>
+
+                <!-- WEALTH BUILDER -->
+                <div class="pricing-card featured">
+                    <div class="card-tier">Wealth Builder</div>
+                    <div class="card-name">Pro Investor</div>
+                    <div class="card-price" id="proPricing">
+                        <span class="amount">$47</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <p class="card-desc">Everything you need to analyze, track, and grow your real estate portfolio with confidence.</p>
+                    <ul class="card-features">
+                        <li><span class="check">&#10003;</span> <strong>Unlimited</strong> AI analyses</li>
+                        <li><span class="check">&#10003;</span> Full property deep-dive reports</li>
+                        <li><span class="check">&#10003;</span> Portfolio tracker &amp; dashboard</li>
+                        <li><span class="check">&#10003;</span> Private investor community</li>
+                        <li><span class="check">&#10003;</span> Monthly strategy calls</li>
+                        <li><span class="check">&#10003;</span> PDF deal reports &amp; exports</li>
+                        <li><span class="check">&#10003;</span> Priority email support</li>
+                        <li class="disabled"><span class="x-mark">&#10007;</span> Weekly coaching calls</li>
+                    </ul>
+                    <a href="MEMBERSHIP_LINK" class="btn btn-gold" id="proBtn">Join Wealth Builder</a>
+                </div>
+
+                <!-- WEALTH BUILDER PRO -->
+                <div class="pricing-card">
+                    <div class="card-tier">Wealth Builder Pro</div>
+                    <div class="card-name">Elite Investor</div>
+                    <div class="card-price" id="elitePricing">
+                        <span class="amount">$97</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <p class="card-desc">For serious investors who want hands-on coaching, deal alerts, and a direct line to our team.</p>
+                    <ul class="card-features">
+                        <li><span class="check">&#10003;</span> <strong>Everything in Wealth Builder</strong></li>
+                        <li><span class="check">&#10003;</span> Weekly group coaching calls</li>
+                        <li><span class="check">&#10003;</span> Live deal alerts</li>
+                        <li><span class="check">&#10003;</span> Priority 1-on-1 support</li>
+                        <li><span class="check">&#10003;</span> Early access to new tools</li>
+                        <li><span class="check">&#10003;</span> Deal review with David</li>
+                        <li><span class="check">&#10003;</span> Custom portfolio strategy</li>
+                        <li><span class="check">&#10003;</span> All premium courses included</li>
+                    </ul>
+                    <a href="MEMBERSHIP_PRO_LINK" class="btn btn-white" id="eliteBtn">Go Pro</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPARISON TABLE -->
+    <section class="comparison-section">
+        <div class="container">
+            <h2 class="section-title">Feature Comparison</h2>
+            <p class="section-sub">See exactly what you get at every level.</p>
+            <div style="overflow-x: auto;">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Free</th>
+                            <th style="color: var(--gold);">Wealth Builder</th>
+                            <th>Wealth Builder Pro</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>AI Deal Analyses</td><td>3/month</td><td>Unlimited</td><td>Unlimited</td></tr>
+                        <tr><td>Property Reports</td><td>Basic</td><td>Full Deep-Dive</td><td>Full Deep-Dive</td></tr>
+                        <tr><td>Market Data</td><td>Snapshot</td><td>Full Access</td><td>Full Access + Alerts</td></tr>
+                        <tr><td>Portfolio Tracker</td><td><span class="table-x">&#10007;</span></td><td><span class="table-check">&#10003;</span></td><td><span class="table-check">&#10003;</span></td></tr>
+                        <tr><td>PDF Export</td><td><span class="table-x">&#10007;</span></td><td><span class="table-check">&#10003;</span></td><td><span class="table-check">&#10003;</span></td></tr>
+                        <tr><td>Investor Community</td><td><span class="table-x">&#10007;</span></td><td><span class="table-check">&#10003;</span></td><td><span class="table-check">&#10003;</span></td></tr>
+                        <tr><td>Monthly Strategy Calls</td><td><span class="table-x">&#10007;</span></td><td><span class="table-check">&#10003;</span></td><td><span class="table-check">&#10003;</span></td></tr>
+                        <tr><td>Weekly Coaching Calls</td><td><span class="table-x">&#10007;</span></td><td><span class="table-x">&#10007;</span></td><td><span class="table-check">&#10003;</span></td></tr>
+                        <tr><td>Deal Alerts</td><td><span class="table-x">&#10007;</span></td><td><span class="table-x">&#10007;</span></td><td><span class="table-check">&#10003;</span></td></tr>
+                        <tr><td>Priority Support</td><td><span class="table-x">&#10007;</span></td><td>Email</td><td>1-on-1 Priority</td></tr>
+                        <tr><td>Premium Courses</td><td><span class="table-x">&#10007;</span></td><td><span class="table-x">&#10007;</span></td><td><span class="table-check">&#10003;</span></td></tr>
+                        <tr><td>Deal Review w/ David</td><td><span class="table-x">&#10007;</span></td><td><span class="table-x">&#10007;</span></td><td><span class="table-check">&#10003;</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- GUARANTEE -->
+    <section class="guarantee-section">
+        <div class="container">
+            <div class="guarantee-box">
+                <div class="guarantee-badge">&#128170;</div>
+                <h3>30-Day Money-Back Guarantee</h3>
+                <p>Try any paid plan risk-free for 30 days. If our tools don't help you make smarter investment decisions, we'll refund every penny. No questions asked, no hoops to jump through.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-label">Success Stories</div>
+            <h2 class="section-title">Real Investors. Real Results.</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="testimonial-text">"I was about to close on a duplex that looked like a great deal on paper. ToInvested's AI flagged a hidden insurance risk and negative cash flow scenario I completely missed. Saved me from a $40K mistake."</p>
+                    <div class="testimonial-result">
+                        <div class="label">Result</div>
+                        <div class="value">Avoided $40K loss on bad deal</div>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">MR</div>
+                        <div>
+                            <div class="testimonial-name">Marcus R.</div>
+                            <div class="testimonial-role">First-Time Investor, Atlanta</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="testimonial-text">"The portfolio tracker changed how I manage my 12 units. I can see cash flow, equity growth, and cap rates across everything in one dashboard. The monthly strategy calls alone are worth the membership."</p>
+                    <div class="testimonial-result">
+                        <div class="label">Result</div>
+                        <div class="value">Grew portfolio from 4 to 12 units in 14 months</div>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">TW</div>
+                        <div>
+                            <div class="testimonial-name">Tamara W.</div>
+                            <div class="testimonial-role">Wealth Builder Member, Dallas</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="testimonial-text">"David's coaching calls gave me the confidence to submit my first offer. Within 3 months I closed on a 4-plex generating $2,800/month in gross rent. This community is the real deal."</p>
+                    <div class="testimonial-result">
+                        <div class="label">Result</div>
+                        <div class="value">$2,800/mo gross rent on first deal</div>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">JL</div>
+                        <div>
+                            <div class="testimonial-name">James L.</div>
+                            <div class="testimonial-role">Wealth Builder Pro, Phoenix</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="container-narrow">
+            <div class="section-label">FAQ</div>
+            <h2 class="section-title">Common Questions</h2>
+            <div style="margin-top: 48px;">
+                <div class="faq-item">
+                    <button class="faq-question">What AI tools are included with my membership? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><div class="faq-answer-inner">Every membership tier gets access to our suite of 7 AI-powered real estate analysis tools, including the Rental Property Analyzer, BRRRR Calculator, Wholesale Deal Analyzer, Commercial Property Analyzer, Short-Term Rental Analyzer, Fix &amp; Flip Calculator, and Land Development Feasibility tool. Free members get 3 analyses per month; paid members get unlimited access.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Can I cancel anytime? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><div class="faq-answer-inner">Absolutely. There are no contracts or commitments. You can cancel your subscription at any time from your dashboard, and you'll continue to have access until the end of your current billing period. No cancellation fees, ever.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">How does the 30-day money-back guarantee work? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><div class="faq-answer-inner">If you're not satisfied with your paid membership within the first 30 days, simply contact us and we'll issue a full refund. No questions asked, no forms to fill out. We want you to feel completely confident in your investment.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">What's the difference between monthly strategy calls and weekly coaching? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><div class="faq-answer-inner">Monthly strategy calls (included in Wealth Builder) are group sessions where David covers market trends, investment strategies, and answers member questions. Weekly coaching calls (Wealth Builder Pro only) are more intimate sessions where you can get specific feedback on your deals, portfolio strategy, and investment goals with direct access to David.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Is the annual plan really a better deal? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><div class="faq-answer-inner">Yes! With annual billing, you save approximately 17% compared to paying monthly. Wealth Builder drops from $47/month to the equivalent of $39/month ($468/year), and Wealth Builder Pro drops from $97/month to $81/month ($972/year). Plus, you lock in your rate for the full year.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Do I need real estate experience to benefit from this? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><div class="faq-answer-inner">Not at all. Our AI tools are designed to give you the kind of analysis that experienced investors do manually, but faster and more accurately. Many of our most successful members started with zero real estate experience. The community and coaching calls provide the education and support you need to get started confidently.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Can I upgrade or downgrade my plan later? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><div class="faq-answer-inner">Of course. You can upgrade from Free to Wealth Builder or from Wealth Builder to Pro at any time, and the pricing will be prorated. Downgrading takes effect at the end of your current billing period so you never lose access to features you've already paid for.</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Start Building<br><span class="gold">Your Legacy</span></h2>
+            <p>Join thousands of investors using AI-powered analysis to make smarter deals and build generational wealth.</p>
+            <a href="#pricing" class="btn btn-gold" style="width: auto; padding: 20px 56px; font-size: 18px;">Choose Your Plan</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">ToInvested</div>
+                    <p>AI-powered real estate analysis tools helping investors build generational wealth through smarter deal decisions.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>AI Tools</h4>
+                    <a href="/tools/">All Tools</a>
+                    <a href="/rental-property-analyzer/">Rental Analyzer</a>
+                    <a href="/brrrr-calculator/">BRRRR Calculator</a>
+                    <a href="/wholesale-deal-analyzer/">Wholesale Analyzer</a>
+                    <a href="/fix-and-flip/">Fix &amp; Flip</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Wealth Protection</h4>
+                    <a href="/hard-money-lending/">Hard Money Lending</a>
+                    <a href="/insurance/">Insurance</a>
+                    <a href="/tax-strategy/">Tax Strategy</a>
+                    <a href="/entity-structure/">Entity Structure</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Education</h4>
+                    <a href="/education/">All Courses</a>
+                    <a href="/blog/">Blog</a>
+                    <a href="/coaching/">Coaching</a>
+                    <a href="/consulting/">Consulting</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="/about/">About David</a>
+                    <a href="/membership/">Membership</a>
+                    <a href="/store/">Investor Store</a>
+                    <a href="/contact/">Contact</a>
+                </div>
+            </div>
+            <div class="footer-disclosure">
+                <p><strong>Amazon Associates Disclosure:</strong> ToInvested.com is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. As an Amazon Associate, we earn from qualifying purchases. Product prices and availability are subject to change. Any price and availability information displayed on Amazon at the time of purchase will apply.</p>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 YPN Inc / ToInvested.com. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="/privacy/">Privacy Policy</a>
+                    <a href="/terms/">Terms of Service</a>
+                    <a href="/disclaimer/">Disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile nav toggle
+        document.getElementById('navToggle').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('open');
+        });
+
+        // Billing toggle
+        const toggle = document.getElementById('billingToggle');
+        const monthlyLabel = document.getElementById('monthlyLabel');
+        const annualLabel = document.getElementById('annualLabel');
+        let isAnnual = false;
+
+        toggle.addEventListener('click', function() {
+            isAnnual = !isAnnual;
+            this.classList.toggle('annual', isAnnual);
+            monthlyLabel.classList.toggle('active', !isAnnual);
+            annualLabel.classList.toggle('active', isAnnual);
+
+            document.getElementById('proPricing').innerHTML = isAnnual
+                ? '<span class="original">$47/mo</span><span class="amount">$39</span><span class="period">/mo (billed $468/yr)</span>'
+                : '<span class="amount">$47</span><span class="period">/month</span>';
+
+            document.getElementById('elitePricing').innerHTML = isAnnual
+                ? '<span class="original">$97/mo</span><span class="amount">$81</span><span class="period">/mo (billed $972/yr)</span>'
+                : '<span class="amount">$97</span><span class="period">/month</span>';
+        });
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const item = this.parentElement;
+                const answer = item.querySelector('.faq-answer');
+                const isOpen = item.classList.contains('open');
+
+                document.querySelectorAll('.faq-item').forEach(i => {
+                    i.classList.remove('open');
+                    i.querySelector('.faq-answer').style.maxHeight = '0';
+                });
+
+                if (!isOpen) {
+                    item.classList.add('open');
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

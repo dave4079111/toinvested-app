@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Consulting | ToInvested - Custom Strategy Built for You</title>
+    <meta name="description" content="Get a custom investment strategy session with David J. Moore, MBA. One-time $497 deep-dive covering deal analysis, entity structure, tax strategy, and portfolio growth.">
+    <link rel="canonical" href="https://toinvested.com/consulting/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --navy: #0A0E17; --navy-light: #111827; --navy-card: #141B2D;
+            --gold: #C9A84C; --gold-light: #E8D48B; --gold-dark: #A88A3D;
+            --white: #FFFFFF; --gray: #94A3B8; --gray-light: #CBD5E1;
+            --green: #22C55E; --red: #EF4444;
+            --font-heading: 'Playfair Display', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); background: var(--navy); color: var(--white); font-size: 18px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+        a { color: var(--gold); text-decoration: none; transition: color 0.3s; }
+        a:hover { color: var(--gold-light); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .container-narrow { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+        .gold { color: var(--gold); }
+
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10,14,23,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(201,168,76,0.1); }
+        .nav-inner { max-width: 1400px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 72px; }
+        .nav-logo { font-family: var(--font-heading); font-size: 24px; font-weight: 700; color: var(--gold); }
+        .nav-links { display: flex; align-items: center; gap: 32px; }
+        .nav-links a { color: var(--gray-light); font-size: 15px; font-weight: 500; }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-cta { background: var(--gold); color: var(--navy) !important; padding: 10px 24px; border-radius: 8px; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .nav-cta:hover { background: var(--gold-light); color: var(--navy) !important; }
+        .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+        .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--white); margin: 6px 0; transition: 0.3s; }
+
+        .section-label { text-align: center; color: var(--gold); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+        .section-title { text-align: center; font-family: var(--font-heading); font-size: clamp(28px, 4vw, 48px); font-weight: 700; margin-bottom: 16px; }
+        .section-sub { text-align: center; color: var(--gray); font-size: 18px; max-width: 600px; margin: 0 auto 60px; }
+
+        .btn { display: inline-block; padding: 16px 32px; border-radius: 12px; font-weight: 700; font-size: 16px; text-align: center; cursor: pointer; transition: all 0.3s; border: none; }
+        .btn-gold { background: var(--gold); color: var(--navy); }
+        .btn-gold:hover { background: var(--gold-light); color: var(--navy); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.3); }
+
+        /* HERO */
+        .hero { padding: 160px 0 100px; text-align: center; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%); pointer-events: none; }
+        .hero h1 { font-family: var(--font-heading); font-size: clamp(36px, 5vw, 60px); font-weight: 700; line-height: 1.15; margin-bottom: 24px; }
+        .hero p { font-size: 20px; color: var(--gray); max-width: 640px; margin: 0 auto 16px; }
+        .hero-price { font-size: 56px; font-weight: 800; color: var(--gold); font-family: var(--font-heading); margin: 24px 0 8px; }
+        .hero-price-sub { color: var(--gray); font-size: 16px; margin-bottom: 40px; }
+
+        /* TOPIC CARDS */
+        .topics-section { padding: 80px 0; }
+        .topics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+        .topic-card { background: var(--navy-card); border: 1px solid rgba(255,255,255,0.06); border-radius: 20px; padding: 40px 28px; text-align: center; transition: transform 0.3s, border-color 0.3s; }
+        .topic-card:hover { transform: translateY(-4px); border-color: rgba(201,168,76,0.3); }
+        .topic-icon { font-size: 40px; margin-bottom: 20px; display: block; }
+        .topic-card h3 { font-size: 22px; font-weight: 700; margin-bottom: 12px; font-family: var(--font-heading); }
+        .topic-card p { color: var(--gray); font-size: 16px; line-height: 1.6; }
+        .topic-card ul { list-style: none; margin-top: 16px; text-align: left; }
+        .topic-card ul li { color: var(--gray-light); font-size: 15px; padding: 4px 0; display: flex; align-items: center; gap: 8px; }
+        .topic-card ul li::before { content: '\2713'; color: var(--gold); font-weight: 700; font-size: 14px; }
+
+        /* WHO ITS FOR */
+        .who-section { padding: 80px 0; }
+        .who-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 48px; }
+        .who-card { background: var(--navy-card); border-radius: 20px; padding: 48px 36px; }
+        .who-card.good { border: 1px solid rgba(34,197,94,0.3); }
+        .who-card.bad { border: 1px solid rgba(239,68,68,0.2); }
+        .who-card h3 { font-size: 24px; font-weight: 700; margin-bottom: 24px; font-family: var(--font-heading); }
+        .who-card.good h3 { color: var(--green); }
+        .who-card.bad h3 { color: #FCA5A5; }
+        .who-card ul { list-style: none; }
+        .who-card ul li { padding: 10px 0; font-size: 17px; display: flex; align-items: flex-start; gap: 12px; color: var(--gray-light); }
+        .who-card.good ul li::before { content: '\2713'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+        .who-card.bad ul li::before { content: '\2717'; color: var(--red); font-weight: 700; flex-shrink: 0; }
+
+        /* COACH BIO */
+        .coach-section { padding: 80px 0; }
+        .coach-card { display: grid; grid-template-columns: 300px 1fr; gap: 60px; background: var(--navy-card); border: 1px solid rgba(201,168,76,0.15); border-radius: 24px; padding: 60px; align-items: center; }
+        .coach-photo { width: 100%; border-radius: 20px; aspect-ratio: 3/4; object-fit: cover; border: 3px solid rgba(201,168,76,0.3); }
+        .coach-info h3 { font-family: var(--font-heading); font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+        .coach-title { color: var(--gold); font-size: 18px; font-weight: 600; margin-bottom: 24px; }
+        .coach-info p { color: var(--gray); font-size: 17px; margin-bottom: 16px; }
+
+        /* BOOKING */
+        .booking-section { padding: 80px 0; text-align: center; }
+        .booking-card { max-width: 700px; margin: 40px auto 0; background: var(--navy-card); border: 2px solid var(--gold); border-radius: 24px; padding: 60px 48px; }
+        .booking-price { font-size: 64px; font-weight: 800; color: var(--gold); font-family: var(--font-heading); }
+        .booking-price-sub { color: var(--gray); font-size: 16px; margin-bottom: 32px; }
+        .booking-features { list-style: none; text-align: left; margin: 24px 0 32px; }
+        .booking-features li { padding: 8px 0; font-size: 17px; display: flex; align-items: center; gap: 12px; }
+        .booking-features li::before { content: '\2713'; color: var(--gold); font-weight: 700; }
+        .calendly-placeholder { background: rgba(255,255,255,0.03); border: 2px dashed rgba(255,255,255,0.1); border-radius: 16px; padding: 60px 24px; margin-top: 32px; color: var(--gray); font-size: 16px; }
+
+        /* FAQ */
+        .faq-section { padding: 80px 0; }
+        .faq-item { border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .faq-question { width: 100%; background: none; border: none; color: var(--white); padding: 24px 0; font-size: 18px; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: var(--font-body); }
+        .faq-question:hover { color: var(--gold); }
+        .faq-icon { font-size: 24px; transition: transform 0.3s; color: var(--gold); flex-shrink: 0; margin-left: 16px; }
+        .faq-item.open .faq-icon { transform: rotate(45deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+        .faq-answer-inner { padding: 0 0 24px; color: var(--gray); font-size: 17px; line-height: 1.7; }
+
+        /* FOOTER */
+        .footer { background: var(--navy-light); border-top: 1px solid rgba(255,255,255,0.06); padding: 80px 0 40px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr repeat(4, 1fr); gap: 40px; margin-bottom: 60px; }
+        .footer-brand .footer-logo { font-family: var(--font-heading); font-size: 28px; font-weight: 700; color: var(--gold); margin-bottom: 16px; }
+        .footer-brand p { color: var(--gray); font-size: 15px; line-height: 1.7; }
+        .footer-col h4 { color: var(--white); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 20px; }
+        .footer-col a { display: block; color: var(--gray); font-size: 15px; padding: 6px 0; }
+        .footer-col a:hover { color: var(--gold); }
+        .footer-disclosure { background: rgba(255,255,255,0.03); border-radius: 12px; padding: 20px 24px; margin-bottom: 40px; }
+        .footer-disclosure p { color: var(--gray); font-size: 13px; line-height: 1.7; }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06); }
+        .footer-bottom p { color: var(--gray); font-size: 14px; }
+        .footer-bottom-links { display: flex; gap: 24px; }
+        .footer-bottom-links a { color: var(--gray); font-size: 14px; }
+
+        @media (max-width: 1024px) {
+            .topics-grid { grid-template-columns: 1fr 1fr; }
+            .who-grid { grid-template-columns: 1fr; }
+            .coach-card { grid-template-columns: 1fr; text-align: center; padding: 40px 24px; }
+            .coach-photo { max-width: 260px; margin: 0 auto; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: fixed; top: 72px; left: 0; right: 0; background: var(--navy); flex-direction: column; padding: 24px; gap: 16px; border-bottom: 1px solid rgba(201,168,76,0.1); }
+            .nav-links.open { display: flex; }
+            .nav-toggle { display: block; }
+            .hero { padding: 120px 0 60px; }
+            .topics-grid { grid-template-columns: 1fr; }
+            .booking-card { padding: 40px 24px; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAV -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">ToInvested</a>
+            <div class="nav-links" id="navLinks">
+                <a href="/tools/">AI Tools</a>
+                <a href="/hard-money-lending/">Financing</a>
+                <a href="/education/">Education</a>
+                <a href="/blog/">Blog</a>
+                <a href="/about/">About</a>
+                <a href="/coaching/">Coaching</a>
+                <a href="/membership/" class="nav-cta">Join Wealth Builder</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="section-label">One Session. Total Clarity.</div>
+            <h1>Custom Investment Strategy.<br><span class="gold">Built for You.</span></h1>
+            <p>A focused, one-time strategy session with David J. Moore where you get a personalized investment plan tailored to your goals, market, and financial situation.</p>
+            <div class="hero-price">$497</div>
+            <div class="hero-price-sub">One-time session. No subscription. Actionable strategy you keep forever.</div>
+            <a href="#booking" class="btn btn-gold" style="padding: 18px 48px; font-size: 18px;">Book Your Strategy Session</a>
+        </div>
+    </section>
+
+    <!-- WHAT'S COVERED -->
+    <section class="topics-section">
+        <div class="container">
+            <div class="section-label">What We Cover</div>
+            <h2 class="section-title">6 Pillars of Your Investment Strategy</h2>
+            <p class="section-sub">Every session is tailored to you, but we'll cover the areas that matter most to your wealth-building goals.</p>
+            <div class="topics-grid">
+                <div class="topic-card">
+                    <span class="topic-icon">&#128200;</span>
+                    <h3>Deal Analysis</h3>
+                    <p>Bring your current deals or target criteria and get expert analysis on what works.</p>
+                    <ul>
+                        <li>Cash flow projections</li>
+                        <li>Risk assessment</li>
+                        <li>Negotiation strategy</li>
+                        <li>Comparable analysis</li>
+                    </ul>
+                </div>
+                <div class="topic-card">
+                    <span class="topic-icon">&#127970;</span>
+                    <h3>Entity Structure</h3>
+                    <p>Protect your assets and set up the right legal structure from the start.</p>
+                    <ul>
+                        <li>LLC vs. S-Corp vs. Trust</li>
+                        <li>Multi-entity strategies</li>
+                        <li>Asset protection layers</li>
+                        <li>State-specific guidance</li>
+                    </ul>
+                </div>
+                <div class="topic-card">
+                    <span class="topic-icon">&#128176;</span>
+                    <h3>Tax Strategy</h3>
+                    <p>Legally minimize your tax burden and keep more of your investment returns.</p>
+                    <ul>
+                        <li>Depreciation strategies</li>
+                        <li>1031 exchange planning</li>
+                        <li>Cost segregation</li>
+                        <li>Self-directed IRA/401k</li>
+                    </ul>
+                </div>
+                <div class="topic-card">
+                    <span class="topic-icon">&#128640;</span>
+                    <h3>Portfolio Growth</h3>
+                    <p>Map out your path from where you are to where you want to be in 5, 10, and 20 years.</p>
+                    <ul>
+                        <li>Scaling strategy</li>
+                        <li>Financing optimization</li>
+                        <li>Market selection</li>
+                        <li>Exit planning</li>
+                    </ul>
+                </div>
+                <div class="topic-card">
+                    <span class="topic-icon">&#128737;</span>
+                    <h3>Insurance</h3>
+                    <p>Make sure your portfolio is properly protected against catastrophic loss.</p>
+                    <ul>
+                        <li>Landlord insurance audit</li>
+                        <li>Umbrella policy sizing</li>
+                        <li>Liability gap analysis</li>
+                        <li>Flood &amp; disaster coverage</li>
+                    </ul>
+                </div>
+                <div class="topic-card">
+                    <span class="topic-icon">&#127968;</span>
+                    <h3>Estate Planning</h3>
+                    <p>Ensure your wealth transfers to the next generation the way you intend.</p>
+                    <ul>
+                        <li>Trust structures</li>
+                        <li>Beneficiary planning</li>
+                        <li>Generational wealth strategy</li>
+                        <li>Succession planning</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHO IT'S FOR -->
+    <section class="who-section">
+        <div class="container">
+            <div class="section-label">Is This Right for You?</div>
+            <h2 class="section-title">Who This Session Is (and Isn't) For</h2>
+            <div class="who-grid">
+                <div class="who-card good">
+                    <h3>This IS for You If...</h3>
+                    <ul>
+                        <li>You have capital or financing ready and need a clear strategy to deploy it</li>
+                        <li>You own properties but aren't sure you're maximizing your returns or protecting your assets</li>
+                        <li>You're serious about building generational wealth through real estate</li>
+                        <li>You want expert guidance before making a major investment decision</li>
+                        <li>You value your time and want years of experience distilled into one session</li>
+                        <li>You're ready to take action within 30-90 days of the session</li>
+                    </ul>
+                </div>
+                <div class="who-card bad">
+                    <h3>This is NOT for You If...</h3>
+                    <ul>
+                        <li>You're looking for a get-rich-quick scheme or "no money down" magic</li>
+                        <li>You're not willing to put in the work to implement the strategy</li>
+                        <li>You want someone to manage your investments for you</li>
+                        <li>You're looking for guaranteed returns (nobody can promise that honestly)</li>
+                        <li>You just want free advice and have no intention of investing</li>
+                        <li>You're expecting a sales pitch for more services (this is the service)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COACH BIO -->
+    <section class="coach-section">
+        <div class="container">
+            <div class="coach-card">
+                <img src="https://toinvested.com/wp-content/uploads/2026/01/David-J-Moore-MBA-Photo-2026.jpg" alt="David J. Moore, MBA" class="coach-photo" loading="lazy">
+                <div class="coach-info">
+                    <div class="section-label" style="text-align:left;">Your Consultant</div>
+                    <h3>David J. Moore, MBA</h3>
+                    <div class="coach-title">Founder, ToInvested.com</div>
+                    <p>With 20+ years of real estate investing experience and an MBA, David brings a rare combination of hands-on deal experience and strategic business thinking to every consulting session.</p>
+                    <p>He's built ToInvested from the ground up, created 7 AI-powered analysis tools, and coaches investors at every level. His consulting sessions are known for being direct, actionable, and worth multiples of the investment.</p>
+                    <p>David grew up in extreme poverty and built everything from scratch. He understands what it means to start with nothing and create generational wealth. That perspective shapes every strategy he builds.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOOKING -->
+    <section class="booking-section" id="booking">
+        <div class="container">
+            <div class="section-label">Ready to Get Started?</div>
+            <h2 class="section-title">Book Your Strategy Session</h2>
+            <div class="booking-card">
+                <div class="booking-price">$497</div>
+                <div class="booking-price-sub">One-Time Investment</div>
+                <ul class="booking-features">
+                    <li>90-minute 1-on-1 video session with David</li>
+                    <li>Pre-session questionnaire &amp; goal-setting</li>
+                    <li>Custom investment roadmap document (PDF)</li>
+                    <li>All 6 topic areas covered as relevant</li>
+                    <li>Recording of the full session for your records</li>
+                    <li>30-day email follow-up for implementation questions</li>
+                    <li>1 month of Wealth Builder membership included</li>
+                </ul>
+                <a href="#calendly" class="btn btn-gold" style="width: 100%; padding: 18px; font-size: 18px;">Book Now -- $497</a>
+                <div class="calendly-placeholder" id="calendly">
+                    <!-- CALENDLY EMBED GOES HERE -->
+                    <p>Calendly scheduling widget will be embedded here.</p>
+                    <p style="margin-top: 8px; font-size: 14px;">Select your preferred date and time for the strategy session.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <div class="container-narrow">
+            <div class="section-label">FAQ</div>
+            <h2 class="section-title">Consulting Questions</h2>
+            <div style="margin-top: 48px;">
+                <div class="faq-item">
+                    <button class="faq-question">How do I prepare for the session? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><div class="faq-answer-inner">After booking, you'll receive a detailed pre-session questionnaire. Complete it at least 48 hours before your session so David can review your situation and come prepared with specific insights. The more detail you provide, the more valuable your session will be.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">What if I need more than one session? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><div class="faq-answer-inner">Many clients find one session gives them everything they need to move forward. If you want ongoing support, our coaching program ($197-$297/month) picks up where the consulting session leaves off with weekly calls and continuous deal review.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Can I bring my spouse or business partner? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><div class="faq-answer-inner">Absolutely. In fact, we encourage it. Major investment decisions should involve all key stakeholders. There's no extra charge for having your spouse, business partner, or any other decision-maker join the session.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Is there a refund policy? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><div class="faq-answer-inner">If you cancel more than 48 hours before your session, you'll receive a full refund. If you need to reschedule, we're happy to accommodate. If you complete the session and feel it wasn't valuable, contact us within 7 days and we'll make it right.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">How is this different from coaching? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><div class="faq-answer-inner">Consulting is a one-time deep-dive focused on building your complete investment strategy. Coaching is an ongoing relationship with weekly calls, deal reviews, and continuous support. Think of consulting as the blueprint and coaching as the construction crew. Many investors start with a consulting session and then graduate to coaching.</div></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">What format is the session? <span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><div class="faq-answer-inner">Sessions are conducted via Zoom video call. You'll receive a link after booking. The session is recorded (with your permission) so you can reference it anytime. Within 5 business days after the session, you'll also receive a custom PDF roadmap summarizing your strategy and action items.</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section style="padding: 100px 0; text-align: center;">
+        <div class="container">
+            <h2 class="section-title">One Conversation Can Change<br>Your <span class="gold">Financial Future</span></h2>
+            <p class="section-sub">Stop guessing. Get a strategy built by someone who's done it. Book your session today.</p>
+            <a href="#booking" class="btn btn-gold" style="padding: 20px 56px; font-size: 18px;">Book Your Session -- $497</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">ToInvested</div>
+                    <p>AI-powered real estate analysis tools helping investors build generational wealth through smarter deal decisions.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>AI Tools</h4>
+                    <a href="/tools/">All Tools</a>
+                    <a href="/rental-property-analyzer/">Rental Analyzer</a>
+                    <a href="/brrrr-calculator/">BRRRR Calculator</a>
+                    <a href="/wholesale-deal-analyzer/">Wholesale Analyzer</a>
+                    <a href="/fix-and-flip/">Fix &amp; Flip</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Wealth Protection</h4>
+                    <a href="/hard-money-lending/">Hard Money Lending</a>
+                    <a href="/insurance/">Insurance</a>
+                    <a href="/tax-strategy/">Tax Strategy</a>
+                    <a href="/entity-structure/">Entity Structure</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Education</h4>
+                    <a href="/education/">All Courses</a>
+                    <a href="/blog/">Blog</a>
+                    <a href="/coaching/">Coaching</a>
+                    <a href="/consulting/">Consulting</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="/about/">About David</a>
+                    <a href="/membership/">Membership</a>
+                    <a href="/store/">Investor Store</a>
+                    <a href="/contact/">Contact</a>
+                </div>
+            </div>
+            <div class="footer-disclosure">
+                <p><strong>Amazon Associates Disclosure:</strong> ToInvested.com is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. As an Amazon Associate, we earn from qualifying purchases. Product prices and availability are subject to change. Any price and availability information displayed on Amazon at the time of purchase will apply.</p>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 YPN Inc / ToInvested.com. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="/privacy/">Privacy Policy</a>
+                    <a href="/terms/">Terms of Service</a>
+                    <a href="/disclaimer/">Disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('navToggle').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('open');
+        });
+        document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const item = this.parentElement;
+                const answer = item.querySelector('.faq-answer');
+                const isOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item').forEach(i => {
+                    i.classList.remove('open');
+                    i.querySelector('.faq-answer').style.maxHeight = '0';
+                });
+                if (!isOpen) {
+                    item.classList.add('open');
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Tax Strategy Guide | ToInvested</title>
+    <meta name="description" content="Master 7 powerful real estate tax strategies: depreciation, 1031 exchanges, cost segregation, capital gains, QBI deduction, REPS status, and opportunity zones.">
+    <link rel="canonical" href="https://toinvested.com/tax-strategy/">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --navy: #0A0E17;
+            --navy-light: #111827;
+            --navy-card: #151C2C;
+            --gold: #C9A84C;
+            --gold-light: #D4B967;
+            --gold-dark: #A88B3A;
+            --text: #E8E4DC;
+            --text-muted: #9CA3AF;
+            --border: #1E293B;
+            --success: #22C55E;
+            --warning: #F59E0B;
+            --danger: #EF4444;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--text); font-size: 18px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+        h1, h2, h3, h4, h5 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+        a { color: var(--gold); text-decoration: none; transition: color 0.3s; }
+        a:hover { color: var(--gold-light); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* NAV */
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10,14,23,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+        .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 72px; }
+        .nav-logo { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--gold); }
+        .nav-links { display: flex; align-items: center; gap: 28px; }
+        .nav-links a { color: var(--text-muted); font-size: 15px; font-weight: 500; }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-cta { background: var(--gold); color: var(--navy); padding: 10px 22px; border-radius: 8px; font-weight: 700; font-size: 14px; }
+        .nav-cta:hover { background: var(--gold-light); color: var(--navy); }
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+        .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); transition: 0.3s; }
+        @media (max-width: 900px) {
+            .hamburger { display: flex; }
+            .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; background: var(--navy); flex-direction: column; padding: 24px; border-bottom: 1px solid var(--border); }
+            .nav-links.active { display: flex; }
+        }
+
+        /* HERO */
+        .hero { padding: 140px 0 80px; text-align: center; background: linear-gradient(180deg, rgba(201,168,76,0.06) 0%, transparent 60%); }
+        .hero-badge { display: inline-block; background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.25); color: var(--gold); padding: 8px 20px; border-radius: 100px; font-size: 14px; font-weight: 600; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 1px; }
+        .hero h1 { font-size: clamp(36px, 5vw, 64px); font-weight: 800; margin-bottom: 20px; }
+        .hero h1 span { color: var(--gold); }
+        .hero p { font-size: 20px; color: var(--text-muted); max-width: 700px; margin: 0 auto 40px; }
+        .hero-sub { font-size: 16px; color: var(--text-muted); max-width: 600px; margin: 0 auto; font-style: italic; }
+
+        /* SECTIONS */
+        .section { padding: 80px 0; }
+        .section-header { text-align: center; margin-bottom: 56px; }
+        .section-header h2 { font-size: clamp(28px, 3.5vw, 44px); font-weight: 700; margin-bottom: 16px; }
+        .section-header p { font-size: 18px; color: var(--text-muted); max-width: 640px; margin: 0 auto; }
+        .section-divider { width: 60px; height: 3px; background: var(--gold); margin: 16px auto; border-radius: 2px; }
+
+        /* TAX TOOL CARDS */
+        .tax-tool { background: var(--navy-card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; margin-bottom: 32px; transition: border-color 0.3s; }
+        .tax-tool:hover { border-color: rgba(201,168,76,0.4); }
+        .tax-tool-header { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 20px; }
+        .tax-tool-num { background: var(--gold); color: var(--navy); width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 20px; flex-shrink: 0; }
+        .tax-tool h3 { font-size: 26px; font-weight: 700; }
+        .tax-tool-desc { color: var(--text-muted); font-size: 17px; margin-bottom: 24px; }
+        .math-box { background: rgba(201,168,76,0.05); border: 1px solid rgba(201,168,76,0.15); border-radius: 12px; padding: 24px 28px; margin-top: 16px; }
+        .math-box h4 { font-size: 16px; color: var(--gold); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .math-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(201,168,76,0.08); font-size: 16px; }
+        .math-row:last-child { border-bottom: none; }
+        .math-row.result { font-weight: 700; color: var(--gold); font-size: 18px; border-top: 2px solid rgba(201,168,76,0.2); margin-top: 8px; padding-top: 12px; }
+
+        /* MISTAKES */
+        .mistakes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; }
+        @media (max-width: 400px) { .mistakes-grid { grid-template-columns: 1fr; } }
+        .mistake-card { background: var(--navy-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; border-left: 4px solid var(--danger); }
+        .mistake-card h4 { font-size: 18px; margin-bottom: 10px; color: #F87171; }
+        .mistake-card p { color: var(--text-muted); font-size: 15px; }
+        .mistake-card .fix { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); color: var(--success); font-weight: 600; font-size: 14px; }
+
+        /* WARNING BOX */
+        .warning-box { background: rgba(239,68,68,0.08); border: 2px solid rgba(239,68,68,0.3); border-radius: 16px; padding: 32px 36px; max-width: 800px; margin: 40px auto; }
+        .warning-box h3 { color: #F87171; font-size: 22px; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; }
+        .warning-box p { color: var(--text-muted); font-size: 16px; }
+
+        /* RESOURCES */
+        .resources-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        .resource-card { background: var(--navy-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; transition: border-color 0.3s; }
+        .resource-card:hover { border-color: var(--gold); }
+        .resource-card h4 { font-size: 20px; margin-bottom: 10px; }
+        .resource-card p { color: var(--text-muted); font-size: 15px; margin-bottom: 16px; }
+        .resource-link { display: inline-block; background: rgba(201,168,76,0.1); color: var(--gold); padding: 10px 24px; border-radius: 8px; font-weight: 600; font-size: 15px; }
+        .resource-link:hover { background: rgba(201,168,76,0.2); }
+
+        /* CTA */
+        .cta-banner { background: linear-gradient(135deg, var(--gold-dark), var(--gold)); border-radius: 20px; padding: 56px 48px; text-align: center; margin: 60px 0; }
+        .cta-banner h2 { font-size: 36px; color: var(--navy); margin-bottom: 16px; }
+        .cta-banner p { color: rgba(10,14,23,0.7); font-size: 18px; margin-bottom: 28px; }
+        .cta-banner .btn { display: inline-block; background: var(--navy); color: var(--gold); padding: 16px 36px; border-radius: 10px; font-weight: 700; font-size: 16px; }
+        .cta-banner .btn:hover { background: var(--navy-light); }
+
+        /* FOOTER */
+        .footer { border-top: 1px solid var(--border); padding: 64px 0 32px; margin-top: 40px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 32px; margin-bottom: 48px; }
+        @media (max-width: 768px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+        .footer-col h4 { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--gold); margin-bottom: 16px; }
+        .footer-col a { display: block; color: var(--text-muted); font-size: 14px; margin-bottom: 10px; }
+        .footer-col a:hover { color: var(--gold); }
+        .footer-bottom { border-top: 1px solid var(--border); padding-top: 24px; text-align: center; }
+        .footer-bottom p { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+        .footer-disclosure { font-size: 12px; color: #6B7280; max-width: 800px; margin: 16px auto 0; line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+    <div class="nav-inner">
+        <a href="/" class="nav-logo">ToInvested</a>
+        <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="/tools/">AI Tools</a>
+            <a href="/hard-money-lending/">Financing</a>
+            <a href="/education/">Education</a>
+            <a href="/blog/">Blog</a>
+            <a href="/about/">About</a>
+            <a href="/coaching/">Coaching</a>
+            <a href="/membership/" class="nav-cta">Join Wealth Builder</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-badge">Tax Strategy Guide</div>
+        <h1>The IRS Actually Wants You to <span>Own Real Estate</span></h1>
+        <p>The tax code is a 75,000-page instruction manual for building wealth. Real estate investors get more deductions, deferrals, and loopholes than any other asset class.</p>
+        <p class="hero-sub">Disclaimer: This is educational content, not tax advice. Consult a qualified CPA or tax attorney for your specific situation.</p>
+    </div>
+</section>
+
+<!-- 7 TAX TOOLS -->
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2>7 Tax Tools That Build Wealth</h2>
+            <div class="section-divider"></div>
+            <p>Master these strategies and you will keep significantly more of every dollar you earn from real estate.</p>
+        </div>
+
+        <!-- Tool 1: Depreciation -->
+        <div class="tax-tool">
+            <div class="tax-tool-header">
+                <div class="tax-tool-num">1</div>
+                <h3>Depreciation</h3>
+            </div>
+            <p class="tax-tool-desc">The IRS lets you deduct the "wear and tear" on your property over 27.5 years for residential and 39 years for commercial &mdash; even while the property appreciates in value. This phantom expense reduces your taxable income without costing you a dime in cash.</p>
+            <div class="math-box">
+                <h4>Live Math Example</h4>
+                <div class="math-row"><span>Property Purchase Price</span><span>$300,000</span></div>
+                <div class="math-row"><span>Land Value (excluded, ~20%)</span><span>-$60,000</span></div>
+                <div class="math-row"><span>Depreciable Basis</span><span>$240,000</span></div>
+                <div class="math-row"><span>Annual Depreciation (27.5 yrs)</span><span>$8,727 / year</span></div>
+                <div class="math-row result"><span>Tax Savings (24% bracket)</span><span>$2,095 / year</span></div>
+            </div>
+        </div>
+
+        <!-- Tool 2: 1031 Exchange -->
+        <div class="tax-tool">
+            <div class="tax-tool-header">
+                <div class="tax-tool-num">2</div>
+                <h3>1031 Exchange</h3>
+            </div>
+            <p class="tax-tool-desc">Sell an investment property and defer ALL capital gains taxes by reinvesting into a "like-kind" property. You have 45 days to identify replacement properties and 180 days to close. Stack 1031 exchanges throughout your career to build a massive portfolio tax-free.</p>
+            <div class="math-box">
+                <h4>Live Math Example</h4>
+                <div class="math-row"><span>Original Purchase Price</span><span>$200,000</span></div>
+                <div class="math-row"><span>Sale Price (5 years later)</span><span>$350,000</span></div>
+                <div class="math-row"><span>Capital Gain</span><span>$150,000</span></div>
+                <div class="math-row"><span>Federal + State Tax (28% combined)</span><span>$42,000</span></div>
+                <div class="math-row result"><span>Tax Deferred via 1031</span><span>$42,000 saved</span></div>
+            </div>
+        </div>
+
+        <!-- Tool 3: Cost Segregation -->
+        <div class="tax-tool">
+            <div class="tax-tool-header">
+                <div class="tax-tool-num">3</div>
+                <h3>Cost Segregation</h3>
+            </div>
+            <p class="tax-tool-desc">An engineering study that reclassifies building components (carpeting, appliances, landscaping, parking lots) from 27.5-year to 5, 7, or 15-year property. Combined with bonus depreciation, you can take massive year-one deductions. Game-changing for high-income earners.</p>
+            <div class="math-box">
+                <h4>Live Math Example</h4>
+                <div class="math-row"><span>Property Value (improvements)</span><span>$800,000</span></div>
+                <div class="math-row"><span>Standard Year-1 Depreciation</span><span>$29,091</span></div>
+                <div class="math-row"><span>Cost Seg Reclassified (35% of basis)</span><span>$280,000</span></div>
+                <div class="math-row"><span>Year-1 Bonus Depreciation (60%)</span><span>$168,000</span></div>
+                <div class="math-row result"><span>Additional Year-1 Tax Savings (37%)</span><span>$51,356</span></div>
+            </div>
+        </div>
+
+        <!-- Tool 4: Capital Gains -->
+        <div class="tax-tool">
+            <div class="tax-tool-header">
+                <div class="tax-tool-num">4</div>
+                <h3>Capital Gains Optimization</h3>
+            </div>
+            <p class="tax-tool-desc">Short-term gains (under 1 year) are taxed as ordinary income (up to 37%). Long-term gains (over 1 year) get preferential rates of 0%, 15%, or 20%. Timing your sales strategically can save you tens of thousands in taxes.</p>
+            <div class="math-box">
+                <h4>Live Math Example</h4>
+                <div class="math-row"><span>Profit on Property Sale</span><span>$100,000</span></div>
+                <div class="math-row"><span>Tax if Sold in 11 Months (37% ordinary)</span><span>$37,000</span></div>
+                <div class="math-row"><span>Tax if Sold in 13 Months (15% LTCG)</span><span>$15,000</span></div>
+                <div class="math-row result"><span>Savings from Waiting 2 Extra Months</span><span>$22,000</span></div>
+            </div>
+        </div>
+
+        <!-- Tool 5: QBI -->
+        <div class="tax-tool">
+            <div class="tax-tool-header">
+                <div class="tax-tool-num">5</div>
+                <h3>QBI Deduction (Section 199A)</h3>
+            </div>
+            <p class="tax-tool-desc">Qualified Business Income deduction allows pass-through entity owners to deduct up to 20% of their qualified real estate income. If your rental activity qualifies as a trade or business, you can deduct 20% of that net rental income before calculating taxes.</p>
+            <div class="math-box">
+                <h4>Live Math Example</h4>
+                <div class="math-row"><span>Net Rental Income (3 properties)</span><span>$80,000</span></div>
+                <div class="math-row"><span>QBI Deduction (20%)</span><span>$16,000</span></div>
+                <div class="math-row result"><span>Tax Savings (24% bracket)</span><span>$3,840 / year</span></div>
+            </div>
+        </div>
+
+        <!-- Tool 6: REPS -->
+        <div class="tax-tool">
+            <div class="tax-tool-header">
+                <div class="tax-tool-num">6</div>
+                <h3>Real Estate Professional Status (REPS)</h3>
+            </div>
+            <p class="tax-tool-desc">If you spend 750+ hours per year AND more than half your working time in real estate activities, you can classify as a Real Estate Professional. This unlocks the ability to deduct rental losses against ALL income &mdash; including W-2, business, and investment income. Incredibly powerful for high earners with a spouse in real estate.</p>
+            <div class="math-box">
+                <h4>Live Math Example</h4>
+                <div class="math-row"><span>W-2 Income (spouse)</span><span>$250,000</span></div>
+                <div class="math-row"><span>Rental Losses (after depreciation)</span><span>-$80,000</span></div>
+                <div class="math-row"><span>Without REPS: Losses suspended</span><span>$0 offset</span></div>
+                <div class="math-row"><span>With REPS: Losses applied to W-2</span><span>$80,000 offset</span></div>
+                <div class="math-row result"><span>Tax Savings (35% bracket)</span><span>$28,000 / year</span></div>
+            </div>
+        </div>
+
+        <!-- Tool 7: Opportunity Zones -->
+        <div class="tax-tool">
+            <div class="tax-tool-header">
+                <div class="tax-tool-num">7</div>
+                <h3>Opportunity Zones</h3>
+            </div>
+            <p class="tax-tool-desc">Invest capital gains into a Qualified Opportunity Fund (QOF) within 180 days and defer those gains. Hold for 10+ years and pay ZERO capital gains on the Opportunity Zone investment's appreciation. One of the most powerful wealth-building tools in the tax code.</p>
+            <div class="math-box">
+                <h4>Live Math Example</h4>
+                <div class="math-row"><span>Capital Gain from Sale</span><span>$500,000</span></div>
+                <div class="math-row"><span>Invested in Opportunity Zone Fund</span><span>$500,000</span></div>
+                <div class="math-row"><span>OZ Investment Value After 10 Years</span><span>$1,200,000</span></div>
+                <div class="math-row"><span>Appreciation in OZ</span><span>$700,000</span></div>
+                <div class="math-row result"><span>Tax on $700K Appreciation (held 10+ yrs)</span><span>$0</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 6 COMMON TAX MISTAKES -->
+<section class="section" style="background: rgba(201,168,76,0.02);">
+    <div class="container">
+        <div class="section-header">
+            <h2>6 Tax Mistakes That Cost Investors Thousands</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="mistakes-grid">
+            <div class="mistake-card">
+                <h4>1. Not Tracking Mileage</h4>
+                <p>Driving to properties, showings, hardware stores, and meetings is deductible at $0.67/mile. Most investors lose $3,000-$8,000/year in unclaimed mileage.</p>
+                <div class="fix">Fix: Use MileIQ or a dedicated mileage log from day one.</div>
+            </div>
+            <div class="mistake-card">
+                <h4>2. Missing the 1031 Deadline</h4>
+                <p>You have exactly 45 days to identify and 180 days to close on replacement properties. Miss it by one day and you owe the full capital gains tax.</p>
+                <div class="fix">Fix: Start identifying replacement properties BEFORE you sell.</div>
+            </div>
+            <div class="mistake-card">
+                <h4>3. Skipping Cost Segregation</h4>
+                <p>Every property over $500K in value likely justifies a cost segregation study. The study costs $5K-$15K but can generate $50K-$200K+ in first-year deductions.</p>
+                <div class="fix">Fix: Get a cost seg study on every property over $500K.</div>
+            </div>
+            <div class="mistake-card">
+                <h4>4. Commingling Personal &amp; Business</h4>
+                <p>Mixing personal and rental expenses in one bank account is an audit red flag and makes it nearly impossible to maximize deductions.</p>
+                <div class="fix">Fix: Separate bank accounts and credit cards for each entity.</div>
+            </div>
+            <div class="mistake-card">
+                <h4>5. Not Documenting REPS Hours</h4>
+                <p>The IRS requires contemporaneous time logs to prove Real Estate Professional Status. Claiming REPS without documentation is an audit magnet.</p>
+                <div class="fix">Fix: Keep a daily time log. Use apps or spreadsheets consistently.</div>
+            </div>
+            <div class="mistake-card">
+                <h4>6. Using a Non-Specialist CPA</h4>
+                <p>Your cousin's CPA who does W-2 returns will miss real estate-specific deductions. A generalist CPA can cost you $10K-$50K+/year in missed savings.</p>
+                <div class="fix">Fix: Hire a CPA who specializes in real estate investors.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WARNING: S-CORP -->
+<section class="section">
+    <div class="container">
+        <div class="warning-box">
+            <h3>&#9888; Critical Warning: Never Hold Long-Term Rentals in an S-Corp</h3>
+            <p>Holding rental properties inside an S-Corp creates a tax nightmare. You lose the ability to do 1031 exchanges, cannot take advantage of the step-up in basis at death, face double taxation on appreciated property distributions, and lose favorable capital gains rates. S-Corps are great for active businesses and flipping operations, but long-term buy-and-hold properties belong in LLCs taxed as partnerships or disregarded entities. This is one of the most expensive mistakes investors make &mdash; and it's nearly impossible to unwind cleanly.</p>
+        </div>
+    </div>
+</section>
+
+<!-- EXTERNAL RESOURCES -->
+<section class="section" style="background: rgba(201,168,76,0.02);">
+    <div class="container">
+        <div class="section-header">
+            <h2>Tax Professional Resources</h2>
+            <div class="section-divider"></div>
+            <p>Tools and directories to connect you with qualified tax professionals.</p>
+        </div>
+        <div class="resources-grid">
+            <div class="resource-card">
+                <h4>TurboTax Business</h4>
+                <p>Self-filing platform for investors comfortable doing their own returns. Handles rental income, depreciation, and K-1 forms.</p>
+                <a href="https://turbotax.intuit.com/small-business-taxes/" target="_blank" rel="noopener" class="resource-link">Visit TurboTax &rarr;</a>
+            </div>
+            <div class="resource-card">
+                <h4>H&amp;R Block</h4>
+                <p>In-person and online tax preparation with advisors who can handle rental property returns and investment income.</p>
+                <a href="https://hrblock.com" target="_blank" rel="noopener" class="resource-link">Visit H&amp;R Block &rarr;</a>
+            </div>
+            <div class="resource-card">
+                <h4>AICPA Find a CPA</h4>
+                <p>The official directory from the American Institute of CPAs. Search for credentialed professionals who specialize in real estate taxation.</p>
+                <a href="https://aicpa-cima.com" target="_blank" rel="noopener" class="resource-link">Find a CPA &rarr;</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="section">
+    <div class="container">
+        <div class="cta-banner">
+            <h2>Stop Overpaying the IRS</h2>
+            <p>Get our complete Tax Strategy Playbook, cost segregation calculator, and access to investor-specialized CPAs.</p>
+            <a href="/membership/" class="btn">Join Wealth Builder &rarr;</a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>AI Tools</h4>
+                <a href="/tools/">Property Analyzer</a>
+                <a href="/tools/">BRRRR Calculator</a>
+                <a href="/tools/">Flip Profit Calculator</a>
+                <a href="/tools/">Rental ROI Analyzer</a>
+                <a href="/ai-coach/">AI Coach</a>
+            </div>
+            <div class="footer-col">
+                <h4>Wealth Protection</h4>
+                <a href="/tax-strategy/">Tax Strategy</a>
+                <a href="/legal-protection/">Legal Protection</a>
+                <a href="/life-insurance/">Life Insurance</a>
+                <a href="/probate/">Probate Strategy</a>
+                <a href="/hard-money-lending/">Financing</a>
+            </div>
+            <div class="footer-col">
+                <h4>Education</h4>
+                <a href="/education/">Courses</a>
+                <a href="/blog/">Blog</a>
+                <a href="/coaching/">Coaching</a>
+                <a href="/store/">Book Store</a>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <a href="/about/">About</a>
+                <a href="/membership/">Membership</a>
+                <a href="/consulting/">Consulting</a>
+                <a href="/coaching/">Coaching</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="/privacy/">Privacy Policy</a>
+                <a href="/terms/">Terms of Service</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 YPN Inc. All rights reserved.</p>
+            <p class="footer-disclosure">ToInvested is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. Some links on this site are affiliate links, meaning we may earn a commission at no extra cost to you.</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
