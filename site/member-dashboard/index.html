@@ -179,24 +179,25 @@ a:hover { color: var(--gold-light); }
 <!-- LOGIN -->
 <section style="padding-bottom: 60px;">
   <div class="container">
-    <div class="login-gate">
+    <div class="login-gate" id="loginGate">
       <div class="login-card animate-on-scroll">
-        <h2>Sign In</h2>
-        <p class="sub">Access your investment dashboard</p>
+        <h2 id="authTitle">Sign In</h2>
+        <p class="sub" id="authSub">Access your investment dashboard</p>
+        <div id="authError" style="color:var(--red);font-size:14px;margin-bottom:12px;display:none;"></div>
+        <div class="form-group" id="nameGroup" style="display:none;">
+          <label>Full Name</label>
+          <input type="text" class="form-input" id="authName" placeholder="Your name">
+        </div>
         <div class="form-group">
           <label>Email Address</label>
-          <input type="email" class="form-input" placeholder="you@example.com">
+          <input type="email" class="form-input" id="authEmail" placeholder="you@example.com">
         </div>
         <div class="form-group">
           <label>Password</label>
-          <input type="password" class="form-input" placeholder="Enter your password">
+          <input type="password" class="form-input" id="authPassword" placeholder="Enter your password">
         </div>
-        <div class="form-row">
-          <label><input type="checkbox"> Remember me</label>
-          <a href="#">Forgot password?</a>
-        </div>
-        <button class="btn-login" onclick="alert('Dashboard access coming soon. Join membership to get started!')">Sign In</button>
-        <p class="login-footer">Don&rsquo;t have an account? <a href="/membership/">Join now</a></p>
+        <button class="btn-login" id="authBtn" onclick="handleAuth()">Sign In</button>
+        <p class="login-footer" id="authToggle">Don&rsquo;t have an account? <a href="#" onclick="toggleAuthMode(event)">Create one</a></p>
       </div>
     </div>
   </div>
@@ -400,6 +401,57 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1 });
 document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+let isRegister = false;
+
+function toggleAuthMode(e) {
+  e.preventDefault();
+  isRegister = !isRegister;
+  document.getElementById('authTitle').textContent = isRegister ? 'Create Account' : 'Sign In';
+  document.getElementById('authSub').textContent = isRegister ? 'Start your investment journey' : 'Access your investment dashboard';
+  document.getElementById('nameGroup').style.display = isRegister ? 'block' : 'none';
+  document.getElementById('authBtn').textContent = isRegister ? 'Create Account' : 'Sign In';
+  document.getElementById('authToggle').innerHTML = isRegister
+    ? 'Already have an account? <a href="#" onclick="toggleAuthMode(event)">Sign in</a>'
+    : 'Don\'t have an account? <a href="#" onclick="toggleAuthMode(event)">Create one</a>';
+  document.getElementById('authError').style.display = 'none';
+}
+
+async function handleAuth() {
+  const email = document.getElementById('authEmail').value;
+  const password = document.getElementById('authPassword').value;
+  const name = document.getElementById('authName').value;
+  const errEl = document.getElementById('authError');
+  const btn = document.getElementById('authBtn');
+
+  if (!email || !password) { errEl.textContent = 'Please fill in all fields'; errEl.style.display = 'block'; return; }
+  if (password.length < 8) { errEl.textContent = 'Password must be at least 8 characters'; errEl.style.display = 'block'; return; }
+
+  btn.textContent = isRegister ? 'Creating...' : 'Signing in...';
+  btn.disabled = true;
+
+  const result = isRegister ? await TI.register(email, password, name) : await TI.login(email, password);
+  if (result.success) {
+    document.getElementById('loginGate').style.display = 'none';
+    TI.showNotification(`Welcome${result.user.name ? ', ' + result.user.name : ''}!`);
+    // Show the dashboard preview as real dashboard
+    document.querySelector('.preview-label').textContent = 'Your Dashboard';
+  } else {
+    errEl.textContent = result.error;
+    errEl.style.display = 'block';
+  }
+  btn.textContent = isRegister ? 'Create Account' : 'Sign In';
+  btn.disabled = false;
+}
+
+// Auto-login check
+if (TI && TI.isLoggedIn()) {
+  document.getElementById('loginGate').style.display = 'none';
+}
+
+// Enter key support
+document.getElementById('authPassword').addEventListener('keypress', (e) => { if (e.key === 'Enter') handleAuth(); });
 </script>
+<script src="/js/toinvested.js"></script>
 </body>
 </html>

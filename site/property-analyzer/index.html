@@ -1578,6 +1578,8 @@ Ensure all numbers are realistic and mathematically consistent. Be honest — if
       return;
     }
     localStorage.setItem('ti_user_email', email);
+    // Save lead to backend
+    if (typeof TI !== 'undefined') TI.subscribeNewsletter(email).catch(() => {});
     $('#email-gate').classList.remove('visible');
 
     if (pendingResult) {
@@ -1727,5 +1729,6 @@ Ensure all numbers are realistic and mathematically consistent. Be honest — if
 })();
 </script>
 
+<script src="/js/toinvested.js"></script>
 </body>
 </html>

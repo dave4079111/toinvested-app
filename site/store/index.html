@@ -163,120 +163,32 @@ a:hover { color: var(--gold-light); }
   </div>
 </section>
 
-<!-- PRODUCTS -->
+<!-- PRODUCTS (dynamically loaded from API) -->
 <section class="section" style="padding-top: 20px;">
   <div class="container">
-    <div class="products-grid">
-      <div class="product-card animate-on-scroll">
-        <div class="product-img">📊</div>
-        <div class="product-body">
-          <div class="product-tag">Spreadsheet</div>
-          <h3>Deal Analyzer Spreadsheet</h3>
-          <p>Comprehensive Excel/Sheets template to analyze any rental or flip deal in minutes. Built-in formulas for cash flow, ROI, and cap rate.</p>
-          <ul class="product-features">
-            <li>Rental & flip analysis</li>
-            <li>Cash flow projections</li>
-            <li>Auto-calculated ROI</li>
-          </ul>
-          <div class="product-footer">
-            <div class="product-price">$47</div>
-            <button class="btn-buy" onclick="alert('Coming soon! Join membership for instant access to all tools.')">Buy Now</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-card animate-on-scroll">
-        <div class="product-img">🔄</div>
-        <div class="product-body">
-          <div class="product-tag">Calculator</div>
-          <h3>BRRRR Calculator Pro</h3>
-          <p>Purpose-built calculator for BRRRR deals. Model your Buy, Rehab, Rent, Refinance, Repeat strategy with precision.</p>
-          <ul class="product-features">
-            <li>Refinance projections</li>
-            <li>Equity capture analysis</li>
-            <li>Cash-on-cash return</li>
-          </ul>
-          <div class="product-footer">
-            <div class="product-price">$67</div>
-            <button class="btn-buy" onclick="alert('Coming soon! Join membership for instant access to all tools.')">Buy Now</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-card animate-on-scroll">
-        <div class="product-img">🔨</div>
-        <div class="product-body">
-          <div class="product-tag">Template</div>
-          <h3>Rehab Estimator Template</h3>
-          <p>Room-by-room renovation cost estimator. Compare contractor bids, track actual vs. budgeted costs, and protect your margins.</p>
-          <ul class="product-features">
-            <li>Room-by-room breakdown</li>
-            <li>Material cost tracking</li>
-            <li>Budget vs. actual</li>
-          </ul>
-          <div class="product-footer">
-            <div class="product-price">$37</div>
-            <button class="btn-buy" onclick="alert('Coming soon! Join membership for instant access to all tools.')">Buy Now</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-card animate-on-scroll">
-        <div class="product-img">📋</div>
-        <div class="product-body">
-          <div class="product-tag">Checklist</div>
-          <h3>Investor&rsquo;s Legal Checklist</h3>
-          <p>Essential legal checklist for real estate investors. LLC setup, contracts, insurance requirements, and compliance items.</p>
-          <ul class="product-features">
-            <li>Entity structure guide</li>
-            <li>Contract templates list</li>
-            <li>Insurance checklist</li>
-          </ul>
-          <div class="product-footer">
-            <div class="product-price">$27</div>
-            <button class="btn-buy" onclick="alert('Coming soon! Join membership for instant access to all tools.')">Buy Now</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-card animate-on-scroll">
-        <div class="product-img">🏠</div>
-        <div class="product-body">
-          <div class="product-tag">Template Pack</div>
-          <h3>Rental Property Templates</h3>
-          <p>Complete template pack for landlords: lease agreements, tenant screening, maintenance tracking, and income/expense logs.</p>
-          <ul class="product-features">
-            <li>Lease agreement template</li>
-            <li>Tenant screening form</li>
-            <li>Income/expense tracker</li>
-          </ul>
-          <div class="product-footer">
-            <div class="product-price">$37</div>
-            <button class="btn-buy" onclick="alert('Coming soon! Join membership for instant access to all tools.')">Buy Now</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-card animate-on-scroll">
-        <div class="product-img">🎓</div>
-        <div class="product-body">
-          <div class="product-tag">Course</div>
-          <h3>Real Estate Investing Course</h3>
-          <p>Complete video course covering deal analysis, financing, negotiation, rehab management, and building a rental portfolio.</p>
-          <ul class="product-features">
-            <li>12+ hours of content</li>
-            <li>Lifetime access</li>
-            <li>Downloadable resources</li>
-          </ul>
-          <div class="product-footer">
-            <div class="product-price">$199</div>
-            <button class="btn-buy" onclick="alert('Coming soon! Join membership for instant access to all tools.')">Buy Now</button>
-          </div>
-        </div>
-      </div>
+    <div class="products-grid" id="productsGrid">
+      <div style="grid-column: 1/-1; text-align:center; padding:40px; color:var(--gray);">Loading products...</div>
     </div>
   </div>
 </section>
+
+<!-- SHOPPING CART SIDEBAR -->
+<div id="cartOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:2000;" onclick="closeCart()"></div>
+<div id="cartSidebar" style="display:none; position:fixed; right:0; top:0; width:380px; max-width:90vw; height:100vh; background:var(--navy-card); border-left:1px solid var(--gold); z-index:2001; padding:24px; overflow-y:auto;">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+    <h3 style="color:var(--gold); font-size:20px;">Your Cart</h3>
+    <button onclick="closeCart()" style="background:none; border:none; color:var(--gray); font-size:24px; cursor:pointer;">&times;</button>
+  </div>
+  <div id="cartItems"></div>
+  <div id="cartTotal" style="border-top:1px solid var(--navy-border); padding-top:16px; margin-top:16px; display:none;">
+    <div style="display:flex; justify-content:space-between; font-size:18px; font-weight:700; margin-bottom:16px;">
+      <span>Total</span><span id="cartTotalAmount" style="color:var(--gold);"></span>
+    </div>
+    <input type="email" id="checkoutEmail" placeholder="Your email for delivery" style="width:100%; padding:10px 14px; background:var(--navy); border:1px solid var(--navy-border); border-radius:8px; color:var(--white); font-size:14px; margin-bottom:12px;">
+    <button onclick="processCheckout()" style="width:100%; padding:12px; background:linear-gradient(135deg, var(--gold), var(--gold-light)); border:none; border-radius:8px; color:var(--navy); font-weight:700; font-size:16px; cursor:pointer;">Checkout</button>
+  </div>
+  <div id="cartEmpty" style="text-align:center; color:var(--gray); padding:40px 0;">Your cart is empty</div>
+</div>
 
 <!-- FEATURED BUNDLE -->
 <section class="section" style="padding-top: 0;">
@@ -298,7 +210,7 @@ a:hover { color: var(--gold-light); }
       <div class="featured-right">
         <div class="featured-price">$197</div>
         <div class="featured-was">Valued at <s>$414</s> &mdash; Save 52%</div>
-        <button class="btn-featured" onclick="alert('Coming soon! Join membership for instant access to all tools.')">Get the Bundle</button>
+        <button class="btn-featured" onclick="window.location.href='/membership/'">Get the Bundle</button>
         <p class="featured-note">One-time purchase. Lifetime access. No recurring fees.</p>
       </div>
     </div>
@@ -371,6 +283,120 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1 });
 document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+// Category icons
+const catIcons = { tool: '📊', template: '📋', course: '🎓', membership: '⭐' };
+
+// Load products from API
+async function loadProducts() {
+  try {
+    const res = await fetch('/api/products');
+    const data = await res.json();
+    const grid = document.getElementById('productsGrid');
+    if (!data.products || !data.products.length) {
+      grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--gray);">No products available yet.</div>';
+      return;
+    }
+    grid.innerHTML = data.products.map(p => {
+      const features = (p.features || []).map(f => `<li>${f}</li>`).join('');
+      const priceHtml = p.sale_price
+        ? `<span style="text-decoration:line-through;color:var(--gray);font-size:14px;">$${p.price.toFixed(2)}</span> $${p.sale_price.toFixed(2)}`
+        : `$${p.price.toFixed(2)}`;
+      return `<div class="product-card animate-on-scroll visible">
+        <div class="product-img">${catIcons[p.category] || '📦'}</div>
+        <div class="product-body">
+          <div class="product-tag">${p.category}</div>
+          <h3>${p.name}</h3>
+          <p>${p.description || ''}</p>
+          ${features ? `<ul class="product-features">${features}</ul>` : ''}
+          <div class="product-footer">
+            <div class="product-price">${priceHtml}</div>
+            <button class="btn-buy" onclick="addToCart('${p.id}','${p.name.replace(/'/g,"\\'")}',${p.sale_price || p.price})">Add to Cart</button>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+  } catch (err) {
+    document.getElementById('productsGrid').innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--red);">Failed to load products. Please refresh.</div>';
+  }
+}
+
+function addToCart(id, name, price) {
+  TI.addToCart(id, name, price);
+  renderCart();
+}
+
+function openCart() {
+  document.getElementById('cartOverlay').style.display = 'block';
+  document.getElementById('cartSidebar').style.display = 'block';
+  renderCart();
+}
+
+function closeCart() {
+  document.getElementById('cartOverlay').style.display = 'none';
+  document.getElementById('cartSidebar').style.display = 'none';
+}
+
+function renderCart() {
+  const cart = TI.getCart();
+  const itemsEl = document.getElementById('cartItems');
+  const totalEl = document.getElementById('cartTotal');
+  const emptyEl = document.getElementById('cartEmpty');
+
+  if (!cart.length) {
+    itemsEl.innerHTML = '';
+    totalEl.style.display = 'none';
+    emptyEl.style.display = 'block';
+    return;
+  }
+  emptyEl.style.display = 'none';
+  totalEl.style.display = 'block';
+
+  let total = 0;
+  itemsEl.innerHTML = cart.map(item => {
+    total += item.price * item.quantity;
+    return `<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--navy-border);">
+      <div><div style="font-weight:600;font-size:14px;">${item.name}</div><div style="color:var(--gold);font-size:13px;">$${item.price.toFixed(2)}</div></div>
+      <button onclick="TI.removeFromCart('${item.productId}');renderCart();" style="background:none;border:none;color:var(--red);cursor:pointer;font-size:18px;">&times;</button>
+    </div>`;
+  }).join('');
+
+  document.getElementById('cartTotalAmount').textContent = `$${total.toFixed(2)}`;
+}
+
+async function processCheckout() {
+  const email = document.getElementById('checkoutEmail').value;
+  if (!email || !email.includes('@')) {
+    TI.showNotification('Please enter a valid email', 'error');
+    return;
+  }
+  const cart = TI.getCart();
+  if (!cart.length) return;
+
+  const items = cart.map(i => ({ productId: i.productId, quantity: i.quantity }));
+  const result = await TI.checkout(items, email);
+
+  if (result && result.url) {
+    window.location.href = result.url; // Stripe checkout
+  } else if (result && result.orderId) {
+    TI.clearCart();
+    renderCart();
+    closeCart();
+    TI.showNotification('Order placed successfully! Check your email for delivery.');
+  } else {
+    TI.showNotification(result?.error || 'Checkout failed', 'error');
+  }
+}
+
+// Check for success/cancel URL params
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('success')) {
+  TI.clearCart();
+  setTimeout(() => TI.showNotification('Payment successful! Check your email for your products.'), 500);
+}
+
+loadProducts();
 </script>
+<script src="/js/toinvested.js"></script>
 </body>
 </html>

@@ -999,7 +999,7 @@
                 </div>
                 <h2>Stay Ahead of the Market</h2>
                 <p>Get weekly investing insights, deal analysis breakdowns, and AI-powered market updates delivered straight to your inbox.</p>
-                <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Subscribed!'; this.querySelector('button').style.background='#22c55e';">
+                <form class="newsletter-form" data-newsletter-form onsubmit="return false;">
                     <input type="email" placeholder="Enter your email address" required aria-label="Email address">
                     <button type="submit">Subscribe</button>
                 </form>
@@ -1092,5 +1092,6 @@
             observer.observe(el);
         });
     </script>
+<script src="/js/toinvested.js"></script>
 </body>
 </html>

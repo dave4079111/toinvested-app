@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - ToInvested</title>
+    <meta name="robots" content="noindex, nofollow">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0A0E17; color: #E0E0E0; min-height: 100vh; }
+
+        /* Login Screen */
+        .login-screen { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+        .login-box { background: #151A2D; border: 1px solid #C9A84C33; border-radius: 16px; padding: 40px; width: 400px; max-width: 90vw; }
+        .login-box h1 { color: #C9A84C; font-size: 24px; margin-bottom: 8px; }
+        .login-box p { color: #888; margin-bottom: 24px; }
+        .login-box input { width: 100%; padding: 12px 16px; background: #0A0E17; border: 1px solid #333; border-radius: 8px; color: #fff; font-size: 14px; margin-bottom: 16px; }
+        .login-box input:focus { outline: none; border-color: #C9A84C; }
+        .login-box button { width: 100%; padding: 12px; background: linear-gradient(135deg, #C9A84C, #E8C547); border: none; border-radius: 8px; color: #0A0E17; font-weight: 700; font-size: 16px; cursor: pointer; }
+        .login-box button:hover { opacity: 0.9; }
+        .login-error { color: #ff6b6b; font-size: 13px; margin-bottom: 12px; display: none; }
+
+        /* Dashboard Layout */
+        .dashboard { display: none; }
+        .sidebar { position: fixed; left: 0; top: 0; width: 240px; height: 100vh; background: #151A2D; border-right: 1px solid #C9A84C22; padding: 20px 0; overflow-y: auto; z-index: 100; }
+        .sidebar-logo { padding: 0 20px 20px; border-bottom: 1px solid #C9A84C22; margin-bottom: 16px; }
+        .sidebar-logo h2 { color: #C9A84C; font-size: 18px; }
+        .sidebar-logo span { color: #888; font-size: 12px; }
+        .nav-item { display: flex; align-items: center; gap: 10px; padding: 12px 20px; color: #aaa; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+        .nav-item:hover, .nav-item.active { color: #C9A84C; background: #C9A84C11; }
+        .nav-item svg { width: 18px; height: 18px; }
+        .main { margin-left: 240px; padding: 24px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+        .header h1 { font-size: 24px; color: #fff; }
+        .btn { padding: 8px 16px; background: linear-gradient(135deg, #C9A84C, #E8C547); border: none; border-radius: 6px; color: #0A0E17; font-weight: 600; cursor: pointer; font-size: 13px; }
+        .btn:hover { opacity: 0.9; }
+        .btn-outline { background: transparent; border: 1px solid #C9A84C; color: #C9A84C; }
+        .btn-danger { background: #ff4444; color: #fff; }
+
+        /* Stats Grid */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+        .stat-card { background: #151A2D; border: 1px solid #C9A84C22; border-radius: 12px; padding: 20px; }
+        .stat-card .label { color: #888; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+        .stat-card .value { color: #C9A84C; font-size: 28px; font-weight: 700; margin: 4px 0; }
+        .stat-card .sub { color: #666; font-size: 12px; }
+
+        /* Tables */
+        .card { background: #151A2D; border: 1px solid #C9A84C22; border-radius: 12px; padding: 20px; margin-bottom: 24px; }
+        .card h3 { color: #C9A84C; margin-bottom: 16px; font-size: 16px; }
+        table { width: 100%; border-collapse: collapse; }
+        th { text-align: left; padding: 10px 12px; color: #888; font-size: 12px; text-transform: uppercase; border-bottom: 1px solid #333; }
+        td { padding: 10px 12px; border-bottom: 1px solid #1a1a2e; font-size: 13px; }
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+        .badge-new { background: #C9A84C33; color: #C9A84C; }
+        .badge-completed { background: #2ecc7133; color: #2ecc71; }
+        .badge-pending { background: #f39c1233; color: #f39c12; }
+        .badge-published { background: #3498db33; color: #3498db; }
+        .badge-draft { background: #95a5a633; color: #95a5a6; }
+
+        /* Forms */
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; color: #aaa; font-size: 13px; margin-bottom: 6px; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 10px 14px; background: #0A0E17; border: 1px solid #333; border-radius: 6px; color: #fff; font-size: 14px; }
+        .form-group textarea { min-height: 120px; resize: vertical; font-family: inherit; }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: #C9A84C; }
+
+        /* Modal */
+        .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 1000; align-items: center; justify-content: center; }
+        .modal-overlay.active { display: flex; }
+        .modal { background: #151A2D; border: 1px solid #C9A84C33; border-radius: 16px; padding: 24px; width: 600px; max-width: 90vw; max-height: 80vh; overflow-y: auto; }
+        .modal h2 { color: #C9A84C; margin-bottom: 16px; }
+        .modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 16px; }
+
+        /* Section pages */
+        .section { display: none; }
+        .section.active { display: block; }
+
+        /* Health Status */
+        .health-indicator { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+        .health-ok { background: #2ecc71; }
+        .health-warning { background: #f39c12; }
+        .health-error { background: #e74c3c; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
+            .sidebar.open { transform: translateX(0); }
+            .main { margin-left: 0; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* Toast notifications */
+        .toast { position: fixed; bottom: 20px; right: 20px; background: #151A2D; border: 1px solid #C9A84C; border-radius: 8px; padding: 12px 20px; color: #fff; z-index: 2000; animation: slideIn 0.3s ease; }
+        .toast.error { border-color: #ff4444; }
+        @keyframes slideIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    </style>
+</head>
+<body>
+
+<!-- Login Screen -->
+<div class="login-screen" id="loginScreen">
+    <div class="login-box">
+        <h1>ToInvested Admin</h1>
+        <p>Sign in to manage your platform</p>
+        <div class="login-error" id="loginError"></div>
+        <input type="email" id="loginEmail" placeholder="admin@toinvested.com" autocomplete="email">
+        <input type="password" id="loginPassword" placeholder="Password" autocomplete="current-password">
+        <button onclick="login()">Sign In</button>
+    </div>
+</div>
+
+<!-- Dashboard -->
+<div class="dashboard" id="dashboard">
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-logo">
+            <h2>ToInvested</h2>
+            <span>Admin Dashboard</span>
+        </div>
+        <div class="nav-item active" onclick="showSection('overview')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+            Overview
+        </div>
+        <div class="nav-item" onclick="showSection('leads')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Leads & Contacts
+        </div>
+        <div class="nav-item" onclick="showSection('content')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Blog & Content
+        </div>
+        <div class="nav-item" onclick="showSection('products')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Products & Store
+        </div>
+        <div class="nav-item" onclick="showSection('orders')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            Orders
+        </div>
+        <div class="nav-item" onclick="showSection('users')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Users
+        </div>
+        <div class="nav-item" onclick="showSection('health')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            System Health
+        </div>
+        <div class="nav-item" onclick="logout()" style="margin-top: auto; color: #ff6b6b;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            Sign Out
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+        <!-- Overview Section -->
+        <div class="section active" id="section-overview">
+            <div class="header">
+                <h1>Dashboard Overview</h1>
+                <button class="btn" onclick="loadStats()">Refresh</button>
+            </div>
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-card"><div class="label">Total Users</div><div class="value" id="stat-users">-</div></div>
+                <div class="stat-card"><div class="label">Total Leads</div><div class="value" id="stat-leads">-</div><div class="sub" id="stat-new-leads"></div></div>
+                <div class="stat-card"><div class="label">Total Orders</div><div class="value" id="stat-orders">-</div></div>
+                <div class="stat-card"><div class="label">Revenue</div><div class="value" id="stat-revenue">-</div></div>
+                <div class="stat-card"><div class="label">Blog Posts</div><div class="value" id="stat-posts">-</div></div>
+                <div class="stat-card"><div class="label">Products</div><div class="value" id="stat-products">-</div></div>
+                <div class="stat-card"><div class="label">Pending Bookings</div><div class="value" id="stat-bookings">-</div></div>
+                <div class="stat-card"><div class="label">System Status</div><div class="value" id="stat-health" style="font-size:16px">-</div></div>
+            </div>
+            <div class="card">
+                <h3>Recent Leads</h3>
+                <table><thead><tr><th>Email</th><th>Name</th><th>Type</th><th>Status</th><th>Date</th></tr></thead>
+                <tbody id="recentLeadsTable"></tbody></table>
+            </div>
+            <div class="card">
+                <h3>Recent Orders</h3>
+                <table><thead><tr><th>Order ID</th><th>Email</th><th>Total</th><th>Status</th><th>Date</th></tr></thead>
+                <tbody id="recentOrdersTable"></tbody></table>
+            </div>
+        </div>
+
+        <!-- Leads Section -->
+        <div class="section" id="section-leads">
+            <div class="header"><h1>Leads & Contacts</h1></div>
+            <div class="card">
+                <table><thead><tr><th>Email</th><th>Name</th><th>Phone</th><th>Type</th><th>Source</th><th>Status</th><th>Date</th></tr></thead>
+                <tbody id="leadsTable"></tbody></table>
+            </div>
+        </div>
+
+        <!-- Content Section -->
+        <div class="section" id="section-content">
+            <div class="header">
+                <h1>Blog & Content</h1>
+                <button class="btn" onclick="openPostModal()">+ New Post</button>
+            </div>
+            <div class="card">
+                <table><thead><tr><th>Title</th><th>Category</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead>
+                <tbody id="postsTable"></tbody></table>
+            </div>
+        </div>
+
+        <!-- Products Section -->
+        <div class="section" id="section-products">
+            <div class="header">
+                <h1>Products & Store</h1>
+                <button class="btn" onclick="openProductModal()">+ New Product</button>
+            </div>
+            <div class="card">
+                <table><thead><tr><th>Name</th><th>Price</th><th>Sale Price</th><th>Category</th><th>Status</th><th>Actions</th></tr></thead>
+                <tbody id="productsTable"></tbody></table>
+            </div>
+        </div>
+
+        <!-- Orders Section -->
+        <div class="section" id="section-orders">
+            <div class="header"><h1>Orders</h1></div>
+            <div class="card">
+                <table><thead><tr><th>Order ID</th><th>Email</th><th>Items</th><th>Total</th><th>Status</th><th>Date</th></tr></thead>
+                <tbody id="ordersTable"></tbody></table>
+            </div>
+        </div>
+
+        <!-- Users Section -->
+        <div class="section" id="section-users">
+            <div class="header"><h1>Users</h1></div>
+            <div class="card">
+                <table><thead><tr><th>Email</th><th>Name</th><th>Role</th><th>Membership</th><th>Joined</th><th>Actions</th></tr></thead>
+                <tbody id="usersTable"></tbody></table>
+            </div>
+        </div>
+
+        <!-- Health Section -->
+        <div class="section" id="section-health">
+            <div class="header">
+                <h1>System Health</h1>
+                <button class="btn" onclick="loadHealth()">Refresh</button>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card"><div class="label">Uptime</div><div class="value" id="health-uptime">-</div></div>
+                <div class="stat-card"><div class="label">Memory Usage</div><div class="value" id="health-memory">-</div></div>
+                <div class="stat-card"><div class="label">Node Version</div><div class="value" id="health-node" style="font-size:16px">-</div></div>
+                <div class="stat-card"><div class="label">Database Size</div><div class="value" id="health-db" style="font-size:16px">-</div></div>
+            </div>
+            <div class="card">
+                <h3>Health Log</h3>
+                <table><thead><tr><th>Status</th><th>Details</th><th>Action Taken</th><th>Time</th></tr></thead>
+                <tbody id="healthLogTable"></tbody></table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Post Modal -->
+<div class="modal-overlay" id="postModal">
+    <div class="modal">
+        <h2 id="postModalTitle">New Blog Post</h2>
+        <input type="hidden" id="postId">
+        <div class="form-group"><label>Title</label><input type="text" id="postTitleInput" placeholder="Post title"></div>
+        <div class="form-group"><label>Category</label>
+            <select id="postCategoryInput"><option value="general">General</option><option value="education">Education</option><option value="strategy">Strategy</option><option value="investing">Investing</option><option value="news">News</option></select>
+        </div>
+        <div class="form-group"><label>Excerpt</label><input type="text" id="postExcerptInput" placeholder="Short summary"></div>
+        <div class="form-group"><label>Content (HTML)</label><textarea id="postContentInput" placeholder="Write your post content here..."></textarea></div>
+        <div class="form-group"><label>Status</label>
+            <select id="postStatusInput"><option value="draft">Draft</option><option value="published">Published</option></select>
+        </div>
+        <div class="modal-actions">
+            <button class="btn btn-outline" onclick="closeModal('postModal')">Cancel</button>
+            <button class="btn" onclick="savePost()">Save Post</button>
+        </div>
+    </div>
+</div>
+
+<!-- Product Modal -->
+<div class="modal-overlay" id="productModal">
+    <div class="modal">
+        <h2 id="productModalTitle">New Product</h2>
+        <input type="hidden" id="productId">
+        <div class="form-group"><label>Name</label><input type="text" id="productNameInput" placeholder="Product name"></div>
+        <div class="form-group"><label>Description</label><textarea id="productDescInput" placeholder="Product description"></textarea></div>
+        <div class="form-group"><label>Price ($)</label><input type="number" id="productPriceInput" step="0.01" placeholder="49.99"></div>
+        <div class="form-group"><label>Sale Price ($)</label><input type="number" id="productSalePriceInput" step="0.01" placeholder="Optional"></div>
+        <div class="form-group"><label>Category</label>
+            <select id="productCategoryInput"><option value="tool">Tool/Spreadsheet</option><option value="template">Template</option><option value="course">Course</option><option value="membership">Membership</option></select>
+        </div>
+        <div class="modal-actions">
+            <button class="btn btn-outline" onclick="closeModal('productModal')">Cancel</button>
+            <button class="btn" onclick="saveProduct()">Save Product</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let authToken = localStorage.getItem('adminToken');
+
+    // Check if already logged in
+    if (authToken) {
+        verifyAuth();
+    }
+
+    async function api(endpoint, options = {}) {
+        const headers = { 'Content-Type': 'application/json' };
+        if (authToken) headers['Authorization'] = `Bearer ${authToken}`;
+        try {
+            const res = await fetch(`/api${endpoint}`, { ...options, headers });
+            const data = await res.json();
+            if (res.status === 401) { logout(); return null; }
+            if (!res.ok) { showToast(data.error || 'Request failed', 'error'); return null; }
+            return data;
+        } catch (err) {
+            showToast('Network error - server may be restarting', 'error');
+            return null;
+        }
+    }
+
+    async function login() {
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+        const errorEl = document.getElementById('loginError');
+
+        if (!email || !password) { errorEl.textContent = 'Please enter email and password'; errorEl.style.display = 'block'; return; }
+
+        const data = await api('/auth/login', { method: 'POST', body: JSON.stringify({ email, password }) });
+        if (data && data.user.role === 'admin') {
+            authToken = data.token;
+            localStorage.setItem('adminToken', authToken);
+            showDashboard();
+        } else if (data) {
+            errorEl.textContent = 'Admin access required';
+            errorEl.style.display = 'block';
+        }
+    }
+
+    async function verifyAuth() {
+        const data = await api('/auth/me');
+        if (data && data.user.role === 'admin') {
+            showDashboard();
+        } else {
+            logout();
+        }
+    }
+
+    function showDashboard() {
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('dashboard').style.display = 'block';
+        loadStats();
+    }
+
+    function logout() {
+        authToken = null;
+        localStorage.removeItem('adminToken');
+        document.getElementById('loginScreen').style.display = 'flex';
+        document.getElementById('dashboard').style.display = 'none';
+    }
+
+    function showSection(name) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+        document.getElementById(`section-${name}`).classList.add('active');
+        event.currentTarget.classList.add('active');
+
+        // Load section data
+        if (name === 'overview') loadStats();
+        else if (name === 'leads') loadLeads();
+        else if (name === 'content') loadPosts();
+        else if (name === 'products') loadProducts();
+        else if (name === 'orders') loadOrders();
+        else if (name === 'users') loadUsers();
+        else if (name === 'health') loadHealth();
+    }
+
+    async function loadStats() {
+        const data = await api('/admin/stats');
+        if (!data) return;
+        const s = data.stats;
+        document.getElementById('stat-users').textContent = s.totalUsers;
+        document.getElementById('stat-leads').textContent = s.totalLeads;
+        document.getElementById('stat-new-leads').textContent = `${s.newLeads} new`;
+        document.getElementById('stat-orders').textContent = s.totalOrders;
+        document.getElementById('stat-revenue').textContent = `$${s.totalRevenue.toFixed(2)}`;
+        document.getElementById('stat-posts').textContent = s.totalPosts;
+        document.getElementById('stat-products').textContent = s.totalProducts;
+        document.getElementById('stat-bookings').textContent = s.pendingBookings;
+
+        // Health check
+        try {
+            const health = await fetch('/api/health').then(r => r.json());
+            document.getElementById('stat-health').innerHTML = `<span class="health-indicator health-ok"></span>${health.status.toUpperCase()}`;
+        } catch (e) {
+            document.getElementById('stat-health').innerHTML = `<span class="health-indicator health-error"></span>ERROR`;
+        }
+
+        // Recent leads
+        const leadsHtml = (data.recentLeads || []).map(l => `<tr><td>${l.email}</td><td>${l.name || '-'}</td><td>${l.type}</td><td><span class="badge badge-${l.status}">${l.status}</span></td><td>${new Date(l.created_at).toLocaleDateString()}</td></tr>`).join('');
+        document.getElementById('recentLeadsTable').innerHTML = leadsHtml || '<tr><td colspan="5" style="color:#666">No leads yet</td></tr>';
+
+        // Recent orders
+        const ordersHtml = (data.recentOrders || []).map(o => `<tr><td>${o.id.slice(0,8)}...</td><td>${o.user_email}</td><td>$${o.total.toFixed(2)}</td><td><span class="badge badge-${o.status}">${o.status}</span></td><td>${new Date(o.created_at).toLocaleDateString()}</td></tr>`).join('');
+        document.getElementById('recentOrdersTable').innerHTML = ordersHtml || '<tr><td colspan="5" style="color:#666">No orders yet</td></tr>';
+    }
+
+    async function loadLeads() {
+        const data = await api('/leads');
+        if (!data) return;
+        const html = data.leads.map(l => `<tr><td>${l.email}</td><td>${l.name || '-'}</td><td>${l.phone || '-'}</td><td>${l.type}</td><td>${l.source}</td><td><span class="badge badge-${l.status}">${l.status}</span></td><td>${new Date(l.created_at).toLocaleDateString()}</td></tr>`).join('');
+        document.getElementById('leadsTable').innerHTML = html || '<tr><td colspan="7" style="color:#666">No leads yet</td></tr>';
+    }
+
+    async function loadPosts() {
+        const data = await api('/admin/posts');
+        if (!data) return;
+        const html = data.posts.map(p => `<tr><td>${p.title}</td><td>${p.category}</td><td><span class="badge badge-${p.status}">${p.status}</span></td><td>${new Date(p.created_at).toLocaleDateString()}</td><td><button class="btn" onclick="editPost('${p.id}')" style="font-size:11px;padding:4px 8px">Edit</button></td></tr>`).join('');
+        document.getElementById('postsTable').innerHTML = html || '<tr><td colspan="5" style="color:#666">No posts yet</td></tr>';
+    }
+
+    async function loadProducts() {
+        const data = await api('/products');
+        if (!data) return;
+        const html = data.products.map(p => `<tr><td>${p.name}</td><td>$${p.price.toFixed(2)}</td><td>${p.sale_price ? '$' + p.sale_price.toFixed(2) : '-'}</td><td>${p.category}</td><td><span class="badge badge-${p.status === 'active' ? 'completed' : 'draft'}">${p.status}</span></td><td><button class="btn" onclick="editProduct('${p.id}')" style="font-size:11px;padding:4px 8px">Edit</button></td></tr>`).join('');
+        document.getElementById('productsTable').innerHTML = html || '<tr><td colspan="6" style="color:#666">No products yet</td></tr>';
+    }
+
+    async function loadOrders() {
+        const data = await api('/admin/orders');
+        if (!data) return;
+        const html = data.orders.map(o => {
+            const items = o.items.map(i => i.name).join(', ');
+            return `<tr><td>${o.id.slice(0,8)}...</td><td>${o.user_email}</td><td>${items}</td><td>$${o.total.toFixed(2)}</td><td><span class="badge badge-${o.status}">${o.status}</span></td><td>${new Date(o.created_at).toLocaleDateString()}</td></tr>`;
+        }).join('');
+        document.getElementById('ordersTable').innerHTML = html || '<tr><td colspan="6" style="color:#666">No orders yet</td></tr>';
+    }
+
+    async function loadUsers() {
+        const data = await api('/admin/users');
+        if (!data) return;
+        const html = data.users.map(u => `<tr><td>${u.email}</td><td>${u.name || '-'}</td><td>${u.role}</td><td>${u.membership_tier}</td><td>${new Date(u.created_at).toLocaleDateString()}</td><td><button class="btn btn-outline" onclick="editUser('${u.id}','${u.role}','${u.membership_tier}')" style="font-size:11px;padding:4px 8px">Edit</button></td></tr>`).join('');
+        document.getElementById('usersTable').innerHTML = html;
+    }
+
+    async function loadHealth() {
+        const [system, logs] = await Promise.all([api('/admin/system'), api('/admin/health-logs')]);
+        if (system) {
+            document.getElementById('health-uptime').textContent = formatUptime(system.uptime);
+            document.getElementById('health-memory').textContent = `${Math.round(system.memory.heapUsed / 1024 / 1024)}MB`;
+            document.getElementById('health-node').textContent = system.nodeVersion;
+            document.getElementById('health-db').textContent = system.dbSize;
+        }
+        if (logs) {
+            const html = logs.logs.map(l => {
+                const cls = l.status === 'ok' ? 'ok' : l.status === 'warning' ? 'warning' : 'error';
+                return `<tr><td><span class="health-indicator health-${cls}"></span>${l.status}</td><td>${l.details || '-'}</td><td>${l.action_taken || '-'}</td><td>${new Date(l.created_at).toLocaleString()}</td></tr>`;
+            }).join('');
+            document.getElementById('healthLogTable').innerHTML = html || '<tr><td colspan="4" style="color:#666">No health logs yet</td></tr>';
+        }
+    }
+
+    function formatUptime(seconds) {
+        const h = Math.floor(seconds / 3600);
+        const m = Math.floor((seconds % 3600) / 60);
+        if (h > 24) return `${Math.floor(h/24)}d ${h%24}h`;
+        return `${h}h ${m}m`;
+    }
+
+    // Post CRUD
+    function openPostModal(post) {
+        document.getElementById('postModalTitle').textContent = post ? 'Edit Post' : 'New Blog Post';
+        document.getElementById('postId').value = post?.id || '';
+        document.getElementById('postTitleInput').value = post?.title || '';
+        document.getElementById('postCategoryInput').value = post?.category || 'general';
+        document.getElementById('postExcerptInput').value = post?.excerpt || '';
+        document.getElementById('postContentInput').value = post?.content || '';
+        document.getElementById('postStatusInput').value = post?.status || 'draft';
+        document.getElementById('postModal').classList.add('active');
+    }
+
+    async function editPost(id) {
+        const data = await api(`/admin/posts`);
+        const post = data?.posts?.find(p => p.id === id);
+        if (post) openPostModal(post);
+    }
+
+    async function savePost() {
+        const id = document.getElementById('postId').value;
+        const body = {
+            title: document.getElementById('postTitleInput').value,
+            category: document.getElementById('postCategoryInput').value,
+            excerpt: document.getElementById('postExcerptInput').value,
+            content: document.getElementById('postContentInput').value,
+            status: document.getElementById('postStatusInput').value
+        };
+        const endpoint = id ? `/content/posts/${id}` : '/content/posts';
+        const method = id ? 'PUT' : 'POST';
+        const data = await api(endpoint, { method, body: JSON.stringify(body) });
+        if (data) {
+            showToast('Post saved successfully');
+            closeModal('postModal');
+            loadPosts();
+        }
+    }
+
+    // Product CRUD
+    function openProductModal(product) {
+        document.getElementById('productModalTitle').textContent = product ? 'Edit Product' : 'New Product';
+        document.getElementById('productId').value = product?.id || '';
+        document.getElementById('productNameInput').value = product?.name || '';
+        document.getElementById('productDescInput').value = product?.description || '';
+        document.getElementById('productPriceInput').value = product?.price || '';
+        document.getElementById('productSalePriceInput').value = product?.sale_price || '';
+        document.getElementById('productCategoryInput').value = product?.category || 'tool';
+        document.getElementById('productModal').classList.add('active');
+    }
+
+    async function editProduct(id) {
+        const data = await api('/products');
+        const product = data?.products?.find(p => p.id === id);
+        if (product) openProductModal(product);
+    }
+
+    async function saveProduct() {
+        const id = document.getElementById('productId').value;
+        const body = {
+            name: document.getElementById('productNameInput').value,
+            description: document.getElementById('productDescInput').value,
+            price: parseFloat(document.getElementById('productPriceInput').value),
+            sale_price: parseFloat(document.getElementById('productSalePriceInput').value) || null,
+            category: document.getElementById('productCategoryInput').value
+        };
+        const endpoint = id ? `/products/${id}` : '/products';
+        const method = id ? 'PUT' : 'POST';
+        const data = await api(endpoint, { method, body: JSON.stringify(body) });
+        if (data) {
+            showToast('Product saved successfully');
+            closeModal('productModal');
+            loadProducts();
+        }
+    }
+
+    async function editUser(id, currentRole, currentTier) {
+        const tier = prompt(`Membership tier for user (current: ${currentTier}):`, currentTier);
+        if (tier && tier !== currentTier) {
+            await api(`/admin/users/${id}`, { method: 'PUT', body: JSON.stringify({ membership_tier: tier }) });
+            showToast('User updated');
+            loadUsers();
+        }
+    }
+
+    function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+    function showToast(message, type = 'success') {
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
+    }
+
+    // Close modal on overlay click
+    document.querySelectorAll('.modal-overlay').forEach(m => {
+        m.addEventListener('click', (e) => { if (e.target === m) m.classList.remove('active'); });
+    });
+
+    // Enter key on login
+    document.getElementById('loginPassword').addEventListener('keypress', (e) => { if (e.key === 'Enter') login(); });
+</script>
+</body>
+</html>
