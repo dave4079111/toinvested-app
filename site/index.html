@@ -15,6 +15,11 @@
 <meta name="twitter:title" content="ToInvested | AI Real Estate Investment Analysis">
 <meta name="twitter:description" content="AI-powered real estate investment analysis for house flipping, BRRRR, hard money lending, and DSCR loans.">
 <link rel="canonical" href="https://toinvested.com/">
+<!-- Google Analytics (replace GA_MEASUREMENT_ID with your actual ID) -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','GA_MEASUREMENT_ID');</script> -->
+<!-- Facebook Pixel (replace PIXEL_ID with your actual ID) -->
+<!-- <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','PIXEL_ID');fbq('track','PageView');</script> -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
@@ -1183,6 +1188,226 @@ img { max-width: 100%; height: auto; display: block; }
   line-height: 1.5;
 }
 
+/* ===================== URGENCY BAR ===================== */
+.urgency-bar {
+  background: linear-gradient(90deg, #C9A84C, #B8943A, #C9A84C);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease infinite;
+  color: #0A0E17;
+  text-align: center;
+  padding: 10px 16px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.urgency-bar a {
+  color: #0A0E17;
+  text-decoration: underline;
+  font-weight: 700;
+}
+.urgency-close {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #0A0E17;
+  font-size: 1.2rem;
+  cursor: pointer;
+  opacity: 0.7;
+}
+.urgency-close:hover { opacity: 1; }
+
+/* ===================== NEWSLETTER SECTION ===================== */
+.newsletter-section {
+  background: linear-gradient(180deg, #0A0E17 0%, #0D1120 100%);
+  padding: 80px 0;
+}
+.newsletter-card {
+  background: rgba(201, 168, 76, 0.05);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: 20px;
+  padding: 48px;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.newsletter-card h2 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+.newsletter-card p {
+  font-size: 1rem;
+  color: #A0A8B8;
+  margin-bottom: 28px;
+}
+.newsletter-form {
+  display: flex;
+  gap: 12px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.newsletter-form input[type="email"] {
+  flex: 1;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  padding: 14px 18px;
+  font-size: 0.95rem;
+  color: #FFF;
+  font-family: 'DM Sans', sans-serif;
+  outline: none;
+}
+.newsletter-form input[type="email"]::placeholder { color: #5A6170; }
+.newsletter-form input[type="email"]:focus { border-color: #C9A84C; }
+.newsletter-form button {
+  background: linear-gradient(135deg, #C9A84C, #B8943A);
+  color: #0A0E17;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 28px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  white-space: nowrap;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.newsletter-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(201, 168, 76, 0.3);
+}
+.newsletter-privacy {
+  font-size: 0.72rem;
+  color: #5A6170;
+  margin-top: 12px;
+}
+
+/* ===================== EXIT INTENT POPUP ===================== */
+.exit-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+}
+.exit-overlay.active { display: flex; }
+.exit-popup {
+  background: #0D1120;
+  border: 2px solid #C9A84C;
+  border-radius: 20px;
+  padding: 48px;
+  max-width: 520px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+  animation: fadeInUp 0.4s ease;
+}
+.exit-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.exit-close:hover { color: #C9A84C; }
+.exit-popup h2 {
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+}
+.exit-popup p {
+  font-size: 0.95rem;
+  color: #A0A8B8;
+  margin-bottom: 24px;
+}
+.exit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 380px;
+  margin: 0 auto;
+}
+.exit-form input {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  padding: 14px 18px;
+  font-size: 0.95rem;
+  color: #FFF;
+  font-family: 'DM Sans', sans-serif;
+  outline: none;
+}
+.exit-form input::placeholder { color: #5A6170; }
+.exit-form input:focus { border-color: #C9A84C; }
+.exit-form button {
+  background: linear-gradient(135deg, #C9A84C, #B8943A);
+  color: #0A0E17;
+  border: none;
+  border-radius: 10px;
+  padding: 16px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: transform 0.3s ease;
+}
+.exit-form button:hover {
+  transform: translateY(-2px);
+}
+
+/* ===================== SILO INTERNAL LINKS ===================== */
+.silo-links {
+  background: #0D1120;
+  padding: 60px 0;
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+.silo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.silo-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 14px;
+  padding: 24px 20px;
+  transition: all 0.3s ease;
+}
+.silo-card:hover {
+  border-color: rgba(201, 168, 76, 0.3);
+  transform: translateY(-3px);
+}
+.silo-card h4 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #C9A84C;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+}
+.silo-card a {
+  display: block;
+  color: #8890A0;
+  font-size: 0.85rem;
+  padding: 5px 0;
+}
+.silo-card a:hover { color: #C9A84C; }
+
 /* ===================== RESPONSIVE ===================== */
 @media (max-width: 1024px) {
   html { font-size: 17px; }
@@ -1226,6 +1451,10 @@ img { max-width: 100%; height: auto; display: block; }
   .analyzer-card { padding: 28px 20px; }
   .footer-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-bottom { justify-content: center; text-align: center; }
+  .newsletter-form { flex-direction: column; }
+  .silo-grid { grid-template-columns: repeat(2, 1fr); }
+  .exit-popup { padding: 32px 24px; }
+  .exit-popup h2 { font-size: 1.5rem; }
 }
 
 @media (max-width: 480px) {
@@ -1248,6 +1477,7 @@ img { max-width: 100%; height: auto; display: block; }
   .footer-grid { grid-template-columns: 1fr; }
   .cta-buttons { flex-direction: column; align-items: center; }
   .cta-buttons .btn-gold, .cta-buttons .btn-outline { width: 100%; max-width: 300px; text-align: center; }
+  .silo-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -1678,8 +1908,85 @@ img { max-width: 100%; height: auto; display: block; }
   </div>
 </section>
 
+<!-- ===================== NEWSLETTER CAPTURE ===================== -->
+<section class="newsletter-section" id="newsletter">
+  <div class="container">
+    <div class="newsletter-card animate-on-scroll">
+      <h2>Get the <span class="gold">Weekly Investor Brief</span></h2>
+      <p>Join 2,000+ investors getting free deal analysis tips, market insights, and AI tool updates every Wednesday.</p>
+      <form class="newsletter-form" data-newsletter-form>
+        <input type="email" name="email" placeholder="Your email address" required>
+        <button type="submit">Subscribe Free</button>
+      </form>
+      <p class="newsletter-privacy">No spam, ever. Unsubscribe anytime. We respect your inbox.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SEO SILO INTERNAL LINKS ===================== -->
+<section class="silo-links">
+  <div class="container">
+    <div class="silo-grid">
+      <div class="silo-card">
+        <h4>AI Analysis Tools</h4>
+        <a href="/property-analyzer/">Rental Property Analyzer</a>
+        <a href="/flip-analyzer/">Fix &amp; Flip Calculator</a>
+        <a href="/brrrr-analyzer/">BRRRR Strategy Analyzer</a>
+        <a href="/renovation-analyzer/">Renovation Cost Estimator</a>
+        <a href="/stock-analyzer/">Real Estate vs Stocks</a>
+        <a href="/bitcoin-analyzer/">Crypto Portfolio Analyzer</a>
+        <a href="/tools/">View All Tools</a>
+      </div>
+      <div class="silo-card">
+        <h4>Wealth Protection</h4>
+        <a href="/tax-strategy/">Tax Optimization Strategy</a>
+        <a href="/legal-protection/">Asset Protection &amp; LLCs</a>
+        <a href="/life-insurance/">Investor Life Insurance</a>
+        <a href="/probate/">Estate &amp; Probate Planning</a>
+        <a href="/hard-money-lending/">Hard Money &amp; DSCR Loans</a>
+      </div>
+      <div class="silo-card">
+        <h4>Education &amp; Coaching</h4>
+        <a href="/education/">Education Hub</a>
+        <a href="/coaching/">1-on-1 Coaching</a>
+        <a href="/consulting/">Investment Consulting</a>
+        <a href="/blog/">Investor Blog</a>
+        <a href="/store/">Investor Store</a>
+      </div>
+      <div class="silo-card">
+        <h4>Get Started</h4>
+        <a href="/membership/">View Membership Plans</a>
+        <a href="/property-analyzer/">Try Free AI Analysis</a>
+        <a href="/about/">About David J. Moore</a>
+        <a href="/contact/">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EXIT INTENT POPUP ===================== -->
+<div class="exit-overlay" id="exitOverlay">
+  <div class="exit-popup">
+    <button class="exit-close" id="exitClose" aria-label="Close">&times;</button>
+    <h2>Wait &mdash; Get Your <span class="gold">Free Deal Checklist</span></h2>
+    <p>Before you go, grab our 10-Point Investment Property Checklist used by professional investors. It's free.</p>
+    <form class="exit-form" id="exitForm" data-newsletter-form>
+      <input type="email" name="email" placeholder="Enter your email" required>
+      <button type="submit">Send Me the Checklist</button>
+    </form>
+    <p class="newsletter-privacy" style="margin-top:12px;">Free instant download. No spam. Unsubscribe anytime.</p>
+  </div>
+</div>
+
+<!-- ===================== URGENCY BAR ===================== -->
+<div class="urgency-bar" id="urgencyBar">
+  <span>Limited: First 100 Wealth Builder members get a free 1-on-1 strategy call.</span>
+  <a href="/membership/">Claim Your Spot</a>
+  <button class="urgency-close" id="urgencyClose" aria-label="Close">&times;</button>
+</div>
+
 <!-- ===================== FOOTER ===================== -->
-<footer class="footer">
+<footer class="footer" style="margin-bottom: 44px;">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-col">
@@ -1843,27 +2150,127 @@ img { max-width: 100%; height: auto; display: block; }
     }
   }
 
-  // --- Analyzer Button (visual only) ---
+  // --- Analyzer Button (navigate to correct analyzer) ---
   var analyzerBtn = document.querySelector('.analyzer-btn');
   analyzerBtn.addEventListener('click', function(e) {
     e.preventDefault();
     var input = document.querySelector('.analyzer-input');
-    if (input.value.trim() === '') {
-      input.style.borderColor = '#E74C3C';
-      input.setAttribute('placeholder', 'Please enter a property address...');
-      setTimeout(function() {
-        input.style.borderColor = 'rgba(255,255,255,0.12)';
-        input.setAttribute('placeholder', 'Enter a property address to analyze...');
-      }, 2000);
-    } else {
-      analyzerBtn.textContent = 'Analyzing...';
-      analyzerBtn.style.opacity = '0.7';
-      setTimeout(function() {
-        analyzerBtn.textContent = 'Analyze This Deal';
-        analyzerBtn.style.opacity = '1';
-      }, 2000);
+    var activeChip = document.querySelector('.chip.active');
+    var strategy = activeChip ? activeChip.textContent.trim() : 'Buy & Hold';
+
+    // Map strategy to analyzer page
+    var analyzerMap = {
+      'Buy & Hold': '/property-analyzer/',
+      'Fix & Flip': '/flip-analyzer/',
+      'BRRRR': '/brrrr-analyzer/',
+      'Multi-Unit': '/property-analyzer/'
+    };
+    var targetUrl = analyzerMap[strategy] || '/property-analyzer/';
+
+    if (input.value.trim() !== '') {
+      // Pass the address as a URL parameter
+      targetUrl += '?address=' + encodeURIComponent(input.value.trim());
+    }
+
+    window.location.href = targetUrl;
+  });
+
+  // --- Exit Intent Popup ---
+  var exitShown = false;
+  var exitOverlay = document.getElementById('exitOverlay');
+  var exitClose = document.getElementById('exitClose');
+
+  function showExitPopup() {
+    if (exitShown || sessionStorage.getItem('tiExitDismissed') || localStorage.getItem('tiSubscribed')) return;
+    exitShown = true;
+    exitOverlay.classList.add('active');
+  }
+
+  // Desktop: detect mouse leaving viewport at top
+  document.addEventListener('mouseout', function(e) {
+    if (e.clientY < 5 && e.relatedTarget === null) {
+      showExitPopup();
     }
   });
+
+  // Mobile: detect scroll-up intent after scrolling down significantly
+  var lastScrollY = 0;
+  var scrolledDown = false;
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 800) scrolledDown = true;
+    if (scrolledDown && window.scrollY < lastScrollY - 100 && window.scrollY < 400) {
+      showExitPopup();
+    }
+    lastScrollY = window.scrollY;
+  }, { passive: true });
+
+  // Also show after 45 seconds on page (if not already shown)
+  setTimeout(function() { showExitPopup(); }, 45000);
+
+  exitClose.addEventListener('click', function() {
+    exitOverlay.classList.remove('active');
+    sessionStorage.setItem('tiExitDismissed', '1');
+  });
+  exitOverlay.addEventListener('click', function(e) {
+    if (e.target === exitOverlay) {
+      exitOverlay.classList.remove('active');
+      sessionStorage.setItem('tiExitDismissed', '1');
+    }
+  });
+
+  // --- Urgency Bar ---
+  var urgencyBar = document.getElementById('urgencyBar');
+  var urgencyClose = document.getElementById('urgencyClose');
+  if (sessionStorage.getItem('tiUrgencyDismissed')) {
+    urgencyBar.style.display = 'none';
+  }
+  urgencyClose.addEventListener('click', function() {
+    urgencyBar.style.display = 'none';
+    sessionStorage.setItem('tiUrgencyDismissed', '1');
+    // Remove footer bottom margin when urgency bar is hidden
+    document.querySelector('.footer').style.marginBottom = '0';
+  });
+
+  // --- Conversion Tracking (gtag/pixel-ready events) ---
+  function trackEvent(action, category, label, value) {
+    // Google Analytics 4
+    if (typeof gtag === 'function') {
+      gtag('event', action, { event_category: category, event_label: label, value: value });
+    }
+    // Facebook Pixel
+    if (typeof fbq === 'function') {
+      fbq('trackCustom', action, { category: category, label: label });
+    }
+    // Console log for debugging
+    console.log('[Track]', action, category, label);
+  }
+
+  // Track CTA clicks
+  document.querySelectorAll('.btn-gold, .nav-cta, .plan-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      trackEvent('cta_click', 'conversion', this.textContent.trim());
+    });
+  });
+
+  // Track tool card clicks
+  document.querySelectorAll('.tool-link').forEach(function(link) {
+    link.addEventListener('click', function() {
+      trackEvent('tool_click', 'engagement', this.closest('.tool-card').querySelector('h3').textContent);
+    });
+  });
+
+  // Track scroll depth for conversion optimization
+  var scrollMilestones = [25, 50, 75, 100];
+  var triggeredMilestones = {};
+  window.addEventListener('scroll', function() {
+    var scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+    scrollMilestones.forEach(function(milestone) {
+      if (scrollPercent >= milestone && !triggeredMilestones[milestone]) {
+        triggeredMilestones[milestone] = true;
+        trackEvent('scroll_depth', 'engagement', milestone + '%');
+      }
+    });
+  }, { passive: true });
 
 })();
 </script>

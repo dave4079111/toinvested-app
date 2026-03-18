@@ -132,6 +132,13 @@ const TI = {
     });
   },
 
+  async subscribe(plan, billing, email) {
+    return await this.api('/products/subscribe', {
+      method: 'POST',
+      body: JSON.stringify({ plan, billing, email })
+    });
+  },
+
   // Shopping cart (localStorage)
   getCart() {
     return JSON.parse(localStorage.getItem('tiCart') || '[]');

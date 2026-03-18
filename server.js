@@ -22,6 +22,10 @@ app.use(helmet({
 }));
 app.use(compression());
 app.use(cors());
+
+// Stripe webhooks need raw body BEFORE json parsing
+app.use('/api/products/webhook', express.raw({ type: 'application/json' }));
+
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
@@ -73,7 +77,21 @@ app.get('/api/health', (req, res) => {
 // ===========================================
 app.use(express.static(path.join(__dirname, 'site'), {
   extensions: ['html'],
-  index: 'index.html'
+  index: 'index.html',
+  maxAge: process.env.NODE_ENV === 'production' ? '7d' : 0,
+  setHeaders: (res, filePath) => {
+    // Cache static assets aggressively in production
+    if (filePath.endsWith('.js') || filePath.endsWith('.css')) {
+      res.setHeader('Cache-Control', 'public, max-age=604800, immutable');
+    }
+    if (filePath.endsWith('.jpg') || filePath.endsWith('.png') || filePath.endsWith('.webp') || filePath.endsWith('.svg')) {
+      res.setHeader('Cache-Control', 'public, max-age=2592000');
+    }
+    // HTML pages get short cache for fresh content
+    if (filePath.endsWith('.html')) {
+      res.setHeader('Cache-Control', 'public, max-age=300, must-revalidate');
+    }
+  }
 }));
 
 // SPA fallback - serve index.html for unmatched routes

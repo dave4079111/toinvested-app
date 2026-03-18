@@ -1,0 +1,18 @@
+# ToInvested.com Robots.txt
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://toinvested.com/sitemap.xml
+
+# Block admin and API
+Disallow: /admin/
+Disallow: /api/
+Disallow: /member-dashboard/
+
+# Allow all crawlers for public pages
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /

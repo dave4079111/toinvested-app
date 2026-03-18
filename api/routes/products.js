@@ -121,8 +121,8 @@ router.get('/orders/mine', authenticate, (req, res) => {
   }
 });
 
-// Stripe webhook
-router.post('/webhook', express.raw({ type: 'application/json' }), (req, res) => {
+// Stripe webhook (raw body handled at server.js level)
+router.post('/webhook', (req, res) => {
   if (!process.env.STRIPE_WEBHOOK_SECRET) return res.status(200).json({ received: true });
 
   const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
@@ -140,6 +140,60 @@ router.post('/webhook', express.raw({ type: 'application/json' }), (req, res) =>
   } catch (err) {
     logger.error('Webhook error', { error: err.message });
     res.status(400).json({ error: 'Webhook verification failed' });
+  }
+});
+
+// Create membership subscription checkout session
+router.post('/subscribe', (req, res) => {
+  try {
+    const { plan, billing, email } = req.body;
+    if (!email || !plan) {
+      return res.status(400).json({ error: 'Email and plan are required' });
+    }
+
+    // Stripe price IDs should be set in environment variables
+    const priceMap = {
+      'wealth-builder-monthly': process.env.STRIPE_PRICE_WB_MONTHLY,
+      'wealth-builder-annual': process.env.STRIPE_PRICE_WB_ANNUAL,
+      'pro-monthly': process.env.STRIPE_PRICE_PRO_MONTHLY,
+      'pro-annual': process.env.STRIPE_PRICE_PRO_ANNUAL,
+    };
+
+    const priceKey = `${plan}-${billing || 'monthly'}`;
+    const priceId = priceMap[priceKey];
+
+    if (!priceId) {
+      return res.status(400).json({ error: 'Invalid plan selected. Please contact support.' });
+    }
+
+    if (!process.env.STRIPE_SECRET_KEY || process.env.STRIPE_SECRET_KEY === 'sk_test_your_key_here') {
+      return res.json({
+        message: 'Stripe is not configured yet. Please set STRIPE_PRICE_* environment variables with your Stripe Price IDs.',
+        plan: priceKey
+      });
+    }
+
+    const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+    const baseUrl = process.env.BASE_URL || 'http://localhost:3000';
+
+    stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      mode: 'subscription',
+      line_items: [{ price: priceId, quantity: 1 }],
+      success_url: `${baseUrl}/membership/?success=true&plan=${plan}`,
+      cancel_url: `${baseUrl}/membership/?canceled=true`,
+      customer_email: email,
+      allow_promotion_codes: true,
+      metadata: { plan, billing: billing || 'monthly' }
+    }).then(session => {
+      res.json({ url: session.url });
+    }).catch(err => {
+      logger.error('Subscription checkout error', { error: err.message });
+      res.status(500).json({ error: 'Failed to create subscription checkout. Please try again.' });
+    });
+  } catch (err) {
+    logger.error('Subscribe error', { error: err.message });
+    res.status(500).json({ error: 'Subscription failed' });
   }
 });
 

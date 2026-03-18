@@ -267,7 +267,7 @@
                         <li><span class="check">&#10003;</span> Priority email support</li>
                         <li class="disabled"><span class="x-mark">&#10007;</span> Weekly coaching calls</li>
                     </ul>
-                    <a href="MEMBERSHIP_LINK" class="btn btn-gold" id="proBtn">Join Wealth Builder</a>
+                    <a href="#" class="btn btn-gold" id="proBtn" onclick="startSubscription('wealth-builder'); return false;">Join Wealth Builder</a>
                 </div>
 
                 <!-- WEALTH BUILDER PRO -->
@@ -289,7 +289,7 @@
                         <li><span class="check">&#10003;</span> Custom portfolio strategy</li>
                         <li><span class="check">&#10003;</span> All premium courses included</li>
                     </ul>
-                    <a href="MEMBERSHIP_PRO_LINK" class="btn btn-white" id="eliteBtn">Go Pro</a>
+                    <a href="#" class="btn btn-white" id="eliteBtn" onclick="startSubscription('pro'); return false;">Go Pro</a>
                 </div>
             </div>
         </div>
@@ -520,6 +520,61 @@
                 ? '<span class="original">$97/mo</span><span class="amount">$81</span><span class="period">/mo (billed $972/yr)</span>'
                 : '<span class="amount">$97</span><span class="period">/month</span>';
         });
+
+        // Subscription checkout
+        async function startSubscription(plan) {
+            const email = prompt('Enter your email to get started:');
+            if (!email || !email.includes('@')) {
+                if (email !== null) alert('Please enter a valid email address.');
+                return;
+            }
+
+            const btn = plan === 'pro' ? document.getElementById('eliteBtn') : document.getElementById('proBtn');
+            const origText = btn.textContent;
+            btn.textContent = 'Processing...';
+            btn.style.pointerEvents = 'none';
+            btn.style.opacity = '0.7';
+
+            try {
+                const res = await fetch('/api/products/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ plan, billing: isAnnual ? 'annual' : 'monthly', email })
+                });
+                const data = await res.json();
+
+                if (data.url) {
+                    window.location.href = data.url;
+                } else if (data.message) {
+                    alert(data.message);
+                } else {
+                    alert(data.error || 'Something went wrong. Please try again.');
+                }
+            } catch (err) {
+                alert('Network error. Please try again.');
+            }
+
+            btn.textContent = origText;
+            btn.style.pointerEvents = '';
+            btn.style.opacity = '';
+        }
+
+        // Handle success/cancel URL params
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('success')) {
+            const successBanner = document.createElement('div');
+            successBanner.style.cssText = 'background: #22C55E; color: #fff; text-align: center; padding: 16px; font-weight: 700; font-size: 18px; position: fixed; top: 72px; left: 0; right: 0; z-index: 999;';
+            successBanner.textContent = 'Welcome to ToInvested! Your membership is now active. Check your email for login details.';
+            document.body.appendChild(successBanner);
+            setTimeout(() => successBanner.remove(), 10000);
+        }
+        if (urlParams.get('canceled')) {
+            const cancelBanner = document.createElement('div');
+            cancelBanner.style.cssText = 'background: #F59E0B; color: #000; text-align: center; padding: 16px; font-weight: 600; font-size: 16px; position: fixed; top: 72px; left: 0; right: 0; z-index: 999;';
+            cancelBanner.textContent = 'Checkout canceled. No charges were made. Ready when you are.';
+            document.body.appendChild(cancelBanner);
+            setTimeout(() => cancelBanner.remove(), 8000);
+        }
 
         // FAQ accordion
         document.querySelectorAll('.faq-question').forEach(btn => {
