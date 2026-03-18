@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — ToInvested | AI-Powered Real Estate Investing Insights</title>
+    <meta name="description" content="Your source for AI-powered real estate investing insights. Expert articles on fix & flip, BRRRR, tax strategies, lending, and more.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           DESIGN SYSTEM
+           ============================================ */
+        :root {
+            --navy: #0A0E17;
+            --navy-light: #111827;
+            --navy-card: #151C2C;
+            --gold: #C9A84C;
+            --gold-light: #D4B967;
+            --white: #FFFFFF;
+            --gray-100: #F3F4F6;
+            --gray-300: #D1D5DB;
+            --gray-400: #9CA3AF;
+            --gray-500: #6B7280;
+            --font-heading: 'Playfair Display', Georgia, serif;
+            --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --container: 1200px;
+            --radius: 12px;
+            --radius-lg: 16px;
+            --shadow: 0 4px 24px rgba(0,0,0,0.3);
+            --shadow-lg: 0 8px 40px rgba(0,0,0,0.4);
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--gray-300);
+            background: var(--navy);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            color: var(--white);
+            line-height: 1.25;
+        }
+
+        .container {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 14, 23, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+            transition: var(--transition);
+        }
+
+        .nav-inner {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .nav-logo {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--gray-300);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 24px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--navy) !important;
+            font-weight: 700 !important;
+            font-size: 14px !important;
+            border-radius: 8px;
+            transition: var(--transition);
+            letter-spacing: 0.3px;
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(201, 168, 76, 0.4);
+            color: var(--navy) !important;
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            padding: 4px;
+            z-index: 1001;
+            background: none;
+            border: none;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--gold);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            padding: 160px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: rgba(201, 168, 76, 0.1);
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 32px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 6vw, 64px);
+            font-weight: 800;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 .gold {
+            color: var(--gold);
+        }
+
+        .hero p {
+            font-size: clamp(18px, 2.5vw, 22px);
+            color: var(--gray-400);
+            max-width: 640px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* ============================================
+           ARTICLE GRID
+           ============================================ */
+        .articles-section {
+            padding: 40px 0 100px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .section-header h2 {
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .section-header .divider {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(201, 168, 76, 0.3), transparent);
+            margin-left: 24px;
+            min-width: 40px;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        /* Featured article (first card spans full width) */
+        .article-card {
+            background: var(--navy-card);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .article-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .article-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(201, 168, 76, 0.2);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .article-card.visible:hover {
+            transform: translateY(-6px);
+        }
+
+        .article-card:first-child {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+        }
+
+        .article-image {
+            aspect-ratio: 16/10;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-card:first-child .article-image {
+            aspect-ratio: auto;
+            min-height: 320px;
+        }
+
+        .article-image-inner {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--navy-light) 0%, #1a2332 50%, var(--navy-card) 100%);
+            position: relative;
+        }
+
+        .article-image-inner::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.08), transparent 60%);
+        }
+
+        .article-image-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: rgba(201, 168, 76, 0.1);
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .article-image-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--gold);
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        .article-body {
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .article-card:first-child .article-body {
+            padding: 40px;
+            justify-content: center;
+        }
+
+        .article-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            background: rgba(201, 168, 76, 0.1);
+            border: 1px solid rgba(201, 168, 76, 0.15);
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 16px;
+            width: fit-content;
+        }
+
+        .article-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.3;
+            transition: var(--transition);
+        }
+
+        .article-card:first-child .article-title {
+            font-size: 28px;
+        }
+
+        .article-card:hover .article-title {
+            color: var(--gold);
+        }
+
+        .article-excerpt {
+            font-size: 15px;
+            color: var(--gray-400);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex: 1;
+        }
+
+        .article-card:first-child .article-excerpt {
+            font-size: 16px;
+        }
+
+        .article-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .article-date {
+            font-size: 13px;
+            color: var(--gray-500);
+        }
+
+        .article-read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gold);
+            transition: var(--transition);
+        }
+
+        .article-read-more:hover {
+            gap: 10px;
+        }
+
+        .article-read-more svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--gold);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* ============================================
+           NEWSLETTER CTA
+           ============================================ */
+        .newsletter-section {
+            padding: 100px 0;
+        }
+
+        .newsletter-card {
+            background: linear-gradient(135deg, var(--navy-card) 0%, #1a2235 100%);
+            border: 1px solid rgba(201, 168, 76, 0.15);
+            border-radius: var(--radius-lg);
+            padding: 64px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .newsletter-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .newsletter-card::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.08), transparent 70%);
+            pointer-events: none;
+        }
+
+        .newsletter-card::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.05), transparent 70%);
+            pointer-events: none;
+        }
+
+        .newsletter-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 24px;
+            background: rgba(201, 168, 76, 0.1);
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .newsletter-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--gold);
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        .newsletter-card h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .newsletter-card > p {
+            font-size: 18px;
+            color: var(--gray-400);
+            max-width: 520px;
+            margin: 0 auto 36px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            gap: 12px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 14px 20px;
+            background: var(--navy);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--white);
+            font-family: var(--font-body);
+            font-size: 15px;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .newsletter-form input::placeholder {
+            color: var(--gray-500);
+        }
+
+        .newsletter-form input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1);
+        }
+
+        .newsletter-form button {
+            padding: 14px 28px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: var(--navy);
+            font-family: var(--font-body);
+            font-size: 15px;
+            font-weight: 700;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .newsletter-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(201, 168, 76, 0.4);
+        }
+
+        .newsletter-disclaimer {
+            font-size: 13px;
+            color: var(--gray-500);
+            margin-top: 16px;
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 64px 0 32px;
+            background: var(--navy);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand p {
+            font-size: 15px;
+            color: var(--gray-500);
+            margin-top: 12px;
+            max-width: 280px;
+        }
+
+        .footer h4 {
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            font-size: 15px;
+            color: var(--gray-400);
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+            padding-left: 4px;
+        }
+
+        .footer-bottom {
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            font-size: 14px;
+            color: var(--gray-500);
+        }
+
+        /* ============================================
+           SCROLL ANIMATIONS
+           ============================================ */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-delay-1 { transition-delay: 0.1s; }
+        .fade-in-delay-2 { transition-delay: 0.2s; }
+        .fade-in-delay-3 { transition-delay: 0.3s; }
+        .fade-in-delay-4 { transition-delay: 0.4s; }
+        .fade-in-delay-5 { transition-delay: 0.5s; }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 900px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 300px;
+                height: 100vh;
+                background: var(--navy-light);
+                flex-direction: column;
+                padding: 100px 32px 32px;
+                gap: 24px;
+                transition: var(--transition);
+                border-left: 1px solid rgba(201, 168, 76, 0.1);
+            }
+
+            .nav-links.open {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 17px;
+            }
+
+            .nav-cta {
+                width: 100%;
+                justify-content: center;
+                margin-top: 8px;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .article-card:first-child {
+                grid-column: auto;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .article-card:first-child .article-image {
+                min-height: 220px;
+            }
+
+            .article-card:first-child .article-body {
+                padding: 28px;
+            }
+
+            .article-card:first-child .article-title {
+                font-size: 22px;
+            }
+
+            .newsletter-card {
+                padding: 40px 24px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                font-size: 16px;
+            }
+
+            .hero {
+                padding: 130px 0 60px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .section-header h2 {
+                font-size: 26px;
+            }
+
+            .newsletter-card h2 {
+                font-size: 28px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .articles-grid {
+                gap: 20px;
+            }
+
+            .article-body {
+                padding: 20px;
+            }
+        }
+
+        /* Overlay for mobile nav */
+        .nav-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .nav-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">ToInvested</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/tools/">Tools</a></li>
+                <li><a href="/membership/">Membership</a></li>
+                <li><a href="/coaching/">Coaching</a></li>
+                <li><a href="/consulting/">Consulting</a></li>
+                <li><a href="/membership/" class="nav-cta">Get Started</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge fade-in">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                Insights &amp; Analysis
+            </div>
+            <h1 class="fade-in fade-in-delay-1">The <span class="gold">ToInvested</span> Blog</h1>
+            <p class="fade-in fade-in-delay-2">Your source for AI-powered real estate investing insights, strategies, and expert analysis to help you build wealth through smart investing.</p>
+        </div>
+    </section>
+
+    <!-- ========== ARTICLES ========== -->
+    <section class="articles-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Featured Articles</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="articles-grid">
+
+                <!-- Article 1 — Featured -->
+                <article class="article-card fade-in">
+                    <div class="article-image">
+                        <div class="article-image-inner">
+                            <div class="article-image-icon">
+                                <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-body">
+                        <span class="article-tag">Fix &amp; Flip</span>
+                        <h3 class="article-title">How to Analyze a Fix &amp; Flip Deal Like a Pro</h3>
+                        <p class="article-excerpt">Learn the exact framework professional investors use to evaluate fix and flip opportunities. From ARV calculations to rehab budgeting, we cover every metric that matters for profitable deals.</p>
+                        <div class="article-meta">
+                            <span class="article-date">Feb 24, 2026</span>
+                            <a href="#" class="article-read-more">
+                                Read More
+                                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="article-card fade-in fade-in-delay-1">
+                    <div class="article-image">
+                        <div class="article-image-inner">
+                            <div class="article-image-icon">
+                                <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-body">
+                        <span class="article-tag">Strategy</span>
+                        <h3 class="article-title">BRRRR Strategy Explained: Build Wealth on Repeat</h3>
+                        <p class="article-excerpt">The Buy, Rehab, Rent, Refinance, Repeat method is one of the most powerful wealth-building strategies in real estate. Here is your complete breakdown.</p>
+                        <div class="article-meta">
+                            <span class="article-date">Feb 18, 2026</span>
+                            <a href="#" class="article-read-more">
+                                Read More
+                                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article class="article-card fade-in fade-in-delay-2">
+                    <div class="article-image">
+                        <div class="article-image-inner">
+                            <div class="article-image-icon">
+                                <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-body">
+                        <span class="article-tag">Tax Strategy</span>
+                        <h3 class="article-title">5 Tax Strategies Every Real Estate Investor Needs</h3>
+                        <p class="article-excerpt">From cost segregation to 1031 exchanges, these tax strategies can save you tens of thousands annually. Stop overpaying the IRS.</p>
+                        <div class="article-meta">
+                            <span class="article-date">Feb 12, 2026</span>
+                            <a href="#" class="article-read-more">
+                                Read More
+                                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 4 -->
+                <article class="article-card fade-in fade-in-delay-1">
+                    <div class="article-image">
+                        <div class="article-image-inner">
+                            <div class="article-image-icon">
+                                <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-body">
+                        <span class="article-tag">Financing</span>
+                        <h3 class="article-title">Hard Money vs. DSCR Loans: Which Is Right for You?</h3>
+                        <p class="article-excerpt">Understanding the differences between hard money and DSCR loans is critical for choosing the right financing. We compare rates, terms, and ideal use cases.</p>
+                        <div class="article-meta">
+                            <span class="article-date">Feb 5, 2026</span>
+                            <a href="#" class="article-read-more">
+                                Read More
+                                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 5 -->
+                <article class="article-card fade-in fade-in-delay-2">
+                    <div class="article-image">
+                        <div class="article-image-inner">
+                            <div class="article-image-icon">
+                                <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 1v3"/><path d="M15 1v3"/><path d="M9 20v3"/><path d="M15 20v3"/><path d="M20 9h3"/><path d="M20 14h3"/><path d="M1 9h3"/><path d="M1 14h3"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-body">
+                        <span class="article-tag">Technology</span>
+                        <h3 class="article-title">AI in Real Estate Investing: The Future Is Here</h3>
+                        <p class="article-excerpt">Artificial intelligence is transforming how investors find, analyze, and manage properties. Discover the tools reshaping the industry.</p>
+                        <div class="article-meta">
+                            <span class="article-date">Jan 28, 2026</span>
+                            <a href="#" class="article-read-more">
+                                Read More
+                                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 6 -->
+                <article class="article-card fade-in fade-in-delay-3">
+                    <div class="article-image">
+                        <div class="article-image-inner">
+                            <div class="article-image-icon">
+                                <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-body">
+                        <span class="article-tag">Beginner</span>
+                        <h3 class="article-title">The Complete First-Time Real Estate Investor Guide</h3>
+                        <p class="article-excerpt">Everything you need to know before buying your first investment property. From financing to finding deals, start your investing journey the right way.</p>
+                        <div class="article-meta">
+                            <span class="article-date">Jan 20, 2026</span>
+                            <a href="#" class="article-read-more">
+                                Read More
+                                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== NEWSLETTER ========== -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-card fade-in">
+                <div class="newsletter-icon">
+                    <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <h2>Stay Ahead of the Market</h2>
+                <p>Get weekly investing insights, deal analysis breakdowns, and AI-powered market updates delivered straight to your inbox.</p>
+                <form class="newsletter-form" data-newsletter-form onsubmit="return false;">
+                    <input type="email" placeholder="Enter your email address" required aria-label="Email address">
+                    <button type="submit">Subscribe</button>
+                </form>
+                <p class="newsletter-disclaimer">No spam, ever. Unsubscribe anytime.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="nav-logo">ToInvested</a>
+                    <p>AI-powered tools and expert guidance to help you build wealth through smarter real estate investing.</p>
+                </div>
+                <div>
+                    <h4>Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="/tools/">Tools</a></li>
+                        <li><a href="/membership/">Membership</a></li>
+                        <li><a href="/coaching/">Coaching</a></li>
+                        <li><a href="/consulting/">Consulting</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="/tax-strategy/">Tax Strategy</a></li>
+                        <li><a href="/legal-protection/">Legal</a></li>
+                        <li><a href="/hard-money-lending/">Hard Money</a></li>
+                        <li><a href="/blog/">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="/privacy/">Privacy</a></li>
+                        <li><a href="/terms/">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 ToInvested &mdash; A YPN Inc Company. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== SCRIPTS ========== -->
+    <script>
+        // Mobile nav toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        const navOverlay = document.getElementById('navOverlay');
+
+        function toggleNav() {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('open');
+            navOverlay.classList.toggle('open');
+            document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+        }
+
+        hamburger.addEventListener('click', toggleNav);
+        navOverlay.addEventListener('click', toggleNav);
+
+        // Close nav on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('open')) toggleNav();
+            });
+        });
+
+        // Scroll animations with IntersectionObserver
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -60px 0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in, .article-card, .newsletter-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+<script src="/js/toinvested.js"></script>
+</body>
+</html>

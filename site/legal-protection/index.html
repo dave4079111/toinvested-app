@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Protection &amp; Asset Structuring | ToInvested</title>
+    <meta name="description" content="Protect your real estate wealth with proper entity structuring. Learn about LLCs, Series LLCs, S-Corps, holding companies, and the Four Layers wealth protection system.">
+    <link rel="canonical" href="https://toinvested.com/legal-protection/">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --navy: #0A0E17; --navy-light: #111827; --navy-card: #151C2C;
+            --gold: #C9A84C; --gold-light: #D4B967; --gold-dark: #A88B3A;
+            --text: #E8E4DC; --text-muted: #9CA3AF; --border: #1E293B;
+            --success: #22C55E; --warning: #F59E0B; --danger: #EF4444;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--text); font-size: 18px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+        h1, h2, h3, h4, h5 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+        a { color: var(--gold); text-decoration: none; transition: color 0.3s; }
+        a:hover { color: var(--gold-light); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10,14,23,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+        .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 72px; }
+        .nav-logo { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--gold); }
+        .nav-links { display: flex; align-items: center; gap: 28px; }
+        .nav-links a { color: var(--text-muted); font-size: 15px; font-weight: 500; }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-cta { background: var(--gold); color: var(--navy); padding: 10px 22px; border-radius: 8px; font-weight: 700; font-size: 14px; }
+        .nav-cta:hover { background: var(--gold-light); color: var(--navy); }
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+        .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); transition: 0.3s; }
+        @media (max-width: 900px) {
+            .hamburger { display: flex; }
+            .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; background: var(--navy); flex-direction: column; padding: 24px; border-bottom: 1px solid var(--border); }
+            .nav-links.active { display: flex; }
+        }
+        .hero { padding: 140px 0 80px; text-align: center; background: linear-gradient(180deg, rgba(201,168,76,0.06) 0%, transparent 60%); }
+        .hero-badge { display: inline-block; background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.25); color: var(--gold); padding: 8px 20px; border-radius: 100px; font-size: 14px; font-weight: 600; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 1px; }
+        .hero h1 { font-size: clamp(36px, 5vw, 64px); font-weight: 800; margin-bottom: 20px; }
+        .hero h1 span { color: var(--gold); }
+        .hero p { font-size: 20px; color: var(--text-muted); max-width: 700px; margin: 0 auto; }
+        .section { padding: 80px 0; }
+        .section-header { text-align: center; margin-bottom: 56px; }
+        .section-header h2 { font-size: clamp(28px, 3.5vw, 44px); font-weight: 700; margin-bottom: 16px; }
+        .section-header p { font-size: 18px; color: var(--text-muted); max-width: 640px; margin: 0 auto; }
+        .section-divider { width: 60px; height: 3px; background: var(--gold); margin: 16px auto; border-radius: 2px; }
+
+        /* RISK GRID */
+        .risk-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; }
+        @media (max-width: 400px) { .risk-grid { grid-template-columns: 1fr; } }
+        .risk-card { background: var(--navy-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; border-top: 3px solid var(--danger); }
+        .risk-card .risk-level { display: inline-block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 4px 10px; border-radius: 4px; margin-bottom: 12px; }
+        .risk-card .risk-level.high { background: rgba(239,68,68,0.15); color: #F87171; }
+        .risk-card .risk-level.medium { background: rgba(245,158,11,0.15); color: #FBBF24; }
+        .risk-card h4 { font-size: 20px; margin-bottom: 10px; }
+        .risk-card p { color: var(--text-muted); font-size: 15px; }
+
+        /* ENTITY CARDS */
+        .entity-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+        .entity-card { background: var(--navy-card); border: 1px solid var(--border); border-radius: 16px; padding: 36px; text-align: center; transition: transform 0.3s, border-color 0.3s; }
+        .entity-card:hover { transform: translateY(-4px); border-color: var(--gold); }
+        .entity-icon { font-size: 40px; margin-bottom: 16px; }
+        .entity-card h3 { font-size: 22px; margin-bottom: 12px; }
+        .entity-card p { color: var(--text-muted); font-size: 15px; margin-bottom: 16px; }
+        .entity-pros { text-align: left; }
+        .entity-pros li { font-size: 14px; color: var(--text-muted); padding: 4px 0; list-style: none; }
+        .entity-pros li::before { content: "\\2713 "; color: var(--success); font-weight: 700; margin-right: 6px; }
+
+        /* VEIL SECTION */
+        .veil-rules { max-width: 800px; margin: 0 auto; }
+        .veil-rule { display: flex; gap: 20px; margin-bottom: 28px; align-items: flex-start; }
+        .veil-num { width: 48px; height: 48px; background: var(--gold); color: var(--navy); font-weight: 800; font-size: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .veil-content h4 { font-size: 20px; margin-bottom: 6px; }
+        .veil-content p { color: var(--text-muted); font-size: 16px; }
+
+        /* DIAGRAM */
+        .diagram-wrapper { max-width: 700px; margin: 0 auto; }
+        .diagram-box { background: var(--navy-card); border: 2px solid var(--gold); border-radius: 16px; padding: 24px 32px; text-align: center; margin-bottom: 0; position: relative; }
+        .diagram-box h4 { font-size: 18px; color: var(--gold); }
+        .diagram-box p { font-size: 14px; color: var(--text-muted); }
+        .diagram-connector { width: 3px; height: 32px; background: var(--gold); margin: 0 auto; position: relative; }
+        .diagram-connector::after { content: "\\25BC"; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); color: var(--gold); font-size: 14px; }
+        .diagram-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .diagram-row .diagram-box { border-color: rgba(201,168,76,0.4); }
+        .diagram-split { display: flex; justify-content: center; align-items: center; gap: 0; position: relative; height: 40px; }
+        .diagram-split::before { content: ""; position: absolute; top: 0; left: 25%; right: 25%; height: 3px; background: var(--gold); }
+        .diagram-split::after { content: ""; position: absolute; top: 0; bottom: 0; left: 25%; width: 3px; background: var(--gold); }
+        .diagram-split-right { position: absolute; top: 0; bottom: 0; right: 25%; width: 3px; background: var(--gold); }
+
+        /* FOUR LAYERS */
+        .layers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+        .layer-card { background: var(--navy-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; position: relative; overflow: hidden; }
+        .layer-card::before { content: attr(data-layer); position: absolute; top: 12px; right: 16px; font-size: 48px; font-weight: 900; color: rgba(201,168,76,0.08); font-family: 'Playfair Display', serif; }
+        .layer-card h4 { font-size: 20px; color: var(--gold); margin-bottom: 10px; }
+        .layer-card p { color: var(--text-muted); font-size: 15px; }
+
+        /* RESOURCES */
+        .resources-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        .resource-card { background: var(--navy-card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; transition: border-color 0.3s; }
+        .resource-card:hover { border-color: var(--gold); }
+        .resource-card h4 { font-size: 20px; margin-bottom: 10px; }
+        .resource-card p { color: var(--text-muted); font-size: 15px; margin-bottom: 16px; }
+        .resource-link { display: inline-block; background: rgba(201,168,76,0.1); color: var(--gold); padding: 10px 24px; border-radius: 8px; font-weight: 600; font-size: 15px; }
+        .resource-link:hover { background: rgba(201,168,76,0.2); }
+
+        .cta-banner { background: linear-gradient(135deg, var(--gold-dark), var(--gold)); border-radius: 20px; padding: 56px 48px; text-align: center; margin: 60px 0; }
+        .cta-banner h2 { font-size: 36px; color: var(--navy); margin-bottom: 16px; }
+        .cta-banner p { color: rgba(10,14,23,0.7); font-size: 18px; margin-bottom: 28px; }
+        .cta-banner .btn { display: inline-block; background: var(--navy); color: var(--gold); padding: 16px 36px; border-radius: 10px; font-weight: 700; font-size: 16px; }
+        .cta-banner .btn:hover { background: var(--navy-light); }
+
+        .footer { border-top: 1px solid var(--border); padding: 64px 0 32px; margin-top: 40px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 32px; margin-bottom: 48px; }
+        @media (max-width: 768px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
+        .footer-col h4 { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--gold); margin-bottom: 16px; }
+        .footer-col a { display: block; color: var(--text-muted); font-size: 14px; margin-bottom: 10px; }
+        .footer-col a:hover { color: var(--gold); }
+        .footer-bottom { border-top: 1px solid var(--border); padding-top: 24px; text-align: center; }
+        .footer-bottom p { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+        .footer-disclosure { font-size: 12px; color: #6B7280; max-width: 800px; margin: 16px auto 0; line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <div class="nav-inner">
+        <a href="/" class="nav-logo">ToInvested</a>
+        <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="/tools/">AI Tools</a>
+            <a href="/hard-money-lending/">Financing</a>
+            <a href="/education/">Education</a>
+            <a href="/blog/">Blog</a>
+            <a href="/about/">About</a>
+            <a href="/coaching/">Coaching</a>
+            <a href="/membership/" class="nav-cta">Join Wealth Builder</a>
+        </div>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="container">
+        <div class="hero-badge">Asset Protection Guide</div>
+        <h1>Legal Protection &amp; <span>Asset Structuring</span></h1>
+        <p>You are not just building wealth &mdash; you are building a target. One lawsuit, one judgment, one unprotected asset can erase years of work. Structure right from day one.</p>
+    </div>
+</section>
+
+<!-- RISK GRID -->
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2>6 Legal Threats Every Investor Faces</h2>
+            <div class="section-divider"></div>
+            <p>These are the specific risks that can destroy unprotected portfolios.</p>
+        </div>
+        <div class="risk-grid">
+            <div class="risk-card">
+                <span class="risk-level high">High Risk</span>
+                <h4>Tenant Lawsuits</h4>
+                <p>Slip-and-fall injuries, habitability claims, wrongful eviction, discrimination, and security deposit disputes. A single judgment can exceed $500K and pierce personal assets if unprotected.</p>
+            </div>
+            <div class="risk-card">
+                <span class="risk-level high">High Risk</span>
+                <h4>Contractor Disputes</h4>
+                <p>Mechanic's liens, construction defect claims, and contractor injury lawsuits. Without proper contracts and entity structuring, these claims attach directly to your property and personal assets.</p>
+            </div>
+            <div class="risk-card">
+                <span class="risk-level high">High Risk</span>
+                <h4>Personal Liability Bleed</h4>
+                <p>Car accidents, personal debts, divorce, and business failures. Without asset protection, a creditor can seize your rental properties to satisfy a personal judgment completely unrelated to real estate.</p>
+            </div>
+            <div class="risk-card">
+                <span class="risk-level medium">Medium Risk</span>
+                <h4>Environmental Claims</h4>
+                <p>Lead paint, asbestos, mold remediation, and contamination liability. Environmental violations carry strict liability &mdash; meaning you are responsible even if you didn't cause the problem.</p>
+            </div>
+            <div class="risk-card">
+                <span class="risk-level medium">Medium Risk</span>
+                <h4>Partner Disputes</h4>
+                <p>JV disagreements, equity disputes, profit-sharing conflicts, and partner bankruptcy. Without a proper operating agreement, one partner's problems become everyone's problems.</p>
+            </div>
+            <div class="risk-card">
+                <span class="risk-level medium">Medium Risk</span>
+                <h4>Tax Liens &amp; IRS Actions</h4>
+                <p>Unpaid taxes, audit penalties, and tax fraud allegations. IRS liens attach to every asset you own. Proper structuring creates legitimate barriers and planning opportunities.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 4 ENTITY TYPES -->
+<section class="section" style="background: rgba(201,168,76,0.02);">
+    <div class="container">
+        <div class="section-header">
+            <h2>4 Entity Types for Real Estate Investors</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="entity-grid">
+            <div class="entity-card">
+                <div class="entity-icon">&#127970;</div>
+                <h3>Single-Member LLC</h3>
+                <p>The foundation. One LLC per property or small group of properties. Simple to set up, pass-through taxation, liability protection.</p>
+                <ul class="entity-pros">
+                    <li>Pass-through taxation</li>
+                    <li>Liability shield for personal assets</li>
+                    <li>Easy to set up ($50-$500)</li>
+                    <li>Minimal maintenance</li>
+                    <li>1031 exchange compatible</li>
+                </ul>
+            </div>
+            <div class="entity-card">
+                <div class="entity-icon">&#128279;</div>
+                <h3>Series LLC</h3>
+                <p>One parent LLC with unlimited "child" series. Each series is a separate liability shield. Available in TX, DE, NV, IL, and growing.</p>
+                <ul class="entity-pros">
+                    <li>One filing fee, unlimited series</li>
+                    <li>Each series isolated from others</li>
+                    <li>Cost-effective for large portfolios</li>
+                    <li>Simplified administration</li>
+                    <li>Scalable as you grow</li>
+                </ul>
+            </div>
+            <div class="entity-card">
+                <div class="entity-icon">&#127963;</div>
+                <h3>S-Corporation</h3>
+                <p>Best for active income: flipping, wholesaling, property management. Save on self-employment tax through reasonable salary splits.</p>
+                <ul class="entity-pros">
+                    <li>Self-employment tax savings</li>
+                    <li>Credibility with lenders</li>
+                    <li>Reasonable salary + distributions</li>
+                    <li>Great for flipping operations</li>
+                    <li>NOT for long-term rentals</li>
+                </ul>
+            </div>
+            <div class="entity-card">
+                <div class="entity-icon">&#127984;</div>
+                <h3>Holding Company</h3>
+                <p>The parent LLC that owns your operating LLCs. Provides an additional layer of protection and centralizes management of your entire portfolio.</p>
+                <ul class="entity-pros">
+                    <li>Additional liability layer</li>
+                    <li>Centralized management</li>
+                    <li>Privacy protection</li>
+                    <li>Inter-company loan flexibility</li>
+                    <li>Estate planning integration</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CORPORATE VEIL -->
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Maintaining the Corporate Veil</h2>
+            <div class="section-divider"></div>
+            <p>An LLC only protects you if you treat it as a real entity. Break these rules and courts will "pierce the veil" and reach your personal assets.</p>
+        </div>
+        <div class="veil-rules">
+            <div class="veil-rule">
+                <div class="veil-num">1</div>
+                <div class="veil-content">
+                    <h4>Separate Bank Accounts</h4>
+                    <p>Every LLC must have its own dedicated bank account. Never pay personal expenses from an LLC account or vice versa. This is the #1 reason courts pierce the veil.</p>
+                </div>
+            </div>
+            <div class="veil-rule">
+                <div class="veil-num">2</div>
+                <div class="veil-content">
+                    <h4>Proper Documentation</h4>
+                    <p>Maintain an operating agreement, annual meeting minutes (even if you are the only member), and written resolutions for major decisions. Document everything.</p>
+                </div>
+            </div>
+            <div class="veil-rule">
+                <div class="veil-num">3</div>
+                <div class="veil-content">
+                    <h4>Adequate Capitalization</h4>
+                    <p>Your LLC must be funded with enough capital to operate. An empty shell LLC with no assets, insurance, or capital will not survive a legal challenge.</p>
+                </div>
+            </div>
+            <div class="veil-rule">
+                <div class="veil-num">4</div>
+                <div class="veil-content">
+                    <h4>Sign as the LLC</h4>
+                    <p>Always sign contracts, leases, and documents as "Your Name, Member of XYZ LLC" &mdash; never just your personal name. This establishes the LLC as the contracting party.</p>
+                </div>
+            </div>
+            <div class="veil-rule">
+                <div class="veil-num">5</div>
+                <div class="veil-content">
+                    <h4>Maintain State Compliance</h4>
+                    <p>File annual reports, pay franchise taxes, and keep your LLC in good standing. A dissolved or inactive LLC offers zero protection in court.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- HOLDING COMPANY DIAGRAM -->
+<section class="section" style="background: rgba(201,168,76,0.02);">
+    <div class="container">
+        <div class="section-header">
+            <h2>Holding Company Structure</h2>
+            <div class="section-divider"></div>
+            <p>A visual guide to how professional investors structure their entities.</p>
+        </div>
+        <div class="diagram-wrapper">
+            <div class="diagram-box" style="border-width: 3px;">
+                <h4>Holding Company LLC (Wyoming / Nevada)</h4>
+                <p>Parent entity &mdash; Owns all operating LLCs below. Provides privacy, centralized management, and an additional liability layer.</p>
+            </div>
+            <div class="diagram-connector"></div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+                <div>
+                    <div style="width: 3px; height: 20px; background: var(--gold); margin: 0 auto;"></div>
+                    <div class="diagram-box" style="border-color: rgba(201,168,76,0.4);">
+                        <h4>Rental LLC #1</h4>
+                        <p>Properties 1-3<br>Single-family rentals</p>
+                    </div>
+                </div>
+                <div>
+                    <div style="width: 3px; height: 20px; background: var(--gold); margin: 0 auto;"></div>
+                    <div class="diagram-box" style="border-color: rgba(201,168,76,0.4);">
+                        <h4>Rental LLC #2</h4>
+                        <p>Properties 4-6<br>Multifamily units</p>
+                    </div>
+                </div>
+                <div>
+                    <div style="width: 3px; height: 20px; background: var(--gold); margin: 0 auto;"></div>
+                    <div class="diagram-box" style="border-color: rgba(201,168,76,0.4);">
+                        <h4>Flipping S-Corp</h4>
+                        <p>Active income<br>Fix &amp; flip operations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOUR LAYERS -->
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2>The Four Layers Wealth Ecosystem</h2>
+            <div class="section-divider"></div>
+            <p>True wealth protection is not one thing &mdash; it is a system of interlocking layers.</p>
+        </div>
+        <div class="layers-grid">
+            <div class="layer-card" data-layer="1">
+                <h4>Layer 1: Entity Structure</h4>
+                <p>LLCs, S-Corps, and holding companies create legal barriers between your assets and potential creditors. Each property or group of properties is isolated.</p>
+            </div>
+            <div class="layer-card" data-layer="2">
+                <h4>Layer 2: Insurance Stack</h4>
+                <p>Property insurance, umbrella policies ($1M-$5M), and landlord-specific coverage. Insurance is your first line of defense before entity protection kicks in.</p>
+            </div>
+            <div class="layer-card" data-layer="3">
+                <h4>Layer 3: Tax Optimization</h4>
+                <p>Depreciation, 1031 exchanges, cost segregation, and entity election strategies. Keep more of what you earn through legal tax minimization.</p>
+            </div>
+            <div class="layer-card" data-layer="4">
+                <h4>Layer 4: Estate Planning</h4>
+                <p>Revocable trusts, beneficiary designations, life insurance, and succession plans. Ensure your wealth transfers to your family, not probate courts or the IRS.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- EXTERNAL RESOURCES -->
+<section class="section" style="background: rgba(201,168,76,0.02);">
+    <div class="container">
+        <div class="section-header">
+            <h2>Entity Formation Services</h2>
+            <div class="section-divider"></div>
+            <p>Trusted services to help you form and maintain your legal entities.</p>
+        </div>
+        <div class="resources-grid">
+            <div class="resource-card">
+                <h4>Northwest Registered Agent</h4>
+                <p>Premium registered agent service with free LLC formation in most states. Known for excellent privacy protection and compliance support.</p>
+                <a href="https://northwestregisteredagent.com" target="_blank" rel="noopener" class="resource-link">Visit Northwest &rarr;</a>
+            </div>
+            <div class="resource-card">
+                <h4>LegalZoom</h4>
+                <p>The largest online legal services platform. LLC formation, operating agreements, trademark registration, and ongoing compliance tools.</p>
+                <a href="https://legalzoom.com" target="_blank" rel="noopener" class="resource-link">Visit LegalZoom &rarr;</a>
+            </div>
+            <div class="resource-card">
+                <h4>Rocket Lawyer</h4>
+                <p>On-demand legal services with attorney consultations. Great for operating agreements, partnership contracts, and ongoing legal questions.</p>
+                <a href="https://rocketlawyer.com" target="_blank" rel="noopener" class="resource-link">Visit Rocket Lawyer &rarr;</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="section">
+    <div class="container">
+        <div class="cta-banner">
+            <h2>Protect What You Have Built</h2>
+            <p>Get our complete entity structuring playbook, operating agreement templates, and asset protection strategy sessions.</p>
+            <a href="/membership/" class="btn">Join Wealth Builder &rarr;</a>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>AI Tools</h4>
+                <a href="/tools/">Property Analyzer</a>
+                <a href="/tools/">BRRRR Calculator</a>
+                <a href="/tools/">Flip Profit Calculator</a>
+                <a href="/tools/">Rental ROI Analyzer</a>
+                <a href="/ai-coach/">AI Coach</a>
+            </div>
+            <div class="footer-col">
+                <h4>Wealth Protection</h4>
+                <a href="/tax-strategy/">Tax Strategy</a>
+                <a href="/legal-protection/">Legal Protection</a>
+                <a href="/life-insurance/">Life Insurance</a>
+                <a href="/probate/">Probate Strategy</a>
+                <a href="/hard-money-lending/">Financing</a>
+            </div>
+            <div class="footer-col">
+                <h4>Education</h4>
+                <a href="/education/">Courses</a>
+                <a href="/blog/">Blog</a>
+                <a href="/coaching/">Coaching</a>
+                <a href="/store/">Book Store</a>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <a href="/about/">About</a>
+                <a href="/membership/">Membership</a>
+                <a href="/consulting/">Consulting</a>
+                <a href="/coaching/">Coaching</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="/privacy/">Privacy Policy</a>
+                <a href="/terms/">Terms of Service</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 YPN Inc. All rights reserved.</p>
+            <p class="footer-disclosure">ToInvested is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. Some links on this site are affiliate links, meaning we may earn a commission at no extra cost to you.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/toinvested.js"></script>
+</body>
+</html>

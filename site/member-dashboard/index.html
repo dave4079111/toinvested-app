@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Member Dashboard | ToInvested - Your Investment Command Center</title>
+<meta name="description" content="Access your AI investment analyzers, saved deals, coaching sessions, and portfolio insights from your personalized ToInvested dashboard.">
+<meta property="og:title" content="Member Dashboard | ToInvested">
+<meta property="og:description" content="Your personalized investment command center with AI tools and insights.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://toinvested.com/member-dashboard/">
+<meta property="og:site_name" content="ToInvested">
+<link rel="canonical" href="https://toinvested.com/member-dashboard/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --navy: #0A0E17; --navy-light: #111827; --navy-card: #141B2D; --navy-border: #1E2A45;
+  --gold: #C9A84C; --gold-light: #E8D48B; --gold-dark: #A88B3A;
+  --white: #F8F5F0; --gray: #8A8D95; --green: #34D399; --red: #F87171; --blue: #3B82F6;
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --radius: 12px; --radius-lg: 20px;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: var(--navy); color: var(--white); font-size: 18px; line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+h1, h2, h3, h4, h5 { font-family: var(--font-heading); line-height: 1.2; }
+a { color: var(--gold); text-decoration: none; transition: color 0.3s; }
+a:hover { color: var(--gold-light); }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.gold { color: var(--gold); }
+
+/* NAV */
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10,14,23,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(201,168,76,0.1); }
+.nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 72px; }
+.nav-logo { font-family: var(--font-heading); font-size: 24px; font-weight: 700; color: var(--gold); }
+.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-links a { color: var(--gray); font-size: 15px; font-weight: 500; }
+.nav-links a:hover { color: var(--gold); }
+.nav-cta { background: var(--gold); color: var(--navy) !important; padding: 10px 22px; border-radius: 8px; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
+.nav-cta:hover { background: var(--gold-light); color: var(--navy) !important; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--white); transition: 0.3s; }
+
+/* HERO */
+.hero { padding: 120px 0 60px; text-align: center; }
+.hero h1 { font-size: clamp(32px, 4vw, 52px); font-weight: 700; margin-bottom: 16px; }
+.hero h1 span { color: var(--gold); }
+.hero p { font-size: 18px; color: var(--gray); max-width: 600px; margin: 0 auto; }
+
+/* LOGIN GATE */
+.login-gate { max-width: 440px; margin: 0 auto; padding: 40px 0; }
+.login-card { background: var(--navy-card); border: 1px solid var(--navy-border); border-radius: var(--radius-lg); padding: 40px; }
+.login-card h2 { font-size: 24px; text-align: center; margin-bottom: 8px; }
+.login-card .sub { color: var(--gray); text-align: center; font-size: 15px; margin-bottom: 32px; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px; color: var(--white); }
+.form-input { width: 100%; background: var(--navy); border: 1px solid var(--navy-border); border-radius: var(--radius); padding: 14px 16px; color: var(--white); font-size: 16px; font-family: var(--font-body); transition: border-color 0.3s; }
+.form-input:focus { outline: none; border-color: var(--gold); }
+.form-input::placeholder { color: var(--gray); }
+.form-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+.form-row label { font-size: 14px; color: var(--gray); display: flex; align-items: center; gap: 8px; cursor: pointer; }
+.form-row a { font-size: 14px; }
+.btn-login { width: 100%; background: var(--gold); color: var(--navy); border: none; padding: 16px; border-radius: var(--radius); font-weight: 700; font-size: 16px; cursor: pointer; transition: all 0.3s; font-family: var(--font-body); }
+.btn-login:hover { background: var(--gold-light); }
+.login-footer { text-align: center; margin-top: 24px; color: var(--gray); font-size: 15px; }
+
+/* DASHBOARD PREVIEW */
+.preview-section { padding: 80px 0; }
+.preview-label { text-align: center; color: var(--gold); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+.preview-title { text-align: center; font-family: var(--font-heading); font-size: clamp(28px, 4vw, 44px); font-weight: 700; margin-bottom: 16px; }
+.preview-sub { text-align: center; color: var(--gray); font-size: 17px; max-width: 600px; margin: 0 auto 48px; }
+
+/* STATS */
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 32px; }
+.stat-card { background: var(--navy-card); border: 1px solid var(--navy-border); border-radius: var(--radius); padding: 24px; text-align: center; }
+.stat-icon { font-size: 28px; margin-bottom: 8px; }
+.stat-value { font-family: var(--font-heading); font-size: 32px; font-weight: 700; }
+.stat-label { font-size: 13px; color: var(--gray); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+
+/* TOOL ACCESS */
+.tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 32px; }
+.tool-card { background: var(--navy-card); border: 1px solid var(--navy-border); border-radius: var(--radius); padding: 24px; display: flex; align-items: center; gap: 16px; transition: all 0.3s; cursor: pointer; }
+.tool-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-2px); }
+.tool-icon { width: 48px; height: 48px; border-radius: 10px; background: rgba(201,168,76,0.1); display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+.tool-info h4 { font-size: 16px; font-weight: 700; margin-bottom: 2px; font-family: var(--font-body); }
+.tool-info p { font-size: 13px; color: var(--gray); line-height: 1.4; }
+.tool-badge { margin-left: auto; background: rgba(52,211,153,0.1); color: var(--green); font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.5px; flex-shrink: 0; }
+
+/* ACTIVITY */
+.activity-section { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; }
+.activity-card { background: var(--navy-card); border: 1px solid var(--navy-border); border-radius: var(--radius-lg); padding: 28px; }
+.activity-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 20px; font-family: var(--font-body); display: flex; align-items: center; gap: 10px; }
+.activity-card h3 span { font-size: 20px; }
+.activity-item { display: flex; align-items: center; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--navy-border); }
+.activity-item:last-child { border-bottom: none; }
+.activity-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.activity-text { flex: 1; }
+.activity-text strong { font-weight: 600; }
+.activity-text p { font-size: 14px; color: var(--gray); }
+.activity-time { font-size: 12px; color: var(--gray); white-space: nowrap; }
+
+/* QUICK ACTIONS */
+.quick-actions h3 { font-size: 18px; font-weight: 700; margin-bottom: 20px; font-family: var(--font-body); }
+.quick-btn { display: block; width: 100%; background: var(--navy); border: 1px solid var(--navy-border); border-radius: var(--radius); padding: 14px 16px; text-align: left; color: var(--white); font-size: 15px; font-family: var(--font-body); cursor: pointer; margin-bottom: 10px; transition: all 0.3s; }
+.quick-btn:hover { border-color: var(--gold); color: var(--gold); }
+.quick-btn span { margin-right: 10px; }
+
+/* CTA */
+.cta-section { padding: 80px 0; text-align: center; }
+.cta-card { background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(201,168,76,0.02)); border: 1px solid rgba(201,168,76,0.2); border-radius: var(--radius-lg); padding: 48px; }
+.cta-card h2 { font-size: clamp(24px, 3vw, 36px); margin-bottom: 16px; }
+.cta-card p { color: var(--gray); font-size: 17px; max-width: 500px; margin: 0 auto 32px; }
+.btn-gold { display: inline-block; background: var(--gold); color: var(--navy); padding: 16px 32px; border-radius: var(--radius); font-weight: 700; font-size: 16px; transition: all 0.3s; }
+.btn-gold:hover { background: var(--gold-light); color: var(--navy); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.3); }
+
+/* FOOTER */
+.footer { background: var(--navy-light); border-top: 1px solid var(--navy-border); padding: 60px 0 30px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+.footer-brand p { color: var(--gray); font-size: 14px; margin-top: 12px; line-height: 1.6; }
+.footer-col h4 { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gold); margin-bottom: 16px; }
+.footer-col a { display: block; color: var(--gray); font-size: 14px; margin-bottom: 8px; }
+.footer-col a:hover { color: var(--gold); }
+.footer-bottom { border-top: 1px solid var(--navy-border); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-bottom p { color: var(--gray); font-size: 13px; }
+.footer-bottom a { color: var(--gray); font-size: 13px; margin-left: 20px; }
+
+/* ANIMATIONS */
+.animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hamburger { display: flex; }
+  .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; background: var(--navy); flex-direction: column; padding: 24px; border-bottom: 1px solid var(--navy-border); gap: 16px; }
+  .nav-links.active { display: flex; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .tools-grid { grid-template-columns: repeat(2, 1fr); }
+  .activity-section { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .tools-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">ToInvested</a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="/tools/">Tools</a>
+      <a href="/membership/">Membership</a>
+      <a href="/coaching/">Coaching</a>
+      <a href="/consulting/">Consulting</a>
+      <a href="/membership/" class="nav-cta">Get Started</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <h1>Welcome Back, <span>Investor</span></h1>
+    <p>Your personalized investment command center. Access AI tools, track deals, and make smarter decisions.</p>
+  </div>
+</section>
+
+<!-- LOGIN -->
+<section style="padding-bottom: 60px;">
+  <div class="container">
+    <div class="login-gate" id="loginGate">
+      <div class="login-card animate-on-scroll">
+        <h2 id="authTitle">Sign In</h2>
+        <p class="sub" id="authSub">Access your investment dashboard</p>
+        <div id="authError" style="color:var(--red);font-size:14px;margin-bottom:12px;display:none;"></div>
+        <div class="form-group" id="nameGroup" style="display:none;">
+          <label>Full Name</label>
+          <input type="text" class="form-input" id="authName" placeholder="Your name">
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" class="form-input" id="authEmail" placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" class="form-input" id="authPassword" placeholder="Enter your password">
+        </div>
+        <button class="btn-login" id="authBtn" onclick="handleAuth()">Sign In</button>
+        <p class="login-footer" id="authToggle">Don&rsquo;t have an account? <a href="#" onclick="toggleAuthMode(event)">Create one</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DASHBOARD PREVIEW -->
+<section class="preview-section" style="background: var(--navy-light);">
+  <div class="container">
+    <div class="preview-label">Dashboard Preview</div>
+    <h2 class="preview-title">Your Investment <span class="gold">Command Center</span></h2>
+    <p class="preview-sub">Here&rsquo;s what your personalized dashboard looks like as a ToInvested member.</p>
+
+    <!-- Stats -->
+    <div class="stats-grid animate-on-scroll">
+      <div class="stat-card">
+        <div class="stat-icon">📊</div>
+        <div class="stat-value">24</div>
+        <div class="stat-label">Deals Analyzed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">⭐</div>
+        <div class="stat-value">8</div>
+        <div class="stat-label">Saved Properties</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🤖</div>
+        <div class="stat-value">47</div>
+        <div class="stat-label">AI Coach Sessions</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📈</div>
+        <div class="stat-value">12.4%</div>
+        <div class="stat-label">Avg. Projected ROI</div>
+      </div>
+    </div>
+
+    <!-- Tools -->
+    <div class="tools-grid animate-on-scroll">
+      <a href="/property-analyzer/" class="tool-card" style="color: inherit; text-decoration: none;">
+        <div class="tool-icon">🏠</div>
+        <div class="tool-info">
+          <h4>Property Analyzer</h4>
+          <p>Rental & investment analysis</p>
+        </div>
+        <div class="tool-badge">Active</div>
+      </a>
+      <a href="/flip-analyzer/" class="tool-card" style="color: inherit; text-decoration: none;">
+        <div class="tool-icon">🔨</div>
+        <div class="tool-info">
+          <h4>Flip Analyzer</h4>
+          <p>Fix & flip deal analysis</p>
+        </div>
+        <div class="tool-badge">Active</div>
+      </a>
+      <a href="/brrrr-analyzer/" class="tool-card" style="color: inherit; text-decoration: none;">
+        <div class="tool-icon">🔄</div>
+        <div class="tool-info">
+          <h4>BRRRR Analyzer</h4>
+          <p>Buy-Rehab-Rent-Refi-Repeat</p>
+        </div>
+        <div class="tool-badge">Active</div>
+      </a>
+      <a href="/renovation-analyzer/" class="tool-card" style="color: inherit; text-decoration: none;">
+        <div class="tool-icon">🏗️</div>
+        <div class="tool-info">
+          <h4>Renovation Analyzer</h4>
+          <p>Rehab cost & ROI estimator</p>
+        </div>
+        <div class="tool-badge">Active</div>
+      </a>
+      <a href="/bitcoin-analyzer/" class="tool-card" style="color: inherit; text-decoration: none;">
+        <div class="tool-icon">₿</div>
+        <div class="tool-info">
+          <h4>Bitcoin Analyzer</h4>
+          <p>Crypto investment insights</p>
+        </div>
+        <div class="tool-badge">Active</div>
+      </a>
+      <a href="/stock-analyzer/" class="tool-card" style="color: inherit; text-decoration: none;">
+        <div class="tool-icon">📈</div>
+        <div class="tool-info">
+          <h4>Stock Analyzer</h4>
+          <p>Equity analysis & tracking</p>
+        </div>
+        <div class="tool-badge">Active</div>
+      </a>
+    </div>
+
+    <!-- Activity + Quick Actions -->
+    <div class="activity-section animate-on-scroll">
+      <div class="activity-card">
+        <h3><span>📋</span> Recent Activity</h3>
+        <div class="activity-item">
+          <div class="activity-dot" style="background: var(--gold);"></div>
+          <div class="activity-text">
+            <strong>Property Analysis Completed</strong>
+            <p>123 Oak Street, Austin, TX — ROI: 14.2%</p>
+          </div>
+          <div class="activity-time">2h ago</div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot" style="background: var(--green);"></div>
+          <div class="activity-text">
+            <strong>BRRRR Deal Saved</strong>
+            <p>456 Maple Ave, Nashville, TN — Cash-on-Cash: 18.7%</p>
+          </div>
+          <div class="activity-time">Yesterday</div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot" style="background: var(--blue);"></div>
+          <div class="activity-text">
+            <strong>AI Coach Session</strong>
+            <p>Discussed multi-family investment strategy</p>
+          </div>
+          <div class="activity-time">2 days ago</div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-dot" style="background: #A78BFA;"></div>
+          <div class="activity-text">
+            <strong>Flip Analysis Completed</strong>
+            <p>789 Pine Rd, Phoenix, AZ — Profit: $47,200</p>
+          </div>
+          <div class="activity-time">3 days ago</div>
+        </div>
+      </div>
+
+      <div class="activity-card quick-actions">
+        <h3>Quick Actions</h3>
+        <button class="quick-btn" onclick="window.location.href='/property-analyzer/'"><span>🏠</span> Analyze New Property</button>
+        <button class="quick-btn" onclick="window.location.href='/flip-analyzer/'"><span>🔨</span> Run Flip Analysis</button>
+        <button class="quick-btn" onclick="window.location.href='/ai-coach/'"><span>🤖</span> Ask AI Coach</button>
+        <button class="quick-btn" onclick="window.location.href='/education/'"><span>📚</span> Continue Learning</button>
+        <button class="quick-btn" onclick="window.location.href='/coaching/'"><span>📞</span> Book Coaching Call</button>
+      </div>
+    </div>
+
+    <p style="text-align: center; color: var(--gray); font-size: 13px; margin-top: 24px; font-style: italic;">This is a preview of the member dashboard experience. Sign up to access your personalized dashboard.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-card animate-on-scroll">
+      <h2>Not a Member Yet?</h2>
+      <p>Join ToInvested to unlock AI-powered investment tools, personalized coaching, and a community of smart investors.</p>
+      <a href="/membership/" class="btn-gold">Become a Member</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="nav-logo" style="font-size:22px;">ToInvested</a>
+        <p>AI-powered real estate and investment analysis. Make smarter decisions, avoid costly mistakes, and build wealth with confidence.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Tools</h4>
+        <a href="/property-analyzer/">Property Analyzer</a>
+        <a href="/flip-analyzer/">Flip Analyzer</a>
+        <a href="/brrrr-analyzer/">BRRRR Analyzer</a>
+        <a href="/bitcoin-analyzer/">Bitcoin Analyzer</a>
+        <a href="/stock-analyzer/">Stock Analyzer</a>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="/membership/">Membership</a>
+        <a href="/coaching/">Coaching</a>
+        <a href="/consulting/">Consulting</a>
+        <a href="/education/">Education</a>
+        <a href="/store/">Store</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/about/">About</a>
+        <a href="/blog/">Blog</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 ToInvested &mdash; A YPN Inc Company. All rights reserved.</p>
+      <div>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+let isRegister = false;
+
+function toggleAuthMode(e) {
+  e.preventDefault();
+  isRegister = !isRegister;
+  document.getElementById('authTitle').textContent = isRegister ? 'Create Account' : 'Sign In';
+  document.getElementById('authSub').textContent = isRegister ? 'Start your investment journey' : 'Access your investment dashboard';
+  document.getElementById('nameGroup').style.display = isRegister ? 'block' : 'none';
+  document.getElementById('authBtn').textContent = isRegister ? 'Create Account' : 'Sign In';
+  document.getElementById('authToggle').innerHTML = isRegister
+    ? 'Already have an account? <a href="#" onclick="toggleAuthMode(event)">Sign in</a>'
+    : 'Don\'t have an account? <a href="#" onclick="toggleAuthMode(event)">Create one</a>';
+  document.getElementById('authError').style.display = 'none';
+}
+
+async function handleAuth() {
+  const email = document.getElementById('authEmail').value;
+  const password = document.getElementById('authPassword').value;
+  const name = document.getElementById('authName').value;
+  const errEl = document.getElementById('authError');
+  const btn = document.getElementById('authBtn');
+
+  if (!email || !password) { errEl.textContent = 'Please fill in all fields'; errEl.style.display = 'block'; return; }
+  if (password.length < 8) { errEl.textContent = 'Password must be at least 8 characters'; errEl.style.display = 'block'; return; }
+
+  btn.textContent = isRegister ? 'Creating...' : 'Signing in...';
+  btn.disabled = true;
+
+  const result = isRegister ? await TI.register(email, password, name) : await TI.login(email, password);
+  if (result.success) {
+    document.getElementById('loginGate').style.display = 'none';
+    TI.showNotification(`Welcome${result.user.name ? ', ' + result.user.name : ''}!`);
+    // Show the dashboard preview as real dashboard
+    document.querySelector('.preview-label').textContent = 'Your Dashboard';
+  } else {
+    errEl.textContent = result.error;
+    errEl.style.display = 'block';
+  }
+  btn.textContent = isRegister ? 'Create Account' : 'Sign In';
+  btn.disabled = false;
+}
+
+// Auto-login check
+if (TI && TI.isLoggedIn()) {
+  document.getElementById('loginGate').style.display = 'none';
+}
+
+// Enter key support
+document.getElementById('authPassword').addEventListener('keypress', (e) => { if (e.key === 'Enter') handleAuth(); });
+</script>
+<script src="/js/toinvested.js"></script>
+</body>
+</html>

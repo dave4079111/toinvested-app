@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bitcoin &amp; Crypto Investment Analyzer | ToInvested</title>
+<meta name="description" content="Analyze Bitcoin and cryptocurrency investments with AI. BTC price tracking, DCA calculator, portfolio allocation, risk assessment, and real estate correlation analysis.">
+<meta property="og:title" content="Bitcoin & Crypto Investment Analyzer | ToInvested">
+<meta property="og:description" content="AI-powered Bitcoin and crypto investment analysis. Track prices, calculate DCA strategies, and assess portfolio risk.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://toinvested.com/bitcoin-analyzer/">
+<meta property="og:site_name" content="ToInvested">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bitcoin & Crypto Investment Analyzer | ToInvested">
+<meta name="twitter:description" content="AI-powered Bitcoin and crypto investment analysis tools.">
+<link rel="canonical" href="https://toinvested.com/bitcoin-analyzer/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --navy: #0A0E17; --navy-light: #111827; --navy-card: #141B2D; --navy-border: #1E2A45;
+  --gold: #C9A84C; --gold-light: #E8D48B; --gold-dark: #A88B3A; --gold-glow: rgba(201,168,76,0.15);
+  --white: #F8F5F0; --white-dim: #B8B5B0; --gray: #8A8D95; --green: #34D399; --red: #F87171;
+  --btc-orange: #F7931A;
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --radius: 12px; --radius-lg: 20px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.3); --shadow-gold: 0 4px 30px rgba(201,168,76,0.15);
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+html { scroll-behavior: smooth; font-size: 18px; }
+body { font-family: var(--font-body); font-size: 18px; line-height: 1.7; color: var(--white); background: var(--navy); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overflow-x: hidden; }
+h1,h2,h3,h4,h5,h6 { font-family: var(--font-heading); line-height: 1.2; color: #FFFFFF; }
+a { color: var(--gold); text-decoration: none; transition: color var(--transition); }
+a:hover { color: var(--gold-light); }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* NAV */
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10,14,23,0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--navy-border); padding: 0 2rem; }
+.nav-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 72px; }
+.nav-logo { font-family: var(--font-heading); font-size: 1.6rem; font-weight: 700; color: var(--gold); letter-spacing: 0.5px; }
+.nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+.nav-links a { color: var(--white-dim); font-size: 0.95rem; font-weight: 500; transition: color var(--transition); }
+.nav-links a:hover { color: var(--gold); }
+.nav-cta { background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: var(--navy) !important; padding: 10px 24px; border-radius: 8px; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.3px; transition: transform var(--transition), box-shadow var(--transition); }
+.nav-cta:hover { transform: translateY(-1px); box-shadow: var(--shadow-gold); color: var(--navy) !important; }
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+.nav-toggle span { display: block; width: 24px; height: 2px; background: var(--gold); margin: 6px 0; transition: var(--transition); border-radius: 2px; }
+@media (max-width: 900px) {
+  .nav-toggle { display: block; }
+  .nav-links { position: fixed; top: 72px; left: 0; right: 0; background: rgba(10,14,23,0.98); flex-direction: column; padding: 2rem; gap: 1.5rem; transform: translateY(-120%); transition: transform var(--transition); border-bottom: 1px solid var(--navy-border); }
+  .nav-links.open { transform: translateY(0); }
+}
+
+/* HERO */
+.hero { position: relative; padding: 140px 0 80px; text-align: center; overflow: hidden; }
+.hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse 70% 50% at 50% 30%, rgba(247,147,26,0.06) 0%, transparent 60%), radial-gradient(ellipse 50% 50% at 30% 70%, rgba(201,168,76,0.04) 0%, transparent 60%); pointer-events: none; }
+.hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+.eyebrow { font-size: 0.78rem; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--btc-orange); margin-bottom: 20px; }
+.hero h1 { font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 700; margin-bottom: 20px; }
+.hero h1 em { font-style: normal; color: var(--btc-orange); }
+.hero-sub { font-size: 1.15rem; color: var(--gray); max-width: 600px; margin: 0 auto 36px; }
+.btn-gold { display: inline-block; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: var(--navy); padding: 16px 36px; border-radius: 10px; font-weight: 700; font-size: 1rem; transition: transform var(--transition), box-shadow var(--transition); border: none; cursor: pointer; }
+.btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.3); color: var(--navy); }
+.btn-outline { display: inline-block; border: 1px solid var(--gold); color: var(--gold); padding: 16px 36px; border-radius: 10px; font-weight: 600; font-size: 1rem; transition: all var(--transition); background: transparent; cursor: pointer; }
+.btn-outline:hover { background: rgba(201,168,76,0.1); color: var(--gold-light); }
+.hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+/* METRICS BAR */
+.metrics-bar { padding: 40px 0; border-top: 1px solid var(--navy-border); border-bottom: 1px solid var(--navy-border); background: rgba(20,27,45,0.5); }
+.metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: center; }
+.metric-item { padding: 16px; }
+.metric-label { font-size: 0.78rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray); margin-bottom: 8px; }
+.metric-value { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 700; color: var(--white); }
+.metric-value.green { color: var(--green); }
+.metric-value.orange { color: var(--btc-orange); }
+.metric-change { font-size: 0.85rem; color: var(--green); margin-top: 4px; }
+.metric-change.down { color: var(--red); }
+
+/* FEATURES */
+.section-pad { padding: 100px 0; }
+.section-title { font-size: clamp(1.8rem, 4vw, 2.6rem); text-align: center; margin-bottom: 16px; }
+.section-sub { text-align: center; color: var(--gray); font-size: 1.1rem; max-width: 600px; margin: 0 auto 60px; }
+.features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.feature-card { background: var(--navy-card); border: 1px solid var(--navy-border); border-radius: var(--radius-lg); padding: 36px 28px; transition: border-color var(--transition), transform var(--transition); }
+.feature-card:hover { border-color: rgba(247,147,26,0.3); transform: translateY(-4px); }
+.feature-icon { font-size: 2.2rem; margin-bottom: 16px; }
+.feature-card h3 { font-size: 1.15rem; margin-bottom: 10px; font-weight: 600; }
+.feature-card p { font-size: 0.95rem; color: var(--gray); line-height: 1.6; }
+
+/* DCA PREVIEW */
+.dca-section { padding: 80px 0; }
+.dca-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.dca-text h2 { font-size: clamp(1.8rem, 4vw, 2.4rem); margin-bottom: 20px; }
+.dca-text p { color: var(--gray); font-size: 1.05rem; margin-bottom: 24px; }
+.dca-preview { background: var(--navy-card); border: 1px solid var(--navy-border); border-radius: var(--radius-lg); padding: 32px; }
+.dca-row { display: flex; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.dca-row:last-child { border-bottom: none; }
+.dca-label { color: var(--gray); font-size: 0.9rem; }
+.dca-value { font-weight: 700; font-size: 0.95rem; }
+.dca-value.highlight { color: var(--btc-orange); }
+.dca-value.profit { color: var(--green); }
+
+/* CORRELATION */
+.correlation-section { padding: 80px 0; background: rgba(201,168,76,0.02); }
+.correlation-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; margin-top: 48px; }
+.corr-card { background: var(--navy-card); border: 1px solid var(--navy-border); border-radius: var(--radius-lg); padding: 32px; }
+.corr-card h3 { font-size: 1.1rem; margin-bottom: 12px; }
+.corr-card p { color: var(--gray); font-size: 0.95rem; line-height: 1.6; }
+.corr-stat { display: flex; align-items: baseline; gap: 8px; margin-bottom: 16px; }
+.corr-stat-value { font-family: var(--font-heading); font-size: 2rem; font-weight: 700; color: var(--btc-orange); }
+.corr-stat-label { font-size: 0.85rem; color: var(--gray); }
+
+/* CTA */
+.cta-section { padding: 100px 0; text-align: center; position: relative; }
+.cta-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at center, rgba(247,147,26,0.04) 0%, transparent 70%); pointer-events: none; }
+.cta-section h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 16px; position: relative; }
+.cta-section p { color: var(--gray); font-size: 1.1rem; max-width: 500px; margin: 0 auto 36px; position: relative; }
+
+/* FOOTER */
+.footer { background: #060910; border-top: 1px solid rgba(255,255,255,0.06); padding: 80px 0 40px; }
+.footer-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 40px; margin-bottom: 48px; }
+.footer-col h4 { font-family: var(--font-body); font-size: 0.82rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
+.footer-col a { display: block; color: #6A7080; font-size: 0.85rem; padding: 4px 0; transition: color 0.3s ease; }
+.footer-col a:hover { color: var(--gold); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+.footer-copy { font-size: 0.78rem; color: #444; }
+.footer-socials { display: flex; gap: 16px; }
+.footer-socials a { color: #555; font-size: 0.85rem; }
+.footer-socials a:hover { color: var(--gold); }
+.footer-disclosure { width: 100%; text-align: center; font-size: 0.7rem; color: #3A3A3A; margin-top: 16px; line-height: 1.5; }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .features-grid { grid-template-columns: repeat(2, 1fr); }
+  .dca-wrapper { grid-template-columns: 1fr; }
+  .correlation-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 768px) {
+  html { font-size: 16px; }
+  .hero { padding: 120px 0 60px; }
+  .section-pad { padding: 70px 0; }
+  .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+  .features-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-bottom { justify-content: center; text-align: center; }
+}
+@media (max-width: 480px) {
+  html { font-size: 15px; }
+  .container { padding: 0 16px; }
+  .metrics-grid { grid-template-columns: 1fr; }
+  .hero-buttons { flex-direction: column; align-items: center; }
+  .footer-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">ToInvested</a>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/tools/">Tools</a></li>
+      <li><a href="/membership/">Membership</a></li>
+      <li><a href="/coaching/">Coaching</a></li>
+      <li><a href="/consulting/">Consulting</a></li>
+      <li><a href="/membership/" class="nav-cta">Get Started</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <p class="eyebrow">Bitcoin &amp; Crypto Analysis</p>
+      <h1>AI-Powered <em>Bitcoin &amp; Crypto</em> Investment Analyzer</h1>
+      <p class="hero-sub">Track Bitcoin prices, calculate DCA strategies, optimize portfolio allocation, and assess risk across crypto and real estate holdings.</p>
+      <div class="hero-buttons">
+        <a href="/membership/" class="btn-gold">Launch Analyzer</a>
+        <a href="#features" class="btn-outline">View Features</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="metrics-bar">
+  <div class="container">
+    <div class="metrics-grid">
+      <div class="metric-item">
+        <div class="metric-label">BTC Price</div>
+        <div class="metric-value orange">$87,432</div>
+        <div class="metric-change">+3.2% (24h)</div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-label">Market Cap</div>
+        <div class="metric-value">$1.71T</div>
+        <div class="metric-change">+2.8% (7d)</div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-label">BTC Dominance</div>
+        <div class="metric-value">54.3%</div>
+        <div class="metric-change down">-0.4% (30d)</div>
+      </div>
+      <div class="metric-item">
+        <div class="metric-label">Fear &amp; Greed</div>
+        <div class="metric-value green">72</div>
+        <div class="metric-change">Greed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad" id="features">
+  <div class="container">
+    <h2 class="section-title">Comprehensive Crypto Analysis</h2>
+    <p class="section-sub">Everything you need to make informed Bitcoin and cryptocurrency investment decisions, powered by AI.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">&#9783;</div>
+        <h3>BTC Price Tracking</h3>
+        <p>Real-time Bitcoin price data with historical charts, moving averages, and key support/resistance levels to time your entries.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">&#128176;</div>
+        <h3>DCA Calculator</h3>
+        <p>Model dollar-cost averaging strategies with custom amounts and frequencies. See projected returns vs lump-sum investing.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">&#128202;</div>
+        <h3>Portfolio Allocation</h3>
+        <p>Optimize your crypto allocation across BTC, ETH, altcoins, and stablecoins based on your risk tolerance and time horizon.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">&#9888;</div>
+        <h3>Risk Assessment</h3>
+        <p>Volatility analysis, max drawdown calculations, and stress-testing scenarios to understand your crypto risk exposure.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">&#127968;</div>
+        <h3>Real Estate Correlation</h3>
+        <p>Analyze how Bitcoin correlates with real estate markets to build a diversified multi-asset investment portfolio.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">&#128290;</div>
+        <h3>On-Chain Metrics</h3>
+        <p>Track key on-chain indicators like hash rate, active addresses, and exchange flows for deeper market insights.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dca-section">
+  <div class="container">
+    <div class="dca-wrapper">
+      <div class="dca-text">
+        <h2>See the Power of <span style="color:var(--btc-orange)">Dollar-Cost Averaging</span></h2>
+        <p>Our DCA calculator shows you exactly how consistent investing builds wealth over time, even through volatile markets. Backtest strategies against historical BTC data going back to 2013.</p>
+        <p>Compare DCA vs lump-sum, adjust frequency and amounts, and see projected outcomes across different market scenarios.</p>
+        <a href="/membership/" class="btn-gold" style="margin-top: 12px;">Try the Calculator</a>
+      </div>
+      <div class="dca-preview">
+        <h3 style="margin-bottom: 20px; font-size: 1.1rem;">DCA Simulation: $200/week for 4 years</h3>
+        <div class="dca-row">
+          <span class="dca-label">Total Invested</span>
+          <span class="dca-value">$41,600</span>
+        </div>
+        <div class="dca-row">
+          <span class="dca-label">Current Value</span>
+          <span class="dca-value highlight">$94,280</span>
+        </div>
+        <div class="dca-row">
+          <span class="dca-label">Total Return</span>
+          <span class="dca-value profit">+126.6%</span>
+        </div>
+        <div class="dca-row">
+          <span class="dca-label">Avg. Cost Basis</span>
+          <span class="dca-value">$38,712</span>
+        </div>
+        <div class="dca-row">
+          <span class="dca-label">BTC Accumulated</span>
+          <span class="dca-value highlight">1.078 BTC</span>
+        </div>
+        <div class="dca-row">
+          <span class="dca-label">vs Lump Sum</span>
+          <span class="dca-value profit">DCA +18.4% better</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="correlation-section">
+  <div class="container">
+    <h2 class="section-title">Bitcoin + Real Estate Correlation</h2>
+    <p class="section-sub">Understand how crypto and real estate work together in a diversified investment portfolio.</p>
+    <div class="correlation-grid">
+      <div class="corr-card">
+        <div class="corr-stat">
+          <span class="corr-stat-value">0.12</span>
+          <span class="corr-stat-label">BTC / Real Estate Correlation</span>
+        </div>
+        <h3>Low Correlation = Better Diversification</h3>
+        <p>Bitcoin and real estate have historically shown low correlation, meaning they rarely move in the same direction at the same time. This makes them excellent complementary assets in a portfolio.</p>
+      </div>
+      <div class="corr-card">
+        <div class="corr-stat">
+          <span class="corr-stat-value">2.4x</span>
+          <span class="corr-stat-label">Risk-Adjusted Return Improvement</span>
+        </div>
+        <h3>Better Sharpe Ratio Combined</h3>
+        <p>Portfolios that combine real estate with a 5-15% Bitcoin allocation have historically achieved significantly better risk-adjusted returns compared to either asset alone.</p>
+      </div>
+      <div class="corr-card">
+        <div class="corr-stat">
+          <span class="corr-stat-value">-34%</span>
+          <span class="corr-stat-label">Maximum Drawdown Reduction</span>
+        </div>
+        <h3>Reduced Portfolio Volatility</h3>
+        <p>Adding stable real estate cash flow to a crypto portfolio can reduce maximum drawdown by over a third, providing a financial buffer during crypto bear markets.</p>
+      </div>
+      <div class="corr-card">
+        <div class="corr-stat">
+          <span class="corr-stat-value">18.7%</span>
+          <span class="corr-stat-label">Annualized Blended Return</span>
+        </div>
+        <h3>Strong Combined Performance</h3>
+        <p>A balanced portfolio of real estate (70%) and Bitcoin (30%) has delivered an annualized return of 18.7% over the past 5 years, outperforming most traditional portfolios.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <h2>Start Analyzing <span style="color:var(--btc-orange)">Bitcoin Investments</span> Today</h2>
+    <p>Join investors who use AI-powered crypto analysis alongside real estate tools for smarter portfolio decisions.</p>
+    <div class="hero-buttons" style="position:relative;">
+      <a href="/membership/" class="btn-gold">Get Full Access</a>
+      <a href="/tools/" class="btn-outline">Explore All Tools</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>AI Tools</h4>
+        <a href="/property-analyzer/">Property Analyzer</a>
+        <a href="/flip-analyzer/">Fix &amp; Flip Analyzer</a>
+        <a href="/brrrr-analyzer/">BRRRR Analyzer</a>
+        <a href="/renovation-analyzer/">Renovation Analyzer</a>
+        <a href="/stock-analyzer/">Stock Analyzer</a>
+        <a href="/bitcoin-analyzer/">Bitcoin Analyzer</a>
+      </div>
+      <div class="footer-col">
+        <h4>Wealth Protection</h4>
+        <a href="/tax-strategy/">Tax Strategy</a>
+        <a href="/legal-protection/">Legal Protection</a>
+        <a href="/life-insurance/">Life Insurance</a>
+        <a href="/probate/">Probate</a>
+      </div>
+      <div class="footer-col">
+        <h4>Education</h4>
+        <a href="/education/">Education Hub</a>
+        <a href="/coaching/">Coaching</a>
+        <a href="/blog/">Blog</a>
+        <a href="/store/">Store</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/about/">About</a>
+        <a href="/consulting/">Consulting</a>
+        <a href="/contact/">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="/privacy/">Privacy Policy</a>
+        <a href="/terms/">Terms of Service</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 ToInvested by YPN Inc. All rights reserved.</p>
+      <div class="footer-socials">
+        <a href="https://www.linkedin.com/company/toinvested" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://www.youtube.com/@toinvested" target="_blank" rel="noopener noreferrer">YouTube</a>
+        <a href="https://twitter.com/toinvested" target="_blank" rel="noopener noreferrer">X</a>
+      </div>
+      <p class="footer-disclosure">ToInvested.com is a participant in the Amazon Services LLC Associates Program. Cryptocurrency investments carry significant risk. Past performance does not guarantee future results. This is not financial advice.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/toinvested.js"></script>
+</body>
+</html>

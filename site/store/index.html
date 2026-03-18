@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investment Tools &amp; Resources Store | ToInvested</title>
+<meta name="description" content="Premium investment tools, spreadsheets, templates, and courses for real estate investors. Deal analyzers, rehab estimators, BRRRR calculators, and more.">
+<meta property="og:title" content="Investment Tools & Resources Store | ToInvested">
+<meta property="og:description" content="Premium investment tools, spreadsheets, templates, and courses for real estate investors.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://toinvested.com/store/">
+<meta property="og:site_name" content="ToInvested">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://toinvested.com/store/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --navy: #0A0E17; --navy-light: #111827; --navy-card: #141B2D; --navy-border: #1E2A45;
+  --gold: #C9A84C; --gold-light: #E8D48B; --gold-dark: #A88B3A;
+  --white: #F8F5F0; --gray: #8A8D95; --green: #34D399; --red: #F87171;
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --radius: 12px; --radius-lg: 20px;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: var(--navy); color: var(--white); font-size: 18px; line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+h1, h2, h3, h4, h5 { font-family: var(--font-heading); line-height: 1.2; }
+a { color: var(--gold); text-decoration: none; transition: color 0.3s; }
+a:hover { color: var(--gold-light); }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.gold { color: var(--gold); }
+
+/* NAV */
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(10,14,23,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(201,168,76,0.1); }
+.nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 72px; }
+.nav-logo { font-family: var(--font-heading); font-size: 24px; font-weight: 700; color: var(--gold); }
+.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-links a { color: var(--gray); font-size: 15px; font-weight: 500; }
+.nav-links a:hover { color: var(--gold); }
+.nav-cta { background: var(--gold); color: var(--navy) !important; padding: 10px 22px; border-radius: 8px; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
+.nav-cta:hover { background: var(--gold-light); color: var(--navy) !important; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--white); transition: 0.3s; }
+
+/* HERO */
+.hero { padding: 140px 0 80px; text-align: center; position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%); pointer-events: none; }
+.hero-badge { display: inline-block; background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.25); color: var(--gold); padding: 8px 20px; border-radius: 50px; font-size: 14px; font-weight: 600; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 1px; }
+.hero h1 { font-size: clamp(36px, 5vw, 60px); font-weight: 700; margin-bottom: 24px; }
+.hero h1 span { color: var(--gold); }
+.hero p { font-size: 20px; color: var(--gray); max-width: 640px; margin: 0 auto; }
+
+/* SECTION */
+.section { padding: 80px 0; }
+.section-label { text-align: center; color: var(--gold); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+.section-title { text-align: center; font-family: var(--font-heading); font-size: clamp(28px, 4vw, 48px); font-weight: 700; margin-bottom: 16px; }
+.section-sub { text-align: center; color: var(--gray); font-size: 18px; max-width: 600px; margin: 0 auto 60px; }
+
+/* PRODUCTS */
+.products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.product-card { background: var(--navy-card); border: 1px solid var(--navy-border); border-radius: var(--radius-lg); overflow: hidden; transition: all 0.3s; display: flex; flex-direction: column; }
+.product-card:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-4px); }
+.product-img { height: 180px; background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(201,168,76,0.02)); display: flex; align-items: center; justify-content: center; font-size: 56px; border-bottom: 1px solid var(--navy-border); }
+.product-body { padding: 28px; flex: 1; display: flex; flex-direction: column; }
+.product-tag { display: inline-block; background: rgba(201,168,76,0.1); color: var(--gold); font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; width: fit-content; }
+.product-card h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+.product-card p { color: var(--gray); font-size: 15px; margin-bottom: 20px; flex: 1; }
+.product-features { list-style: none; margin-bottom: 24px; }
+.product-features li { color: var(--gray); font-size: 14px; padding: 4px 0; padding-left: 20px; position: relative; }
+.product-features li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+.product-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
+.product-price { font-family: var(--font-heading); font-size: 32px; font-weight: 700; color: var(--gold); }
+.product-price span { font-size: 16px; color: var(--gray); font-family: var(--font-body); font-weight: 400; }
+.btn-buy { background: var(--gold); color: var(--navy); border: none; padding: 12px 24px; border-radius: var(--radius); font-weight: 700; font-size: 14px; cursor: pointer; transition: all 0.3s; font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.5px; }
+.btn-buy:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+/* FEATURED */
+.featured-card { background: var(--navy-card); border: 2px solid rgba(201,168,76,0.3); border-radius: var(--radius-lg); padding: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; position: relative; overflow: hidden; }
+.featured-card::before { content: 'BEST VALUE'; position: absolute; top: 20px; right: -30px; background: var(--gold); color: var(--navy); padding: 6px 40px; font-size: 12px; font-weight: 800; letter-spacing: 1px; transform: rotate(45deg); }
+.featured-left h3 { font-size: 32px; font-weight: 700; margin-bottom: 16px; }
+.featured-left p { color: var(--gray); font-size: 17px; margin-bottom: 24px; }
+.featured-list { list-style: none; margin-bottom: 32px; }
+.featured-list li { padding: 8px 0; padding-left: 28px; position: relative; font-size: 16px; color: var(--white); }
+.featured-list li::before { content: '✓'; position: absolute; left: 0; color: var(--gold); font-weight: 700; font-size: 18px; }
+.featured-right { text-align: center; }
+.featured-price { font-family: var(--font-heading); font-size: 56px; font-weight: 700; color: var(--gold); margin-bottom: 8px; }
+.featured-was { color: var(--gray); font-size: 16px; margin-bottom: 24px; }
+.featured-was s { color: var(--red); }
+.btn-featured { display: block; width: 100%; background: var(--gold); color: var(--navy); border: none; padding: 18px 32px; border-radius: var(--radius); font-weight: 700; font-size: 18px; cursor: pointer; transition: all 0.3s; font-family: var(--font-body); }
+.btn-featured:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.3); }
+.featured-note { color: var(--gray); font-size: 13px; margin-top: 16px; }
+
+/* MEMBERSHIP PROMO */
+.promo-card { background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(201,168,76,0.02)); border: 1px solid rgba(201,168,76,0.2); border-radius: var(--radius-lg); padding: 48px; text-align: center; }
+.promo-card h2 { font-size: 32px; margin-bottom: 16px; }
+.promo-card p { color: var(--gray); font-size: 18px; max-width: 600px; margin: 0 auto 32px; }
+.btn-gold { display: inline-block; background: var(--gold); color: var(--navy); padding: 16px 32px; border-radius: var(--radius); font-weight: 700; font-size: 16px; transition: all 0.3s; }
+.btn-gold:hover { background: var(--gold-light); color: var(--navy); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.3); }
+
+/* AFFILIATE */
+.affiliate-note { background: var(--navy-light); border: 1px solid var(--navy-border); border-radius: var(--radius); padding: 20px 28px; font-size: 13px; color: var(--gray); line-height: 1.6; max-width: 800px; margin: 40px auto 0; text-align: center; }
+
+/* FOOTER */
+.footer { background: var(--navy-light); border-top: 1px solid var(--navy-border); padding: 60px 0 30px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+.footer-brand p { color: var(--gray); font-size: 14px; margin-top: 12px; line-height: 1.6; }
+.footer-col h4 { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gold); margin-bottom: 16px; }
+.footer-col a { display: block; color: var(--gray); font-size: 14px; margin-bottom: 8px; }
+.footer-col a:hover { color: var(--gold); }
+.footer-bottom { border-top: 1px solid var(--navy-border); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-bottom p { color: var(--gray); font-size: 13px; }
+.footer-bottom a { color: var(--gray); font-size: 13px; margin-left: 20px; }
+
+/* ANIMATIONS */
+.animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .hamburger { display: flex; }
+  .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; background: var(--navy); flex-direction: column; padding: 24px; border-bottom: 1px solid var(--navy-border); gap: 16px; }
+  .nav-links.active { display: flex; }
+  .products-grid { grid-template-columns: repeat(2, 1fr); }
+  .featured-card { grid-template-columns: 1fr; }
+  .featured-card::before { top: 12px; right: -35px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .products-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">ToInvested</a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="/tools/">Tools</a>
+      <a href="/membership/">Membership</a>
+      <a href="/coaching/">Coaching</a>
+      <a href="/consulting/">Consulting</a>
+      <a href="/membership/" class="nav-cta">Get Started</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">Investor Resources</div>
+    <h1>The ToInvested <span>Store</span></h1>
+    <p>Premium tools, templates, and resources built for serious real estate investors. Analyze better. Invest smarter.</p>
+  </div>
+</section>
+
+<!-- PRODUCTS (dynamically loaded from API) -->
+<section class="section" style="padding-top: 20px;">
+  <div class="container">
+    <div class="products-grid" id="productsGrid">
+      <div style="grid-column: 1/-1; text-align:center; padding:40px; color:var(--gray);">Loading products...</div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOPPING CART SIDEBAR -->
+<div id="cartOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:2000;" onclick="closeCart()"></div>
+<div id="cartSidebar" style="display:none; position:fixed; right:0; top:0; width:380px; max-width:90vw; height:100vh; background:var(--navy-card); border-left:1px solid var(--gold); z-index:2001; padding:24px; overflow-y:auto;">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+    <h3 style="color:var(--gold); font-size:20px;">Your Cart</h3>
+    <button onclick="closeCart()" style="background:none; border:none; color:var(--gray); font-size:24px; cursor:pointer;">&times;</button>
+  </div>
+  <div id="cartItems"></div>
+  <div id="cartTotal" style="border-top:1px solid var(--navy-border); padding-top:16px; margin-top:16px; display:none;">
+    <div style="display:flex; justify-content:space-between; font-size:18px; font-weight:700; margin-bottom:16px;">
+      <span>Total</span><span id="cartTotalAmount" style="color:var(--gold);"></span>
+    </div>
+    <input type="email" id="checkoutEmail" placeholder="Your email for delivery" style="width:100%; padding:10px 14px; background:var(--navy); border:1px solid var(--navy-border); border-radius:8px; color:var(--white); font-size:14px; margin-bottom:12px;">
+    <button onclick="processCheckout()" style="width:100%; padding:12px; background:linear-gradient(135deg, var(--gold), var(--gold-light)); border:none; border-radius:8px; color:var(--navy); font-weight:700; font-size:16px; cursor:pointer;">Checkout</button>
+  </div>
+  <div id="cartEmpty" style="text-align:center; color:var(--gray); padding:40px 0;">Your cart is empty</div>
+</div>
+
+<!-- FEATURED BUNDLE -->
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <div class="featured-card animate-on-scroll">
+      <div class="featured-left">
+        <h3>Complete Investor <span class="gold">Bundle</span></h3>
+        <p>Everything you need to analyze, execute, and manage real estate investments. All tools and templates in one package.</p>
+        <ul class="featured-list">
+          <li>Deal Analyzer Spreadsheet</li>
+          <li>BRRRR Calculator Pro</li>
+          <li>Rehab Estimator Template</li>
+          <li>Investor's Legal Checklist</li>
+          <li>Rental Property Templates</li>
+          <li>Real Estate Investing Course</li>
+          <li>Priority email support</li>
+        </ul>
+      </div>
+      <div class="featured-right">
+        <div class="featured-price">$197</div>
+        <div class="featured-was">Valued at <s>$414</s> &mdash; Save 52%</div>
+        <button class="btn-featured" onclick="window.location.href='/membership/'">Get the Bundle</button>
+        <p class="featured-note">One-time purchase. Lifetime access. No recurring fees.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERSHIP PROMO -->
+<section class="section">
+  <div class="container">
+    <div class="promo-card animate-on-scroll">
+      <h2>Members Get <span class="gold">Everything Free</span></h2>
+      <p>ToInvested members get instant access to all store products, AI-powered analyzers, coaching resources, and more — included with membership.</p>
+      <a href="/membership/" class="btn-gold">Explore Membership Plans</a>
+    </div>
+    <div class="affiliate-note">
+      <strong>Affiliate Disclosure:</strong> Some links on this page may be affiliate links. As an Amazon Associate (tag: investor023-20), we earn from qualifying purchases. This helps support the platform at no extra cost to you. We only recommend products we genuinely believe will help your investing journey.
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="nav-logo" style="font-size:22px;">ToInvested</a>
+        <p>AI-powered real estate and investment analysis. Make smarter decisions, avoid costly mistakes, and build wealth with confidence.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Tools</h4>
+        <a href="/property-analyzer/">Property Analyzer</a>
+        <a href="/flip-analyzer/">Flip Analyzer</a>
+        <a href="/brrrr-analyzer/">BRRRR Analyzer</a>
+        <a href="/bitcoin-analyzer/">Bitcoin Analyzer</a>
+        <a href="/stock-analyzer/">Stock Analyzer</a>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="/membership/">Membership</a>
+        <a href="/coaching/">Coaching</a>
+        <a href="/consulting/">Consulting</a>
+        <a href="/education/">Education</a>
+        <a href="/store/">Store</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/about/">About</a>
+        <a href="/blog/">Blog</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 ToInvested &mdash; A YPN Inc Company. All rights reserved.</p>
+      <div>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+// Category icons
+const catIcons = { tool: '📊', template: '📋', course: '🎓', membership: '⭐' };
+
+// Load products from API
+async function loadProducts() {
+  try {
+    const res = await fetch('/api/products');
+    const data = await res.json();
+    const grid = document.getElementById('productsGrid');
+    if (!data.products || !data.products.length) {
+      grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--gray);">No products available yet.</div>';
+      return;
+    }
+    grid.innerHTML = data.products.map(p => {
+      const features = (p.features || []).map(f => `<li>${f}</li>`).join('');
+      const priceHtml = p.sale_price
+        ? `<span style="text-decoration:line-through;color:var(--gray);font-size:14px;">$${p.price.toFixed(2)}</span> $${p.sale_price.toFixed(2)}`
+        : `$${p.price.toFixed(2)}`;
+      return `<div class="product-card animate-on-scroll visible">
+        <div class="product-img">${catIcons[p.category] || '📦'}</div>
+        <div class="product-body">
+          <div class="product-tag">${p.category}</div>
+          <h3>${p.name}</h3>
+          <p>${p.description || ''}</p>
+          ${features ? `<ul class="product-features">${features}</ul>` : ''}
+          <div class="product-footer">
+            <div class="product-price">${priceHtml}</div>
+            <button class="btn-buy" onclick="addToCart('${p.id}','${p.name.replace(/'/g,"\\'")}',${p.sale_price || p.price})">Add to Cart</button>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+  } catch (err) {
+    document.getElementById('productsGrid').innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--red);">Failed to load products. Please refresh.</div>';
+  }
+}
+
+function addToCart(id, name, price) {
+  TI.addToCart(id, name, price);
+  renderCart();
+}
+
+function openCart() {
+  document.getElementById('cartOverlay').style.display = 'block';
+  document.getElementById('cartSidebar').style.display = 'block';
+  renderCart();
+}
+
+function closeCart() {
+  document.getElementById('cartOverlay').style.display = 'none';
+  document.getElementById('cartSidebar').style.display = 'none';
+}
+
+function renderCart() {
+  const cart = TI.getCart();
+  const itemsEl = document.getElementById('cartItems');
+  const totalEl = document.getElementById('cartTotal');
+  const emptyEl = document.getElementById('cartEmpty');
+
+  if (!cart.length) {
+    itemsEl.innerHTML = '';
+    totalEl.style.display = 'none';
+    emptyEl.style.display = 'block';
+    return;
+  }
+  emptyEl.style.display = 'none';
+  totalEl.style.display = 'block';
+
+  let total = 0;
+  itemsEl.innerHTML = cart.map(item => {
+    total += item.price * item.quantity;
+    return `<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--navy-border);">
+      <div><div style="font-weight:600;font-size:14px;">${item.name}</div><div style="color:var(--gold);font-size:13px;">$${item.price.toFixed(2)}</div></div>
+      <button onclick="TI.removeFromCart('${item.productId}');renderCart();" style="background:none;border:none;color:var(--red);cursor:pointer;font-size:18px;">&times;</button>
+    </div>`;
+  }).join('');
+
+  document.getElementById('cartTotalAmount').textContent = `$${total.toFixed(2)}`;
+}
+
+async function processCheckout() {
+  const email = document.getElementById('checkoutEmail').value;
+  if (!email || !email.includes('@')) {
+    TI.showNotification('Please enter a valid email', 'error');
+    return;
+  }
+  const cart = TI.getCart();
+  if (!cart.length) return;
+
+  const items = cart.map(i => ({ productId: i.productId, quantity: i.quantity }));
+  const result = await TI.checkout(items, email);
+
+  if (result && result.url) {
+    window.location.href = result.url; // Stripe checkout
+  } else if (result && result.orderId) {
+    TI.clearCart();
+    renderCart();
+    closeCart();
+    TI.showNotification('Order placed successfully! Check your email for delivery.');
+  } else {
+    TI.showNotification(result?.error || 'Checkout failed', 'error');
+  }
+}
+
+// Check for success/cancel URL params
+const urlParams = new URLSearchParams(window.location.search);
+if (urlParams.get('success')) {
+  TI.clearCart();
+  setTimeout(() => TI.showNotification('Payment successful! Check your email for your products.'), 500);
+}
+
+loadProducts();
+</script>
+<script src="/js/toinvested.js"></script>
+</body>
+</html>

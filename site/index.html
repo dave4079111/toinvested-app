@@ -1,0 +1,1872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ToInvested | AI Real Estate Investment Analysis for Investors &amp; Agents</title>
+<meta name="description" content="AI-powered real estate investment analysis for house flipping, BRRRR, hard money lending, and DSCR loans. Elevate your investment strategy today.">
+<meta property="og:title" content="ToInvested | AI Real Estate Investment Analysis for Investors &amp; Agents">
+<meta property="og:description" content="AI-powered real estate investment analysis for house flipping, BRRRR, hard money lending, and DSCR loans. Elevate your investment strategy today.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://toinvested.com">
+<meta property="og:image" content="https://toinvested.com/wp-content/uploads/2026/01/David-J-Moore-MBA-Photo-2026.jpg">
+<meta property="og:site_name" content="ToInvested">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ToInvested | AI Real Estate Investment Analysis">
+<meta name="twitter:description" content="AI-powered real estate investment analysis for house flipping, BRRRR, hard money lending, and DSCR loans.">
+<link rel="canonical" href="https://toinvested.com/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "ToInvested",
+  "url": "https://toinvested.com",
+  "logo": "https://toinvested.com/logo.png",
+  "founder": {
+    "@type": "Person",
+    "name": "David J. Moore",
+    "jobTitle": "CEO",
+    "honorificSuffix": "MBA"
+  },
+  "parentOrganization": {
+    "@type": "Organization",
+    "name": "YPN Inc"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/company/toinvested",
+    "https://www.youtube.com/@toinvested",
+    "https://twitter.com/toinvested"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "ToInvested",
+  "url": "https://toinvested.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://toinvested.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<style>
+/* ===================== RESET & BASE ===================== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 18px; }
+body {
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #0A0E17;
+  color: #E0E0E0;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', Georgia, serif;
+  line-height: 1.2;
+  color: #FFFFFF;
+}
+a { color: #C9A84C; text-decoration: none; transition: color 0.3s ease; }
+a:hover { color: #E0C068; }
+img { max-width: 100%; height: auto; display: block; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.gold { color: #C9A84C; }
+.section-pad { padding: 100px 0; }
+
+/* ===================== ANIMATIONS ===================== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-18px); }
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(201, 168, 76, 0.15); }
+  50% { box-shadow: 0 0 40px rgba(201, 168, 76, 0.35); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===================== FLOATING DECORATIONS ===================== */
+.float-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+.float-orb-1 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+  top: -100px; right: -100px;
+  animation: float 8s ease-in-out infinite;
+}
+.float-orb-2 {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(30,60,180,0.08) 0%, transparent 70%);
+  bottom: -50px; left: -80px;
+  animation: float 10s ease-in-out infinite 2s;
+}
+.float-orb-3 {
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+  top: 40%; left: 10%;
+  animation: float 12s ease-in-out infinite 4s;
+}
+
+/* ===================== NAVIGATION ===================== */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 16px 0;
+  transition: all 0.4s ease;
+  background: transparent;
+}
+.nav.scrolled {
+  background: rgba(10, 14, 23, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+  padding: 10px 0;
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #C9A84C;
+  letter-spacing: 1px;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+}
+.nav-links a {
+  color: #C0C0C0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+.nav-links a:hover { color: #C9A84C; }
+.nav-cta {
+  background: linear-gradient(135deg, #C9A84C, #B8943A);
+  color: #0A0E17 !important;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(201, 168, 76, 0.3);
+  color: #0A0E17 !important;
+}
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+  z-index: 1010;
+}
+.hamburger span {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: #C9A84C;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+.mobile-drawer {
+  display: none;
+  position: fixed;
+  top: 0; right: -100%;
+  width: 300px;
+  height: 100vh;
+  background: rgba(10, 14, 23, 0.98);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  z-index: 1005;
+  padding: 80px 30px 40px;
+  transition: right 0.4s ease;
+  border-left: 1px solid rgba(201, 168, 76, 0.2);
+}
+.mobile-drawer.open { right: 0; }
+.mobile-drawer a {
+  display: block;
+  color: #E0E0E0;
+  font-size: 1.1rem;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-weight: 500;
+}
+.mobile-drawer a:hover { color: #C9A84C; }
+.mobile-drawer .nav-cta {
+  display: inline-block;
+  margin-top: 20px;
+  text-align: center;
+  width: 100%;
+}
+.drawer-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1002;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.drawer-overlay.open { opacity: 1; }
+
+/* ===================== HERO ===================== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 140px 0 80px;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 20%, rgba(201,168,76,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 80% 80%, rgba(30,50,120,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #C9A84C;
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards 0.2s;
+}
+.hero h1 {
+  font-size: 3.8rem;
+  font-weight: 700;
+  line-height: 1.12;
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards 0.4s;
+}
+.hero-sub {
+  font-size: 1.2rem;
+  color: #A0A8B8;
+  max-width: 650px;
+  margin: 0 auto 28px;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards 0.6s;
+}
+.trust-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  font-size: 0.8rem;
+  color: #8890A0;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards 0.8s;
+}
+.trust-bar span { display: flex; align-items: center; gap: 6px; }
+.trust-dot {
+  width: 6px; height: 6px;
+  background: #C9A84C;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* ===================== ANALYZER CARD ===================== */
+.analyzer-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 40px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  max-width: 700px;
+  margin: 0 auto;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards 1s;
+}
+.analyzer-input-wrap {
+  position: relative;
+  margin-bottom: 16px;
+}
+.analyzer-input {
+  width: 100%;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  padding: 18px 22px;
+  font-size: 1rem;
+  color: #FFF;
+  font-family: 'DM Sans', sans-serif;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+.analyzer-input::placeholder { color: #5A6170; }
+.analyzer-input:focus { border-color: #C9A84C; }
+.analyzer-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #C9A84C, #B8943A);
+  color: #0A0E17;
+  border: none;
+  border-radius: 12px;
+  padding: 18px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  letter-spacing: 0.5px;
+}
+.analyzer-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(201, 168, 76, 0.35);
+}
+.strategy-chips {
+  display: flex;
+  gap: 10px;
+  margin: 16px 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.chip {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 24px;
+  padding: 8px 18px;
+  font-size: 0.82rem;
+  color: #C0C8D8;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'DM Sans', sans-serif;
+}
+.chip:hover, .chip.active {
+  background: rgba(201, 168, 76, 0.15);
+  border-color: #C9A84C;
+  color: #C9A84C;
+}
+.trust-pills {
+  text-align: center;
+  font-size: 0.78rem;
+  color: #6A7080;
+  margin-top: 16px;
+}
+/* Sample result preview */
+.sample-result {
+  margin-top: 28px;
+  background: rgba(201, 168, 76, 0.05);
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  border-radius: 14px;
+  padding: 24px;
+}
+.sample-result-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.sample-result-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: #C9A84C;
+}
+.verdict-badge {
+  background: linear-gradient(135deg, #2ECC71, #27AE60);
+  color: #FFF;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.result-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.metric {
+  text-align: center;
+}
+.metric-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #FFF;
+}
+.metric-label {
+  font-size: 0.7rem;
+  color: #7A8290;
+  margin-top: 2px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ===================== PAIN POINTS ===================== */
+.pain-section { background: #0D1120; }
+.section-eyebrow {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #C9A84C;
+  text-align: center;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-size: 2.6rem;
+  text-align: center;
+  margin-bottom: 60px;
+}
+.pain-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.pain-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 36px 28px;
+  text-align: center;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.pain-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(201, 168, 76, 0.3);
+}
+.pain-icon {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  display: block;
+}
+.pain-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+}
+.pain-card p {
+  font-size: 0.92rem;
+  color: #8890A0;
+  line-height: 1.6;
+}
+
+/* ===================== AI SECTION ===================== */
+.ai-section {
+  position: relative;
+  overflow: hidden;
+}
+.ai-flex {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+.ai-image {
+  flex: 1;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.ai-image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+.ai-text {
+  flex: 1;
+}
+.ai-text h2 {
+  font-size: 2.4rem;
+  margin-bottom: 20px;
+}
+.ai-text p {
+  font-size: 1.05rem;
+  color: #A0A8B8;
+  margin-bottom: 24px;
+  line-height: 1.7;
+}
+.ai-features {
+  list-style: none;
+  margin-bottom: 32px;
+}
+.ai-features li {
+  padding: 8px 0;
+  font-size: 0.95rem;
+  color: #C0C8D8;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.ai-features li::before {
+  content: '';
+  width: 8px; height: 8px;
+  background: #C9A84C;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.btn-gold {
+  display: inline-block;
+  background: linear-gradient(135deg, #C9A84C, #B8943A);
+  color: #0A0E17;
+  padding: 14px 32px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+}
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(201, 168, 76, 0.3);
+  color: #0A0E17;
+}
+.btn-outline {
+  display: inline-block;
+  background: transparent;
+  color: #C9A84C;
+  padding: 14px 32px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: 2px solid #C9A84C;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+}
+.btn-outline:hover {
+  background: rgba(201, 168, 76, 0.1);
+  color: #C9A84C;
+}
+
+/* ===================== VIDEO / HOW IT WORKS ===================== */
+.video-section {
+  background: linear-gradient(180deg, #0A0E17 0%, #0D1120 100%);
+}
+.video-wrap {
+  max-width: 800px;
+  margin: 0 auto 60px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  position: relative;
+  padding-top: 56.25%;
+}
+.video-wrap iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.step {
+  text-align: center;
+  position: relative;
+}
+.step-num {
+  width: 56px; height: 56px;
+  background: linear-gradient(135deg, #C9A84C, #B8943A);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #0A0E17;
+  font-family: 'Playfair Display', serif;
+}
+.step h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+.step p {
+  font-size: 0.9rem;
+  color: #8890A0;
+}
+.step-connector {
+  position: absolute;
+  top: 28px;
+  right: -20px;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, #C9A84C, transparent);
+}
+
+/* ===================== 6 TOOLS GRID ===================== */
+.tools-section { background: #0A0E17; }
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.tool-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.tool-card:hover {
+  border-color: rgba(201, 168, 76, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+.tool-badge {
+  position: absolute;
+  top: 16px; right: 16px;
+  background: linear-gradient(135deg, #2ECC71, #27AE60);
+  color: #FFF;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.tool-icon {
+  font-size: 2.6rem;
+  margin-bottom: 16px;
+  display: block;
+}
+.tool-card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 10px;
+}
+.tool-card p {
+  font-size: 0.88rem;
+  color: #8890A0;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+.tool-link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #C9A84C;
+  letter-spacing: 0.5px;
+}
+.tool-link:hover { color: #E0C068; }
+
+/* ===================== FEAR / LOSS AVERSION ===================== */
+.fear-section {
+  background: linear-gradient(135deg, #1A0A0A 0%, #0A0E17 50%, #1A0A0A 100%);
+  position: relative;
+  overflow: hidden;
+}
+.fear-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at center, rgba(200, 50, 50, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.fear-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-bottom: 48px;
+  position: relative;
+  z-index: 1;
+}
+.fear-stat {
+  text-align: center;
+}
+.fear-stat-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #E74C3C;
+  margin-bottom: 8px;
+}
+.fear-stat-label {
+  font-size: 0.88rem;
+  color: #A08080;
+}
+.fear-content {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.fear-content h2 {
+  font-size: 2.4rem;
+  margin-bottom: 20px;
+}
+.fear-content p {
+  font-size: 1.1rem;
+  color: #B09090;
+  max-width: 600px;
+  margin: 0 auto 32px;
+}
+
+/* ===================== ABOUT FOUNDER ===================== */
+.founder-section {
+  background: #0D1120;
+  position: relative;
+}
+.founder-flex {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+.founder-photo-wrap {
+  flex: 0 0 340px;
+  position: relative;
+}
+.founder-photo-wrap::before {
+  content: '';
+  position: absolute;
+  top: -8px; left: -8px; right: -8px; bottom: -8px;
+  border: 2px solid #C9A84C;
+  border-radius: 18px;
+  z-index: 0;
+}
+.founder-photo {
+  width: 100%;
+  height: 440px;
+  object-fit: cover;
+  border-radius: 14px;
+  position: relative;
+  z-index: 1;
+}
+.founder-text {
+  flex: 1;
+}
+.founder-text h2 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+.founder-text p {
+  font-size: 1rem;
+  color: #A0A8B8;
+  margin-bottom: 16px;
+  line-height: 1.7;
+}
+.founder-creds {
+  display: flex;
+  gap: 24px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+.cred {
+  background: rgba(201, 168, 76, 0.08);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: 10px;
+  padding: 12px 20px;
+  text-align: center;
+}
+.cred-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #C9A84C;
+}
+.cred-label {
+  font-size: 0.72rem;
+  color: #8890A0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 2px;
+}
+
+/* ===================== INVESTOR STORE ===================== */
+.store-section { background: #0A0E17; }
+.store-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.book-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px;
+  padding: 32px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+.book-card:hover {
+  border-color: rgba(201, 168, 76, 0.3);
+  transform: translateY(-4px);
+}
+.book-placeholder {
+  width: 140px;
+  height: 200px;
+  background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05));
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  border-radius: 8px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+}
+.book-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+.book-card p {
+  font-size: 0.85rem;
+  color: #8890A0;
+  margin-bottom: 20px;
+}
+.btn-amazon {
+  display: inline-block;
+  background: linear-gradient(135deg, #C9A84C, #B8943A);
+  color: #0A0E17;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+.btn-amazon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(201, 168, 76, 0.3);
+  color: #0A0E17;
+}
+.store-disclosure {
+  text-align: center;
+  margin-top: 28px;
+  font-size: 0.72rem;
+  color: #555;
+}
+
+/* ===================== MEMBERSHIP ===================== */
+.membership-section { background: #0D1120; }
+.toggle-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+.toggle-label {
+  font-size: 0.9rem;
+  color: #8890A0;
+  cursor: pointer;
+}
+.toggle-label.active { color: #C9A84C; font-weight: 600; }
+.toggle-switch {
+  width: 52px;
+  height: 28px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 14px;
+  position: relative;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.15);
+  transition: background 0.3s ease;
+}
+.toggle-switch.annual { background: rgba(201, 168, 76, 0.2); border-color: #C9A84C; }
+.toggle-knob {
+  width: 22px; height: 22px;
+  background: #C9A84C;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px; left: 3px;
+  transition: left 0.3s ease;
+}
+.toggle-switch.annual .toggle-knob { left: 26px; }
+.save-badge {
+  background: rgba(46, 204, 113, 0.15);
+  color: #2ECC71;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+.plan-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 18px;
+  padding: 36px 28px;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+}
+.plan-card.featured {
+  border-color: #C9A84C;
+  background: rgba(201, 168, 76, 0.04);
+  transform: scale(1.04);
+}
+.plan-card.featured::before {
+  content: 'MOST POPULAR';
+  position: absolute;
+  top: -12px; left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #C9A84C, #B8943A);
+  color: #0A0E17;
+  padding: 4px 18px;
+  border-radius: 20px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.plan-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  color: #FFF;
+  margin-bottom: 8px;
+}
+.plan-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #C9A84C;
+  margin-bottom: 4px;
+}
+.plan-price-period {
+  font-size: 0.8rem;
+  color: #6A7080;
+  margin-bottom: 24px;
+}
+.plan-features {
+  list-style: none;
+  text-align: left;
+  margin-bottom: 28px;
+}
+.plan-features li {
+  padding: 8px 0;
+  font-size: 0.88rem;
+  color: #A0A8B8;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.plan-features li::before {
+  content: '\2713';
+  color: #C9A84C;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.plan-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  display: block;
+}
+
+/* ===================== BLOG PREVIEW ===================== */
+.blog-section { background: #0A0E17; }
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.blog-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.blog-card:hover {
+  border-color: rgba(201, 168, 76, 0.3);
+  transform: translateY(-4px);
+}
+.blog-thumb {
+  height: 180px;
+  background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(30,50,120,0.12));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+.blog-body {
+  padding: 24px;
+}
+.blog-tag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #C9A84C;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: block;
+}
+.blog-card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 10px;
+}
+.blog-card p {
+  font-size: 0.85rem;
+  color: #8890A0;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+.blog-link {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #C9A84C;
+}
+
+/* ===================== FINAL CTA ===================== */
+.cta-section {
+  background: linear-gradient(180deg, #0D1120 0%, #0A0E17 100%);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at center bottom, rgba(201,168,76,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cta-section h2 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+.cta-section p {
+  font-size: 1.15rem;
+  color: #A0A8B8;
+  max-width: 600px;
+  margin: 0 auto 36px;
+  position: relative;
+  z-index: 1;
+}
+.cta-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 20px;
+}
+.cta-trust {
+  font-size: 0.82rem;
+  color: #6A7080;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===================== FOOTER ===================== */
+.footer {
+  background: #060910;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 80px 0 40px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 40px;
+  margin-bottom: 48px;
+}
+.footer-col h4 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #C9A84C;
+  margin-bottom: 18px;
+}
+.footer-col a {
+  display: block;
+  color: #6A7080;
+  font-size: 0.85rem;
+  padding: 4px 0;
+  transition: color 0.3s ease;
+}
+.footer-col a:hover { color: #C9A84C; }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding-top: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-copy {
+  font-size: 0.78rem;
+  color: #444;
+}
+.footer-socials {
+  display: flex;
+  gap: 16px;
+}
+.footer-socials a {
+  color: #555;
+  font-size: 0.85rem;
+  transition: color 0.3s ease;
+}
+.footer-socials a:hover { color: #C9A84C; }
+.footer-disclosure {
+  width: 100%;
+  text-align: center;
+  font-size: 0.7rem;
+  color: #3A3A3A;
+  margin-top: 16px;
+  line-height: 1.5;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 1024px) {
+  html { font-size: 17px; }
+  .hero h1 { font-size: 3rem; }
+  .section-title { font-size: 2.2rem; }
+  .ai-flex, .founder-flex { gap: 40px; }
+  .founder-photo-wrap { flex: 0 0 280px; }
+  .founder-photo { height: 360px; }
+  .plans-grid { gap: 20px; }
+  .plan-card.featured { transform: scale(1.02); }
+  .footer-grid { grid-template-columns: repeat(3, 1fr); }
+  .nav-links { gap: 18px; }
+  .nav-links a { font-size: 0.78rem; }
+}
+
+@media (max-width: 768px) {
+  html { font-size: 16px; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .mobile-drawer { display: block; }
+  .drawer-overlay { display: block; }
+  .hero { padding: 120px 0 60px; min-height: auto; }
+  .hero h1 { font-size: 2.5rem; }
+  .hero-sub { font-size: 1.05rem; }
+  .section-title { font-size: 2rem; }
+  .section-pad { padding: 70px 0; }
+  .pain-grid, .tools-grid, .store-grid, .blog-grid { grid-template-columns: repeat(2, 1fr); }
+  .steps-grid { grid-template-columns: 1fr; gap: 30px; }
+  .step-connector { display: none; }
+  .ai-flex { flex-direction: column; }
+  .ai-image img { height: 280px; }
+  .founder-flex { flex-direction: column; text-align: center; }
+  .founder-photo-wrap { flex: none; width: 260px; margin: 0 auto; }
+  .founder-photo { height: 320px; }
+  .founder-creds { justify-content: center; }
+  .plans-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
+  .plan-card.featured { transform: none; }
+  .fear-stats { gap: 24px; }
+  .fear-stat-value { font-size: 2.2rem; }
+  .result-metrics { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .analyzer-card { padding: 28px 20px; }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-bottom { justify-content: center; text-align: center; }
+}
+
+@media (max-width: 480px) {
+  html { font-size: 15px; }
+  .container { padding: 0 16px; }
+  .hero h1 { font-size: 2rem; }
+  .hero-sub { font-size: 0.95rem; }
+  .section-title { font-size: 1.7rem; }
+  .section-pad { padding: 56px 0; }
+  .pain-grid, .tools-grid, .store-grid, .blog-grid { grid-template-columns: 1fr; }
+  .fear-stats { grid-template-columns: 1fr; gap: 20px; }
+  .fear-stat-value { font-size: 2rem; }
+  .fear-content h2 { font-size: 1.8rem; }
+  .ai-text h2 { font-size: 1.8rem; }
+  .founder-text h2 { font-size: 1.7rem; }
+  .cta-section h2 { font-size: 2rem; }
+  .trust-bar { gap: 12px; }
+  .strategy-chips { gap: 6px; }
+  .chip { padding: 6px 14px; font-size: 0.78rem; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .cta-buttons { flex-direction: column; align-items: center; }
+  .cta-buttons .btn-gold, .cta-buttons .btn-outline { width: 100%; max-width: 300px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== NAVIGATION ===================== -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">ToInvested</a>
+    <ul class="nav-links">
+      <li><a href="/tools/">AI Tools</a></li>
+      <li><a href="/hard-money-lending/">Financing</a></li>
+      <li><a href="/education/">Education</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/about/">About</a></li>
+      <li><a href="/coaching/">Coaching</a></li>
+      <li><a href="/membership/" class="nav-cta">Join Wealth Builder</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Drawer -->
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<div class="mobile-drawer" id="mobileDrawer">
+  <a href="/tools/">AI Tools</a>
+  <a href="/hard-money-lending/">Financing</a>
+  <a href="/education/">Education</a>
+  <a href="/blog/">Blog</a>
+  <a href="/about/">About</a>
+  <a href="/coaching/">Coaching</a>
+  <a href="/membership/" class="nav-cta">Join Wealth Builder</a>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="float-orb float-orb-1"></div>
+  <div class="float-orb float-orb-2"></div>
+  <div class="float-orb float-orb-3"></div>
+  <div class="container">
+    <div class="hero-content">
+      <p class="eyebrow">AI-POWERED &middot; REAL ESTATE INVESTMENT INTELLIGENCE</p>
+      <h1>Leave Your Kids <span class="gold">More Than Memories.</span></h1>
+      <p class="hero-sub">AI-powered deal analysis that tells you in 60 seconds if a property will build wealth or drain it.</p>
+      <div class="trust-bar">
+        <span><span class="trust-dot"></span> Powered by Claude AI</span>
+        <span><span class="trust-dot"></span> 6 Free Analyzers</span>
+        <span><span class="trust-dot"></span> Under 30 Seconds</span>
+      </div>
+
+      <!-- Analyzer Card -->
+      <div class="analyzer-card">
+        <div class="analyzer-input-wrap">
+          <input type="text" class="analyzer-input" placeholder="Enter a property address to analyze..." aria-label="Property address">
+        </div>
+        <div class="strategy-chips">
+          <span class="chip active">Buy &amp; Hold</span>
+          <span class="chip">Fix &amp; Flip</span>
+          <span class="chip">BRRRR</span>
+          <span class="chip">Multi-Unit</span>
+        </div>
+        <button class="analyzer-btn">Analyze This Deal</button>
+        <p class="trust-pills">4,847 Deals Analyzed &middot; Free &middot; No Signup</p>
+
+        <!-- Sample Result Preview -->
+        <div class="sample-result">
+          <div class="sample-result-header">
+            <span class="sample-result-title">123 Oak Street, Austin, TX</span>
+            <span class="verdict-badge">STRONG BUY</span>
+          </div>
+          <div class="result-metrics">
+            <div class="metric">
+              <div class="metric-value">8.2%</div>
+              <div class="metric-label">Cap Rate</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">$412</div>
+              <div class="metric-label">Cash Flow</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">14.6%</div>
+              <div class="metric-label">CoC Return</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">92</div>
+              <div class="metric-label">AI Score</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PAIN POINTS ===================== -->
+<section class="pain-section section-pad" id="pain">
+  <div class="container">
+    <p class="section-eyebrow">THE PROBLEM</p>
+    <h2 class="section-title">Most Investors Lose Money on Their <span class="gold">First Deal</span></h2>
+    <div class="pain-grid">
+      <div class="pain-card animate-on-scroll">
+        <span class="pain-icon">&#128184;</span>
+        <h3>Overpaying for Properties?</h3>
+        <p>Without real-time comps and AI-driven valuation, you are guessing at price&mdash;and guessing wrong costs tens of thousands.</p>
+      </div>
+      <div class="pain-card animate-on-scroll">
+        <span class="pain-icon">&#128200;</span>
+        <h3>Missing Hidden Cash Flow?</h3>
+        <p>Expenses, vacancy rates, and maintenance costs hide the true return. Our AI uncovers what spreadsheets miss.</p>
+      </div>
+      <div class="pain-card animate-on-scroll">
+        <span class="pain-icon">&#129504;</span>
+        <h3>Stuck in Analysis Paralysis?</h3>
+        <p>Hours of research and you are still unsure. Get a clear buy/pass verdict in under 60 seconds with AI confidence scoring.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== AI CAPABILITIES ===================== -->
+<section class="ai-section section-pad" id="ai-capabilities">
+  <div class="container">
+    <div class="ai-flex animate-on-scroll">
+      <div class="ai-image">
+        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800" alt="Modern investment property" loading="lazy">
+      </div>
+      <div class="ai-text">
+        <p class="section-eyebrow" style="text-align:left;">THE SOLUTION</p>
+        <h2>We Built the AI Your <span class="gold">Deal Advisor</span> Would Use</h2>
+        <p>Powered by Claude AI, our analyzers evaluate every angle of a deal&mdash;from cash flow projections to neighborhood risk factors&mdash;and deliver a clear verdict in plain English.</p>
+        <ul class="ai-features">
+          <li>Instant cap rate, cash-on-cash, and ROI calculations</li>
+          <li>AI-generated renovation cost estimates</li>
+          <li>Neighborhood trend analysis and risk scoring</li>
+          <li>BRRRR refinance projections with equity analysis</li>
+          <li>Plain-English deal summary and recommendation</li>
+        </ul>
+        <a href="/property-analyzer/" class="btn-gold">Try the Free Analyzer</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== VIDEO / HOW IT WORKS ===================== -->
+<section class="video-section section-pad" id="how-it-works">
+  <div class="container">
+    <p class="section-eyebrow">HOW IT WORKS</p>
+    <h2 class="section-title">From Address to <span class="gold">AI Verdict</span> in 60 Seconds</h2>
+    <div class="video-wrap animate-on-scroll">
+      <iframe src="https://www.youtube.com/embed/3lNbYzUW5OE?rel=0" title="ToInvested AI Property Analyzer Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="steps-grid">
+      <div class="step animate-on-scroll">
+        <div class="step-num">1</div>
+        <h3>Enter the Address</h3>
+        <p>Paste any property address or MLS link. Our AI pulls listing data, comps, and neighborhood metrics automatically.</p>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step animate-on-scroll">
+        <div class="step-num">2</div>
+        <h3>AI Analyzes the Deal</h3>
+        <p>Claude AI evaluates 40+ data points including cash flow, appreciation potential, risk factors, and exit strategies.</p>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step animate-on-scroll">
+        <div class="step-num">3</div>
+        <h3>Get Your Verdict</h3>
+        <p>Receive a clear Buy, Hold, or Pass recommendation with confidence scoring and a detailed breakdown you can trust.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 6 AI TOOLS ===================== -->
+<section class="tools-section section-pad" id="tools">
+  <div class="container">
+    <p class="section-eyebrow">AI-POWERED TOOLS</p>
+    <h2 class="section-title">6 Analyzers. <span class="gold">One Platform.</span></h2>
+    <div class="tools-grid">
+      <div class="tool-card animate-on-scroll">
+        <span class="tool-badge">FREE</span>
+        <span class="tool-icon">&#127968;</span>
+        <h3>Property Analyzer</h3>
+        <p>Full investment analysis for any rental property with cash flow, cap rate, and AI scoring.</p>
+        <a href="/property-analyzer/" class="tool-link">Try Free &rarr;</a>
+      </div>
+      <div class="tool-card animate-on-scroll">
+        <span class="tool-badge">FREE</span>
+        <span class="tool-icon">&#128296;</span>
+        <h3>Fix &amp; Flip Analyzer</h3>
+        <p>Estimate rehab costs, ARV, and profit margins for house flipping deals.</p>
+        <a href="/flip-analyzer/" class="tool-link">Try Free &rarr;</a>
+      </div>
+      <div class="tool-card animate-on-scroll">
+        <span class="tool-badge">FREE</span>
+        <span class="tool-icon">&#128257;</span>
+        <h3>BRRRR Analyzer</h3>
+        <p>Buy, Rehab, Rent, Refinance, Repeat. Model the full BRRRR cycle with AI precision.</p>
+        <a href="/brrrr-analyzer/" class="tool-link">Try Free &rarr;</a>
+      </div>
+      <div class="tool-card animate-on-scroll">
+        <span class="tool-icon">&#127959;</span>
+        <h3>Renovation Analyzer</h3>
+        <p>AI-powered renovation cost estimator with room-by-room breakdowns and ROI projections.</p>
+        <a href="/renovation-analyzer/" class="tool-link">Try Free &rarr;</a>
+      </div>
+      <div class="tool-card animate-on-scroll">
+        <span class="tool-icon">&#128202;</span>
+        <h3>Stock Analyzer</h3>
+        <p>Compare real estate returns against stock market alternatives with side-by-side analysis.</p>
+        <a href="/stock-analyzer/" class="tool-link">Try Free &rarr;</a>
+      </div>
+      <div class="tool-card animate-on-scroll">
+        <span class="tool-icon">&#8383;</span>
+        <h3>Bitcoin Analyzer</h3>
+        <p>Evaluate Bitcoin and crypto allocations alongside your real estate portfolio strategy.</p>
+        <a href="/bitcoin-analyzer/" class="tool-link">Try Free &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FEAR / LOSS AVERSION ===================== -->
+<section class="fear-section section-pad" id="risk">
+  <div class="container">
+    <div class="fear-stats">
+      <div class="fear-stat animate-on-scroll">
+        <div class="fear-stat-value">$47,000</div>
+        <div class="fear-stat-label">Average loss on a bad deal</div>
+      </div>
+      <div class="fear-stat animate-on-scroll">
+        <div class="fear-stat-value">73%</div>
+        <div class="fear-stat-label">Of first-time investors overpay</div>
+      </div>
+      <div class="fear-stat animate-on-scroll">
+        <div class="fear-stat-value">8+ hrs</div>
+        <div class="fear-stat-label">Saved per analysis</div>
+      </div>
+    </div>
+    <div class="fear-content animate-on-scroll">
+      <h2>One Bad Deal Costs <span class="gold">1,000 Months</span> of Membership.</h2>
+      <p>The cost of getting it wrong dwarfs the cost of getting clarity. Protect your capital before you deploy it.</p>
+      <a href="/membership/" class="btn-gold">Protect Your Next Investment &rarr; Join Wealth Builder</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABOUT THE FOUNDER ===================== -->
+<section class="founder-section section-pad" id="founder">
+  <div class="container">
+    <p class="section-eyebrow">ABOUT THE FOUNDER</p>
+    <h2 class="section-title" style="margin-bottom: 48px;">Built by an Investor, <span class="gold">for Investors</span></h2>
+    <div class="founder-flex animate-on-scroll">
+      <div class="founder-photo-wrap">
+        <img src="https://toinvested.com/wp-content/uploads/2026/01/David-J-Moore-MBA-Photo-2026.jpg" alt="David J. Moore, MBA - Founder of ToInvested" class="founder-photo" loading="lazy">
+      </div>
+      <div class="founder-text">
+        <h2>&ldquo;I Know What It Feels Like to Have Absolutely Nothing.&rdquo;</h2>
+        <p>David J. Moore grew up in poverty, worked through college while raising a young family, and earned his MBA through sheer determination. Over 20+ years in real estate investing, he learned that the difference between wealth and struggle often comes down to one deal&mdash;one decision.</p>
+        <p>That is why he built ToInvested: to give every investor&mdash;especially those starting with nothing&mdash;the AI-powered tools and clarity that used to be reserved for institutional players. As CEO of YPN Inc and a California-licensed real estate professional, David combines street-level investing experience with cutting-edge AI technology.</p>
+        <p style="color: #C9A84C; font-weight: 500;">His mission: make sure no one loses their family's future on a bad deal.</p>
+        <div class="founder-creds">
+          <div class="cred">
+            <div class="cred-value">MBA</div>
+            <div class="cred-label">Degree</div>
+          </div>
+          <div class="cred">
+            <div class="cred-value">20+</div>
+            <div class="cred-label">Years RE</div>
+          </div>
+          <div class="cred">
+            <div class="cred-value">CA</div>
+            <div class="cred-label">Licensed</div>
+          </div>
+          <div class="cred">
+            <div class="cred-value">7</div>
+            <div class="cred-label">AI Tools</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== INVESTOR STORE ===================== -->
+<section class="store-section section-pad" id="store">
+  <div class="container">
+    <p class="section-eyebrow">INVESTOR EDUCATION</p>
+    <h2 class="section-title">Recommended Investor <span class="gold">Resources</span></h2>
+    <div class="store-grid">
+      <div class="book-card animate-on-scroll">
+        <div class="book-placeholder">&#128218;</div>
+        <h3>Real Estate Investing 101</h3>
+        <p>The essential guide for building wealth through rental properties and smart deal analysis.</p>
+        <a href="https://amzn.to/3N76Wgm?tag=investor023-20" class="btn-amazon" target="_blank" rel="noopener noreferrer nofollow">Get on Amazon</a>
+      </div>
+      <div class="book-card animate-on-scroll">
+        <div class="book-placeholder">&#128214;</div>
+        <h3>The BRRRR Method</h3>
+        <p>Master the Buy, Rehab, Rent, Refinance, Repeat strategy for building a scalable portfolio.</p>
+        <a href="https://amzn.to/4r8buRN?tag=investor023-20" class="btn-amazon" target="_blank" rel="noopener noreferrer nofollow">Get on Amazon</a>
+      </div>
+      <div class="book-card animate-on-scroll">
+        <div class="book-placeholder">&#128213;</div>
+        <h3>Wealth Building Strategies</h3>
+        <p>Advanced strategies for tax optimization, asset protection, and generational wealth transfer.</p>
+        <a href="https://amzn.to/3N6GTWF?tag=investor023-20" class="btn-amazon" target="_blank" rel="noopener noreferrer nofollow">Get on Amazon</a>
+      </div>
+    </div>
+    <p class="store-disclosure">As an Amazon Associate, ToInvested earns from qualifying purchases. Affiliate tag: investor023-20</p>
+  </div>
+</section>
+
+<!-- ===================== MEMBERSHIP PLANS ===================== -->
+<section class="membership-section section-pad" id="membership">
+  <div class="container">
+    <p class="section-eyebrow">MEMBERSHIP PLANS</p>
+    <h2 class="section-title">Choose Your Path to <span class="gold">Wealth</span></h2>
+
+    <div class="toggle-wrap">
+      <span class="toggle-label active" id="monthlyLabel">Monthly</span>
+      <div class="toggle-switch" id="billingToggle">
+        <div class="toggle-knob"></div>
+      </div>
+      <span class="toggle-label" id="annualLabel">Annual</span>
+      <span class="save-badge">Save 20%</span>
+    </div>
+
+    <div class="plans-grid">
+      <!-- Free -->
+      <div class="plan-card animate-on-scroll">
+        <div class="plan-name">Free</div>
+        <div class="plan-price">$0</div>
+        <div class="plan-price-period">forever</div>
+        <ul class="plan-features">
+          <li>3 property analyses per month</li>
+          <li>Basic AI results summary</li>
+          <li>Cap rate &amp; cash flow calculations</li>
+          <li>Community forum access</li>
+        </ul>
+        <a href="/membership/" class="plan-btn btn-outline">Get Started Free</a>
+      </div>
+      <!-- Wealth Builder -->
+      <div class="plan-card featured animate-on-scroll">
+        <div class="plan-name">Wealth Builder</div>
+        <div class="plan-price" id="wbPrice">$47</div>
+        <div class="plan-price-period" id="wbPeriod">/month</div>
+        <ul class="plan-features">
+          <li>Unlimited property analyses</li>
+          <li>Full AI-powered deal reports</li>
+          <li>Portfolio tracker dashboard</li>
+          <li>Wealth Builder community access</li>
+          <li>Renovation cost estimator</li>
+          <li>BRRRR &amp; flip analyzers</li>
+          <li>Priority email support</li>
+        </ul>
+        <a href="/membership/" class="plan-btn btn-gold">Join Wealth Builder</a>
+      </div>
+      <!-- Pro -->
+      <div class="plan-card animate-on-scroll">
+        <div class="plan-name">Wealth Builder Pro</div>
+        <div class="plan-price" id="proPrice">$97</div>
+        <div class="plan-price-period" id="proPeriod">/month</div>
+        <ul class="plan-features">
+          <li>Everything in Wealth Builder</li>
+          <li>Weekly group coaching calls</li>
+          <li>AI deal alert notifications</li>
+          <li>1-on-1 quarterly strategy session</li>
+          <li>Advanced market analytics</li>
+          <li>Off-market deal sourcing</li>
+          <li>White-glove onboarding</li>
+        </ul>
+        <a href="/membership/" class="plan-btn btn-outline">Go Pro</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BLOG PREVIEW ===================== -->
+<section class="blog-section section-pad" id="blog">
+  <div class="container">
+    <p class="section-eyebrow">FROM THE BLOG</p>
+    <h2 class="section-title">Investor <span class="gold">Education</span></h2>
+    <div class="blog-grid">
+      <a href="/blog/brrrr-strategy-guide/" class="blog-card animate-on-scroll">
+        <div class="blog-thumb">&#127968;</div>
+        <div class="blog-body">
+          <span class="blog-tag">Strategy Guide</span>
+          <h3>The Complete BRRRR Strategy Guide</h3>
+          <p>Everything you need to know about Buy, Rehab, Rent, Refinance, Repeat&mdash;from your first deal to scaling a portfolio.</p>
+          <span class="blog-link">Read Guide &rarr;</span>
+        </div>
+      </a>
+      <a href="/blog/fix-and-flip-guide/" class="blog-card animate-on-scroll">
+        <div class="blog-thumb">&#128296;</div>
+        <div class="blog-body">
+          <span class="blog-tag">Beginner Guide</span>
+          <h3>Fix and Flip: Complete Beginner's Guide</h3>
+          <p>Learn how to find, finance, renovate, and sell properties for profit&mdash;step by step with real numbers.</p>
+          <span class="blog-link">Read Guide &rarr;</span>
+        </div>
+      </a>
+      <a href="/blog/cash-on-cash-return/" class="blog-card animate-on-scroll">
+        <div class="blog-thumb">&#128202;</div>
+        <div class="blog-body">
+          <span class="blog-tag">Calculator</span>
+          <h3>Cash-on-Cash Return Calculator</h3>
+          <p>Understand the most important metric in real estate investing and calculate it for any deal in seconds.</p>
+          <span class="blog-link">Read Guide &rarr;</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FINAL CTA ===================== -->
+<section class="cta-section section-pad" id="cta">
+  <div class="container">
+    <h2 class="animate-on-scroll">What Will Your Children <span class="gold">Inherit?</span></h2>
+    <p class="animate-on-scroll">Most people will retire with nothing to leave behind. You don't have to be one of them.</p>
+    <div class="cta-buttons animate-on-scroll">
+      <a href="/membership/" class="btn-gold">Start Building Your Legacy</a>
+      <a href="/ai-coach/" class="btn-outline">Talk to Our AI Coach</a>
+    </div>
+    <p class="cta-trust animate-on-scroll">No credit card. No signup. Just clarity.</p>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>AI Tools</h4>
+        <a href="/property-analyzer/">Property Analyzer</a>
+        <a href="/flip-analyzer/">Fix &amp; Flip Analyzer</a>
+        <a href="/brrrr-analyzer/">BRRRR Analyzer</a>
+        <a href="/renovation-analyzer/">Renovation Analyzer</a>
+        <a href="/stock-analyzer/">Stock Analyzer</a>
+        <a href="/bitcoin-analyzer/">Bitcoin Analyzer</a>
+      </div>
+      <div class="footer-col">
+        <h4>Wealth Protection</h4>
+        <a href="/tax-strategy/">Tax Strategy</a>
+        <a href="/legal-protection/">Legal Protection</a>
+        <a href="/life-insurance/">Life Insurance</a>
+        <a href="/probate/">Probate</a>
+      </div>
+      <div class="footer-col">
+        <h4>Education</h4>
+        <a href="/education/">Education Hub</a>
+        <a href="/coaching/">Coaching</a>
+        <a href="/blog/">Blog</a>
+        <a href="/store/">Store</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/about/">About</a>
+        <a href="/consulting/">Consulting</a>
+        <a href="/contact/">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="/privacy/">Privacy Policy</a>
+        <a href="/terms/">Terms of Service</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 YPN Inc / ToInvested.com. All rights reserved.</p>
+      <div class="footer-socials">
+        <a href="https://www.linkedin.com/company/toinvested" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
+        <a href="https://www.youtube.com/@toinvested" target="_blank" rel="noopener noreferrer" aria-label="YouTube">YouTube</a>
+        <a href="https://twitter.com/toinvested" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">X</a>
+      </div>
+      <p class="footer-disclosure">ToInvested.com is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. As an Amazon Associate, we earn from qualifying purchases. Affiliate tag: investor023-20. Investment analysis results are for educational purposes only and do not constitute financial advice.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== JAVASCRIPT ===================== -->
+<script>
+(function() {
+  'use strict';
+
+  // --- Sticky Nav ---
+  var nav = document.getElementById('nav');
+  var scrollThreshold = 60;
+  function handleScroll() {
+    if (window.scrollY > scrollThreshold) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  }
+  window.addEventListener('scroll', handleScroll, { passive: true });
+
+  // --- Mobile Drawer ---
+  var hamburger = document.getElementById('hamburger');
+  var drawer = document.getElementById('mobileDrawer');
+  var overlay = document.getElementById('drawerOverlay');
+
+  function openDrawer() {
+    hamburger.classList.add('active');
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDrawer() {
+    hamburger.classList.remove('active');
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  hamburger.addEventListener('click', function() {
+    if (drawer.classList.contains('open')) {
+      closeDrawer();
+    } else {
+      openDrawer();
+    }
+  });
+  overlay.addEventListener('click', closeDrawer);
+  // Close on link click
+  var drawerLinks = drawer.querySelectorAll('a');
+  for (var i = 0; i < drawerLinks.length; i++) {
+    drawerLinks[i].addEventListener('click', closeDrawer);
+  }
+
+  // --- Strategy Chips ---
+  var chips = document.querySelectorAll('.chip');
+  for (var c = 0; c < chips.length; c++) {
+    chips[c].addEventListener('click', function() {
+      for (var j = 0; j < chips.length; j++) {
+        chips[j].classList.remove('active');
+      }
+      this.classList.add('active');
+    });
+  }
+
+  // --- Billing Toggle ---
+  var toggle = document.getElementById('billingToggle');
+  var monthlyLabel = document.getElementById('monthlyLabel');
+  var annualLabel = document.getElementById('annualLabel');
+  var wbPrice = document.getElementById('wbPrice');
+  var wbPeriod = document.getElementById('wbPeriod');
+  var proPrice = document.getElementById('proPrice');
+  var proPeriod = document.getElementById('proPeriod');
+  var isAnnual = false;
+
+  toggle.addEventListener('click', function() {
+    isAnnual = !isAnnual;
+    if (isAnnual) {
+      toggle.classList.add('annual');
+      monthlyLabel.classList.remove('active');
+      annualLabel.classList.add('active');
+      wbPrice.textContent = '$38';
+      wbPeriod.textContent = '/mo (billed annually)';
+      proPrice.textContent = '$78';
+      proPeriod.textContent = '/mo (billed annually)';
+    } else {
+      toggle.classList.remove('annual');
+      monthlyLabel.classList.add('active');
+      annualLabel.classList.remove('active');
+      wbPrice.textContent = '$47';
+      wbPeriod.textContent = '/month';
+      proPrice.textContent = '$97';
+      proPeriod.textContent = '/month';
+    }
+  });
+
+  // --- Scroll Animations (Intersection Observer) ---
+  var animElements = document.querySelectorAll('.animate-on-scroll');
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      for (var e = 0; e < entries.length; e++) {
+        if (entries[e].isIntersecting) {
+          entries[e].target.classList.add('visible');
+          observer.unobserve(entries[e].target);
+        }
+      }
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+    for (var a = 0; a < animElements.length; a++) {
+      observer.observe(animElements[a]);
+    }
+  } else {
+    // Fallback: show all
+    for (var f = 0; f < animElements.length; f++) {
+      animElements[f].classList.add('visible');
+    }
+  }
+
+  // --- Analyzer Button (visual only) ---
+  var analyzerBtn = document.querySelector('.analyzer-btn');
+  analyzerBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    var input = document.querySelector('.analyzer-input');
+    if (input.value.trim() === '') {
+      input.style.borderColor = '#E74C3C';
+      input.setAttribute('placeholder', 'Please enter a property address...');
+      setTimeout(function() {
+        input.style.borderColor = 'rgba(255,255,255,0.12)';
+        input.setAttribute('placeholder', 'Enter a property address to analyze...');
+      }, 2000);
+    } else {
+      analyzerBtn.textContent = 'Analyzing...';
+      analyzerBtn.style.opacity = '0.7';
+      setTimeout(function() {
+        analyzerBtn.textContent = 'Analyze This Deal';
+        analyzerBtn.style.opacity = '1';
+      }, 2000);
+    }
+  });
+
+})();
+</script>
+<script src="/js/toinvested.js"></script>
+</body>
+</html>
