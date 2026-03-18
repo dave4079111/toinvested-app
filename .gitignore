@@ -4,3 +4,5 @@ data/*.db
 logs/
 *.log
 .DS_Store
+*.db-shm
+*.db-wal
