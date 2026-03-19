@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Core Pages -->
-  <url><loc>https://toinvested.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://toinvested.com/membership/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://toinvested.com/store/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://toinvested.com/about/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://toinvested.com/contact/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://toinvested.com/</loc><lastmod>2026-03-19</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://toinvested.com/membership/</loc><lastmod>2026-03-19</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://toinvested.com/store/</loc><lastmod>2026-03-19</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://toinvested.com/about/</loc><lastmod>2026-03-19</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- AI Tools Silo -->
-  <url><loc>https://toinvested.com/tools/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://toinvested.com/property-analyzer/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://toinvested.com/flip-analyzer/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://toinvested.com/brrrr-analyzer/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://toinvested.com/renovation-analyzer/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://toinvested.com/stock-analyzer/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://toinvested.com/bitcoin-analyzer/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://toinvested.com/tools/</loc><lastmod>2026-03-19</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://toinvested.com/property-analyzer/</loc><lastmod>2026-03-19</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://toinvested.com/flip-analyzer/</loc><lastmod>2026-03-19</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://toinvested.com/brrrr-analyzer/</loc><lastmod>2026-03-19</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://toinvested.com/renovation-analyzer/</loc><lastmod>2026-03-19</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://toinvested.com/stock-analyzer/</loc><lastmod>2026-03-19</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://toinvested.com/bitcoin-analyzer/</loc><lastmod>2026-03-19</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://toinvested.com/ai-coach/</loc><lastmod>2026-03-19</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
 
   <!-- Education Silo -->
-  <url><loc>https://toinvested.com/education/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://toinvested.com/coaching/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://toinvested.com/blog/</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
-  <url><loc>https://toinvested.com/consulting/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://toinvested.com/education/</loc><lastmod>2026-03-19</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://toinvested.com/coaching/</loc><lastmod>2026-03-19</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://toinvested.com/blog/</loc><lastmod>2026-03-19</lastmod><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://toinvested.com/consulting/</loc><lastmod>2026-03-19</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
   <!-- Wealth Protection Silo -->
-  <url><loc>https://toinvested.com/tax-strategy/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://toinvested.com/legal-protection/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://toinvested.com/life-insurance/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://toinvested.com/probate/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://toinvested.com/tax-strategy/</loc><lastmod>2026-03-19</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://toinvested.com/legal-protection/</loc><lastmod>2026-03-19</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://toinvested.com/life-insurance/</loc><lastmod>2026-03-19</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://toinvested.com/probate/</loc><lastmod>2026-03-19</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
   <!-- Financing Silo -->
-  <url><loc>https://toinvested.com/hard-money-lending/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://toinvested.com/hard-money-lending/</loc><lastmod>2026-03-19</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- Legal -->
-  <url><loc>https://toinvested.com/privacy/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://toinvested.com/terms/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://toinvested.com/privacy/</loc><lastmod>2026-03-19</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://toinvested.com/terms/</loc><lastmod>2026-03-19</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>
