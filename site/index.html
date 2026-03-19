@@ -1799,14 +1799,6 @@ img { max-width: 100%; height: auto; display: block; }
     <p class="section-eyebrow">MEMBERSHIP PLANS</p>
     <h2 class="section-title">Choose Your Path to <span class="gold">Wealth</span></h2>
 
-    <div class="toggle-wrap">
-      <span class="toggle-label active" id="monthlyLabel">Monthly</span>
-      <div class="toggle-switch" id="billingToggle">
-        <div class="toggle-knob"></div>
-      </div>
-      <span class="toggle-label" id="annualLabel">Annual</span>
-      <span class="save-badge">Save 20%</span>
-    </div>
 
     <div class="plans-grid">
       <!-- Free -->
@@ -1825,8 +1817,8 @@ img { max-width: 100%; height: auto; display: block; }
       <!-- Wealth Builder -->
       <div class="plan-card featured animate-on-scroll">
         <div class="plan-name">Wealth Builder</div>
-        <div class="plan-price" id="wbPrice">$47</div>
-        <div class="plan-price-period" id="wbPeriod">/month</div>
+        <div class="plan-price" id="wbPrice">$49.99</div>
+        <div class="plan-price-period" id="wbPeriod">one-time</div>
         <ul class="plan-features">
           <li>Unlimited property analyses</li>
           <li>Full AI-powered deal reports</li>
@@ -1838,21 +1830,21 @@ img { max-width: 100%; height: auto; display: block; }
         </ul>
         <a href="/membership/" class="plan-btn btn-gold">Join Wealth Builder</a>
       </div>
-      <!-- Pro -->
+      <!-- Yearly -->
       <div class="plan-card animate-on-scroll">
-        <div class="plan-name">Wealth Builder Pro</div>
-        <div class="plan-price" id="proPrice">$97</div>
-        <div class="plan-price-period" id="proPeriod">/month</div>
+        <div class="plan-name">Wealth Builder Yearly</div>
+        <div class="plan-price" id="proPrice">$999</div>
+        <div class="plan-price-period" id="proPeriod">/year</div>
         <ul class="plan-features">
           <li>Everything in Wealth Builder</li>
+          <li>3-day free trial</li>
           <li>Weekly group coaching calls</li>
           <li>AI deal alert notifications</li>
-          <li>1-on-1 quarterly strategy session</li>
           <li>Advanced market analytics</li>
-          <li>Off-market deal sourcing</li>
-          <li>White-glove onboarding</li>
+          <li>All premium courses included</li>
+          <li>Priority 1-on-1 support</li>
         </ul>
-        <a href="/membership/" class="plan-btn btn-outline">Go Pro</a>
+        <a href="/membership/" class="plan-btn btn-outline">Start Free Trial</a>
       </div>
     </div>
   </div>
@@ -2096,35 +2088,6 @@ img { max-width: 100%; height: auto; display: block; }
   }
 
   // --- Billing Toggle ---
-  var toggle = document.getElementById('billingToggle');
-  var monthlyLabel = document.getElementById('monthlyLabel');
-  var annualLabel = document.getElementById('annualLabel');
-  var wbPrice = document.getElementById('wbPrice');
-  var wbPeriod = document.getElementById('wbPeriod');
-  var proPrice = document.getElementById('proPrice');
-  var proPeriod = document.getElementById('proPeriod');
-  var isAnnual = false;
-
-  toggle.addEventListener('click', function() {
-    isAnnual = !isAnnual;
-    if (isAnnual) {
-      toggle.classList.add('annual');
-      monthlyLabel.classList.remove('active');
-      annualLabel.classList.add('active');
-      wbPrice.textContent = '$38';
-      wbPeriod.textContent = '/mo (billed annually)';
-      proPrice.textContent = '$78';
-      proPeriod.textContent = '/mo (billed annually)';
-    } else {
-      toggle.classList.remove('annual');
-      monthlyLabel.classList.add('active');
-      annualLabel.classList.remove('active');
-      wbPrice.textContent = '$47';
-      wbPeriod.textContent = '/month';
-      proPrice.textContent = '$97';
-      proPeriod.textContent = '/month';
-    }
-  });
 
   // --- Scroll Animations (Intersection Observer) ---
   var animElements = document.querySelectorAll('.animate-on-scroll');
