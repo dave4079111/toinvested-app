@@ -320,7 +320,8 @@ const MAX_FREE=3;
 function getApiKey(){return localStorage.getItem(STATE_KEYS.apiKey)||''}
 function getEmail(){return localStorage.getItem(STATE_KEYS.email)||''}
 function getUseCount(){return parseInt(localStorage.getItem(STATE_KEYS.useCount)||'0',10)}
-function incrementUseCount(){const c=getUseCount()+1;localStorage.setItem(STATE_KEYS.useCount,c);return c}
+function incrementUseCount(){const c=getUseCount()+1;localStorage.setItem(STATE_KEYS.useCount,String(c));return c}
+function escHTML(s){const d=document.createElement('div');d.textContent=String(s);return d.innerHTML}
 
 function saveApiKey(){const k=document.getElementById('apiKeyInput').value.trim();if(k){localStorage.setItem(STATE_KEYS.apiKey,k);updateApiStatus()}}
 function updateApiStatus(){const el=document.getElementById('apiStatus');const inp=document.getElementById('apiKeyInput');const k=getApiKey();if(k){el.textContent='Connected';el.className='api-status connected';inp.value=k.slice(0,12)+'...'+k.slice(-4)}else{el.textContent='Not connected';el.className='api-status disconnected'}}
@@ -415,52 +416,52 @@ function displayResults(data){
   el.innerHTML=`
     <div class="result-section">
       <h3>Executive Summary</h3>
-      <p>${data.summary}</p>
+      <p>${escHTML(data.summary)}</p>
     </div>
     <div class="metrics-grid">
       <div class="result-section">
         <h3>Estimated Value Add</h3>
         <div class="metric positive">+$${Math.round(data.estimatedValueAdd.valueIncrease).toLocaleString()}</div>
-        <p style="margin-top:.5rem;font-size:.8rem">New value: $${Math.round(data.estimatedValueAdd.newValue).toLocaleString()} (+${data.estimatedValueAdd.percentIncrease.toFixed(1)}%)</p>
+        <p style="margin-top:.5rem;font-size:.8rem">New value: $${Math.round(data.estimatedValueAdd.newValue).toLocaleString()} (+${Number(data.estimatedValueAdd.percentIncrease).toFixed(1)}%)</p>
       </div>
       <div class="result-section">
         <h3>Renovation ROI</h3>
-        <div class="metric ${roiClass}">${data.roi.percentage.toFixed(0)}%</div>
-        <p style="margin-top:.5rem;font-size:.8rem">${data.roi.verdict}</p>
+        <div class="metric ${roiClass}">${Number(data.roi.percentage).toFixed(0)}%</div>
+        <p style="margin-top:.5rem;font-size:.8rem">${escHTML(data.roi.verdict)}</p>
       </div>
     </div>
     <div class="metrics-grid">
       <div class="result-section">
         <h3>Budget vs Market</h3>
-        <div class="metric neutral">${data.costComparison.rating}</div>
-        <p style="margin-top:.5rem;font-size:.8rem">Typical range: ${data.costComparison.typicalRange}<br>${data.costComparison.explanation}</p>
+        <div class="metric neutral">${escHTML(data.costComparison.rating)}</div>
+        <p style="margin-top:.5rem;font-size:.8rem">Typical range: ${escHTML(data.costComparison.typicalRange)}<br>${escHTML(data.costComparison.explanation)}</p>
       </div>
       <div class="result-section">
         <h3>Risk Level</h3>
-        <div class="metric ${riskColor}">${data.riskLevel.level}</div>
-        <p style="margin-top:.5rem;font-size:.8rem">${data.riskLevel.factors[0]}</p>
+        <div class="metric ${riskColor}">${escHTML(data.riskLevel.level)}</div>
+        <p style="margin-top:.5rem;font-size:.8rem">${escHTML((data.riskLevel.factors||[])[0]||'')}</p>
       </div>
     </div>
     <div class="result-section">
       <h3>Scope Recommendations</h3>
       <p><strong style="color:var(--green)">Include (High ROI):</strong></p>
-      <ul>${data.scopeRecommendations.include.map(i=>`<li>${i}</li>`).join('')}</ul>
+      <ul>${(data.scopeRecommendations.include||[]).map(i=>`<li>${escHTML(i)}</li>`).join('')}</ul>
       <p style="margin-top:.5rem"><strong style="color:var(--red)">Skip or Reduce (Low ROI):</strong></p>
-      <ul>${data.scopeRecommendations.exclude.map(i=>`<li>${i}</li>`).join('')}</ul>
+      <ul>${(data.scopeRecommendations.exclude||[]).map(i=>`<li>${escHTML(i)}</li>`).join('')}</ul>
       <p style="margin-top:.5rem"><strong style="color:var(--gold)">Priority Order:</strong></p>
-      <ol style="padding-left:1.2rem">${data.scopeRecommendations.priorityOrder.map(i=>`<li>${i}</li>`).join('')}</ol>
+      <ol style="padding-left:1.2rem">${(data.scopeRecommendations.priorityOrder||[]).map(i=>`<li>${escHTML(i)}</li>`).join('')}</ol>
     </div>
     <div class="result-section" style="border-left-color:var(--blue)">
       <h3>&#128188; Agent Talking Points</h3>
       <p style="font-size:.78rem;color:var(--gray-500);margin-bottom:.5rem">Use these when presenting renovation potential to sellers:</p>
-      <ul>${data.agentTalkingPoints.map(t=>`<li>${t}</li>`).join('')}</ul>
+      <ul>${(data.agentTalkingPoints||[]).map(t=>`<li>${escHTML(t)}</li>`).join('')}</ul>
     </div>
     <div class="result-section">
       <h3>Risk Factors &amp; Mitigations</h3>
       <p><strong>Risks:</strong></p>
-      <ul>${data.riskLevel.factors.map(f=>`<li>${f}</li>`).join('')}</ul>
+      <ul>${(data.riskLevel.factors||[]).map(f=>`<li>${escHTML(f)}</li>`).join('')}</ul>
       <p style="margin-top:.5rem"><strong>Mitigations:</strong></p>
-      <ul>${data.riskLevel.mitigations.map(m=>`<li>${m}</li>`).join('')}</ul>
+      <ul>${(data.riskLevel.mitigations||[]).map(m=>`<li>${escHTML(m)}</li>`).join('')}</ul>
     </div>`;
 
   el.classList.add('active');

@@ -316,7 +316,8 @@ const MAX_FREE = 3;
 function getApiKey(){return localStorage.getItem(STATE_KEYS.apiKey)||''}
 function getEmail(){return localStorage.getItem(STATE_KEYS.email)||''}
 function getUseCount(){return parseInt(localStorage.getItem(STATE_KEYS.useCount)||'0',10)}
-function incrementUseCount(){const c=getUseCount()+1;localStorage.setItem(STATE_KEYS.useCount,c);return c}
+function incrementUseCount(){const c=getUseCount()+1;localStorage.setItem(STATE_KEYS.useCount,String(c));return c}
+function escHTML(s){const d=document.createElement('div');d.textContent=String(s);return d.innerHTML}
 
 function saveApiKey(){const k=document.getElementById('apiKeyInput').value.trim();if(k){localStorage.setItem(STATE_KEYS.apiKey,k);updateApiStatus()}}
 function updateApiStatus(){const el=document.getElementById('apiStatus');const inp=document.getElementById('apiKeyInput');const k=getApiKey();if(k){el.textContent='Connected';el.className='api-status connected';inp.value=k.slice(0,12)+'...'+k.slice(-4)}else{el.textContent='Not connected';el.className='api-status disconnected'}}
@@ -419,48 +420,48 @@ function displayResults(data){
   el.innerHTML=`
     <div class="result-section">
       <h3>Executive Summary</h3>
-      <p>${data.summary}</p>
+      <p>${escHTML(data.summary)}</p>
       ${data.infiniteReturn.achieved?'<div style="margin-top:.8rem"><span class="infinite-badge">Infinite Return Achieved</span></div>':''}
     </div>
     <div class="metrics-grid">
       <div class="result-section">
         <h3>Cash-Out Refinance</h3>
         <div class="metric neutral">$${Math.round(data.cashOut.refinanceAmount).toLocaleString()}</div>
-        <p style="margin-top:.5rem;font-size:.8rem">Capital left in deal: $${Math.round(data.cashOut.capitalLeftInDeal).toLocaleString()}<br>${data.cashOut.explanation}</p>
+        <p style="margin-top:.5rem;font-size:.8rem">Capital left in deal: $${Math.round(data.cashOut.capitalLeftInDeal).toLocaleString()}<br>${escHTML(data.cashOut.explanation)}</p>
       </div>
       <div class="result-section">
         <h3>Infinite Return?</h3>
         <div class="metric ${data.infiniteReturn.achieved?'positive':'negative'}">${data.infiniteReturn.achieved?'YES':'NO'}</div>
-        <p style="margin-top:.5rem;font-size:.8rem">${data.infiniteReturn.explanation}</p>
+        <p style="margin-top:.5rem;font-size:.8rem">${escHTML(data.infiniteReturn.explanation)}</p>
       </div>
     </div>
     <div class="metrics-grid">
       <div class="result-section">
         <h3>Monthly Cash Flow</h3>
         <div class="metric ${cfClass}">$${Math.round(data.monthlyCashFlow.netCashFlow).toLocaleString()}/mo</div>
-        <p style="margin-top:.5rem;font-size:.8rem">${data.monthlyCashFlow.breakdown}</p>
+        <p style="margin-top:.5rem;font-size:.8rem">${escHTML(data.monthlyCashFlow.breakdown)}</p>
       </div>
       <div class="result-section">
         <h3>Cap Rate</h3>
-        <div class="metric neutral">${data.capRate.percentage.toFixed(1)}%</div>
-        <p style="margin-top:.5rem;font-size:.8rem">${data.capRate.verdict}</p>
+        <div class="metric neutral">${Number(data.capRate.percentage).toFixed(1)}%</div>
+        <p style="margin-top:.5rem;font-size:.8rem">${escHTML(data.capRate.verdict)}</p>
       </div>
     </div>
     <div class="metrics-grid">
       <div class="result-section">
         <h3>DSCR</h3>
-        <div class="metric ${dscrClass}">${data.dscr.ratio.toFixed(2)}x</div>
-        <p style="margin-top:.5rem;font-size:.8rem">${data.dscr.explanation}</p>
+        <div class="metric ${dscrClass}">${Number(data.dscr.ratio).toFixed(2)}x</div>
+        <p style="margin-top:.5rem;font-size:.8rem">${escHTML(data.dscr.explanation)}</p>
       </div>
       <div class="result-section">
         <h3>Equity Position</h3>
         <div class="metric positive">$${Math.round(data.equityPosition.equity).toLocaleString()}</div>
-        <p style="margin-top:.5rem;font-size:.8rem">${data.equityPosition.equityPercent.toFixed(1)}% equity &mdash; ${data.equityPosition.explanation}</p>
+        <p style="margin-top:.5rem;font-size:.8rem">${Number(data.equityPosition.equityPercent).toFixed(1)}% equity &mdash; ${escHTML(data.equityPosition.explanation)}</p>
       </div>
     </div>
     <div class="result-section">
       <h3>Risk Factors</h3>
-      <ul>${data.riskFactors.map(r=>`<li>${r}</li>`).join('')}</ul>
+      <ul>${(data.riskFactors||[]).map(r=>`<li>${escHTML(r)}</li>`).join('')}</ul>
     </div>`;
 
   el.classList.add('active');

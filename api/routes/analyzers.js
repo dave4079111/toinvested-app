@@ -2,6 +2,23 @@ const express = require('express');
 const router = express.Router();
 const { logger } = require('../logger');
 
+// Helper: validate that a value is a positive finite number
+function isPositiveNumber(val) {
+  return typeof val === 'number' && isFinite(val) && val > 0;
+}
+
+// Helper: safe division that returns 0 instead of NaN/Infinity
+function safeDivide(numerator, denominator) {
+  if (!denominator || !isFinite(denominator)) return 0;
+  const result = numerator / denominator;
+  return isFinite(result) ? result : 0;
+}
+
+// Helper: round to 2 decimal places
+function round2(val) {
+  return Math.round(val * 100) / 100;
+}
+
 // ===========================================
 // PROPERTY ANALYZER - Rental Property Analysis
 // ===========================================
@@ -14,8 +31,8 @@ router.post('/property', (req, res) => {
       closingCosts, repairCosts = 0, appreciationRate = 3
     } = req.body;
 
-    if (!purchasePrice || !monthlyRent) {
-      return res.status(400).json({ error: 'Purchase price and monthly rent are required' });
+    if (!isPositiveNumber(purchasePrice) || !isPositiveNumber(monthlyRent)) {
+      return res.status(400).json({ error: 'Purchase price and monthly rent must be positive numbers' });
     }
 
     const downPayment = purchasePrice * (downPaymentPercent / 100);
@@ -24,20 +41,21 @@ router.post('/property', (req, res) => {
     const numPayments = loanTerm * 12;
 
     // Monthly mortgage payment
-    const monthlyMortgage = loanAmount > 0
-      ? loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / (Math.pow(1 + monthlyRate, numPayments) - 1)
-      : 0;
+    let monthlyMortgage = 0;
+    if (loanAmount > 0 && monthlyRate > 0) {
+      monthlyMortgage = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / (Math.pow(1 + monthlyRate, numPayments) - 1);
+    }
 
     // Income
     const grossMonthlyIncome = monthlyRent + (otherIncome || 0);
     const vacancyLoss = grossMonthlyIncome * (vacancyRate / 100);
     const effectiveMonthlyIncome = grossMonthlyIncome - vacancyLoss;
 
-    // Expenses
+    // Expenses - management fee applied to gross rent, not effective income
     const monthlyPropertyTax = (propertyTax || purchasePrice * 0.012) / 12;
     const monthlyInsurance = (insurance || purchasePrice * 0.005) / 12;
-    const monthlyMaintenance = maintenance || (purchasePrice * 0.01) / 12;
-    const monthlyManagement = effectiveMonthlyIncome * (managementFee / 100);
+    const monthlyMaintenance = (maintenance || purchasePrice * 0.01) / 12;
+    const monthlyManagement = monthlyRent * (managementFee / 100);
     const totalMonthlyExpenses = monthlyPropertyTax + monthlyInsurance + monthlyMaintenance + monthlyManagement + (hoaFees || 0) + (utilities || 0);
 
     // Cash flow
@@ -46,19 +64,27 @@ router.post('/property', (req, res) => {
 
     // Key metrics
     const totalCashInvested = downPayment + (closingCosts || purchasePrice * 0.03) + (repairCosts || 0);
-    const cashOnCashReturn = (annualCashFlow / totalCashInvested) * 100;
+    const cashOnCashReturn = safeDivide(annualCashFlow, totalCashInvested) * 100;
     const noi = (effectiveMonthlyIncome - totalMonthlyExpenses) * 12;
-    const capRate = (noi / purchasePrice) * 100;
-    const grossRentMultiplier = purchasePrice / (grossMonthlyIncome * 12);
-    const dscr = noi / (monthlyMortgage * 12);
-    const expenseRatio = (totalMonthlyExpenses / effectiveMonthlyIncome) * 100;
+    const capRate = safeDivide(noi, purchasePrice) * 100;
+    const grossRentMultiplier = safeDivide(purchasePrice, grossMonthlyIncome * 12);
+    const annualDebtService = monthlyMortgage * 12;
+    const dscr = annualDebtService > 0 ? safeDivide(noi, annualDebtService) : 0;
+    const expenseRatio = effectiveMonthlyIncome > 0 ? safeDivide(totalMonthlyExpenses, effectiveMonthlyIncome) * 100 : 0;
 
-    // 5-year projection
+    // 5-year projection with principal paydown estimate
     const projection = [];
     for (let year = 1; year <= 5; year++) {
       const projectedValue = purchasePrice * Math.pow(1 + appreciationRate / 100, year);
-      const projectedRent = monthlyRent * Math.pow(1.03, year);
-      const equity = projectedValue - loanAmount; // Simplified
+      const projectedRent = monthlyRent * Math.pow(1 + appreciationRate / 100, year);
+      // Estimate principal paid down (simplified: total payments minus interest-only portion)
+      const monthsElapsed = year * 12;
+      let remainingBalance = loanAmount;
+      if (loanAmount > 0 && monthlyRate > 0) {
+        remainingBalance = loanAmount * Math.pow(1 + monthlyRate, monthsElapsed) -
+          monthlyMortgage * (Math.pow(1 + monthlyRate, monthsElapsed) - 1) / monthlyRate;
+      }
+      const equity = projectedValue - Math.max(0, remainingBalance);
       projection.push({ year, propertyValue: Math.round(projectedValue), monthlyRent: Math.round(projectedRent), equity: Math.round(equity) });
     }
 
@@ -71,34 +97,34 @@ router.post('/property', (req, res) => {
     res.json({
       summary: {
         rating,
-        monthlyCashFlow: Math.round(monthlyCashFlow * 100) / 100,
-        annualCashFlow: Math.round(annualCashFlow * 100) / 100,
-        cashOnCashReturn: Math.round(cashOnCashReturn * 100) / 100,
-        capRate: Math.round(capRate * 100) / 100,
-        grossRentMultiplier: Math.round(grossRentMultiplier * 100) / 100,
-        dscr: Math.round(dscr * 100) / 100,
-        noi: Math.round(noi * 100) / 100,
-        expenseRatio: Math.round(expenseRatio * 100) / 100
+        monthlyCashFlow: round2(monthlyCashFlow),
+        annualCashFlow: round2(annualCashFlow),
+        cashOnCashReturn: round2(cashOnCashReturn),
+        capRate: round2(capRate),
+        grossRentMultiplier: round2(grossRentMultiplier),
+        dscr: round2(dscr),
+        noi: round2(noi),
+        expenseRatio: round2(expenseRatio)
       },
       financing: {
         downPayment: Math.round(downPayment),
         loanAmount: Math.round(loanAmount),
-        monthlyMortgage: Math.round(monthlyMortgage * 100) / 100,
+        monthlyMortgage: round2(monthlyMortgage),
         totalCashInvested: Math.round(totalCashInvested)
       },
       income: {
-        grossMonthlyIncome: Math.round(grossMonthlyIncome * 100) / 100,
-        vacancyLoss: Math.round(vacancyLoss * 100) / 100,
-        effectiveMonthlyIncome: Math.round(effectiveMonthlyIncome * 100) / 100
+        grossMonthlyIncome: round2(grossMonthlyIncome),
+        vacancyLoss: round2(vacancyLoss),
+        effectiveMonthlyIncome: round2(effectiveMonthlyIncome)
       },
       expenses: {
-        propertyTax: Math.round(monthlyPropertyTax * 100) / 100,
-        insurance: Math.round(monthlyInsurance * 100) / 100,
-        maintenance: Math.round(monthlyMaintenance * 100) / 100,
-        management: Math.round(monthlyManagement * 100) / 100,
+        propertyTax: round2(monthlyPropertyTax),
+        insurance: round2(monthlyInsurance),
+        maintenance: round2(monthlyMaintenance),
+        management: round2(monthlyManagement),
         hoaFees: hoaFees || 0,
         utilities: utilities || 0,
-        totalMonthlyExpenses: Math.round(totalMonthlyExpenses * 100) / 100
+        totalMonthlyExpenses: round2(totalMonthlyExpenses)
       },
       projection
     });
@@ -120,8 +146,8 @@ router.post('/flip', (req, res) => {
       interestRate = 10, loanPercent = 80
     } = req.body;
 
-    if (!purchasePrice || !arv || !rehabCost) {
-      return res.status(400).json({ error: 'Purchase price, ARV, and rehab cost are required' });
+    if (!isPositiveNumber(purchasePrice) || !isPositiveNumber(arv) || !isPositiveNumber(rehabCost)) {
+      return res.status(400).json({ error: 'Purchase price, ARV, and rehab cost must be positive numbers' });
     }
 
     const closingBuy = purchasePrice * (closingCostsBuy / 100);
@@ -134,20 +160,20 @@ router.post('/flip', (req, res) => {
     const totalInvestment = purchasePrice + rehabCost + closingBuy + closingSell + totalHoldingCost + totalFinancingCost;
     const totalCashNeeded = downPayment + rehabCost + closingBuy + totalHoldingCost;
     const profit = arv - totalInvestment;
-    const roi = (profit / totalCashNeeded) * 100;
-    const annualizedRoi = (roi / holdingMonths) * 12;
+    const roi = safeDivide(profit, totalCashNeeded) * 100;
+    const annualizedRoi = holdingMonths > 0 ? safeDivide(roi, holdingMonths) * 12 : 0;
 
     // 70% Rule check
     const maxPurchasePrice70 = (arv * 0.7) - rehabCost;
     const meetsRule = purchasePrice <= maxPurchasePrice70;
 
     let rating = 'Poor Deal';
-    if (roi >= 30 && meetsRule) rating = 'Excellent Deal';
-    else if (roi >= 20) rating = 'Good Deal';
-    else if (roi >= 10) rating = 'Marginal Deal';
+    if (profit > 0 && roi >= 30 && meetsRule) rating = 'Excellent Deal';
+    else if (profit > 0 && roi >= 20) rating = 'Good Deal';
+    else if (profit > 0 && roi >= 10) rating = 'Marginal Deal';
 
     res.json({
-      summary: { rating, profit: Math.round(profit), roi: Math.round(roi * 100) / 100, annualizedRoi: Math.round(annualizedRoi * 100) / 100, meetsRule },
+      summary: { rating, profit: Math.round(profit), roi: round2(roi), annualizedRoi: round2(annualizedRoi), meetsRule },
       costs: {
         purchasePrice, rehabCost, closingBuy: Math.round(closingBuy), closingSell: Math.round(closingSell),
         holdingCost: Math.round(totalHoldingCost), financingCost: Math.round(totalFinancingCost),
@@ -173,30 +199,42 @@ router.post('/brrrr', (req, res) => {
       propertyTax, insurance, maintenance, managementFee = 10
     } = req.body;
 
-    if (!purchasePrice || !rehabCost || !arv || !monthlyRent) {
-      return res.status(400).json({ error: 'Purchase price, rehab cost, ARV, and monthly rent are required' });
+    if (!isPositiveNumber(purchasePrice) || !isPositiveNumber(rehabCost) || !isPositiveNumber(arv) || !isPositiveNumber(monthlyRent)) {
+      return res.status(400).json({ error: 'Purchase price, rehab cost, ARV, and monthly rent must be positive numbers' });
     }
 
     // Initial purchase
     const downPayment = purchasePrice * (downPaymentPercent / 100);
     const initialLoan = purchasePrice - downPayment;
-    const totalCashIn = downPayment + rehabCost + (purchasePrice * 0.03); // + closing costs
+    const closingCosts = purchasePrice * 0.03;
+    const totalCashIn = downPayment + rehabCost + closingCosts;
+
+    // Holding cost during rehab period
+    const monthlyHoldingRate = interestRate / 100 / 12;
+    const holdingInterest = initialLoan * monthlyHoldingRate * holdingMonths;
 
     // Refinance
     const refinanceAmount = arv * (refinanceLTV / 100);
     const cashBackAtRefi = refinanceAmount - initialLoan;
-    const moneyLeftInDeal = totalCashIn - cashBackAtRefi;
+    const moneyLeftInDeal = totalCashIn + holdingInterest - cashBackAtRefi;
 
     // Monthly cash flow after refinance
     const monthlyRateRefi = refinanceRate / 100 / 12;
-    const monthlyMortgageRefi = refinanceAmount * (monthlyRateRefi * Math.pow(1 + monthlyRateRefi, 360)) / (Math.pow(1 + monthlyRateRefi, 360) - 1);
+    let monthlyMortgageRefi = 0;
+    if (refinanceAmount > 0 && monthlyRateRefi > 0) {
+      monthlyMortgageRefi = refinanceAmount * (monthlyRateRefi * Math.pow(1 + monthlyRateRefi, 360)) / (Math.pow(1 + monthlyRateRefi, 360) - 1);
+    }
     const effectiveRent = monthlyRent * (1 - vacancyRate / 100);
-    const monthlyExpenses = ((propertyTax || arv * 0.012) / 12) + ((insurance || arv * 0.005) / 12) +
-      (maintenance || arv * 0.01 / 12) + (effectiveRent * managementFee / 100);
+    // Expenses based on purchase price (more conservative than ARV)
+    const monthlyPropertyTax = (propertyTax || purchasePrice * 0.012) / 12;
+    const monthlyInsurance = (insurance || purchasePrice * 0.005) / 12;
+    const monthlyMaintenance = (maintenance || purchasePrice * 0.01) / 12;
+    const monthlyManagement = monthlyRent * (managementFee / 100);
+    const monthlyExpenses = monthlyPropertyTax + monthlyInsurance + monthlyMaintenance + monthlyManagement;
     const monthlyCashFlow = effectiveRent - monthlyExpenses - monthlyMortgageRefi;
 
     const infiniteReturn = moneyLeftInDeal <= 0;
-    const cashOnCash = infiniteReturn ? Infinity : (monthlyCashFlow * 12 / moneyLeftInDeal) * 100;
+    const cashOnCash = infiniteReturn ? 0 : safeDivide(monthlyCashFlow * 12, moneyLeftInDeal) * 100;
 
     let rating = 'Poor';
     if (infiniteReturn && monthlyCashFlow > 0) rating = 'Excellent - Infinite Return!';
@@ -206,15 +244,15 @@ router.post('/brrrr', (req, res) => {
 
     res.json({
       summary: {
-        rating, monthlyCashFlow: Math.round(monthlyCashFlow * 100) / 100,
-        cashOnCashReturn: infiniteReturn ? 'Infinite' : Math.round(cashOnCash * 100) / 100,
+        rating, monthlyCashFlow: round2(monthlyCashFlow),
+        cashOnCashReturn: infiniteReturn ? 'Infinite' : round2(cashOnCash),
         moneyLeftInDeal: Math.round(moneyLeftInDeal), infiniteReturn
       },
       acquisition: { purchasePrice, rehabCost, downPayment: Math.round(downPayment), totalCashIn: Math.round(totalCashIn) },
-      refinance: { arv, refinanceAmount: Math.round(refinanceAmount), cashBack: Math.round(cashBackAtRefi), newMortgage: Math.round(monthlyMortgageRefi * 100) / 100 },
+      refinance: { arv, refinanceAmount: Math.round(refinanceAmount), cashBack: Math.round(cashBackAtRefi), newMortgage: round2(monthlyMortgageRefi) },
       cashFlow: {
-        effectiveRent: Math.round(effectiveRent * 100) / 100, totalExpenses: Math.round(monthlyExpenses * 100) / 100,
-        mortgage: Math.round(monthlyMortgageRefi * 100) / 100, netCashFlow: Math.round(monthlyCashFlow * 100) / 100
+        effectiveRent: round2(effectiveRent), totalExpenses: round2(monthlyExpenses),
+        mortgage: round2(monthlyMortgageRefi), netCashFlow: round2(monthlyCashFlow)
       }
     });
   } catch (err) {
@@ -234,14 +272,20 @@ router.post('/stock', (req, res) => {
       expenseRatio = 0.5, taxRate = 15, inflationRate = 3
     } = req.body;
 
-    if (!investmentAmount) {
-      return res.status(400).json({ error: 'Investment amount is required' });
+    if (!isPositiveNumber(investmentAmount)) {
+      return res.status(400).json({ error: 'Investment amount must be a positive number' });
+    }
+    if (investmentPeriod < 1 || investmentPeriod > 50) {
+      return res.status(400).json({ error: 'Investment period must be between 1 and 50 years' });
     }
 
-    const monthlyReturn = expectedReturn / 100 / 12;
-    const months = investmentPeriod * 12;
+    // Net return after expense ratio
+    const netReturn = expectedReturn - expenseRatio;
+    const monthlyReturn = netReturn / 100 / 12;
+    const months = Math.round(investmentPeriod * 12);
     let balance = investmentAmount;
     const yearlyProjection = [];
+    let cumulativeDividends = 0;
 
     for (let month = 1; month <= months; month++) {
       balance = balance * (1 + monthlyReturn) + monthlyContribution;
@@ -249,7 +293,9 @@ router.post('/stock', (req, res) => {
         const year = month / 12;
         const totalContributed = investmentAmount + (monthlyContribution * month);
         const totalGain = balance - totalContributed;
+        // Annual dividend based on current balance
         const dividendIncome = balance * (dividendYield / 100);
+        cumulativeDividends += dividendIncome;
         const realValue = balance / Math.pow(1 + inflationRate / 100, year);
         yearlyProjection.push({
           year, balance: Math.round(balance), totalContributed: Math.round(totalContributed),
@@ -262,8 +308,7 @@ router.post('/stock', (req, res) => {
     const finalBalance = balance;
     const totalContributed = investmentAmount + (monthlyContribution * months);
     const totalGain = finalBalance - totalContributed;
-    const totalDividends = finalBalance * (dividendYield / 100) * investmentPeriod;
-    const taxOnGains = totalGain * (taxRate / 100);
+    const taxOnGains = Math.max(0, totalGain * (taxRate / 100));
     const afterTax = finalBalance - taxOnGains;
 
     res.json({
@@ -271,8 +316,8 @@ router.post('/stock', (req, res) => {
         finalBalance: Math.round(finalBalance),
         totalContributed: Math.round(totalContributed),
         totalGain: Math.round(totalGain),
-        totalReturn: Math.round((totalGain / totalContributed) * 100 * 100) / 100,
-        estimatedDividends: Math.round(totalDividends),
+        totalReturn: round2(safeDivide(totalGain, totalContributed) * 100),
+        estimatedDividends: Math.round(cumulativeDividends),
         afterTaxValue: Math.round(afterTax)
       },
       projection: yearlyProjection
@@ -293,8 +338,14 @@ router.post('/bitcoin', (req, res) => {
       investmentPeriod = 5, dcaMonthly = 0, taxRate = 15
     } = req.body;
 
-    if (!investmentAmount) {
-      return res.status(400).json({ error: 'Investment amount is required' });
+    if (!isPositiveNumber(investmentAmount)) {
+      return res.status(400).json({ error: 'Investment amount must be a positive number' });
+    }
+    if (!isPositiveNumber(currentPrice)) {
+      return res.status(400).json({ error: 'Current price must be a positive number' });
+    }
+    if (investmentPeriod < 1 || investmentPeriod > 30) {
+      return res.status(400).json({ error: 'Investment period must be between 1 and 30 years' });
     }
 
     const btcPurchased = investmentAmount / currentPrice;
@@ -305,9 +356,13 @@ router.post('/bitcoin', (req, res) => {
     for (let year = 1; year <= investmentPeriod; year++) {
       const projectedPrice = currentPrice * Math.pow(1 + expectedGrowthRate / 100, year);
       if (dcaMonthly > 0) {
-        // DCA accumulation (simplified - uses average price for the year)
-        const avgPrice = currentPrice * Math.pow(1 + expectedGrowthRate / 100, year - 0.5);
-        totalBtc += (dcaMonthly * 12) / avgPrice;
+        // DCA: calculate monthly purchases through the year at monthly price points
+        const prevYearPrice = currentPrice * Math.pow(1 + expectedGrowthRate / 100, year - 1);
+        const yearEndPrice = projectedPrice;
+        for (let m = 1; m <= 12; m++) {
+          const monthPrice = prevYearPrice + (yearEndPrice - prevYearPrice) * (m / 12);
+          totalBtc += dcaMonthly / monthPrice;
+        }
         totalInvested += dcaMonthly * 12;
       }
       const portfolioValue = totalBtc * projectedPrice;
@@ -315,7 +370,7 @@ router.post('/bitcoin', (req, res) => {
       yearlyProjection.push({
         year, projectedPrice: Math.round(projectedPrice), totalBtc: Math.round(totalBtc * 100000000) / 100000000,
         portfolioValue: Math.round(portfolioValue), totalInvested: Math.round(totalInvested),
-        gain: Math.round(gain), returnPercent: Math.round((gain / totalInvested) * 100 * 100) / 100
+        gain: Math.round(gain), returnPercent: round2(safeDivide(gain, totalInvested) * 100)
       });
     }
 
@@ -347,8 +402,11 @@ router.post('/bitcoin', (req, res) => {
 router.post('/renovation', (req, res) => {
   try {
     const { currentValue, renovations } = req.body;
-    if (!currentValue || !renovations || !renovations.length) {
-      return res.status(400).json({ error: 'Current value and at least one renovation are required' });
+    if (!isPositiveNumber(currentValue)) {
+      return res.status(400).json({ error: 'Current property value must be a positive number' });
+    }
+    if (!Array.isArray(renovations) || renovations.length === 0) {
+      return res.status(400).json({ error: 'At least one renovation is required' });
     }
 
     // Standard ROI percentages for different renovation types
@@ -366,12 +424,17 @@ router.post('/renovation', (req, res) => {
       other: { low: 0.4, mid: 0.55, high: 0.65 }
     };
 
+    const validQualities = ['low', 'mid', 'high'];
+
     let totalCost = 0;
     let totalValueAdded = 0;
-    const results = renovations.map(reno => {
-      const type = reno.type?.toLowerCase() || 'other';
-      const cost = reno.cost || 0;
-      const quality = reno.quality || 'mid';
+    const results = renovations.map((reno, index) => {
+      const type = (typeof reno.type === 'string' ? reno.type.toLowerCase() : 'other');
+      const cost = Number(reno.cost) || 0;
+      if (cost <= 0) {
+        throw new Error(`Renovation ${index + 1} must have a positive cost`);
+      }
+      const quality = validQualities.includes(reno.quality) ? reno.quality : 'mid';
       const multiplier = roiMultipliers[type]?.[quality] || roiMultipliers.other[quality];
       const valueAdded = cost * (1 + multiplier);
       const roi = multiplier * 100;
@@ -381,19 +444,19 @@ router.post('/renovation', (req, res) => {
     });
 
     const newValue = currentValue + totalValueAdded;
-    const totalRoi = ((totalValueAdded - totalCost) / totalCost) * 100;
+    const totalRoi = totalCost > 0 ? safeDivide(totalValueAdded - totalCost, totalCost) * 100 : 0;
 
     res.json({
       summary: {
         currentValue, totalRehabCost: totalCost, estimatedNewValue: Math.round(newValue),
-        totalValueAdded: Math.round(totalValueAdded), totalRoi: Math.round(totalRoi * 100) / 100,
+        totalValueAdded: Math.round(totalValueAdded), totalRoi: round2(totalRoi),
         netGain: Math.round(totalValueAdded - totalCost)
       },
       renovations: results
     });
   } catch (err) {
     logger.error('Renovation analyzer error', { error: err.message });
-    res.status(500).json({ error: 'Analysis failed' });
+    res.status(500).json({ error: err.message || 'Analysis failed' });
   }
 });
 

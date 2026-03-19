@@ -379,7 +379,8 @@ const MAX_FREE = 3;
 function getApiKey() { return localStorage.getItem(STATE_KEYS.apiKey) || ''; }
 function getEmail() { return localStorage.getItem(STATE_KEYS.email) || ''; }
 function getUseCount() { return parseInt(localStorage.getItem(STATE_KEYS.useCount) || '0', 10); }
-function incrementUseCount() { const c = getUseCount() + 1; localStorage.setItem(STATE_KEYS.useCount, c); return c; }
+function incrementUseCount() { const c = getUseCount() + 1; localStorage.setItem(STATE_KEYS.useCount, String(c)); return c; }
+function escHTML(s) { const d = document.createElement('div'); d.textContent = String(s); return d.innerHTML; }
 
 // ============================================
 // API KEY MANAGEMENT
@@ -602,42 +603,42 @@ function displayResults(data) {
   el.innerHTML = `
     <div class="result-section">
       <h3>Executive Summary</h3>
-      <p>${data.summary}</p>
+      <p>${escHTML(data.summary)}</p>
     </div>
     <div class="metrics-grid">
       <div class="result-section">
         <h3>Net Profit</h3>
         <div class="metric ${profitClass}">$${Math.round(data.profitProjection.netProfit).toLocaleString()}</div>
-        <p style="margin-top:.5rem;font-size:.8rem">${data.profitProjection.breakdown}</p>
+        <p style="margin-top:.5rem;font-size:.8rem">${escHTML(data.profitProjection.breakdown)}</p>
       </div>
       <div class="result-section">
         <h3>Return on Investment</h3>
-        <div class="metric ${data.roi.percentage > 0 ? 'positive' : 'negative'}">${data.roi.percentage.toFixed(1)}%</div>
-        <p style="margin-top:.5rem;font-size:.8rem">${data.roi.verdict}</p>
+        <div class="metric ${data.roi.percentage > 0 ? 'positive' : 'negative'}">${Number(data.roi.percentage).toFixed(1)}%</div>
+        <p style="margin-top:.5rem;font-size:.8rem">${escHTML(data.roi.verdict)}</p>
       </div>
     </div>
     <div class="metrics-grid">
       <div class="result-section">
         <h3>70% Rule Check</h3>
         <div class="metric ${ruleClass}">${data.seventyPercentRule.passes ? 'PASSES' : 'FAILS'}</div>
-        <p style="margin-top:.5rem;font-size:.8rem">Max price: $${Math.round(data.seventyPercentRule.maxPrice).toLocaleString()}<br>${data.seventyPercentRule.explanation}</p>
+        <p style="margin-top:.5rem;font-size:.8rem">Max price: $${Math.round(data.seventyPercentRule.maxPrice).toLocaleString()}<br>${escHTML(data.seventyPercentRule.explanation)}</p>
       </div>
       <div class="result-section">
         <h3>Cost-to-ARV Ratio</h3>
-        <div class="metric neutral">${(data.costToArv.ratio * 100).toFixed(1)}%</div>
-        <p style="margin-top:.5rem;font-size:.8rem">${data.costToArv.rating} &mdash; ${data.costToArv.explanation}</p>
+        <div class="metric neutral">${(Number(data.costToArv.ratio) * 100).toFixed(1)}%</div>
+        <p style="margin-top:.5rem;font-size:.8rem">${escHTML(data.costToArv.rating)} &mdash; ${escHTML(data.costToArv.explanation)}</p>
       </div>
     </div>
     <div class="result-section">
-      <h3>Risk Assessment: <span style="color:var(--${riskColor === 'positive' ? 'green' : riskColor === 'negative' ? 'red' : 'blue'})">${data.riskAssessment.level}</span></h3>
+      <h3>Risk Assessment: <span style="color:var(--${riskColor === 'positive' ? 'green' : riskColor === 'negative' ? 'red' : 'blue'})">${escHTML(data.riskAssessment.level)}</span></h3>
       <p><strong>Risk Factors:</strong></p>
-      <ul>${data.riskAssessment.factors.map(f => `<li>${f}</li>`).join('')}</ul>
+      <ul>${(data.riskAssessment.factors || []).map(f => `<li>${escHTML(f)}</li>`).join('')}</ul>
       <p style="margin-top:.5rem"><strong>Mitigations:</strong></p>
-      <ul>${data.riskAssessment.mitigations.map(m => `<li>${m}</li>`).join('')}</ul>
+      <ul>${(data.riskAssessment.mitigations || []).map(m => `<li>${escHTML(m)}</li>`).join('')}</ul>
     </div>
     <div class="result-section">
       <h3>Contractor Budget Tips</h3>
-      <ul>${data.contractorTips.map(t => `<li>${t}</li>`).join('')}</ul>
+      <ul>${(data.contractorTips || []).map(t => `<li>${escHTML(t)}</li>`).join('')}</ul>
     </div>
   `;
 
