@@ -1479,9 +1479,12 @@ img { max-width: 100%; height: auto; display: block; }
   .cta-buttons .btn-gold, .cta-buttons .btn-outline { width: 100%; max-width: 300px; text-align: center; }
   .silo-grid { grid-template-columns: 1fr; }
 }
+        .skip-link:focus { top: 0; }
+        a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link" style="position:absolute;top:-100%;left:0;background:var(--gold);color:var(--navy);padding:12px 24px;z-index:9999;font-weight:700;transition:top 0.3s;">Skip to main content</a>
 
 <!-- ===================== NAVIGATION ===================== -->
 <nav class="nav" id="nav">
@@ -1515,7 +1518,7 @@ img { max-width: 100%; height: auto; display: block; }
 </div>
 
 <!-- ===================== HERO ===================== -->
-<section class="hero">
+<section class="hero" id="main-content">
   <div class="float-orb float-orb-1"></div>
   <div class="float-orb float-orb-2"></div>
   <div class="float-orb float-orb-3"></div>
@@ -2017,7 +2020,7 @@ img { max-width: 100%; height: auto; display: block; }
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="footer-copy">&copy; 2026 YPN Inc / ToInvested.com. All rights reserved.</p>
+      <p class="footer-copy">&copy; 2026 ToInvested &mdash; A YPN Inc Company. All rights reserved.</p>
       <div class="footer-socials">
         <a href="https://www.linkedin.com/company/toinvested" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
         <a href="https://www.youtube.com/@toinvested" target="_blank" rel="noopener noreferrer" aria-label="YouTube">YouTube</a>

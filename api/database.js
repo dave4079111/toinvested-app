@@ -132,13 +132,17 @@ async function initDatabase() {
 
   // Create default admin if not exists
   const adminEmail = process.env.ADMIN_EMAIL || 'admin@toinvested.com';
-  const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
-  const existingAdmin = db.prepare('SELECT id FROM users WHERE email = ?').get(adminEmail);
-  if (!existingAdmin) {
-    const hash = bcrypt.hashSync(adminPassword, 10);
-    db.prepare('INSERT INTO users (id, email, password_hash, name, role, membership_tier) VALUES (?, ?, ?, ?, ?, ?)')
-      .run(uuidv4(), adminEmail, hash, 'Admin', 'admin', 'premium');
-    logger.info('Default admin account created');
+  const adminPassword = process.env.ADMIN_PASSWORD;
+  if (!adminPassword) {
+    logger.warn('ADMIN_PASSWORD not set - skipping default admin creation. Set ADMIN_PASSWORD in .env to create admin account.');
+  } else {
+    const existingAdmin = db.prepare('SELECT id FROM users WHERE email = ?').get(adminEmail);
+    if (!existingAdmin) {
+      const hash = bcrypt.hashSync(adminPassword, 10);
+      db.prepare('INSERT INTO users (id, email, password_hash, name, role, membership_tier) VALUES (?, ?, ?, ?, ?, ?)')
+        .run(uuidv4(), adminEmail, hash, 'Admin', 'admin', 'premium');
+      logger.info('Default admin account created');
+    }
   }
 
   // Seed sample products if empty

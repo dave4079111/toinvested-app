@@ -4,7 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog — ToInvested | AI-Powered Real Estate Investing Insights</title>
-    <meta name="description" content="Your source for AI-powered real estate investing insights. Expert articles on fix & flip, BRRRR, tax strategies, lending, and more.">
+    <meta name="description" content="Real estate investing insights, market analysis, and wealth-building strategies from ToInvested. Expert tips for new and experienced investors.">
+    <meta property="og:title" content="Real Estate Investing Blog | ToInvested">
+    <meta property="og:description" content="Expert real estate investing insights, market analysis, and wealth-building strategies.">
+    <meta property="og:url" content="https://toinvested.com/blog/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://toinvested.com/images/og-blog.jpg">
+    <meta property="og:site_name" content="ToInvested">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Real Estate Investing Blog | ToInvested">
+    <meta name="twitter:description" content="Expert real estate investing insights and wealth-building strategies.">
+    <meta name="twitter:image" content="https://toinvested.com/images/og-blog.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -802,9 +812,12 @@
             opacity: 1;
             visibility: visible;
         }
+        .skip-link:focus { top: 0; }
+        a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link" style="position:absolute;top:-100%;left:0;background:var(--gold);color:var(--navy);padding:12px 24px;z-index:9999;font-weight:700;transition:top 0.3s;">Skip to main content</a>
 
     <!-- ========== NAVIGATION ========== -->
     <nav class="nav">
@@ -827,7 +840,7 @@
     <div class="nav-overlay" id="navOverlay"></div>
 
     <!-- ========== HERO ========== -->
-    <section class="hero">
+    <section class="hero" id="main-content">
         <div class="container">
             <div class="hero-badge fade-in">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>

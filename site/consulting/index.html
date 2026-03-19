@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Investment Consulting | ToInvested - Custom Strategy Built for You</title>
     <meta name="description" content="Get a custom investment strategy session with David J. Moore, MBA. One-time $2,500 deep-dive covering deal analysis, entity structure, tax strategy, and portfolio growth.">
+    <meta property="og:title" content="Real Estate Consulting | ToInvested - 1-on-1 Strategy Sessions">
+    <meta property="og:description" content="Book a 90-minute 1-on-1 strategy session with David Moore. Get a custom investment roadmap, deal analysis, and portfolio review. $2,500.">
+    <meta property="og:url" content="https://toinvested.com/consulting/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://toinvested.com/images/og-consulting.jpg">
+    <meta property="og:site_name" content="ToInvested">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Real Estate Consulting | ToInvested">
+    <meta name="twitter:description" content="90-minute 1-on-1 strategy session with David Moore. Custom investment roadmap for $2,500.">
+    <meta name="twitter:image" content="https://toinvested.com/images/og-consulting.jpg">
     <link rel="canonical" href="https://toinvested.com/consulting/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -140,9 +150,31 @@
             .footer-grid { grid-template-columns: 1fr; }
             .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
         }
+        .skip-link:focus { top: 0; }
+        a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
     </style>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "ToInvested Real Estate Consulting",
+        "description": "90-minute 1-on-1 real estate investment strategy session with David Moore, MBA.",
+        "url": "https://toinvested.com/consulting/",
+        "provider": {
+            "@type": "Organization",
+            "name": "ToInvested",
+            "url": "https://toinvested.com"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "2500.00",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
 </head>
 <body>
+    <a href="#main-content" class="skip-link" style="position:absolute;top:-100%;left:0;background:var(--gold);color:var(--navy);padding:12px 24px;z-index:9999;font-weight:700;transition:top 0.3s;">Skip to main content</a>
     <!-- NAV -->
     <nav class="nav">
         <div class="nav-inner">
@@ -163,7 +195,7 @@
     </nav>
 
     <!-- HERO -->
-    <section class="hero">
+    <section class="hero" id="main-content">
         <div class="container">
             <div class="section-label">One Session. Total Clarity.</div>
             <h1>Custom Investment Strategy.<br><span class="gold">Built for You.</span></h1>
@@ -412,7 +444,7 @@
                 <p><strong>Amazon Associates Disclosure:</strong> ToInvested.com is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. As an Amazon Associate, we earn from qualifying purchases. Product prices and availability are subject to change. Any price and availability information displayed on Amazon at the time of purchase will apply.</p>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 YPN Inc / ToInvested.com. All rights reserved.</p>
+                <p>&copy; 2026 ToInvested &mdash; A YPN Inc Company. All rights reserved.</p>
                 <div class="footer-bottom-links">
                     <a href="/privacy/">Privacy Policy</a>
                     <a href="/terms/">Terms of Service</a>

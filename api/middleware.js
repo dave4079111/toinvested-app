@@ -1,7 +1,11 @@
 const jwt = require('jsonwebtoken');
 const { getDb } = require('./database');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'toinvested-dev-secret-change-me';
+const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET) {
+  console.error('FATAL: JWT_SECRET environment variable is required. Set it in your .env file.');
+  process.exit(1);
+}
 
 function generateToken(user) {
   return jwt.sign(

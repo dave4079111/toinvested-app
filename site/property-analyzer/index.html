@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Property Analyzer | ToInvested.com — Analyze Any Real Estate Deal in Seconds</title>
 <meta name="description" content="Use AI to instantly analyze any real estate deal. Get cash flow projections, cap rates, risk assessments, and a buy/pass verdict powered by Claude AI.">
+    <meta property="og:title" content="AI Rental Property Analyzer | ToInvested">
+    <meta property="og:description" content="Free AI-powered rental property analysis. Get instant cash flow projections, cap rates, ROI estimates, and investment scores.">
+    <meta property="og:url" content="https://toinvested.com/property-analyzer/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://toinvested.com/images/og-property-analyzer.jpg">
+    <meta property="og:site_name" content="ToInvested">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Rental Property Analyzer | ToInvested">
+    <meta name="twitter:description" content="Free AI-powered rental property analysis with instant cash flow, cap rate, and ROI estimates.">
+    <meta name="twitter:image" content="https://toinvested.com/images/og-property-analyzer.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -951,9 +961,12 @@ input::placeholder { color: var(--gray); }
   overflow: hidden;
   clip: rect(0,0,0,0);
 }
+        .skip-link:focus { top: 0; }
+        a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link" style="position:absolute;top:-100%;left:0;background:var(--gold);color:var(--navy);padding:12px 24px;z-index:9999;font-weight:700;transition:top 0.3s;">Skip to main content</a>
 
 <!-- ==============================
      NAVIGATION
@@ -986,7 +999,7 @@ input::placeholder { color: var(--gray); }
 <!-- ==============================
      PAGE HEADER
      ============================== -->
-<header class="page-header">
+<header class="page-header" id="main-content">
   <h1>AI <em>Property Analyzer</em></h1>
   <p>Enter a deal, pick your strategy, and get an instant AI-powered analysis with cash flow projections, risk scores, and a clear buy/pass verdict.</p>
 </header>
@@ -1136,7 +1149,7 @@ input::placeholder { color: var(--gray); }
      FOOTER
      ============================== -->
 <footer class="footer">
-  <p>&copy; 2026 ToInvested. All rights reserved. &nbsp;|&nbsp; <a href="/privacy/">Privacy</a> &nbsp;|&nbsp; <a href="/terms/">Terms</a></p>
+  <p>&copy; 2026 ToInvested &mdash; A YPN Inc Company. All rights reserved. &nbsp;|&nbsp; <a href="/privacy/">Privacy</a> &nbsp;|&nbsp; <a href="/terms/">Terms</a></p>
 </footer>
 
 <!-- ==============================

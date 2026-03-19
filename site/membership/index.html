@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Membership Plans | ToInvested - AI-Powered Real Estate Investing</title>
     <meta name="description" content="Join ToInvested's Wealth Builder membership. Get unlimited AI-powered deal analyses, portfolio tracking, community access, and expert coaching. Start free or go pro.">
+    <meta property="og:title" content="Membership Plans | ToInvested - AI-Powered Real Estate Investing">
+    <meta property="og:description" content="Join ToInvested's Wealth Builder membership. Get unlimited AI-powered deal analyses, portfolio tracking, community access, and expert coaching. Start free or go pro.">
+    <meta property="og:url" content="https://toinvested.com/membership/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://toinvested.com/images/og-membership.jpg">
+    <meta property="og:site_name" content="ToInvested">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Membership Plans | ToInvested">
+    <meta name="twitter:description" content="AI-powered real estate analysis tools. Unlimited deal analyses, portfolio tracking, and expert coaching. Plans from $49.99.">
+    <meta name="twitter:image" content="https://toinvested.com/images/og-membership.jpg">
     <link rel="canonical" href="https://toinvested.com/membership/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -179,9 +189,42 @@
             .footer-grid { grid-template-columns: 1fr; }
             .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
         }
+        .skip-link:focus { top: 0; }
+        a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
     </style>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "ToInvested Membership Plans",
+        "description": "AI-powered real estate analysis membership plans for investors.",
+        "url": "https://toinvested.com/membership/",
+        "publisher": {
+            "@type": "Organization",
+            "name": "ToInvested",
+            "url": "https://toinvested.com"
+        },
+        "offers": [
+            {
+                "@type": "Offer",
+                "name": "Wealth Builder",
+                "price": "49.99",
+                "priceCurrency": "USD",
+                "description": "One-time payment. Unlimited AI analyses, portfolio tracker, community access."
+            },
+            {
+                "@type": "Offer",
+                "name": "Wealth Builder Yearly",
+                "price": "999.00",
+                "priceCurrency": "USD",
+                "description": "Annual subscription with 3-day free trial. Everything included plus coaching and deal alerts."
+            }
+        ]
+    }
+    </script>
 </head>
 <body>
+    <a href="#main-content" class="skip-link" style="position:absolute;top:-100%;left:0;background:var(--gold);color:var(--navy);padding:12px 24px;z-index:9999;font-weight:700;transition:top 0.3s;">Skip to main content</a>
     <!-- NAV -->
     <nav class="nav">
         <div class="nav-inner">
@@ -202,7 +245,7 @@
     </nav>
 
     <!-- HERO -->
-    <section class="hero">
+    <section class="hero" id="main-content">
         <div class="container">
             <div class="hero-badge">Now with 7 AI-Powered Tools</div>
             <h1>Invest Like You Have<br><span class="gold">a Team Behind You</span></h1>
@@ -381,7 +424,7 @@
                         <div class="testimonial-avatar">JL</div>
                         <div>
                             <div class="testimonial-name">James L.</div>
-                            <div class="testimonial-role">Wealth Builder Pro, Phoenix</div>
+                            <div class="testimonial-role">Wealth Builder Yearly, Phoenix</div>
                         </div>
                     </div>
                 </div>
@@ -409,7 +452,7 @@
                 </div>
                 <div class="faq-item">
                     <button class="faq-question">What's the difference between monthly strategy calls and weekly coaching? <span class="faq-icon">+</span></button>
-                    <div class="faq-answer"><div class="faq-answer-inner">Monthly strategy calls (included in Wealth Builder) are group sessions where David covers market trends, investment strategies, and answers member questions. Weekly coaching calls (Wealth Builder Pro only) are more intimate sessions where you can get specific feedback on your deals, portfolio strategy, and investment goals with direct access to David.</div></div>
+                    <div class="faq-answer"><div class="faq-answer-inner">Monthly strategy calls (included in Wealth Builder) are group sessions where David covers market trends, investment strategies, and answers member questions. Weekly coaching calls (Wealth Builder Yearly only) are more intimate sessions where you can get specific feedback on your deals, portfolio strategy, and investment goals with direct access to David.</div></div>
                 </div>
                 <div class="faq-item">
                     <button class="faq-question">What's the difference between the $49.99 and $999/year plans? <span class="faq-icon">+</span></button>
@@ -478,7 +521,7 @@
                 <p><strong>Amazon Associates Disclosure:</strong> ToInvested.com is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.com. As an Amazon Associate, we earn from qualifying purchases. Product prices and availability are subject to change. Any price and availability information displayed on Amazon at the time of purchase will apply.</p>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 YPN Inc / ToInvested.com. All rights reserved.</p>
+                <p>&copy; 2026 ToInvested &mdash; A YPN Inc Company. All rights reserved.</p>
                 <div class="footer-bottom-links">
                     <a href="/privacy/">Privacy Policy</a>
                     <a href="/terms/">Terms of Service</a>

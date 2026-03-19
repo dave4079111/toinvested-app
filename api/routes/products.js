@@ -153,14 +153,11 @@ router.post('/subscribe', (req, res) => {
 
     // Stripe price IDs should be set in environment variables
     const priceMap = {
-      'wealth-builder-monthly': process.env.STRIPE_PRICE_WB_MONTHLY,
-      'wealth-builder-annual': process.env.STRIPE_PRICE_WB_ANNUAL,
-      'pro-monthly': process.env.STRIPE_PRICE_PRO_MONTHLY,
-      'pro-annual': process.env.STRIPE_PRICE_PRO_ANNUAL,
+      'wealth-builder': process.env.STRIPE_PRICE_WB_ONETIME,
+      'wealth-builder-yearly': process.env.STRIPE_PRICE_WB_YEARLY,
     };
 
-    const priceKey = `${plan}-${billing || 'monthly'}`;
-    const priceId = priceMap[priceKey];
+    const priceId = priceMap[plan];
 
     if (!priceId) {
       return res.status(400).json({ error: 'Invalid plan selected. Please contact support.' });
@@ -169,27 +166,37 @@ router.post('/subscribe', (req, res) => {
     if (!process.env.STRIPE_SECRET_KEY || process.env.STRIPE_SECRET_KEY === 'sk_test_your_key_here') {
       return res.json({
         message: 'Stripe is not configured yet. Please set STRIPE_PRICE_* environment variables with your Stripe Price IDs.',
-        plan: priceKey
+        plan
       });
     }
 
     const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
     const baseUrl = process.env.BASE_URL || 'http://localhost:3000';
 
-    stripe.checkout.sessions.create({
+    // wealth-builder is one-time payment, wealth-builder-yearly is subscription
+    const mode = plan === 'wealth-builder' ? 'payment' : 'subscription';
+
+    const sessionConfig = {
       payment_method_types: ['card'],
-      mode: 'subscription',
+      mode,
       line_items: [{ price: priceId, quantity: 1 }],
       success_url: `${baseUrl}/membership/?success=true&plan=${plan}`,
       cancel_url: `${baseUrl}/membership/?canceled=true`,
       customer_email: email,
       allow_promotion_codes: true,
-      metadata: { plan, billing: billing || 'monthly' }
-    }).then(session => {
+      metadata: { plan }
+    };
+
+    // Add 3-day free trial for yearly subscription
+    if (plan === 'wealth-builder-yearly') {
+      sessionConfig.subscription_data = { trial_period_days: 3 };
+    }
+
+    stripe.checkout.sessions.create(sessionConfig).then(session => {
       res.json({ url: session.url });
     }).catch(err => {
-      logger.error('Subscription checkout error', { error: err.message });
-      res.status(500).json({ error: 'Failed to create subscription checkout. Please try again.' });
+      logger.error('Checkout error', { error: err.message });
+      res.status(500).json({ error: 'Failed to create checkout. Please try again.' });
     });
   } catch (err) {
     logger.error('Subscribe error', { error: err.message });

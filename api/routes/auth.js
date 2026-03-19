@@ -5,13 +5,26 @@ const { v4: uuidv4 } = require('uuid');
 const { getDb } = require('../database');
 const { generateToken, authenticate } = require('../middleware');
 const { logger } = require('../logger');
+const rateLimit = require('express-rate-limit');
+
+// Stricter rate limiting for auth endpoints
+const authLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 10,
+  message: { error: 'Too many authentication attempts, please try again later.' }
+});
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // Register
-router.post('/register', (req, res) => {
+router.post('/register', authLimiter, (req, res) => {
   try {
     const { email, password, name } = req.body;
     if (!email || !password) {
       return res.status(400).json({ error: 'Email and password are required' });
+    }
+    if (!EMAIL_REGEX.test(email)) {
+      return res.status(400).json({ error: 'Please provide a valid email address' });
     }
     if (password.length < 8) {
       return res.status(400).json({ error: 'Password must be at least 8 characters' });
@@ -41,11 +54,14 @@ router.post('/register', (req, res) => {
 });
 
 // Login
-router.post('/login', (req, res) => {
+router.post('/login', authLimiter, (req, res) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
       return res.status(400).json({ error: 'Email and password are required' });
+    }
+    if (!EMAIL_REGEX.test(email)) {
+      return res.status(400).json({ error: 'Please provide a valid email address' });
     }
 
     const db = getDb();

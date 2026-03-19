@@ -21,7 +21,13 @@ app.use(helmet({
   crossOriginEmbedderPolicy: false
 }));
 app.use(compression());
-app.use(cors());
+const allowedOrigins = process.env.CORS_ORIGINS
+  ? process.env.CORS_ORIGINS.split(',').map(o => o.trim())
+  : ['http://localhost:3000'];
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
 
 // Stripe webhooks need raw body BEFORE json parsing
 app.use('/api/products/webhook', express.raw({ type: 'application/json' }));
@@ -30,7 +36,7 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
 app.use(session({
-  secret: process.env.JWT_SECRET || 'toinvested-dev-secret-change-me',
+  secret: process.env.JWT_SECRET,
   resave: false,
   saveUninitialized: false,
   cookie: { secure: process.env.NODE_ENV === 'production', maxAge: 24 * 60 * 60 * 1000 }
