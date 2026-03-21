@@ -149,6 +149,18 @@ a:hover { color: #f0c760; }
   .article-body h2 { font-size: 1.3rem; }
   .related-grid { grid-template-columns: 1fr; }
 }
+/* PRODUCT RECS */
+.product-recs { background: rgba(30,40,60,.4); border: 1px solid rgba(212,168,67,.2); border-radius: 16px; padding: 32px; margin: 40px 0; }
+.product-recs h3 { color: #D4A843; margin: 0 0 20px; font-size: 1.15rem; }
+.product-recs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.product-rec-card { background: rgba(10,14,23,.6); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 20px; transition: border-color .2s; }
+.product-rec-card:hover { border-color: rgba(212,168,67,.4); }
+.product-rec-card .rec-tag { font-size: .7rem; color: #D4A843; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 8px; }
+.product-rec-card h4 { font-size: .95rem; color: #fff; margin-bottom: 6px; font-family: 'DM Sans', sans-serif; }
+.product-rec-card p { font-size: .8rem; color: #999; margin-bottom: 12px; line-height: 1.5; }
+.product-rec-card .rec-price { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: #D4A843; font-weight: 700; }
+.product-rec-card .rec-price s { color: #666; font-size: .85rem; margin-right: 6px; }
+.product-rec-card .rec-link { display: inline-block; margin-top: 10px; font-size: .8rem; color: #D4A843; font-weight: 600; }
 </style>
 </head>
 <body>
@@ -314,6 +326,26 @@ a:hover { color: #f0c760; }
           <li>Holding costs of $2,000-$4,000/month can destroy profits on slow projects</li>
           <li>Target minimum $30,000+ profit per flip to account for unexpected costs</li>
         </ul>
+      </div>
+
+      <div class="product-recs animate-on-scroll">
+        <h3>Recommended Tools for Your Journey</h3>
+        <div class="product-recs-grid">
+          <a href="/store/" class="product-rec-card">
+            <div class="rec-tag">Tool</div>
+            <h4>Real Estate Deal Analyzer Pro</h4>
+            <p>Spreadsheet toolkit for analyzing rentals, flips, and BRRRR deals with cash flow projections and ROI calculations.</p>
+            <div class="rec-price"><s>$49.99</s> $29.99</div>
+            <span class="rec-link">View in Store &rarr;</span>
+          </a>
+          <a href="/store/" class="product-rec-card">
+            <div class="rec-tag">Course</div>
+            <h4>Fix &amp; Flip Masterclass</h4>
+            <p>Complete video course on finding deals, managing renovations, and maximizing profit on fix and flip properties.</p>
+            <div class="rec-price"><s>$199.99</s> $149.99</div>
+            <span class="rec-link">View in Store &rarr;</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
