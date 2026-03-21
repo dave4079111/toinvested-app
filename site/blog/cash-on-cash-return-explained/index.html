@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cash-on-Cash Return Explained: Calculate Real Estate ROI | ToInvested</title>
+<meta name="description" content="Learn how to calculate cash-on-cash return and use it to evaluate rental property investments. Master the ROI formula that separates great deals from mediocre ones.">
+<meta property="og:title" content="Cash-on-Cash Return Explained: Calculate Real Estate ROI">
+<meta property="og:description" content="Learn how to calculate cash-on-cash return and use it to evaluate rental property investments. Master the ROI formula that separates great deals from mediocre ones.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://toinvested.com/blog/cash-on-cash-return-explained/">
+<meta property="og:image" content="https://toinvested.com/images/og-blog.jpg">
+<meta property="og:site_name" content="ToInvested">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cash-on-Cash Return Explained: Calculate Real Estate ROI">
+<meta name="twitter:description" content="Learn how to calculate cash-on-cash return and use it to evaluate rental property investments. Master the ROI formula that separates great deals from mediocre ones.">
+<meta name="twitter:image" content="https://toinvested.com/images/og-blog.jpg">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<link rel="canonical" href="https://toinvested.com/blog/cash-on-cash-return-explained/">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Cash-on-Cash Return Explained: Calculate Real Estate ROI",
+  "datePublished": "2026-03-15",
+  "dateModified": "2026-03-15",
+  "author": {"@type": "Person", "name": "David J. Moore"},
+  "publisher": {"@type": "Organization", "name": "ToInvested", "url": "https://toinvested.com", "logo": {"@type": "ImageObject", "url": "https://toinvested.com/logo.png"}},
+  "description": "Learn how to calculate cash-on-cash return and use it to evaluate rental property investments. Master the ROI formula that separates great deals from mediocre ones.",
+  "url": "https://toinvested.com/blog/cash-on-cash-return-explained/",
+  "mainEntityOfPage": {"@type": "WebPage", "@id": "https://toinvested.com/blog/cash-on-cash-return-explained/"}
+}
+</script>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 18px; }
+body { font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; background: #0A0E17; color: #E0E0E0; line-height: 1.7; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', Georgia, serif; color: #FFFFFF; line-height: 1.25; }
+a { color: #D4A843; text-decoration: none; transition: color .2s; }
+a:hover { color: #f0c760; }
+.gold { color: #D4A843; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* NAV */
+.nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 18px 0; transition: all .35s; }
+.nav.scrolled { background: rgba(10,14,23,.97); backdrop-filter: blur(12px); padding: 10px 0; box-shadow: 0 2px 24px rgba(0,0,0,.3); }
+.nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: #D4A843; }
+.nav-links { display: flex; list-style: none; gap: 28px; align-items: center; }
+.nav-links a { color: #ccc; font-size: .85rem; font-weight: 500; transition: color .2s; }
+.nav-links a:hover, .nav-links a.active { color: #D4A843; }
+.nav-cta { background: linear-gradient(135deg, #D4A843, #b8862e); color: #0A0E17 !important; padding: 8px 20px; border-radius: 8px; font-weight: 600; }
+.nav-cta:hover { background: linear-gradient(135deg, #f0c760, #D4A843); }
+.hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; transition: .3s; }
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+/* MOBILE DRAWER */
+.drawer-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 998; }
+.drawer-overlay.open { display: block; }
+.mobile-drawer { position: fixed; top: 0; right: -280px; width: 280px; height: 100vh; background: #111827; z-index: 999; padding: 80px 24px 24px; transition: right .3s; display: flex; flex-direction: column; gap: 8px; }
+.mobile-drawer.open { right: 0; }
+.mobile-drawer a { color: #ccc; font-size: 1rem; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+.mobile-drawer a:hover { color: #D4A843; }
+
+/* HERO */
+.blog-hero { padding: 160px 0 60px; position: relative; overflow: hidden; }
+.blog-hero::before { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(212,168,67,.08), transparent 70%); pointer-events: none; }
+.breadcrumb { font-size: .8rem; color: #888; margin-bottom: 16px; }
+.breadcrumb a { color: #D4A843; }
+.article-tag-hero { display: inline-block; background: rgba(212,168,67,.15); color: #D4A843; padding: 4px 14px; border-radius: 20px; font-size: .75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+.blog-hero h1 { font-size: 2.6rem; max-width: 800px; margin-bottom: 20px; }
+.article-meta-hero { display: flex; gap: 24px; color: #888; font-size: .85rem; flex-wrap: wrap; }
+
+/* ARTICLE */
+.article-content { padding: 60px 0 80px; }
+.article-body { max-width: 780px; margin: 0 auto; }
+.article-body h2 { font-size: 1.6rem; margin: 48px 0 20px; padding-bottom: 8px; border-bottom: 2px solid rgba(212,168,67,.2); }
+.article-body h3 { font-size: 1.2rem; margin: 32px 0 14px; color: #D4A843; }
+.article-body p { margin-bottom: 18px; color: #ccc; }
+.article-body ul, .article-body ol { margin: 0 0 20px 24px; color: #ccc; }
+.article-body li { margin-bottom: 8px; }
+.article-body strong { color: #fff; }
+
+/* KEY TAKEAWAYS */
+.key-takeaways { background: linear-gradient(135deg, rgba(212,168,67,.1), rgba(212,168,67,.03)); border: 1px solid rgba(212,168,67,.25); border-radius: 12px; padding: 28px 32px; margin: 40px 0; }
+.key-takeaways h3 { color: #D4A843; margin: 0 0 16px; font-size: 1.1rem; }
+.key-takeaways ul { list-style: none; padding: 0; margin: 0; }
+.key-takeaways li { padding: 6px 0 6px 24px; position: relative; color: #ccc; }
+.key-takeaways li::before { content: '✓'; position: absolute; left: 0; color: #D4A843; font-weight: 700; }
+
+/* CTA BOX */
+.cta-box { background: linear-gradient(135deg, #1a1f2e, #0f1420); border: 1px solid rgba(212,168,67,.3); border-radius: 16px; padding: 40px; text-align: center; margin: 50px 0; }
+.cta-box h3 { font-size: 1.4rem; margin-bottom: 12px; }
+.cta-box p { color: #aaa; margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto; }
+.cta-btn { display: inline-block; background: linear-gradient(135deg, #D4A843, #b8862e); color: #0A0E17; padding: 14px 36px; border-radius: 10px; font-weight: 700; font-size: 1rem; transition: transform .2s, box-shadow .2s; }
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(212,168,67,.3); color: #0A0E17; }
+
+/* RELATED */
+.related-section { padding: 60px 0 80px; border-top: 1px solid rgba(255,255,255,.06); }
+.related-section h2 { text-align: center; margin-bottom: 40px; font-size: 1.6rem; }
+.related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 900px; margin: 0 auto; }
+.related-card { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.06); border-radius: 12px; padding: 24px; transition: border-color .2s, transform .2s; }
+.related-card:hover { border-color: rgba(212,168,67,.3); transform: translateY(-4px); }
+.related-card h4 { font-size: 1rem; margin-bottom: 12px; line-height: 1.4; }
+.related-card .read-link { font-size: .85rem; color: #D4A843; font-weight: 600; }
+
+/* FOOTER */
+.footer { background: #060911; padding: 60px 0 30px; margin-top: 0; }
+.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 32px; margin-bottom: 40px; }
+.footer-col h4 { font-size: .85rem; color: #D4A843; margin-bottom: 14px; font-family: 'DM Sans', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
+.footer-col a { display: block; color: #888; font-size: .82rem; padding: 4px 0; transition: color .2s; }
+.footer-col a:hover { color: #D4A843; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.06); padding-top: 24px; text-align: center; }
+.footer-copy { font-size: .8rem; color: #555; }
+.footer-socials { margin: 12px 0; display: flex; justify-content: center; gap: 20px; }
+.footer-socials a { color: #666; font-size: .82rem; }
+.footer-disclosure { font-size: .7rem; color: #444; max-width: 700px; margin: 12px auto 0; line-height: 1.5; }
+
+/* FORMULA BOX */
+.formula-box { background: rgba(212,168,67,.08); border-left: 4px solid #D4A843; padding: 20px 24px; border-radius: 0 8px 8px 0; margin: 24px 0; font-family: monospace; font-size: .95rem; color: #f0c760; }
+
+/* TABLE */
+.comparison-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: .9rem; }
+.comparison-table th { background: rgba(212,168,67,.15); color: #D4A843; padding: 12px 16px; text-align: left; font-family: 'DM Sans', sans-serif; }
+.comparison-table td { padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,.06); color: #ccc; }
+.comparison-table tr:hover td { background: rgba(255,255,255,.02); }
+
+/* EXAMPLE BOX */
+.example-box { background: rgba(30,40,60,.5); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 24px; margin: 24px 0; }
+.example-box h4 { color: #D4A843; margin-bottom: 12px; font-family: 'DM Sans', sans-serif; font-size: .95rem; text-transform: uppercase; letter-spacing: .5px; }
+
+/* ANIMATIONS */
+.animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity .6s, transform .6s; }
+.animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hamburger { display: block; }
+  .blog-hero h1 { font-size: 1.8rem; }
+  .blog-hero { padding: 120px 0 40px; }
+  .article-body h2 { font-size: 1.3rem; }
+  .related-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">ToInvested</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/tools/">Tools</a></li>
+      <li><a href="/membership/">Membership</a></li>
+      <li><a href="/coaching/">Coaching</a></li>
+      <li><a href="/consulting/">Consulting</a></li>
+      <li><a href="/blog/" class="active">Blog</a></li>
+      <li><a href="/membership/" class="nav-cta">Get Started</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<div class="mobile-drawer" id="mobileDrawer">
+  <a href="/">Home</a><a href="/tools/">Tools</a><a href="/membership/">Membership</a><a href="/coaching/">Coaching</a><a href="/consulting/">Consulting</a><a href="/blog/">Blog</a><a href="/membership/" class="nav-cta">Get Started</a>
+</div>
+
+<section class="blog-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="/blog/">Blog</a> &rsaquo; Education</div>
+    <span class="article-tag-hero">Education</span>
+    <h1>Cash-on-Cash Return Explained: Calculate Real Estate ROI</h1>
+    <div class="article-meta-hero">
+      <span>By <strong>David J. Moore</strong></span>
+      <span>March 15, 2026</span>
+      <span>9 min read</span>
+    </div>
+  </div>
+</section>
+
+<section class="article-content">
+  <div class="container">
+    <div class="article-body">
+      <p>Cash-on-cash return is <strong>the single most important metric</strong> for rental property investors. It tells you exactly how much income you earn relative to the actual cash you invested — not the total property value, not the bank's money, but <em>your</em> money.</p>
+
+      <p>Unlike cap rate, which ignores financing, cash-on-cash return reflects the reality of leveraged investing. In this guide, we'll break down the formula, walk through real examples, and show you how to use this metric to spot winning deals.</p>
+
+      <h2>What Is Cash-on-Cash Return?</h2>
+
+      <p>Cash-on-cash return (CoC) measures the annual pre-tax cash flow generated by a property relative to the total cash you invested out of pocket. It answers a simple question: <strong>"For every dollar I put in, how many cents am I earning back each year?"</strong></p>
+
+      <div class="formula-box">
+        Cash-on-Cash Return = Annual Pre-Tax Cash Flow ÷ Total Cash Invested × 100
+      </div>
+
+      <p>This metric is especially powerful because it accounts for your financing terms. Two identical properties can produce wildly different CoC returns depending on your down payment, interest rate, and loan structure.</p>
+
+      <h2>How to Calculate Cash-on-Cash Return</h2>
+
+      <h3>Step 1: Calculate Annual Pre-Tax Cash Flow</h3>
+      <p>Start with your gross rental income and subtract all expenses:</p>
+      <ul>
+        <li><strong>Gross rental income</strong> — total annual rent collected</li>
+        <li><strong>Vacancy allowance</strong> — typically 5-8% of gross rent</li>
+        <li><strong>Operating expenses</strong> — property taxes, insurance, maintenance, property management, utilities, HOA</li>
+        <li><strong>Debt service</strong> — annual mortgage payments (principal + interest)</li>
+      </ul>
+      <p>The result is your Net Operating Income minus debt service = <strong>Annual Pre-Tax Cash Flow</strong>.</p>
+
+      <h3>Step 2: Calculate Total Cash Invested</h3>
+      <p>Add up every dollar that came out of your pocket:</p>
+      <ul>
+        <li><strong>Down payment</strong></li>
+        <li><strong>Closing costs</strong> — typically 2-5% of purchase price</li>
+        <li><strong>Renovation costs</strong> — any upfront repairs or improvements</li>
+        <li><strong>Reserves</strong> — initial cash set aside for the property</li>
+      </ul>
+
+      <h3>Step 3: Divide and Multiply</h3>
+
+      <div class="example-box">
+        <h4>Real-World Example</h4>
+        <p><strong>Purchase price:</strong> $200,000 | <strong>Down payment (25%):</strong> $50,000 | <strong>Closing costs:</strong> $6,000 | <strong>Repairs:</strong> $4,000</p>
+        <p><strong>Total Cash Invested:</strong> $60,000</p>
+        <p><strong>Monthly rent:</strong> $1,800 | <strong>Annual gross rent:</strong> $21,600</p>
+        <p><strong>Vacancy (5%):</strong> -$1,080 | <strong>Operating expenses:</strong> -$7,200 | <strong>Annual mortgage:</strong> -$9,600</p>
+        <p><strong>Annual Pre-Tax Cash Flow:</strong> $3,720</p>
+        <p><strong>Cash-on-Cash Return:</strong> $3,720 ÷ $60,000 = <strong class="gold">6.2%</strong></p>
+      </div>
+
+      <h2>What Is a Good Cash-on-Cash Return?</h2>
+
+      <p>The answer depends on your market and strategy, but here are general benchmarks:</p>
+
+      <table class="comparison-table">
+        <thead><tr><th>CoC Return</th><th>Rating</th><th>Context</th></tr></thead>
+        <tbody>
+          <tr><td>< 4%</td><td>Below Average</td><td>May not justify the effort and risk vs passive investments</td></tr>
+          <tr><td>4-6%</td><td>Acceptable</td><td>Common in expensive coastal markets with strong appreciation</td></tr>
+          <tr><td>6-10%</td><td>Good</td><td>Sweet spot for most buy-and-hold investors</td></tr>
+          <tr><td>10-15%</td><td>Excellent</td><td>Achievable in Midwest and Southern markets</td></tr>
+          <tr><td>15%+</td><td>Outstanding</td><td>Often involves value-add or creative financing strategies</td></tr>
+        </tbody>
+      </table>
+
+      <p>Remember: <strong>a lower CoC return in an appreciating market</strong> (like Austin or Nashville) might outperform a higher CoC return in a stagnant market when you factor in equity growth.</p>
+
+      <h2>Cash-on-Cash Return vs. Other Metrics</h2>
+
+      <h3>CoC Return vs. Cap Rate</h3>
+      <p><a href="/blog/cap-rate-explained/">Cap rate</a> ignores financing entirely — it divides NOI by purchase price. This makes it useful for comparing properties on a level playing field, but it doesn't reflect YOUR actual return. CoC return factors in your specific loan terms, making it more personally relevant.</p>
+
+      <h3>CoC Return vs. Total ROI</h3>
+      <p>Total ROI includes appreciation, mortgage paydown, and tax benefits. CoC return only measures cash flow, making it more conservative but more immediately tangible. Many investors use CoC as their primary screening metric, then calculate total ROI for final decisions.</p>
+
+      <h3>CoC Return vs. IRR</h3>
+      <p>Internal rate of return (IRR) accounts for the time value of money across a projected holding period. CoC return is a snapshot of year-one performance. Both have their place — use CoC for quick deal screening and IRR for long-term hold analysis.</p>
+
+      <h2>How to Improve Your Cash-on-Cash Return</h2>
+
+      <p>There are several levers you can pull:</p>
+      <ul>
+        <li><strong>Negotiate a lower purchase price</strong> — every dollar saved increases your return</li>
+        <li><strong>Increase rent</strong> — renovations, better marketing, or adding amenities</li>
+        <li><strong>Reduce expenses</strong> — shop insurance, contest property taxes, self-manage</li>
+        <li><strong>Use better financing</strong> — lower rates, higher leverage, or <a href="/blog/creative-financing-real-estate/">creative financing</a></li>
+        <li><strong>Add income streams</strong> — laundry, parking, storage, pet rent</li>
+        <li><strong>House hack</strong> — live in one unit to eliminate your housing expense (<a href="/blog/house-hacking-guide/">see our guide</a>)</li>
+      </ul>
+
+      <h2>Common Cash-on-Cash Mistakes</h2>
+
+      <ol>
+        <li><strong>Forgetting closing costs</strong> — these can be $5,000-$15,000 and dramatically affect your return</li>
+        <li><strong>Ignoring vacancy</strong> — no property stays 100% occupied forever</li>
+        <li><strong>Underestimating maintenance</strong> — budget 5-10% of rent for repairs and CapEx</li>
+        <li><strong>Using pro-forma rents</strong> — base calculations on actual market rents, not wishful thinking</li>
+        <li><strong>Not accounting for property management</strong> — even if you self-manage, your time has value</li>
+      </ol>
+
+      <h2>Using AI to Calculate Cash-on-Cash Return Instantly</h2>
+
+      <p>Manually calculating CoC return for dozens of properties is tedious. Our <a href="/property-analyzer/">AI Property Analyzer</a> does it automatically — just enter the address and it pulls comps, estimates rent, and calculates your projected CoC return in seconds.</p>
+
+      <div class="key-takeaways">
+        <h3>Key Takeaways</h3>
+        <ul>
+          <li>Cash-on-cash return measures your actual return on invested cash, accounting for financing</li>
+          <li>A good CoC return is typically 6-10% for buy-and-hold, though market context matters</li>
+          <li>Always include closing costs, vacancy, and maintenance in your calculations</li>
+          <li>Use CoC return for quick screening, then layer in appreciation and tax benefits for final analysis</li>
+          <li>Leverage, value-add renovations, and creative financing can significantly boost your CoC return</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="article-content" style="padding-top: 0;">
+  <div class="container">
+    <div class="article-body">
+      <div class="cta-box animate-on-scroll">
+        <h3>Run the Numbers on Any Deal</h3>
+        <p>Use our AI-powered tools to make smarter investment decisions.</p>
+        <a href="/property-analyzer/" class="cta-btn">Try It Free &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="related-section">
+  <div class="container">
+    <h2>Related <span class="gold">Articles</span></h2>
+    <div class="related-grid">
+      <a href="/blog/cap-rate-explained/" class="related-card animate-on-scroll">
+        <h4>Cap Rate Explained: What Every Investor Must Know</h4>
+        <span class="read-link">Read More &rarr;</span>
+      </a>
+      <a href="/blog/analyze-rental-property-fast/" class="related-card animate-on-scroll">
+        <h4>How to Analyze a Rental Property in Under 10 Minutes</h4>
+        <span class="read-link">Read More &rarr;</span>
+      </a>
+      <a href="/blog/rental-property-vs-stock-market/" class="related-card animate-on-scroll">
+        <h4>Rental Property vs Stock Market: Which Builds More Wealth?</h4>
+        <span class="read-link">Read More &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col"><h4>AI Tools</h4><a href="/property-analyzer/">Property Analyzer</a><a href="/flip-analyzer/">Fix &amp; Flip Analyzer</a><a href="/brrrr-analyzer/">BRRRR Analyzer</a><a href="/renovation-analyzer/">Renovation Analyzer</a><a href="/stock-analyzer/">Stock Analyzer</a><a href="/bitcoin-analyzer/">Bitcoin Analyzer</a></div>
+      <div class="footer-col"><h4>Wealth Protection</h4><a href="/tax-strategy/">Tax Strategy</a><a href="/legal-protection/">Legal Protection</a><a href="/life-insurance/">Life Insurance</a><a href="/probate/">Probate</a></div>
+      <div class="footer-col"><h4>Education</h4><a href="/education/">Education Hub</a><a href="/coaching/">Coaching</a><a href="/blog/">Blog</a><a href="/store/">Store</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="/about/">About</a><a href="/consulting/">Consulting</a><a href="/contact/">Contact</a></div>
+      <div class="footer-col"><h4>Legal</h4><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a></div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 ToInvested &mdash; A YPN Inc Company. All rights reserved.</p>
+      <div class="footer-socials"><a href="https://www.linkedin.com/company/toinvested" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.youtube.com/@toinvested" target="_blank" rel="noopener noreferrer">YouTube</a><a href="https://twitter.com/toinvested" target="_blank" rel="noopener noreferrer">X</a></div>
+      <p class="footer-disclosure">ToInvested.com is a participant in the Amazon Services LLC Associates Program. Investment analysis results are for educational purposes only and do not constitute financial advice.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function() { nav.classList.toggle('scrolled', window.scrollY > 60); }, { passive: true });
+  var hamburger = document.getElementById('hamburger'), drawer = document.getElementById('mobileDrawer'), overlay = document.getElementById('drawerOverlay');
+  function openDrawer() { hamburger.classList.add('active'); drawer.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeDrawer() { hamburger.classList.remove('active'); drawer.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; }
+  hamburger.addEventListener('click', function() { drawer.classList.contains('open') ? closeDrawer() : openDrawer(); });
+  overlay.addEventListener('click', closeDrawer);
+  var links = drawer.querySelectorAll('a'); for (var i = 0; i < links.length; i++) links[i].addEventListener('click', closeDrawer);
+  var els = document.querySelectorAll('.animate-on-scroll');
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function(entries) { entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, { threshold: 0.12 });
+    els.forEach(function(el) { obs.observe(el); });
+  } else { els.forEach(function(el) { el.classList.add('visible'); }); }
+})();
+</script>
+<script src="/js/toinvested.js"></script>
+</body>
+</html>

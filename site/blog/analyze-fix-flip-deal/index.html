@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Analyze a Fix &amp; Flip Deal Like a Pro | ToInvested</title>
+<meta name="description" content="Learn how to analyze fix and flip deals using the 70% rule, ARV, rehab cost estimation, and holding costs. Avoid costly mistakes with our step-by-step guide.">
+<meta property="og:title" content="How to Analyze a Fix &amp; Flip Deal Like a Pro">
+<meta property="og:description" content="Learn how to analyze fix and flip deals using the 70% rule, ARV, rehab cost estimation, and holding costs. Avoid costly mistakes with our step-by-step guide.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://toinvested.com/blog/analyze-fix-flip-deal/">
+<meta property="og:image" content="https://toinvested.com/images/og-blog.jpg">
+<meta property="og:site_name" content="ToInvested">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How to Analyze a Fix &amp; Flip Deal Like a Pro">
+<meta name="twitter:description" content="Learn how to analyze fix and flip deals using the 70% rule, ARV, rehab cost estimation, and holding costs. Avoid costly mistakes with our step-by-step guide.">
+<meta name="twitter:image" content="https://toinvested.com/images/og-blog.jpg">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<link rel="canonical" href="https://toinvested.com/blog/analyze-fix-flip-deal/">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How to Analyze a Fix &amp; Flip Deal Like a Pro",
+  "datePublished": "2026-02-24",
+  "dateModified": "2026-02-24",
+  "author": {"@type": "Person", "name": "David J. Moore"},
+  "publisher": {"@type": "Organization", "name": "ToInvested", "url": "https://toinvested.com", "logo": {"@type": "ImageObject", "url": "https://toinvested.com/logo.png"}},
+  "description": "Learn how to analyze fix and flip deals using the 70% rule, ARV, rehab cost estimation, and holding costs. Avoid costly mistakes with our step-by-step guide.",
+  "url": "https://toinvested.com/blog/analyze-fix-flip-deal/",
+  "mainEntityOfPage": {"@type": "WebPage", "@id": "https://toinvested.com/blog/analyze-fix-flip-deal/"}
+}
+</script>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 18px; }
+body { font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; background: #0A0E17; color: #E0E0E0; line-height: 1.7; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', Georgia, serif; color: #FFFFFF; line-height: 1.25; }
+a { color: #D4A843; text-decoration: none; transition: color .2s; }
+a:hover { color: #f0c760; }
+.gold { color: #D4A843; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* NAV */
+.nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 18px 0; transition: all .35s; }
+.nav.scrolled { background: rgba(10,14,23,.97); backdrop-filter: blur(12px); padding: 10px 0; box-shadow: 0 2px 24px rgba(0,0,0,.3); }
+.nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: #D4A843; }
+.nav-links { display: flex; list-style: none; gap: 28px; align-items: center; }
+.nav-links a { color: #ccc; font-size: .85rem; font-weight: 500; transition: color .2s; }
+.nav-links a:hover, .nav-links a.active { color: #D4A843; }
+.nav-cta { background: linear-gradient(135deg, #D4A843, #b8862e); color: #0A0E17 !important; padding: 8px 20px; border-radius: 8px; font-weight: 600; }
+.nav-cta:hover { background: linear-gradient(135deg, #f0c760, #D4A843); }
+.hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; transition: .3s; }
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+/* MOBILE DRAWER */
+.drawer-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 998; }
+.drawer-overlay.open { display: block; }
+.mobile-drawer { position: fixed; top: 0; right: -280px; width: 280px; height: 100vh; background: #111827; z-index: 999; padding: 80px 24px 24px; transition: right .3s; display: flex; flex-direction: column; gap: 8px; }
+.mobile-drawer.open { right: 0; }
+.mobile-drawer a { color: #ccc; font-size: 1rem; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,.06); }
+.mobile-drawer a:hover { color: #D4A843; }
+
+/* HERO */
+.blog-hero { padding: 160px 0 60px; position: relative; overflow: hidden; }
+.blog-hero::before { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(212,168,67,.08), transparent 70%); pointer-events: none; }
+.breadcrumb { font-size: .8rem; color: #888; margin-bottom: 16px; }
+.breadcrumb a { color: #D4A843; }
+.article-tag-hero { display: inline-block; background: rgba(212,168,67,.15); color: #D4A843; padding: 4px 14px; border-radius: 20px; font-size: .75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+.blog-hero h1 { font-size: 2.6rem; max-width: 800px; margin-bottom: 20px; }
+.article-meta-hero { display: flex; gap: 24px; color: #888; font-size: .85rem; flex-wrap: wrap; }
+
+/* ARTICLE */
+.article-content { padding: 60px 0 80px; }
+.article-body { max-width: 780px; margin: 0 auto; }
+.article-body h2 { font-size: 1.6rem; margin: 48px 0 20px; padding-bottom: 8px; border-bottom: 2px solid rgba(212,168,67,.2); }
+.article-body h3 { font-size: 1.2rem; margin: 32px 0 14px; color: #D4A843; }
+.article-body p { margin-bottom: 18px; color: #ccc; }
+.article-body ul, .article-body ol { margin: 0 0 20px 24px; color: #ccc; }
+.article-body li { margin-bottom: 8px; }
+.article-body strong { color: #fff; }
+
+/* KEY TAKEAWAYS */
+.key-takeaways { background: linear-gradient(135deg, rgba(212,168,67,.1), rgba(212,168,67,.03)); border: 1px solid rgba(212,168,67,.25); border-radius: 12px; padding: 28px 32px; margin: 40px 0; }
+.key-takeaways h3 { color: #D4A843; margin: 0 0 16px; font-size: 1.1rem; }
+.key-takeaways ul { list-style: none; padding: 0; margin: 0; }
+.key-takeaways li { padding: 6px 0 6px 24px; position: relative; color: #ccc; }
+.key-takeaways li::before { content: '✓'; position: absolute; left: 0; color: #D4A843; font-weight: 700; }
+
+/* CTA BOX */
+.cta-box { background: linear-gradient(135deg, #1a1f2e, #0f1420); border: 1px solid rgba(212,168,67,.3); border-radius: 16px; padding: 40px; text-align: center; margin: 50px 0; }
+.cta-box h3 { font-size: 1.4rem; margin-bottom: 12px; }
+.cta-box p { color: #aaa; margin-bottom: 24px; max-width: 500px; margin-left: auto; margin-right: auto; }
+.cta-btn { display: inline-block; background: linear-gradient(135deg, #D4A843, #b8862e); color: #0A0E17; padding: 14px 36px; border-radius: 10px; font-weight: 700; font-size: 1rem; transition: transform .2s, box-shadow .2s; }
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(212,168,67,.3); color: #0A0E17; }
+
+/* RELATED */
+.related-section { padding: 60px 0 80px; border-top: 1px solid rgba(255,255,255,.06); }
+.related-section h2 { text-align: center; margin-bottom: 40px; font-size: 1.6rem; }
+.related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 900px; margin: 0 auto; }
+.related-card { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.06); border-radius: 12px; padding: 24px; transition: border-color .2s, transform .2s; }
+.related-card:hover { border-color: rgba(212,168,67,.3); transform: translateY(-4px); }
+.related-card h4 { font-size: 1rem; margin-bottom: 12px; line-height: 1.4; }
+.related-card .read-link { font-size: .85rem; color: #D4A843; font-weight: 600; }
+
+/* FOOTER */
+.footer { background: #060911; padding: 60px 0 30px; margin-top: 0; }
+.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 32px; margin-bottom: 40px; }
+.footer-col h4 { font-size: .85rem; color: #D4A843; margin-bottom: 14px; font-family: 'DM Sans', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
+.footer-col a { display: block; color: #888; font-size: .82rem; padding: 4px 0; transition: color .2s; }
+.footer-col a:hover { color: #D4A843; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,.06); padding-top: 24px; text-align: center; }
+.footer-copy { font-size: .8rem; color: #555; }
+.footer-socials { margin: 12px 0; display: flex; justify-content: center; gap: 20px; }
+.footer-socials a { color: #666; font-size: .82rem; }
+.footer-disclosure { font-size: .7rem; color: #444; max-width: 700px; margin: 12px auto 0; line-height: 1.5; }
+
+/* FORMULA BOX */
+.formula-box { background: rgba(212,168,67,.08); border-left: 4px solid #D4A843; padding: 20px 24px; border-radius: 0 8px 8px 0; margin: 24px 0; font-family: monospace; font-size: .95rem; color: #f0c760; }
+
+/* TABLE */
+.comparison-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: .9rem; }
+.comparison-table th { background: rgba(212,168,67,.15); color: #D4A843; padding: 12px 16px; text-align: left; font-family: 'DM Sans', sans-serif; }
+.comparison-table td { padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,.06); color: #ccc; }
+.comparison-table tr:hover td { background: rgba(255,255,255,.02); }
+
+/* EXAMPLE BOX */
+.example-box { background: rgba(30,40,60,.5); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 24px; margin: 24px 0; }
+.example-box h4 { color: #D4A843; margin-bottom: 12px; font-family: 'DM Sans', sans-serif; font-size: .95rem; text-transform: uppercase; letter-spacing: .5px; }
+
+/* ANIMATIONS */
+.animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity .6s, transform .6s; }
+.animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hamburger { display: block; }
+  .blog-hero h1 { font-size: 1.8rem; }
+  .blog-hero { padding: 120px 0 40px; }
+  .article-body h2 { font-size: 1.3rem; }
+  .related-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">ToInvested</a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/tools/">Tools</a></li>
+      <li><a href="/membership/">Membership</a></li>
+      <li><a href="/coaching/">Coaching</a></li>
+      <li><a href="/consulting/">Consulting</a></li>
+      <li><a href="/blog/" class="active">Blog</a></li>
+      <li><a href="/membership/" class="nav-cta">Get Started</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<div class="mobile-drawer" id="mobileDrawer">
+  <a href="/">Home</a><a href="/tools/">Tools</a><a href="/membership/">Membership</a><a href="/coaching/">Coaching</a><a href="/consulting/">Consulting</a><a href="/blog/">Blog</a><a href="/membership/" class="nav-cta">Get Started</a>
+</div>
+
+<section class="blog-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="/blog/">Blog</a> &rsaquo; Strategy</div>
+    <span class="article-tag-hero">Strategy</span>
+    <h1>How to Analyze a Fix &amp; Flip Deal Like a Pro</h1>
+    <div class="article-meta-hero">
+      <span>By <strong>David J. Moore</strong></span>
+      <span>February 24, 2026</span>
+      <span>10 min read</span>
+    </div>
+  </div>
+</section>
+
+<section class="article-content">
+  <div class="container">
+    <div class="article-body">
+      <p>Fix and flip investing can be incredibly profitable — or devastatingly expensive. The difference comes down to analysis. A great flipper doesn't just have good design taste; they have <strong>airtight numbers</strong> before they ever swing a hammer.</p>
+
+      <h2>The 70% Rule: Your First Filter</h2>
+
+      <p>The 70% rule is the quickest way to screen a flip deal:</p>
+
+      <div class="formula-box">
+        Maximum Purchase Price = (ARV × 70%) - Repair Costs
+      </div>
+
+      <p><strong>ARV (After Repair Value)</strong> is what the property will be worth after renovations, based on comparable sales. The 30% margin covers your holding costs, selling costs, and profit.</p>
+
+      <div class="example-box">
+        <h4>70% Rule Example</h4>
+        <p><strong>ARV:</strong> $350,000</p>
+        <p><strong>Estimated repairs:</strong> $60,000</p>
+        <p><strong>Max purchase price:</strong> ($350,000 × 0.70) - $60,000 = <strong class="gold">$185,000</strong></p>
+        <p>If you can buy for $185K or less, the deal has solid profit potential.</p>
+      </div>
+
+      <h2>Step 1: Determine the After Repair Value (ARV)</h2>
+
+      <p>ARV is the foundation of every flip analysis. Get this wrong, and nothing else matters.</p>
+      <ul>
+        <li><strong>Pull comparable sales</strong> — find 3-5 similar renovated homes that sold within 6 months and 0.5 miles</li>
+        <li><strong>Match condition level</strong> — your comps should reflect the same renovation quality you plan</li>
+        <li><strong>Adjust for differences</strong> — add/subtract for bedrooms, bathrooms, square footage, lot size</li>
+        <li><strong>Be conservative</strong> — use the median, not the highest comp. Markets can shift during your renovation</li>
+      </ul>
+      <p>Use our <a href="/flip-analyzer/">Fix &amp; Flip Analyzer</a> to pull comps and estimate ARV instantly with AI.</p>
+
+      <h2>Step 2: Estimate Repair Costs</h2>
+
+      <p>Walk the property with a contractor (or develop your own cost knowledge) and estimate every item:</p>
+
+      <table class="comparison-table">
+        <thead><tr><th>Renovation Item</th><th>Typical Cost Range</th></tr></thead>
+        <tbody>
+          <tr><td>Kitchen remodel (mid-range)</td><td>$15,000 - $35,000</td></tr>
+          <tr><td>Bathroom remodel</td><td>$5,000 - $15,000 each</td></tr>
+          <tr><td>Flooring (whole house)</td><td>$5,000 - $12,000</td></tr>
+          <tr><td>Interior paint</td><td>$3,000 - $6,000</td></tr>
+          <tr><td>Roof replacement</td><td>$8,000 - $15,000</td></tr>
+          <tr><td>HVAC replacement</td><td>$5,000 - $10,000</td></tr>
+          <tr><td>Electrical update</td><td>$3,000 - $8,000</td></tr>
+          <tr><td>Plumbing repair</td><td>$2,000 - $8,000</td></tr>
+          <tr><td>Foundation repair</td><td>$5,000 - $25,000+</td></tr>
+          <tr><td>Landscaping</td><td>$2,000 - $5,000</td></tr>
+        </tbody>
+      </table>
+
+      <p><strong>Pro tip:</strong> Add a 10-15% contingency buffer. Every flip has surprises — hidden water damage, outdated wiring, or structural issues you couldn't see during the initial walkthrough.</p>
+
+      <h2>Step 3: Calculate Holding Costs</h2>
+
+      <p>Holding costs are the silent killer of flip profits. Every month you hold the property, these expenses pile up:</p>
+      <ul>
+        <li><strong>Mortgage/hard money interest</strong> — often $1,000-$2,500/month on a <a href="/blog/hard-money-vs-dscr/">hard money loan</a></li>
+        <li><strong>Property taxes</strong> — prorated monthly</li>
+        <li><strong>Insurance</strong> — builder's risk or vacant property policy</li>
+        <li><strong>Utilities</strong> — electric, water, gas during renovation</li>
+        <li><strong>HOA fees</strong> — if applicable</li>
+      </ul>
+
+      <div class="example-box">
+        <h4>Holding Cost Example (6-Month Hold)</h4>
+        <p><strong>Hard money interest:</strong> $1,800/mo × 6 = $10,800</p>
+        <p><strong>Property taxes:</strong> $350/mo × 6 = $2,100</p>
+        <p><strong>Insurance:</strong> $150/mo × 6 = $900</p>
+        <p><strong>Utilities:</strong> $200/mo × 6 = $1,200</p>
+        <p><strong>Total holding costs:</strong> <strong class="gold">$15,000</strong></p>
+      </div>
+
+      <h2>Step 4: Calculate Selling Costs</h2>
+
+      <ul>
+        <li><strong>Agent commissions:</strong> 5-6% of sale price</li>
+        <li><strong>Closing costs:</strong> 1-2% (title, transfer taxes, etc.)</li>
+        <li><strong>Staging:</strong> $2,000-$5,000 (optional but recommended)</li>
+        <li><strong>Seller concessions:</strong> 0-3% (buyer may request credits)</li>
+      </ul>
+      <p>On a $350,000 sale, expect $21,000-$28,000 in selling costs.</p>
+
+      <h2>Step 5: Calculate Your Profit</h2>
+
+      <div class="example-box">
+        <h4>Complete Flip Analysis</h4>
+        <p><strong>ARV (sale price):</strong> $350,000</p>
+        <p><strong>Purchase price:</strong> -$185,000</p>
+        <p><strong>Renovation costs:</strong> -$60,000</p>
+        <p><strong>Holding costs (6 months):</strong> -$15,000</p>
+        <p><strong>Selling costs (7%):</strong> -$24,500</p>
+        <p><strong>Acquisition costs (2%):</strong> -$3,700</p>
+        <p><strong>Net profit:</strong> <strong class="gold">$61,800</strong></p>
+        <p><strong>ROI:</strong> $61,800 ÷ $248,700 (total invested) = <strong>24.8%</strong> in 6 months</p>
+      </div>
+
+      <h2>Red Flags: When to Walk Away</h2>
+
+      <ol>
+        <li><strong>Foundation issues</strong> — unpredictable costs that can blow your budget</li>
+        <li><strong>Environmental hazards</strong> — asbestos, lead paint, mold remediation is expensive</li>
+        <li><strong>Zoning or permitting problems</strong> — verify before buying</li>
+        <li><strong>Thin margins</strong> — if profit is under $30,000, one surprise can wipe you out</li>
+        <li><strong>Declining market</strong> — your ARV may be lower by the time you sell</li>
+      </ol>
+
+      <h2>Exit Strategies Beyond Selling</h2>
+
+      <p>Smart flippers always have a backup plan:</p>
+      <ul>
+        <li><strong>Rent it out</strong> — if the market softens, hold as a rental until conditions improve</li>
+        <li><strong>BRRRR it</strong> — refinance based on the new ARV and keep as a long-term rental (<a href="/blog/brrrr-strategy-explained/">learn more</a>)</li>
+        <li><strong>Seller financing</strong> — sell with owner financing for ongoing income and higher total return</li>
+      </ul>
+
+      <div class="key-takeaways">
+        <h3>Key Takeaways</h3>
+        <ul>
+          <li>Use the 70% rule for quick deal screening: Max Price = (ARV × 70%) - Repairs</li>
+          <li>Always get 3-5 comparable sales to verify ARV — conservative is better</li>
+          <li>Budget 10-15% contingency above your renovation estimate</li>
+          <li>Holding costs of $2,000-$4,000/month can destroy profits on slow projects</li>
+          <li>Target minimum $30,000+ profit per flip to account for unexpected costs</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="article-content" style="padding-top: 0;">
+  <div class="container">
+    <div class="article-body">
+      <div class="cta-box animate-on-scroll">
+        <h3>Analyze Your Next Flip Deal</h3>
+        <p>Use our AI-powered tools to make smarter investment decisions.</p>
+        <a href="/flip-analyzer/" class="cta-btn">Try It Free &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="related-section">
+  <div class="container">
+    <h2>Related <span class="gold">Articles</span></h2>
+    <div class="related-grid">
+      <a href="/blog/brrrr-strategy-explained/" class="related-card animate-on-scroll">
+        <h4>BRRRR Strategy Explained: Build Wealth on Repeat</h4>
+        <span class="read-link">Read More &rarr;</span>
+      </a>
+      <a href="/blog/hard-money-vs-dscr/" class="related-card animate-on-scroll">
+        <h4>Hard Money vs. DSCR Loans</h4>
+        <span class="read-link">Read More &rarr;</span>
+      </a>
+      <a href="/blog/creative-financing-real-estate/" class="related-card animate-on-scroll">
+        <h4>Creative Financing for Real Estate</h4>
+        <span class="read-link">Read More &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col"><h4>AI Tools</h4><a href="/property-analyzer/">Property Analyzer</a><a href="/flip-analyzer/">Fix &amp; Flip Analyzer</a><a href="/brrrr-analyzer/">BRRRR Analyzer</a><a href="/renovation-analyzer/">Renovation Analyzer</a><a href="/stock-analyzer/">Stock Analyzer</a><a href="/bitcoin-analyzer/">Bitcoin Analyzer</a></div>
+      <div class="footer-col"><h4>Wealth Protection</h4><a href="/tax-strategy/">Tax Strategy</a><a href="/legal-protection/">Legal Protection</a><a href="/life-insurance/">Life Insurance</a><a href="/probate/">Probate</a></div>
+      <div class="footer-col"><h4>Education</h4><a href="/education/">Education Hub</a><a href="/coaching/">Coaching</a><a href="/blog/">Blog</a><a href="/store/">Store</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="/about/">About</a><a href="/consulting/">Consulting</a><a href="/contact/">Contact</a></div>
+      <div class="footer-col"><h4>Legal</h4><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms of Service</a></div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 ToInvested &mdash; A YPN Inc Company. All rights reserved.</p>
+      <div class="footer-socials"><a href="https://www.linkedin.com/company/toinvested" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.youtube.com/@toinvested" target="_blank" rel="noopener noreferrer">YouTube</a><a href="https://twitter.com/toinvested" target="_blank" rel="noopener noreferrer">X</a></div>
+      <p class="footer-disclosure">ToInvested.com is a participant in the Amazon Services LLC Associates Program. Investment analysis results are for educational purposes only and do not constitute financial advice.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function() { nav.classList.toggle('scrolled', window.scrollY > 60); }, { passive: true });
+  var hamburger = document.getElementById('hamburger'), drawer = document.getElementById('mobileDrawer'), overlay = document.getElementById('drawerOverlay');
+  function openDrawer() { hamburger.classList.add('active'); drawer.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeDrawer() { hamburger.classList.remove('active'); drawer.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; }
+  hamburger.addEventListener('click', function() { drawer.classList.contains('open') ? closeDrawer() : openDrawer(); });
+  overlay.addEventListener('click', closeDrawer);
+  var links = drawer.querySelectorAll('a'); for (var i = 0; i < links.length; i++) links[i].addEventListener('click', closeDrawer);
+  var els = document.querySelectorAll('.animate-on-scroll');
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function(entries) { entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, { threshold: 0.12 });
+    els.forEach(function(el) { obs.observe(el); });
+  } else { els.forEach(function(el) { el.classList.add('visible'); }); }
+})();
+</script>
+<script src="/js/toinvested.js"></script>
+</body>
+</html>

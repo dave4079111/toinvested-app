@@ -269,6 +269,126 @@ function seedPosts(db) {
       excerpt: 'A balanced analysis of both asset classes to help you build a diversified investment portfolio.',
       category: 'investing', tags: JSON.stringify(['bitcoin', 'real-estate', 'comparison']),
       status: 'published', published_at: new Date().toISOString()
+    },
+    {
+      id: uuidv4(), title: 'Cash-on-Cash Return Explained: Calculate Real Estate ROI',
+      slug: 'cash-on-cash-return-explained',
+      content: `<h2>What Is Cash-on-Cash Return?</h2><p>Cash-on-cash return measures the annual return on the actual cash you invested in a property. Unlike cap rate, CoC accounts for financing and gives you a true picture of your investment performance.</p><h3>The Formula</h3><p>CoC Return = Annual Pre-Tax Cash Flow / Total Cash Invested x 100</p><h3>What Is a Good Cash-on-Cash Return?</h3><p>Most investors target 8-12% CoC for rental properties. Value-add deals may target 15%+ after stabilization.</p>`,
+      excerpt: 'Learn how to calculate cash-on-cash return and use it to evaluate rental property investments like a professional real estate investor.',
+      category: 'education', tags: JSON.stringify(['cash-on-cash', 'roi', 'metrics']),
+      status: 'published', published_at: '2026-03-15T00:00:00.000Z'
+    },
+    {
+      id: uuidv4(), title: 'What Is a 1031 Exchange? Tax-Free Real Estate Investing',
+      slug: 'what-is-1031-exchange',
+      content: `<h2>Understanding 1031 Exchanges</h2><p>A 1031 exchange allows real estate investors to defer capital gains taxes by reinvesting proceeds from a property sale into a like-kind property.</p><h3>Key Rules</h3><p>You must identify replacement properties within 45 days and close within 180 days. A qualified intermediary must hold the funds.</p>`,
+      excerpt: 'Master the 1031 exchange to defer capital gains taxes and grow your real estate portfolio faster with this complete guide.',
+      category: 'tax-strategy', tags: JSON.stringify(['1031-exchange', 'tax-strategy', 'capital-gains']),
+      status: 'published', published_at: '2026-03-12T00:00:00.000Z'
+    },
+    {
+      id: uuidv4(), title: 'How to Find Off-Market Real Estate Deals in 2026',
+      slug: 'find-off-market-real-estate-deals',
+      content: `<h2>Why Off-Market Deals Win</h2><p>Off-market properties have less competition and often sell below market value. Top investors build systems to find these deals through direct mail, driving for dollars, wholesaler networks, and probate leads.</p>`,
+      excerpt: 'Discover proven strategies to find off-market real estate deals with less competition and better prices for maximum profit.',
+      category: 'strategy', tags: JSON.stringify(['off-market', 'deal-finding', 'wholesaling']),
+      status: 'published', published_at: '2026-03-09T00:00:00.000Z'
+    },
+    {
+      id: uuidv4(), title: 'Rental Property vs Stock Market: Which Builds More Wealth?',
+      slug: 'rental-property-vs-stock-market',
+      content: `<h2>Comparing Two Wealth-Building Powerhouses</h2><p>Both rental properties and the stock market have created generational wealth. Real estate offers leverage, cash flow, and tax benefits. Stocks offer liquidity, diversification, and passive management.</p>`,
+      excerpt: 'Compare rental property investing vs stock market returns including leverage, cash flow, taxes, and risk to find your best path.',
+      category: 'investing', tags: JSON.stringify(['stocks', 'rental-property', 'comparison']),
+      status: 'published', published_at: '2026-03-06T00:00:00.000Z'
+    },
+    {
+      id: uuidv4(), title: 'DSCR Loans for Investment Properties: Complete 2026 Guide',
+      slug: 'dscr-loan-investment-properties',
+      content: `<h2>What Are DSCR Loans?</h2><p>DSCR loans qualify based on property income rather than personal income. Most lenders require a DSCR of 1.0-1.25, meaning the property income covers 100-125% of the mortgage payment.</p>`,
+      excerpt: 'Everything you need to know about DSCR loans for investment properties including requirements, rates, and how to qualify in 2026.',
+      category: 'financing', tags: JSON.stringify(['dscr', 'loans', 'financing']),
+      status: 'published', published_at: '2026-03-03T00:00:00.000Z'
+    },
+    {
+      id: uuidv4(), title: 'House Hacking Guide: Live Free & Build Wealth in 2026',
+      slug: 'house-hacking-guide',
+      content: `<h2>What Is House Hacking?</h2><p>House hacking means buying a property, living in part of it, and renting out the rest to cover your mortgage. Strategies include duplexes, ADUs, room rentals, and Airbnb.</p>`,
+      excerpt: 'Learn how to house hack your way to financial freedom by living for free while building real estate wealth.',
+      category: 'strategy', tags: JSON.stringify(['house-hacking', 'beginner', 'fha']),
+      status: 'published', published_at: '2026-02-28T00:00:00.000Z'
+    },
+    {
+      id: uuidv4(), title: 'Real Estate Syndication: Passive Investing Explained',
+      slug: 'real-estate-syndication-explained',
+      content: `<h2>How Syndications Work</h2><p>A syndication pools capital from multiple investors to acquire large commercial properties. General partners manage the deal while limited partners invest passively and receive distributions.</p>`,
+      excerpt: 'Understand real estate syndication deals, GP vs LP roles, preferred returns, and how to evaluate passive investing opportunities.',
+      category: 'investing', tags: JSON.stringify(['syndication', 'passive-investing', 'commercial']),
+      status: 'published', published_at: '2026-02-25T00:00:00.000Z'
+    },
+    {
+      id: uuidv4(), title: 'How to Build a Real Estate Portfolio from Scratch',
+      slug: 'build-real-estate-portfolio-from-scratch',
+      content: `<h2>Starting from Zero</h2><p>Building a real estate portfolio requires a systematic approach: start with your first property, stabilize it, leverage equity, and scale. The key is building systems for deal analysis, property management, and financing.</p>`,
+      excerpt: 'A step-by-step blueprint for building a profitable real estate portfolio from your first property to a full-scale operation.',
+      category: 'strategy', tags: JSON.stringify(['portfolio', 'scaling', 'beginner']),
+      status: 'published', published_at: '2026-02-20T00:00:00.000Z'
+    },
+    {
+      id: uuidv4(), title: 'Cap Rate Explained: What Every Investor Must Know',
+      slug: 'cap-rate-explained',
+      content: `<h2>Understanding Capitalization Rate</h2><p>Cap rate measures a property's potential return independent of financing. Formula: Net Operating Income / Property Value. It helps compare properties across markets.</p>`,
+      excerpt: 'Master cap rate calculations to compare investment properties, determine fair value, and make smarter real estate decisions.',
+      category: 'education', tags: JSON.stringify(['cap-rate', 'metrics', 'valuation']),
+      status: 'published', published_at: '2026-02-15T00:00:00.000Z'
+    },
+    {
+      id: uuidv4(), title: 'How to Analyze a Rental Property in Under 10 Minutes',
+      slug: 'analyze-rental-property-fast',
+      content: `<h2>Quick Screening Framework</h2><p>Use the 1% rule for initial screening, then the 50% rule for expense estimation. For properties that pass, run a full analysis with cash flow projections, cap rate, and cash-on-cash return.</p>`,
+      excerpt: 'Learn a fast, proven framework to analyze rental properties quickly using the 1% rule, 50% rule, and AI-powered analysis tools.',
+      category: 'education', tags: JSON.stringify(['analysis', 'rental-property', 'screening']),
+      status: 'published', published_at: '2026-02-10T00:00:00.000Z'
+    },
+    {
+      id: uuidv4(), title: 'Creative Financing for Real Estate: No Bank Required',
+      slug: 'creative-financing-real-estate',
+      content: `<h2>Beyond Traditional Loans</h2><p>Creative financing opens doors when banks say no. Seller financing, subject-to deals, lease options, private money, and self-directed IRAs let you acquire properties with flexible terms.</p>`,
+      excerpt: 'Explore creative financing strategies including seller financing, subject-to, and private money to buy real estate without banks.',
+      category: 'financing', tags: JSON.stringify(['creative-financing', 'seller-financing', 'private-money']),
+      status: 'published', published_at: '2026-02-08T00:00:00.000Z'
+    },
+    {
+      id: uuidv4(), title: 'Short-Term vs Long-Term Rentals: Which Is More Profitable?',
+      slug: 'short-term-vs-long-term-rentals',
+      content: `<h2>Comparing Rental Strategies</h2><p>Short-term rentals can generate 2-3x revenue but require more management and face regulatory risks. Long-term rentals offer stability and lower management burden.</p>`,
+      excerpt: 'Compare short-term Airbnb rentals vs long-term leases on revenue, management, regulations, and profitability.',
+      category: 'strategy', tags: JSON.stringify(['airbnb', 'short-term-rental', 'long-term-rental']),
+      status: 'published', published_at: '2026-02-05T00:00:00.000Z'
+    },
+    {
+      id: uuidv4(), title: 'How AI Helps You Find Undervalued Properties in 2026',
+      slug: 'ai-find-undervalued-properties',
+      content: `<h2>AI-Powered Deal Finding</h2><p>Artificial intelligence can analyze thousands of properties in seconds, identifying undervalued deals that human investors miss. From predictive pricing to automated market analysis, AI is changing how investors find opportunities.</p>`,
+      excerpt: 'Discover how artificial intelligence and machine learning tools help real estate investors find undervalued properties faster.',
+      category: 'technology', tags: JSON.stringify(['ai', 'technology', 'deal-finding']),
+      status: 'published', published_at: '2026-02-02T00:00:00.000Z'
+    },
+    {
+      id: uuidv4(), title: 'How to Profit in a Real Estate Market Downturn',
+      slug: 'profit-real-estate-market-downturn',
+      content: `<h2>Opportunity in Every Downturn</h2><p>Market downturns create the best buying opportunities for prepared investors. Distressed properties, motivated sellers, and creative deal structures emerge when others are fearful.</p>`,
+      excerpt: 'Learn proven strategies to find profitable real estate deals during market downturns and economic uncertainty.',
+      category: 'strategy', tags: JSON.stringify(['downturn', 'distressed', 'recession']),
+      status: 'published', published_at: '2026-01-30T00:00:00.000Z'
+    },
+    {
+      id: uuidv4(), title: 'Building Generational Wealth Through Real Estate',
+      slug: 'generational-wealth-real-estate',
+      content: `<h2>Creating a Legacy</h2><p>Real estate is one of the most powerful vehicles for building generational wealth. Through entity structuring, trusts, estate planning, and portfolio building, investors can create lasting financial legacies.</p>`,
+      excerpt: 'Learn how to build generational wealth through real estate with entity structuring, trusts, and strategic portfolio building.',
+      category: 'investing', tags: JSON.stringify(['generational-wealth', 'estate-planning', 'legacy']),
+      status: 'published', published_at: '2026-01-25T00:00:00.000Z'
     }
   ];
 
