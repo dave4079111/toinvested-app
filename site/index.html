@@ -64,6 +64,33 @@
   }
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ToInvested AI Investment Platform",
+  "url": "https://toinvested.com",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web Browser",
+  "offers": [
+    {"@type": "Offer", "name": "Free AI Tools", "price": "0", "priceCurrency": "USD"},
+    {"@type": "Offer", "name": "Premium Membership", "price": "49.99", "priceCurrency": "USD", "billingDuration": "P1M"}
+  ],
+  "featureList": [
+    "AI Property Analysis", "Fix & Flip Calculator", "BRRRR Strategy Analyzer",
+    "Renovation ROI Calculator", "Stock Market Analyzer", "Bitcoin Investment Analyzer",
+    "24/7 AI Investment Coach", "Portfolio Tracking", "Deal Comparison"
+  ],
+  "potentialAction": [
+    {"@type": "UseAction", "name": "Analyze Property", "target": "https://toinvested.com/property-analyzer/"},
+    {"@type": "UseAction", "name": "Analyze Stocks", "target": "https://toinvested.com/stock-analyzer/"},
+    {"@type": "UseAction", "name": "Analyze Bitcoin", "target": "https://toinvested.com/bitcoin-analyzer/"},
+    {"@type": "UseAction", "name": "Chat with AI Coach", "target": "https://toinvested.com/ai-coach/"},
+    {"@type": "BuyAction", "name": "Subscribe to Membership", "target": "https://toinvested.com/membership/"},
+    {"@type": "CommunicateAction", "name": "Book Coaching Session", "target": "https://toinvested.com/coaching/"}
+  ]
+}
+</script>
 <style>
 /* ===================== RESET & BASE ===================== */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -1538,17 +1565,17 @@ img { max-width: 100%; height: auto; display: block; }
       </div>
 
       <!-- Analyzer Card -->
-      <div class="analyzer-card">
+      <div class="analyzer-card" data-flow="property-analysis" role="form" aria-label="AI Property Analyzer">
         <div class="analyzer-input-wrap">
-          <input type="text" class="analyzer-input" placeholder="Enter a property address to analyze..." aria-label="Property address">
+          <input type="text" class="analyzer-input" id="hero-address-input" placeholder="Enter a property address to analyze..." aria-label="Property address" data-input="address">
         </div>
-        <div class="strategy-chips">
-          <span class="chip active">Buy &amp; Hold</span>
-          <span class="chip">Fix &amp; Flip</span>
-          <span class="chip">BRRRR</span>
-          <span class="chip">Multi-Unit</span>
+        <div class="strategy-chips" role="radiogroup" aria-label="Investment strategy">
+          <span class="chip active" data-strategy="buy-hold" role="radio" aria-checked="true">Buy &amp; Hold</span>
+          <span class="chip" data-strategy="fix-flip" role="radio" aria-checked="false">Fix &amp; Flip</span>
+          <span class="chip" data-strategy="brrrr" role="radio" aria-checked="false">BRRRR</span>
+          <span class="chip" data-strategy="multi-unit" role="radio" aria-checked="false">Multi-Unit</span>
         </div>
-        <button class="analyzer-btn">Analyze This Deal</button>
+        <button class="analyzer-btn" data-action="analyze-property" aria-label="Analyze this investment deal">Analyze This Deal</button>
         <p class="trust-pills">4,847 Deals Analyzed &middot; Free &middot; No Signup</p>
 
         <!-- Sample Result Preview -->
@@ -1665,45 +1692,45 @@ img { max-width: 100%; height: auto; display: block; }
   <div class="container">
     <p class="section-eyebrow">AI-POWERED TOOLS</p>
     <h2 class="section-title">6 Analyzers. <span class="gold">One Platform.</span></h2>
-    <div class="tools-grid">
-      <div class="tool-card animate-on-scroll">
+    <div class="tools-grid" role="list" aria-label="AI-powered investment analysis tools">
+      <div class="tool-card animate-on-scroll" role="listitem" data-tool="property-analyzer">
         <span class="tool-badge">FREE</span>
         <span class="tool-icon">&#127968;</span>
         <h3>Property Analyzer</h3>
         <p>Full investment analysis for any rental property with cash flow, cap rate, and AI scoring.</p>
-        <a href="/property-analyzer/" class="tool-link">Try Free &rarr;</a>
+        <a href="/property-analyzer/" class="tool-link" data-action="navigate-to" data-path="/property-analyzer/">Try Free &rarr;</a>
       </div>
-      <div class="tool-card animate-on-scroll">
+      <div class="tool-card animate-on-scroll" role="listitem" data-tool="flip-analyzer">
         <span class="tool-badge">FREE</span>
         <span class="tool-icon">&#128296;</span>
         <h3>Fix &amp; Flip Analyzer</h3>
         <p>Estimate rehab costs, ARV, and profit margins for house flipping deals.</p>
-        <a href="/flip-analyzer/" class="tool-link">Try Free &rarr;</a>
+        <a href="/flip-analyzer/" class="tool-link" data-action="navigate-to" data-path="/flip-analyzer/">Try Free &rarr;</a>
       </div>
-      <div class="tool-card animate-on-scroll">
+      <div class="tool-card animate-on-scroll" role="listitem" data-tool="brrrr-analyzer">
         <span class="tool-badge">FREE</span>
         <span class="tool-icon">&#128257;</span>
         <h3>BRRRR Analyzer</h3>
         <p>Buy, Rehab, Rent, Refinance, Repeat. Model the full BRRRR cycle with AI precision.</p>
-        <a href="/brrrr-analyzer/" class="tool-link">Try Free &rarr;</a>
+        <a href="/brrrr-analyzer/" class="tool-link" data-action="navigate-to" data-path="/brrrr-analyzer/">Try Free &rarr;</a>
       </div>
-      <div class="tool-card animate-on-scroll">
+      <div class="tool-card animate-on-scroll" role="listitem" data-tool="renovation-analyzer">
         <span class="tool-icon">&#127959;</span>
         <h3>Renovation Analyzer</h3>
         <p>AI-powered renovation cost estimator with room-by-room breakdowns and ROI projections.</p>
-        <a href="/renovation-analyzer/" class="tool-link">Try Free &rarr;</a>
+        <a href="/renovation-analyzer/" class="tool-link" data-action="navigate-to" data-path="/renovation-analyzer/">Try Free &rarr;</a>
       </div>
-      <div class="tool-card animate-on-scroll">
+      <div class="tool-card animate-on-scroll" role="listitem" data-tool="stock-analyzer">
         <span class="tool-icon">&#128202;</span>
         <h3>Stock Analyzer</h3>
         <p>Compare real estate returns against stock market alternatives with side-by-side analysis.</p>
-        <a href="/stock-analyzer/" class="tool-link">Try Free &rarr;</a>
+        <a href="/stock-analyzer/" class="tool-link" data-action="navigate-to" data-path="/stock-analyzer/">Try Free &rarr;</a>
       </div>
-      <div class="tool-card animate-on-scroll">
+      <div class="tool-card animate-on-scroll" role="listitem" data-tool="bitcoin-analyzer">
         <span class="tool-icon">&#8383;</span>
         <h3>Bitcoin Analyzer</h3>
         <p>Evaluate Bitcoin and crypto allocations alongside your real estate portfolio strategy.</p>
-        <a href="/bitcoin-analyzer/" class="tool-link">Try Free &rarr;</a>
+        <a href="/bitcoin-analyzer/" class="tool-link" data-action="navigate-to" data-path="/bitcoin-analyzer/">Try Free &rarr;</a>
       </div>
     </div>
   </div>
@@ -1956,7 +1983,11 @@ img { max-width: 100%; height: auto; display: block; }
         <h4>Get Started</h4>
         <a href="/membership/">View Membership Plans</a>
         <a href="/property-analyzer/">Try Free AI Analysis</a>
-        <a href="/about/">About David J. Moore</a>
+        <a href="/about/">About ToInvested</a>
+        <a href="/founder/">Meet the Founder</a>
+        <a href="/real-estate-investing/">Real Estate Investing</a>
+        <a href="/stock-market-investing/">Stock Market Investing</a>
+        <a href="/bitcoin-investing/">Bitcoin Investing</a>
         <a href="/contact/">Contact Us</a>
       </div>
     </div>
@@ -2014,6 +2045,7 @@ img { max-width: 100%; height: auto; display: block; }
       <div class="footer-col">
         <h4>Company</h4>
         <a href="/about/">About</a>
+        <a href="/founder/">Meet the Founder</a>
         <a href="/consulting/">Consulting</a>
         <a href="/contact/">Contact</a>
       </div>

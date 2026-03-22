@@ -4,7 +4,13 @@
   <url><loc>https://toinvested.com/</loc><lastmod>2026-03-19</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
   <url><loc>https://toinvested.com/membership/</loc><lastmod>2026-03-19</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://toinvested.com/store/</loc><lastmod>2026-03-19</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://toinvested.com/about/</loc><lastmod>2026-03-19</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://toinvested.com/about/</loc><lastmod>2026-03-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://toinvested.com/founder/</loc><lastmod>2026-03-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Sales Funnel Landing Pages -->
+  <url><loc>https://toinvested.com/real-estate-investing/</loc><lastmod>2026-03-22</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://toinvested.com/stock-market-investing/</loc><lastmod>2026-03-22</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://toinvested.com/bitcoin-investing/</loc><lastmod>2026-03-22</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
 
   <!-- AI Tools Silo -->
   <url><loc>https://toinvested.com/tools/</loc><lastmod>2026-03-19</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>

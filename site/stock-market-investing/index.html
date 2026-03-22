@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-Powered Stock Market Analysis | ToInvested</title>
+<meta name="description" content="Compare stock market returns against real estate with AI analysis. Side-by-side investment comparison, AI scoring, and portfolio optimization tools. Free stock market analyzer.">
+<meta property="og:title" content="AI-Powered Stock Market Analysis | ToInvested">
+<meta property="og:description" content="Compare stock market returns against real estate with AI. Free analysis tools for smarter investing.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://toinvested.com/stock-market-investing/">
+<meta property="og:site_name" content="ToInvested">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<link rel="canonical" href="https://toinvested.com/stock-market-investing/">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+[{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "AI-Powered Stock Market Analysis",
+  "url": "https://toinvested.com/stock-market-investing/",
+  "description": "Compare stock market returns against real estate investments with AI-powered analysis tools."
+},{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "How does the stock market analyzer compare to real estate?", "acceptedAnswer": {"@type": "Answer", "text": "Our AI compares total returns including dividends, appreciation, leverage effects, tax benefits, and risk-adjusted metrics between stock market and real estate investments over customizable time horizons."}},
+    {"@type": "Question", "name": "Should I invest in stocks or real estate?", "acceptedAnswer": {"@type": "Answer", "text": "Both asset classes have unique advantages. Stocks offer liquidity and passive investing, while real estate provides leverage, tax benefits, and cash flow. Our analyzer helps you make data-driven comparisons based on your specific situation."}},
+    {"@type": "Question", "name": "What stock market data does the AI use?", "acceptedAnswer": {"@type": "Answer", "text": "Our AI uses historical S&P 500 returns, dividend yields, sector performance data, and current market conditions to generate accurate comparison analyses."}},
+    {"@type": "Question", "name": "Can I compare individual stocks against properties?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Our analyzer lets you compare specific stock tickers or index funds against real estate investments, showing side-by-side returns, risk profiles, and long-term wealth projections."}},
+    {"@type": "Question", "name": "Is diversification across stocks and real estate recommended?", "acceptedAnswer": {"@type": "Answer", "text": "Most financial experts recommend diversification across asset classes. Our tools help you model different allocation strategies to find the optimal mix for your goals and risk tolerance."}}
+  ]
+}]
+</script>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 18px; }
+body { font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif; background: #0A0E17; color: #E0E0E0; line-height: 1.7; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', Georgia, serif; line-height: 1.2; color: #FFFFFF; }
+a { color: #C9A84C; text-decoration: none; transition: color 0.3s ease; }
+a:hover { color: #E0C068; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.gold { color: #C9A84C; }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+.animate-on-scroll { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+.delay-1 { transition-delay: 0.1s; } .delay-2 { transition-delay: 0.2s; } .delay-3 { transition-delay: 0.3s; }
+
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 16px 0; transition: all 0.4s ease; background: transparent; }
+.nav.scrolled { background: rgba(10,14,23,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(201,168,76,0.15); padding: 10px 0; }
+.nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: #C9A84C; }
+.nav-links { display: flex; align-items: center; gap: 28px; }
+.nav-links a { color: #C0C0C0; font-size: 0.85rem; font-weight: 500; }
+.nav-links a:hover { color: #C9A84C; }
+.nav-cta { background: linear-gradient(135deg, #C9A84C, #B8943A); color: #0A0E17 !important; padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: 0.85rem; }
+.nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(201,168,76,0.3); color: #0A0E17 !important; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; z-index: 1010; }
+.hamburger span { display: block; width: 26px; height: 2px; background: #C9A84C; border-radius: 2px; transition: all 0.3s ease; }
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+.mobile-drawer { display: none; position: fixed; top: 0; right: -100%; width: 300px; height: 100vh; background: rgba(10,14,23,0.98); backdrop-filter: blur(30px); z-index: 1005; padding: 80px 30px 40px; transition: right 0.4s ease; border-left: 1px solid rgba(201,168,76,0.2); }
+.mobile-drawer.open { right: 0; }
+.mobile-drawer a { display: block; color: #E0E0E0; font-size: 1.1rem; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.mobile-drawer .nav-cta { display: inline-block; margin-top: 20px; text-align: center; width: 100%; }
+.drawer-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1002; opacity: 0; transition: opacity 0.3s ease; }
+.drawer-overlay.open { opacity: 1; }
+
+.hero { position: relative; padding: 160px 0 100px; text-align: center; overflow: hidden; }
+.hero::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 700px; height: 700px; background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%); pointer-events: none; }
+.hero .container { position: relative; z-index: 1; }
+.hero-badge { display: inline-block; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3); color: #C9A84C; padding: 8px 20px; border-radius: 50px; font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 28px; }
+.hero h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 700; margin-bottom: 24px; }
+.hero p { font-size: 1.15rem; color: #A0A8B8; max-width: 650px; margin: 0 auto 40px; }
+.hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.btn-primary { display: inline-block; background: linear-gradient(135deg, #C9A84C, #B8943A); color: #0A0E17; padding: 16px 36px; border-radius: 12px; font-weight: 700; font-size: 1rem; transition: transform 0.3s, box-shadow 0.3s; }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(201,168,76,0.3); color: #0A0E17; }
+.btn-secondary { display: inline-block; border: 2px solid rgba(201,168,76,0.4); color: #C9A84C; padding: 14px 36px; border-radius: 12px; font-weight: 600; font-size: 1rem; }
+.btn-secondary:hover { border-color: #C9A84C; background: rgba(201,168,76,0.1); }
+
+.section-pad { padding: 80px 0; }
+.section-alt { background: linear-gradient(180deg, rgba(20,27,45,0.3) 0%, transparent 100%); }
+.section-label { text-align: center; font-size: 0.75rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #C9A84C; margin-bottom: 16px; }
+.section-title { text-align: center; font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 20px; }
+.section-subtitle { text-align: center; color: #A0A8B8; font-size: 1.05rem; max-width: 650px; margin: 0 auto 50px; }
+
+.ps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.ps-card { background: rgba(20,27,45,0.6); border: 1px solid rgba(201,168,76,0.1); border-radius: 16px; padding: 40px; }
+.ps-card.problem { border-color: rgba(239,68,68,0.2); }
+.ps-card.solution { border-color: rgba(34,197,94,0.2); }
+.ps-card h3 { font-size: 1.3rem; margin-bottom: 20px; }
+.ps-card ul { list-style: none; }
+.ps-card ul li { padding: 8px 0; padding-left: 28px; position: relative; color: #A0A8B8; font-size: 0.95rem; }
+.ps-card.problem ul li::before { content: '✗'; position: absolute; left: 0; color: #EF4444; font-weight: 700; }
+.ps-card.solution ul li::before { content: '✓'; position: absolute; left: 0; color: #22C55E; font-weight: 700; }
+
+.features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.feature-card { background: rgba(20,27,45,0.6); border: 1px solid rgba(201,168,76,0.1); border-radius: 16px; padding: 36px; transition: border-color 0.3s, transform 0.3s; }
+.feature-card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-4px); }
+.feature-card .icon { font-size: 2.4rem; margin-bottom: 16px; }
+.feature-card h3 { font-size: 1.15rem; margin-bottom: 10px; }
+.feature-card p { color: #A0A8B8; font-size: 0.92rem; }
+
+.steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.step-card { text-align: center; background: rgba(20,27,45,0.6); border: 1px solid rgba(201,168,76,0.1); border-radius: 16px; padding: 40px 24px; }
+.step-num { display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 50%; background: rgba(201,168,76,0.1); border: 2px solid #C9A84C; color: #C9A84C; font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 20px; }
+.step-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
+.step-card p { color: #A0A8B8; font-size: 0.9rem; }
+
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.stat-card { text-align: center; padding: 32px 16px; }
+.stat-card .number { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 700; color: #C9A84C; }
+.stat-card .label { color: #A0A8B8; font-size: 0.85rem; margin-top: 8px; }
+
+/* COMPARISON TABLE */
+.compare-table { width: 100%; max-width: 900px; margin: 0 auto; border-collapse: collapse; }
+.compare-table th, .compare-table td { padding: 16px 20px; text-align: left; border-bottom: 1px solid rgba(201,168,76,0.1); }
+.compare-table th { font-family: 'Playfair Display', serif; font-size: 1rem; color: #C9A84C; background: rgba(20,27,45,0.6); }
+.compare-table th:first-child { border-radius: 12px 0 0 0; }
+.compare-table th:last-child { border-radius: 0 12px 0 0; }
+.compare-table td { color: #A0A8B8; font-size: 0.9rem; }
+.compare-table tr:hover td { background: rgba(201,168,76,0.03); }
+.pro { color: #22C55E; } .con { color: #EF4444; }
+
+.pricing-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; max-width: 800px; margin: 0 auto; }
+.price-card { background: rgba(20,27,45,0.6); border: 1px solid rgba(201,168,76,0.1); border-radius: 16px; padding: 40px; text-align: center; }
+.price-card.featured { border-color: #C9A84C; position: relative; }
+.price-card.featured::before { content: 'MOST POPULAR'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #C9A84C; color: #0A0E17; padding: 4px 16px; border-radius: 20px; font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; }
+.price-card h3 { font-size: 1.3rem; margin-bottom: 8px; }
+.price-card .price { font-family: 'Playfair Display', serif; font-size: 2.4rem; color: #C9A84C; margin: 16px 0; }
+.price-card .price span { font-size: 0.9rem; color: #7A8190; }
+.price-card ul { list-style: none; margin: 20px 0; text-align: left; }
+.price-card ul li { padding: 6px 0; padding-left: 24px; position: relative; color: #A0A8B8; font-size: 0.88rem; }
+.price-card ul li::before { content: '✓'; position: absolute; left: 0; color: #22C55E; }
+
+.faq-list { max-width: 800px; margin: 0 auto; }
+.faq-item { border-bottom: 1px solid rgba(201,168,76,0.1); }
+.faq-q { padding: 24px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600; color: #FFFFFF; }
+.faq-q::after { content: '+'; font-size: 1.4rem; color: #C9A84C; transition: transform 0.3s; }
+.faq-item.open .faq-q::after { transform: rotate(45deg); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+.faq-a p { padding: 0 0 24px; color: #A0A8B8; font-size: 0.95rem; line-height: 1.8; }
+.faq-item.open .faq-a { max-height: 300px; }
+
+.footer { background: rgba(10,14,23,0.95); border-top: 1px solid rgba(201,168,76,0.1); padding: 60px 0 30px; }
+.footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-bottom: 40px; }
+.footer-col h4 { font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #C9A84C; margin-bottom: 16px; }
+.footer-col a { display: block; color: #8A8F9E; font-size: 0.85rem; padding: 4px 0; }
+.footer-col a:hover { color: #C9A84C; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 24px; text-align: center; color: #5A5F6E; font-size: 0.78rem; }
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hamburger, .mobile-drawer, .drawer-overlay { display: flex; }
+  .mobile-drawer { display: block; } .drawer-overlay { display: block; }
+  .ps-grid, .features-grid, .pricing-cards { grid-template-columns: 1fr; }
+  .steps-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .compare-table { font-size: 0.85rem; }
+  .compare-table th, .compare-table td { padding: 10px 12px; }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) { html { font-size: 16px; } .stats-grid, .footer-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">ToInvested</a>
+    <div class="nav-links">
+      <a href="/tools/">Tools</a>
+      <a href="/membership/">Membership</a>
+      <a href="/blog/">Blog</a>
+      <a href="/about/">About</a>
+      <a href="/membership/" class="nav-cta">Join Free</a>
+    </div>
+    <button class="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="drawer-overlay"></div>
+<div class="mobile-drawer">
+  <a href="/tools/">Tools</a><a href="/membership/">Membership</a><a href="/blog/">Blog</a><a href="/about/">About</a>
+  <a href="/membership/" class="nav-cta">Join Free</a>
+</div>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">AI-Powered Stock Analysis</div>
+    <h1>Stocks vs. Real Estate.<br><span class="gold">AI Shows You the Numbers.</span></h1>
+    <p>Compare stock market returns against real estate investments with AI-powered analysis. Make data-driven asset allocation decisions with side-by-side comparisons.</p>
+    <div class="hero-buttons">
+      <a href="/stock-analyzer/" class="btn-primary">Try Stock Analyzer Free</a>
+      <a href="/membership/" class="btn-secondary">View Premium Plans</a>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad section-alt">
+  <div class="container">
+    <div class="section-label">THE CHALLENGE</div>
+    <h2 class="section-title">Investing Without <span class="gold">Clarity Costs You</span></h2>
+    <p class="section-subtitle">Most investors pick stocks or real estate based on emotion. Our AI gives you the data.</p>
+    <div class="ps-grid">
+      <div class="ps-card problem animate-on-scroll">
+        <h3>Without Data-Driven Analysis</h3>
+        <ul>
+          <li>Comparing stocks and real estate with incomplete data</li>
+          <li>Ignoring leverage, tax benefits, and total returns</li>
+          <li>Following market hype instead of fundamentals</li>
+          <li>No way to model different allocation strategies</li>
+          <li>Over-concentrating in a single asset class</li>
+        </ul>
+      </div>
+      <div class="ps-card solution animate-on-scroll delay-1">
+        <h3>With ToInvested AI</h3>
+        <ul>
+          <li>Side-by-side total return comparisons</li>
+          <li>Full accounting for leverage, taxes, and fees</li>
+          <li>AI scoring based on fundamentals and trends</li>
+          <li>Portfolio allocation modeling and optimization</li>
+          <li>Risk-adjusted return analysis across asset classes</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad">
+  <div class="container">
+    <div class="section-label">STOCK ANALYZER</div>
+    <h2 class="section-title">Powerful <span class="gold">Analysis Features</span></h2>
+    <p class="section-subtitle">Everything you need to make informed stock vs. real estate decisions.</p>
+    <div class="features-grid">
+      <div class="feature-card animate-on-scroll">
+        <div class="icon">&#128202;</div>
+        <h3>Side-by-Side Comparison</h3>
+        <p>Compare stock returns (S&P 500, individual tickers) directly against specific real estate investments over customizable time horizons.</p>
+      </div>
+      <div class="feature-card animate-on-scroll delay-1">
+        <div class="icon">&#129302;</div>
+        <h3>AI Deal Scoring</h3>
+        <p>Our AI evaluates both investments and assigns a confidence score, accounting for risk, volatility, income potential, and growth prospects.</p>
+      </div>
+      <div class="feature-card animate-on-scroll delay-2">
+        <div class="icon">&#128200;</div>
+        <h3>Historical Performance</h3>
+        <p>Analyze historical returns across different market cycles. See how stocks and real estate performed during booms, recessions, and recoveries.</p>
+      </div>
+      <div class="feature-card animate-on-scroll delay-3">
+        <div class="icon">&#127919;</div>
+        <h3>Portfolio Optimization</h3>
+        <p>Model different allocation strategies between stocks and real estate to find the optimal mix for your risk tolerance and financial goals.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad section-alt">
+  <div class="container">
+    <div class="section-label">HOW IT WORKS</div>
+    <h2 class="section-title">3 Steps to <span class="gold">Better Decisions</span></h2>
+    <div class="steps-grid">
+      <div class="step-card animate-on-scroll">
+        <div class="step-num">1</div>
+        <h3>Enter Your Investments</h3>
+        <p>Input a stock ticker or index fund alongside a real estate property. Set your investment amount and time horizon.</p>
+      </div>
+      <div class="step-card animate-on-scroll delay-1">
+        <div class="step-num">2</div>
+        <h3>AI Runs the Analysis</h3>
+        <p>Our AI calculates total returns including dividends, appreciation, leverage, tax benefits, and risk-adjusted metrics for both investments.</p>
+      </div>
+      <div class="step-card animate-on-scroll delay-2">
+        <div class="step-num">3</div>
+        <h3>Compare &amp; Decide</h3>
+        <p>Review side-by-side results, AI recommendations, and portfolio allocation suggestions. Make confident, data-backed decisions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card animate-on-scroll"><div class="number">4,847+</div><div class="label">Analyses Completed</div></div>
+      <div class="stat-card animate-on-scroll delay-1"><div class="number">6</div><div class="label">AI-Powered Tools</div></div>
+      <div class="stat-card animate-on-scroll delay-2"><div class="number">24/7</div><div class="label">AI Investment Coach</div></div>
+      <div class="stat-card animate-on-scroll delay-3"><div class="number">92%</div><div class="label">User Satisfaction</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad section-alt">
+  <div class="container">
+    <div class="section-label">HEAD TO HEAD</div>
+    <h2 class="section-title">Stocks vs. <span class="gold">Real Estate</span></h2>
+    <p class="section-subtitle">A data-driven comparison of the two most popular investment asset classes.</p>
+    <table class="compare-table animate-on-scroll">
+      <thead><tr><th>Factor</th><th>Stocks</th><th>Real Estate</th></tr></thead>
+      <tbody>
+        <tr><td>Liquidity</td><td class="pro">High — sell instantly</td><td class="con">Low — weeks to months</td></tr>
+        <tr><td>Leverage</td><td class="con">Limited (margin)</td><td class="pro">80-95% LTV mortgages</td></tr>
+        <tr><td>Tax Benefits</td><td>Capital gains rates</td><td class="pro">Depreciation, 1031 exchanges</td></tr>
+        <tr><td>Passive Income</td><td>Dividends (1-3%)</td><td class="pro">Rental cash flow (5-10%+)</td></tr>
+        <tr><td>Volatility</td><td class="con">High daily swings</td><td class="pro">Stable, slow-moving</td></tr>
+        <tr><td>Entry Barrier</td><td class="pro">Buy with any amount</td><td class="con">Down payment required</td></tr>
+        <tr><td>Management</td><td class="pro">Fully passive</td><td class="con">Requires active management</td></tr>
+        <tr><td>Avg. Annual Return</td><td>~10% (S&P 500)</td><td>~8-12% (with leverage)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section-pad" style="text-align:center;">
+  <div class="container">
+    <div class="section-label">GET STARTED</div>
+    <h2 class="section-title">Free Analysis. <span class="gold">Premium Insights.</span></h2>
+    <p class="section-subtitle">Start comparing stocks and real estate today.</p>
+    <div class="pricing-cards">
+      <div class="price-card animate-on-scroll">
+        <h3>Free</h3>
+        <div class="price">$0</div>
+        <ul>
+          <li>Stock vs. Real Estate Comparison</li>
+          <li>Basic AI Scoring</li>
+          <li>Historical Return Analysis</li>
+          <li>All 6 Investment Analyzers</li>
+        </ul>
+        <a href="/stock-analyzer/" class="btn-secondary" style="display:block;margin-top:20px;">Start Free</a>
+      </div>
+      <div class="price-card featured animate-on-scroll delay-1">
+        <h3>Premium</h3>
+        <div class="price">$49.99<span>/mo</span></div>
+        <ul>
+          <li>Everything in Free</li>
+          <li>Unlimited Analyses</li>
+          <li>24/7 AI Investment Coach</li>
+          <li>Portfolio Optimization</li>
+          <li>Advanced Market Data</li>
+          <li>Priority Support</li>
+        </ul>
+        <a href="/membership/" class="btn-primary" style="display:block;margin-top:20px;">Join Premium</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad section-alt">
+  <div class="container">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">Common <span class="gold">Questions</span></h2>
+    <div class="faq-list">
+      <div class="faq-item"><div class="faq-q">How does the stock market analyzer compare to real estate?</div><div class="faq-a"><p>Our AI compares total returns including dividends, appreciation, leverage effects, tax benefits, and risk-adjusted metrics between stock market and real estate investments over customizable time horizons.</p></div></div>
+      <div class="faq-item"><div class="faq-q">Should I invest in stocks or real estate?</div><div class="faq-a"><p>Both asset classes have unique advantages. Stocks offer liquidity and passive investing, while real estate provides leverage, tax benefits, and cash flow. Our analyzer helps you make data-driven comparisons based on your specific situation.</p></div></div>
+      <div class="faq-item"><div class="faq-q">What stock market data does the AI use?</div><div class="faq-a"><p>Our AI uses historical S&P 500 returns, dividend yields, sector performance data, and current market conditions to generate accurate comparison analyses.</p></div></div>
+      <div class="faq-item"><div class="faq-q">Can I compare individual stocks against properties?</div><div class="faq-a"><p>Yes. Our analyzer lets you compare specific stock tickers or index funds against real estate investments, showing side-by-side returns, risk profiles, and long-term wealth projections.</p></div></div>
+      <div class="faq-item"><div class="faq-q">Is diversification across stocks and real estate recommended?</div><div class="faq-a"><p>Most financial experts recommend diversification across asset classes. Our tools help you model different allocation strategies to find the optimal mix for your goals and risk tolerance.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad" style="text-align:center;">
+  <div class="container">
+    <h2>Make Smarter <span class="gold">Investment Decisions</span></h2>
+    <p class="section-subtitle">Compare stocks and real estate with AI-powered precision.</p>
+    <div class="hero-buttons">
+      <a href="/stock-analyzer/" class="btn-primary">Try Stock Analyzer Free</a>
+      <a href="/membership/" class="btn-secondary">View Premium Plans</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col"><h4>AI Tools</h4><a href="/property-analyzer/">Property Analyzer</a><a href="/flip-analyzer/">Fix &amp; Flip Analyzer</a><a href="/brrrr-analyzer/">BRRRR Analyzer</a><a href="/renovation-analyzer/">Renovation Analyzer</a><a href="/stock-analyzer/">Stock Analyzer</a><a href="/bitcoin-analyzer/">Bitcoin Analyzer</a></div>
+      <div class="footer-col"><h4>Resources</h4><a href="/blog/">Blog</a><a href="/ai-coach/">AI Coach</a><a href="/tools/">All Tools</a></div>
+      <div class="footer-col"><h4>Get Started</h4><a href="/membership/">View Membership Plans</a><a href="/property-analyzer/">Try Free AI Analysis</a><a href="/about/">About ToInvested</a><a href="/founder/">Meet the Founder</a><a href="/contact/">Contact Us</a></div>
+      <div class="footer-col"><h4>Company</h4><a href="/about/">About</a><a href="/founder/">Meet the Founder</a><a href="/consulting/">Consulting</a><a href="/contact/">Contact</a></div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 ToInvested — A YPN Inc Product. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="/js/toinvested.js"></script>
+<script>
+window.addEventListener('scroll', () => { document.querySelector('.nav').classList.toggle('scrolled', window.scrollY > 40); });
+const hamburger = document.querySelector('.hamburger'), drawer = document.querySelector('.mobile-drawer'), overlay = document.querySelector('.drawer-overlay');
+function toggleMenu() { hamburger.classList.toggle('active'); drawer.classList.toggle('open'); overlay.classList.toggle('open'); document.body.style.overflow = drawer.classList.contains('open') ? 'hidden' : ''; }
+hamburger.addEventListener('click', toggleMenu); overlay.addEventListener('click', toggleMenu);
+drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', toggleMenu));
+const observer = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }); }, { threshold: 0.15 });
+document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+document.querySelectorAll('.faq-q').forEach(q => q.addEventListener('click', () => q.parentElement.classList.toggle('open')));
+</script>
+</body>
+</html>
