@@ -204,6 +204,138 @@ router.post('/subscribe', (req, res) => {
   }
 });
 
+// ============================================
+// PREMIUM REPORT UNLOCK ($7 per report)
+// ============================================
+router.post('/report-unlock', (req, res) => {
+  try {
+    const { email, toolType, analysisData } = req.body;
+    if (!email) {
+      return res.status(400).json({ error: 'Email is required' });
+    }
+
+    const db = getDb();
+    const orderId = uuidv4();
+    const reportPrice = 7.00;
+    const toolName = {
+      property: 'AI Property Analysis Report',
+      flip: 'AI Fix & Flip Analysis Report',
+      brrrr: 'AI BRRRR Analysis Report',
+      renovation: 'AI Renovation Analysis Report',
+      stock: 'AI Stock Analysis Report',
+      bitcoin: 'AI Bitcoin Analysis Report'
+    }[toolType] || 'AI Investment Analysis Report';
+
+    // Store the order
+    db.prepare('INSERT INTO orders (id, user_email, items, total, status) VALUES (?, ?, ?, ?, ?)')
+      .run(orderId, email, JSON.stringify([{ name: toolName, price: reportPrice, quantity: 1, toolType }]), reportPrice, 'pending');
+
+    if (process.env.STRIPE_SECRET_KEY && process.env.STRIPE_SECRET_KEY !== 'sk_test_your_key_here') {
+      const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+      const baseUrl = process.env.BASE_URL || 'http://localhost:3000';
+
+      stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        mode: 'payment',
+        line_items: [{
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: toolName,
+              description: 'Full AI-powered investment analysis with cash flow, risk assessment, market context, optimization tips, and 5-year projections.'
+            },
+            unit_amount: Math.round(reportPrice * 100)
+          },
+          quantity: 1
+        }],
+        success_url: `${baseUrl}/${toolType === 'property' ? 'property-analyzer' : toolType + '-analyzer'}/?report=unlocked&order=${orderId}`,
+        cancel_url: `${baseUrl}/${toolType === 'property' ? 'property-analyzer' : toolType + '-analyzer'}/?report=canceled`,
+        customer_email: email,
+        metadata: { orderId, toolType, type: 'report-unlock' }
+      }).then(session => {
+        db.prepare('UPDATE orders SET stripe_session_id = ? WHERE id = ?').run(session.id, orderId);
+        res.json({ url: session.url, orderId });
+      }).catch(err => {
+        logger.error('Report unlock checkout error', { error: err.message });
+        res.status(500).json({ error: 'Payment processing failed' });
+      });
+    } else {
+      // Demo mode — unlock immediately
+      db.prepare('UPDATE orders SET status = ? WHERE id = ?').run('completed', orderId);
+      logger.info('Demo report unlock', { orderId, email, toolType });
+      res.json({
+        orderId,
+        status: 'completed',
+        unlocked: true,
+        message: 'Report unlocked (demo mode)'
+      });
+    }
+  } catch (err) {
+    logger.error('Report unlock error', { error: err.message });
+    res.status(500).json({ error: 'Failed to process report unlock' });
+  }
+});
+
+// REPORT BUNDLE ($29.99 for 10 reports)
+router.post('/report-bundle', (req, res) => {
+  try {
+    const { email } = req.body;
+    if (!email) {
+      return res.status(400).json({ error: 'Email is required' });
+    }
+
+    const db = getDb();
+    const orderId = uuidv4();
+    const bundlePrice = 29.99;
+
+    db.prepare('INSERT INTO orders (id, user_email, items, total, status) VALUES (?, ?, ?, ?, ?)')
+      .run(orderId, email, JSON.stringify([{ name: '10 Premium Report Bundle', price: bundlePrice, quantity: 1, credits: 10 }]), bundlePrice, 'pending');
+
+    if (process.env.STRIPE_SECRET_KEY && process.env.STRIPE_SECRET_KEY !== 'sk_test_your_key_here') {
+      const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+      const baseUrl = process.env.BASE_URL || 'http://localhost:3000';
+
+      stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        mode: 'payment',
+        line_items: [{
+          price_data: {
+            currency: 'usd',
+            product_data: {
+              name: '10 Premium Report Bundle',
+              description: 'Unlock 10 full AI analysis reports across any tool. Save 57% vs individual reports ($3/report vs $7).'
+            },
+            unit_amount: Math.round(bundlePrice * 100)
+          },
+          quantity: 1
+        }],
+        success_url: `${baseUrl}/property-analyzer/?bundle=purchased&credits=10&order=${orderId}`,
+        cancel_url: `${baseUrl}/property-analyzer/?bundle=canceled`,
+        customer_email: email,
+        metadata: { orderId, type: 'report-bundle', credits: '10' }
+      }).then(session => {
+        db.prepare('UPDATE orders SET stripe_session_id = ? WHERE id = ?').run(session.id, orderId);
+        res.json({ url: session.url, orderId });
+      }).catch(err => {
+        logger.error('Bundle checkout error', { error: err.message });
+        res.status(500).json({ error: 'Payment processing failed' });
+      });
+    } else {
+      db.prepare('UPDATE orders SET status = ? WHERE id = ?').run('completed', orderId);
+      logger.info('Demo bundle purchase', { orderId, email });
+      res.json({
+        orderId,
+        status: 'completed',
+        credits: 10,
+        message: 'Bundle purchased (demo mode)'
+      });
+    }
+  } catch (err) {
+    logger.error('Bundle purchase error', { error: err.message });
+    res.status(500).json({ error: 'Failed to process bundle purchase' });
+  }
+});
+
 // Admin: Create product
 router.post('/', authenticate, requireAdmin, (req, res) => {
   try {

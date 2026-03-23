@@ -170,6 +170,28 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:700;line-height:1.2
 .infinite-badge{display:inline-block;background:linear-gradient(135deg,var(--gold),#e8c840);color:var(--navy);font-weight:800;font-size:.75rem;padding:.3rem .8rem;border-radius:50px;text-transform:uppercase;letter-spacing:1px;animation:glow 2s ease-in-out infinite alternate}
 @keyframes glow{from{box-shadow:0 0 5px rgba(201,168,76,.3)}to{box-shadow:0 0 20px rgba(201,168,76,.6)}}
 
+/* PREMIUM REPORT GATE */
+.premium-gate { position: relative; margin-top: 1.5rem; }
+.premium-gate .gated-content { filter: blur(6px); pointer-events: none; user-select: none; opacity: 0.5; max-height: 400px; overflow: hidden; }
+.premium-gate .gate-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; background: linear-gradient(180deg, rgba(10,14,23,0) 0%, rgba(10,14,23,0.85) 25%, rgba(10,14,23,0.97) 50%); padding: 2rem; text-align: center; }
+.gate-lock-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+.gate-title { font-family: var(--font-heading); font-size: 1.5rem; color: var(--white); margin-bottom: 0.5rem; }
+.gate-subtitle { color: var(--gray); font-size: 0.95rem; max-width: 400px; margin: 0 auto 1rem; line-height: 1.5; }
+.gate-features { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem 1rem; margin-bottom: 1.25rem; font-size: 0.85rem; color: var(--white-dim); }
+.gate-features span::before { content: '\2713 '; color: var(--gold); font-weight: 700; }
+.gate-price { display: flex; align-items: baseline; justify-content: center; gap: 0.5rem; margin-bottom: 1rem; }
+.gate-price .price-amount { font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; color: var(--gold); }
+.gate-price .price-note { font-size: 0.82rem; color: var(--gray); }
+.gate-btn { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: var(--navy) !important; padding: 14px 36px; border-radius: 10px; font-weight: 700; font-size: 1.05rem; border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+.gate-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(201,168,76,0.4); }
+.gate-guarantee { font-size: 0.75rem; color: var(--gray); margin-top: 0.75rem; }
+.gate-bundle-link { font-size: 0.82rem; color: var(--gold); margin-top: 0.5rem; cursor: pointer; text-decoration: underline; }
+.free-tier-badge { display: inline-block; background: rgba(201,168,76,0.15); color: var(--gold); font-size: 0.72rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; }
+.bundle-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 10000; align-items: center; justify-content: center; }
+.bundle-modal-overlay.visible { display: flex; }
+.bundle-modal { background: var(--navy-card); border: 1px solid rgba(201,168,76,0.3); border-radius: 20px; padding: 2.5rem; max-width: 480px; width: 90%; text-align: center; position: relative; }
+.bundle-modal-close { position: absolute; top: 12px; right: 16px; background: none; border: none; color: var(--gray); font-size: 1.5rem; cursor: pointer; }
+
 @media(max-width:1024px){.main{grid-template-columns:1fr}.hero h1{font-size:2rem}}
 @media(max-width:768px){
 html{font-size:16px}
@@ -357,7 +379,31 @@ function showLoading(){document.getElementById('placeholder').style.display='non
 function hideLoading(){document.getElementById('loading').classList.remove('active')}
 function animateSteps(){const s=['step1','step2','step3','step4'];let i=0;const iv=setInterval(()=>{if(i>0){document.getElementById(s[i-1]).classList.remove('active');document.getElementById(s[i-1]).classList.add('done');document.getElementById(s[i-1]).innerHTML='&#10003; '+document.getElementById(s[i-1]).textContent.slice(2)}if(i<s.length){document.getElementById(s[i]).classList.add('active')}else{clearInterval(iv)}i++},800)}
 
-function showError(m){const el=document.getElementById('formError');el.textContent=m;el.classList.add('active');setTimeout(()=>el.classList.remove('active'),8000)}
+function showError(m){var el=document.getElementById('formError');el.textContent=m;el.classList.add('active');setTimeout(function(){el.classList.remove('active')},8000)}
+
+// ---- REPORT CREDITS ----
+function getReportCredits() {
+  return parseInt(localStorage.getItem('ti_report_credits') || '0', 10);
+}
+function useReportCredit() {
+  var c = getReportCredits();
+  if (c > 0) { localStorage.setItem('ti_report_credits', String(c - 1)); return true; }
+  return false;
+}
+function isReportUnlocked() {
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('report') === 'unlocked' || params.get('bundle') === 'purchased') {
+    if (params.get('bundle') === 'purchased') {
+      var credits = parseInt(params.get('credits') || '10', 10);
+      localStorage.setItem('ti_report_credits', String(getReportCredits() + credits));
+    }
+    window.history.replaceState({}, '', window.location.pathname);
+    return true;
+  }
+  return getReportCredits() > 0;
+}
+
+var lastAnalysis = null;
 
 async function handleSubmit(e){
   e.preventDefault();
@@ -395,63 +441,220 @@ async function callClaudeAPI(data){
 }
 
 function displayResults(data){
-  hideLoading();const el=document.getElementById('results');
-  const cfClass=data.monthlyCashFlow.netCashFlow>0?'positive':'negative';
-  const dscrClass=data.dscr.meetsThreshold?'positive':'negative';
+  hideLoading();
+  lastAnalysis = data;
+  var el=document.getElementById('results');
+  var unlocked = isReportUnlocked();
 
-  el.innerHTML=`
-    <div class="result-section">
-      <h3>Executive Summary</h3>
-      <p>${escHTML(data.summary)}</p>
-      ${data.infiniteReturn.achieved?'<div style="margin-top:.8rem"><span class="infinite-badge">Infinite Return Achieved</span></div>':''}
-    </div>
-    <div class="metrics-grid">
-      <div class="result-section">
-        <h3>Cash-Out Refinance</h3>
-        <div class="metric neutral">$${Math.round(data.cashOut.refinanceAmount).toLocaleString()}</div>
-        <p style="margin-top:.5rem;font-size:.8rem">Capital left in deal: $${Math.round(data.cashOut.capitalLeftInDeal).toLocaleString()}<br>${escHTML(data.cashOut.explanation)}</p>
-      </div>
-      <div class="result-section">
-        <h3>Infinite Return?</h3>
-        <div class="metric ${data.infiniteReturn.achieved?'positive':'negative'}">${data.infiniteReturn.achieved?'YES':'NO'}</div>
-        <p style="margin-top:.5rem;font-size:.8rem">${escHTML(data.infiniteReturn.explanation)}</p>
-      </div>
-    </div>
-    <div class="metrics-grid">
-      <div class="result-section">
-        <h3>Monthly Cash Flow</h3>
-        <div class="metric ${cfClass}">$${Math.round(data.monthlyCashFlow.netCashFlow).toLocaleString()}/mo</div>
-        <p style="margin-top:.5rem;font-size:.8rem">${escHTML(data.monthlyCashFlow.breakdown)}</p>
-      </div>
-      <div class="result-section">
-        <h3>Cap Rate</h3>
-        <div class="metric neutral">${Number(data.capRate.percentage).toFixed(1)}%</div>
-        <p style="margin-top:.5rem;font-size:.8rem">${escHTML(data.capRate.verdict)}</p>
-      </div>
-    </div>
-    <div class="metrics-grid">
-      <div class="result-section">
-        <h3>DSCR</h3>
-        <div class="metric ${dscrClass}">${Number(data.dscr.ratio).toFixed(2)}x</div>
-        <p style="margin-top:.5rem;font-size:.8rem">${escHTML(data.dscr.explanation)}</p>
-      </div>
-      <div class="result-section">
-        <h3>Equity Position</h3>
-        <div class="metric positive">$${Math.round(data.equityPosition.equity).toLocaleString()}</div>
-        <p style="margin-top:.5rem;font-size:.8rem">${Number(data.equityPosition.equityPercent).toFixed(1)}% equity &mdash; ${escHTML(data.equityPosition.explanation)}</p>
-      </div>
-    </div>
-    <div class="result-section">
-      <h3>Risk Factors</h3>
-      <ul>${(data.riskFactors||[]).map(r=>`<li>${escHTML(r)}</li>`).join('')}</ul>
-    </div>`;
+  var html = '';
 
+  // =============================================
+  // FREE TIER: Verdict + 3 Key Metrics (always shown)
+  // =============================================
+  html += '<div class="free-tier-badge">&#9889; Free Preview</div>';
+
+  // Executive Summary (verdict)
+  html += '<div class="result-section">';
+  html += '<h3>Executive Summary</h3>';
+  html += '<p>' + escHTML(data.summary) + '</p>';
+  if (data.infiniteReturn && data.infiniteReturn.achieved) {
+    html += '<div style="margin-top:.8rem"><span class="infinite-badge">Infinite Return Achieved</span></div>';
+  }
+  html += '</div>';
+
+  // First 3 key metrics: Cash-Out Refinance, Infinite Return, Monthly Cash Flow
+  var cfClass = data.monthlyCashFlow.netCashFlow > 0 ? 'positive' : 'negative';
+  html += '<div class="metrics-grid">';
+  html += '<div class="result-section"><h3>Cash-Out Refinance</h3>';
+  html += '<div class="metric neutral">$' + Math.round(data.cashOut.refinanceAmount).toLocaleString() + '</div>';
+  html += '<p style="margin-top:.5rem;font-size:.8rem">Capital left in deal: $' + Math.round(data.cashOut.capitalLeftInDeal).toLocaleString() + '<br>' + escHTML(data.cashOut.explanation) + '</p></div>';
+  html += '<div class="result-section"><h3>Infinite Return?</h3>';
+  html += '<div class="metric ' + (data.infiniteReturn.achieved ? 'positive' : 'negative') + '">' + (data.infiniteReturn.achieved ? 'YES' : 'NO') + '</div>';
+  html += '<p style="margin-top:.5rem;font-size:.8rem">' + escHTML(data.infiniteReturn.explanation) + '</p></div>';
+  html += '</div>';
+
+  html += '<div class="metrics-grid">';
+  html += '<div class="result-section"><h3>Monthly Cash Flow</h3>';
+  html += '<div class="metric ' + cfClass + '">$' + Math.round(data.monthlyCashFlow.netCashFlow).toLocaleString() + '/mo</div>';
+  html += '<p style="margin-top:.5rem;font-size:.8rem">' + escHTML(data.monthlyCashFlow.breakdown) + '</p></div>';
+  html += '</div>';
+
+  // =============================================
+  // PREMIUM TIER: Everything else
+  // =============================================
+  if (unlocked) {
+    useReportCredit();
+    html += buildPremiumContent(data);
+  } else {
+    html += '<div class="premium-gate">';
+    html += '<div class="gated-content">' + buildPremiumContent(data) + '</div>';
+    html += '<div class="gate-overlay">';
+    html += '<div class="gate-lock-icon">&#128274;</div>';
+    html += '<div class="gate-title">Unlock Your Full Report</div>';
+    html += '<div class="gate-subtitle">Your analysis is ready. Get the complete breakdown with cash flow details, risk assessment, market context, and optimization strategies.</div>';
+    html += '<div class="gate-features">';
+    html += '<span>Cash Flow Breakdown</span>';
+    html += '<span>Risk Assessment</span>';
+    html += '<span>Market Context</span>';
+    html += '<span>Optimization Tips</span>';
+    html += '<span>Full AI Assessment</span>';
+    html += '</div>';
+    html += '<div class="gate-price"><span class="price-amount">$7</span><span class="price-note">one-time &bull; keep forever</span></div>';
+    html += '<button class="gate-btn" onclick="unlockReport()">&#128275; Unlock Full Report</button>';
+    html += '<div class="gate-guarantee">&#128737; 30-day money-back guarantee &bull; Instant access</div>';
+    html += '<div class="gate-bundle-link" onclick="showBundleModal()">Or get 10 reports for $29.99 (save 57%)</div>';
+    html += '</div></div>';
+  }
+
+  el.innerHTML = html;
   el.classList.add('active');
   if(getUseCount()>=MAX_FREE-1){document.getElementById('upsellBanner').classList.add('active')}
 }
 
-document.addEventListener('DOMContentLoaded',()=>{updateApiStatus()});
+function buildPremiumContent(data) {
+  var html = '';
+  var dscrClass = data.dscr.meetsThreshold ? 'positive' : 'negative';
+
+  // Cap Rate + DSCR
+  html += '<div class="metrics-grid">';
+  html += '<div class="result-section"><h3>Cap Rate</h3>';
+  html += '<div class="metric neutral">' + Number(data.capRate.percentage).toFixed(1) + '%</div>';
+  html += '<p style="margin-top:.5rem;font-size:.8rem">' + escHTML(data.capRate.verdict) + '</p></div>';
+  html += '<div class="result-section"><h3>DSCR</h3>';
+  html += '<div class="metric ' + dscrClass + '">' + Number(data.dscr.ratio).toFixed(2) + 'x</div>';
+  html += '<p style="margin-top:.5rem;font-size:.8rem">' + escHTML(data.dscr.explanation) + '</p></div>';
+  html += '</div>';
+
+  // Equity Position
+  html += '<div class="metrics-grid">';
+  html += '<div class="result-section"><h3>Equity Position</h3>';
+  html += '<div class="metric positive">$' + Math.round(data.equityPosition.equity).toLocaleString() + '</div>';
+  html += '<p style="margin-top:.5rem;font-size:.8rem">' + Number(data.equityPosition.equityPercent).toFixed(1) + '% equity &mdash; ' + escHTML(data.equityPosition.explanation) + '</p></div>';
+  html += '</div>';
+
+  // Risk Factors
+  if (data.riskFactors && data.riskFactors.length) {
+    html += '<div class="result-section"><h3>Risk Factors</h3><ul>';
+    data.riskFactors.forEach(function(r) {
+      html += '<li>' + escHTML(r) + '</li>';
+    });
+    html += '</ul></div>';
+  }
+
+  // Market Context
+  if (data.marketContext) {
+    html += '<div class="result-section"><h3>&#127758; Market Context</h3><p>' + escHTML(data.marketContext) + '</p></div>';
+  }
+
+  // Optimization Tips
+  if (data.optimizationTips && data.optimizationTips.length) {
+    html += '<div class="result-section"><h3>&#128161; Optimization Tips</h3><ul>';
+    data.optimizationTips.forEach(function(tip) {
+      html += '<li>' + escHTML(tip) + '</li>';
+    });
+    html += '</ul></div>';
+  }
+
+  // Full Assessment
+  if (data.fullAssessment) {
+    html += '<div class="result-section"><h3>&#128200; Full Assessment</h3>';
+    data.fullAssessment.split('\n').filter(function(p) { return p.trim(); }).forEach(function(p) {
+      html += '<p>' + escHTML(p) + '</p>';
+    });
+    html += '</div>';
+  }
+
+  return html;
+}
+
+// ---- UNLOCK REPORT ----
+window.unlockReport = function() {
+  var email = localStorage.getItem('ti_user_email') || '';
+  if (!email) {
+    email = prompt('Enter your email to unlock the full report:');
+    if (!email) return;
+    localStorage.setItem('ti_user_email', email);
+  }
+
+  var btn = document.querySelector('.gate-btn');
+  if (btn) { btn.textContent = 'Processing...'; btn.disabled = true; }
+
+  fetch('/api/products/report-unlock', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email, toolType: 'brrrr', analysisData: lastAnalysis })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.url) {
+      window.location.href = data.url;
+    } else if (data.unlocked) {
+      localStorage.setItem('ti_report_credits', String(getReportCredits() + 1));
+      displayResults(lastAnalysis);
+    } else {
+      alert(data.message || 'Something went wrong. Please try again.');
+      if (btn) { btn.textContent = '\uD83D\uDD13 Unlock Full Report'; btn.disabled = false; }
+    }
+  })
+  .catch(function() {
+    alert('Connection error. Please try again.');
+    if (btn) { btn.textContent = '\uD83D\uDD13 Unlock Full Report'; btn.disabled = false; }
+  });
+};
+
+// ---- BUNDLE MODAL ----
+window.showBundleModal = function() {
+  document.getElementById('bundle-modal').classList.add('visible');
+};
+window.closeBundleModal = function() {
+  document.getElementById('bundle-modal').classList.remove('visible');
+};
+window.buyBundle = function() {
+  var email = localStorage.getItem('ti_user_email') || '';
+  if (!email) {
+    email = prompt('Enter your email to purchase the bundle:');
+    if (!email) return;
+    localStorage.setItem('ti_user_email', email);
+  }
+
+  fetch('/api/products/report-bundle', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.url) {
+      window.location.href = data.url;
+    } else if (data.credits) {
+      localStorage.setItem('ti_report_credits', String(getReportCredits() + data.credits));
+      closeBundleModal();
+      displayResults(lastAnalysis);
+    }
+  })
+  .catch(function() { alert('Connection error. Please try again.'); });
+};
+
+document.addEventListener('DOMContentLoaded',function(){updateApiStatus()});
 </script>
 <script src="/js/toinvested.js"></script>
+
+<!-- BUNDLE MODAL -->
+<div class="bundle-modal-overlay" id="bundle-modal" onclick="if(event.target===this)closeBundleModal()">
+  <div class="bundle-modal">
+    <button class="bundle-modal-close" onclick="closeBundleModal()">&times;</button>
+    <div style="display:inline-block;background:rgba(201,168,76,0.15);color:var(--gold);font-size:0.72rem;font-weight:700;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:1px;margin-bottom:1rem;">SAVE 57%</div>
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--white);margin-bottom:0.5rem;">10 Premium Report Bundle</h3>
+    <p style="color:var(--gray-400);font-size:0.9rem;margin-bottom:1rem;">Use across any tool &mdash; property, flip, BRRRR, renovation, stock, or bitcoin analysis.</p>
+    <div style="margin-bottom:0.5rem;"><span style="text-decoration:line-through;color:var(--gray-500);font-size:0.9rem;">$70 (10 x $7)</span> <span style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:800;color:var(--gold);margin-left:0.5rem;">$29.99</span></div>
+    <div style="font-size:0.85rem;color:var(--green);margin-bottom:1rem;">Just $3 per report</div>
+    <button class="gate-btn" onclick="buyBundle()" style="margin-top:0.25rem;width:100%;">Get 10 Reports for $29.99</button>
+    <p style="font-size:0.75rem;color:var(--gray-500);margin-top:0.75rem;">&#128737; 30-day money-back guarantee &bull; Use anytime, never expire</p>
+    <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,0.06);font-size:0.82rem;color:var(--gray-500);">
+      Already analyzed 3+ deals? <a href="/join" style="color:var(--gold);font-weight:600;">Get unlimited reports with Wealth Builder &rarr;</a>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>

@@ -86,7 +86,7 @@
         .toggle-switch::after { content: ''; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; background: var(--gold); border-radius: 50%; transition: 0.3s; }
         .toggle-switch.annual::after { transform: translateX(26px); }
         .save-badge { background: var(--green); color: var(--navy); font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 20px; }
-        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: start; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; align-items: start; }
         .pricing-card { background: var(--navy-card); border: 1px solid rgba(255,255,255,0.06); border-radius: 20px; padding: 40px 32px; position: relative; transition: transform 0.3s, box-shadow 0.3s; }
         .pricing-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
         .pricing-card.featured { border-color: var(--gold); background: linear-gradient(180deg, rgba(201,168,76,0.08) 0%, var(--navy-card) 100%); }
@@ -175,7 +175,10 @@
         .footer-bottom-links a { color: var(--gray); font-size: 14px; }
 
         /* RESPONSIVE */
-        @media (max-width: 1024px) {
+        @media (max-width: 1200px) {
+            .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
             .pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
             .pricing-card.featured { order: -1; }
             .testimonials-grid { grid-template-columns: 1fr; max-width: 560px; margin: 48px auto 0; }
@@ -208,6 +211,20 @@
             "url": "https://toinvested.com"
         },
         "offers": [
+            {
+                "@type": "Offer",
+                "name": "Single Report Unlock",
+                "price": "7.00",
+                "priceCurrency": "USD",
+                "description": "Unlock one full AI analysis report with cash flow, risk assessment, and optimization tips."
+            },
+            {
+                "@type": "Offer",
+                "name": "10 Report Bundle",
+                "price": "29.99",
+                "priceCurrency": "USD",
+                "description": "10 full AI analysis reports across any tool. Just $3 per report. Never expire."
+            },
             {
                 "@type": "Offer",
                 "name": "Wealth Builder",
@@ -288,15 +305,38 @@
                     <a href="/tools/" class="btn btn-outline">Get Started Free</a>
                 </div>
 
+                <!-- REPORT PACK -->
+                <div class="pricing-card">
+                    <div class="card-tier">Report Pack</div>
+                    <div class="card-name">10 Full Reports</div>
+                    <div class="card-price">
+                        <span class="amount">$29.99</span>
+                        <span class="period">one-time</span>
+                    </div>
+                    <p class="card-desc">Get 10 full AI analysis reports for just $3 each. Use across any tool. Never expire. Save 57% vs individual reports.</p>
+                    <ul class="card-features">
+                        <li><span class="check">&#10003;</span> 10 full AI analysis reports</li>
+                        <li><span class="check">&#10003;</span> Use on any tool (property, flip, BRRRR, etc.)</li>
+                        <li><span class="check">&#10003;</span> Full cash flow breakdown</li>
+                        <li><span class="check">&#10003;</span> Risk assessment &amp; market context</li>
+                        <li><span class="check">&#10003;</span> Optimization tips</li>
+                        <li class="disabled"><span class="x-mark">&#10007;</span> Portfolio tracker</li>
+                        <li class="disabled"><span class="x-mark">&#10007;</span> Community access</li>
+                        <li class="disabled"><span class="x-mark">&#10007;</span> Coaching sessions</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline" onclick="event.preventDefault();buyReportBundle()">Get 10 Reports &mdash; $29.99</a>
+                    <p style="text-align:center;font-size:0.75rem;color:var(--gray);margin-top:8px;">That's just $3/report vs $7 individually</p>
+                </div>
+
                 <!-- WEALTH BUILDER MONTHLY -->
                 <div class="pricing-card featured">
                     <div class="card-tier">Wealth Builder</div>
-                    <div class="card-name">Monthly Access</div>
+                    <div class="card-name">Unlimited Access</div>
                     <div class="card-price">
                         <span class="amount">$49.99</span>
                         <span class="period">one-time</span>
                     </div>
-                    <p class="card-desc">One-time payment. No subscription. Get full access to analyze, track, and grow your real estate portfolio.</p>
+                    <p class="card-desc">One-time payment. No subscription. Unlimited reports plus portfolio tracking, community, and strategy calls.</p>
                     <ul class="card-features">
                         <li><span class="check">&#10003;</span> <strong>Unlimited</strong> AI analyses</li>
                         <li><span class="check">&#10003;</span> Full property deep-dive reports</li>
@@ -346,23 +386,24 @@
                         <tr>
                             <th>Feature</th>
                             <th>Free</th>
+                            <th>Report Pack ($29.99)</th>
                             <th style="color: var(--gold);">Wealth Builder ($49.99)</th>
                             <th>Yearly ($999/yr)</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>AI Deal Analyses</td><td>3/month</td><td>Unlimited</td><td>Unlimited</td></tr>
-                        <tr><td>Property Reports</td><td>Basic</td><td>Full Deep-Dive</td><td>Full Deep-Dive</td></tr>
-                        <tr><td>Market Data</td><td>Snapshot</td><td>Full Access</td><td>Full Access + Alerts</td></tr>
-                        <tr><td>Portfolio Tracker</td><td><span class="table-x">&#10007;</span></td><td><span class="table-check">&#10003;</span></td><td><span class="table-check">&#10003;</span></td></tr>
-                        <tr><td>PDF Export</td><td><span class="table-x">&#10007;</span></td><td><span class="table-check">&#10003;</span></td><td><span class="table-check">&#10003;</span></td></tr>
-                        <tr><td>Investor Community</td><td><span class="table-x">&#10007;</span></td><td><span class="table-check">&#10003;</span></td><td><span class="table-check">&#10003;</span></td></tr>
-                        <tr><td>Monthly Strategy Calls</td><td><span class="table-x">&#10007;</span></td><td><span class="table-check">&#10003;</span></td><td><span class="table-check">&#10003;</span></td></tr>
-                        <tr><td>Weekly Coaching Calls</td><td><span class="table-x">&#10007;</span></td><td><span class="table-x">&#10007;</span></td><td><span class="table-check">&#10003;</span></td></tr>
-                        <tr><td>Deal Alerts</td><td><span class="table-x">&#10007;</span></td><td><span class="table-x">&#10007;</span></td><td><span class="table-check">&#10003;</span></td></tr>
-                        <tr><td>Priority Support</td><td><span class="table-x">&#10007;</span></td><td>Email</td><td>1-on-1 Priority</td></tr>
-                        <tr><td>Premium Courses</td><td><span class="table-x">&#10007;</span></td><td><span class="table-x">&#10007;</span></td><td><span class="table-check">&#10003;</span></td></tr>
-                        <tr><td>Free Trial</td><td><span class="table-x">&#10007;</span></td><td><span class="table-x">&#10007;</span></td><td>3-day free trial</td></tr>
+                        <tr><td>AI Deal Analyses</td><td>3/month</td><td>Unlimited (basic)</td><td>Unlimited</td><td>Unlimited</td></tr>
+                        <tr><td>Full Reports</td><td>Preview only</td><td>10 reports</td><td>Unlimited</td><td>Unlimited</td></tr>
+                        <tr><td>Market Data</td><td>Snapshot</td><td>In reports</td><td>Full Access</td><td>Full Access + Alerts</td></tr>
+                        <tr><td>Portfolio Tracker</td><td><span class="table-x">&#10007;</span></td><td><span class="table-x">&#10007;</span></td><td><span class="table-check">&#10003;</span></td><td><span class="table-check">&#10003;</span></td></tr>
+                        <tr><td>PDF Export</td><td><span class="table-x">&#10007;</span></td><td><span class="table-check">&#10003;</span></td><td><span class="table-check">&#10003;</span></td><td><span class="table-check">&#10003;</span></td></tr>
+                        <tr><td>Investor Community</td><td><span class="table-x">&#10007;</span></td><td><span class="table-x">&#10007;</span></td><td><span class="table-check">&#10003;</span></td><td><span class="table-check">&#10003;</span></td></tr>
+                        <tr><td>Monthly Strategy Calls</td><td><span class="table-x">&#10007;</span></td><td><span class="table-x">&#10007;</span></td><td><span class="table-check">&#10003;</span></td><td><span class="table-check">&#10003;</span></td></tr>
+                        <tr><td>Weekly Coaching Calls</td><td><span class="table-x">&#10007;</span></td><td><span class="table-x">&#10007;</span></td><td><span class="table-x">&#10007;</span></td><td><span class="table-check">&#10003;</span></td></tr>
+                        <tr><td>Deal Alerts</td><td><span class="table-x">&#10007;</span></td><td><span class="table-x">&#10007;</span></td><td><span class="table-x">&#10007;</span></td><td><span class="table-check">&#10003;</span></td></tr>
+                        <tr><td>Priority Support</td><td><span class="table-x">&#10007;</span></td><td>Email</td><td>Email</td><td>1-on-1 Priority</td></tr>
+                        <tr><td>Premium Courses</td><td><span class="table-x">&#10007;</span></td><td><span class="table-x">&#10007;</span></td><td><span class="table-x">&#10007;</span></td><td><span class="table-check">&#10003;</span></td></tr>
+                        <tr><td>Free Trial</td><td><span class="table-x">&#10007;</span></td><td><span class="table-x">&#10007;</span></td><td><span class="table-x">&#10007;</span></td><td>3-day free trial</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -577,6 +618,45 @@
             });
         });
     </script>
+<script>
+// Report Bundle purchase from membership page
+function buyReportBundle() {
+  var email = localStorage.getItem('ti_user_email') || '';
+  if (!email) {
+    email = prompt('Enter your email to purchase the report bundle:');
+    if (!email) return;
+    localStorage.setItem('ti_user_email', email);
+  }
+  fetch('/api/products/report-bundle', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.url) {
+      window.location.href = data.url;
+    } else if (data.credits) {
+      var c = parseInt(localStorage.getItem('ti_report_credits') || '0', 10);
+      localStorage.setItem('ti_report_credits', String(c + data.credits));
+      alert('Bundle purchased! You now have ' + (c + data.credits) + ' report credits.');
+    }
+  })
+  .catch(function() { alert('Connection error. Please try again.'); });
+}
+
+// Check if coming from a report paywall — show context banner
+(function() {
+  var ref = document.referrer;
+  if (ref && ref.indexOf('-analyzer') > -1) {
+    var banner = document.createElement('div');
+    banner.style.cssText = 'background: linear-gradient(135deg, #C9A84C, #A88A3D); color: #0A0E17; text-align: center; padding: 14px; font-weight: 700; font-size: 16px; position: fixed; top: 72px; left: 0; right: 0; z-index: 999;';
+    banner.innerHTML = '&#128161; You were analyzing a deal &mdash; unlock unlimited full reports with Wealth Builder or grab a 10-pack for just $29.99';
+    document.body.appendChild(banner);
+    setTimeout(function() { banner.style.display = 'none'; }, 15000);
+  }
+})();
+</script>
 <script src="/js/toinvested.js"></script>
 </body>
 </html>

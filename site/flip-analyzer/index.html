@@ -182,6 +182,28 @@ h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:700;line-height:1.2
 .error-msg{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:var(--red);padding:.8rem 1rem;border-radius:8px;font-size:.85rem;margin-bottom:1rem;display:none}
 .error-msg.active{display:block}
 
+/* PREMIUM REPORT GATE */
+.premium-gate { position: relative; margin-top: 1.5rem; }
+.premium-gate .gated-content { filter: blur(6px); pointer-events: none; user-select: none; opacity: 0.5; max-height: 400px; overflow: hidden; }
+.premium-gate .gate-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10; background: linear-gradient(180deg, rgba(10,14,23,0) 0%, rgba(10,14,23,0.85) 25%, rgba(10,14,23,0.97) 50%); padding: 2rem; text-align: center; }
+.gate-lock-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+.gate-title { font-family: var(--font-heading); font-size: 1.5rem; color: var(--white); margin-bottom: 0.5rem; }
+.gate-subtitle { color: var(--gray); font-size: 0.95rem; max-width: 400px; margin: 0 auto 1rem; line-height: 1.5; }
+.gate-features { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem 1rem; margin-bottom: 1.25rem; font-size: 0.85rem; color: var(--white-dim); }
+.gate-features span::before { content: '\2713 '; color: var(--gold); font-weight: 700; }
+.gate-price { display: flex; align-items: baseline; justify-content: center; gap: 0.5rem; margin-bottom: 1rem; }
+.gate-price .price-amount { font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; color: var(--gold); }
+.gate-price .price-note { font-size: 0.82rem; color: var(--gray); }
+.gate-btn { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--gold), var(--gold-dark)); color: var(--navy) !important; padding: 14px 36px; border-radius: 10px; font-weight: 700; font-size: 1.05rem; border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+.gate-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(201,168,76,0.4); }
+.gate-guarantee { font-size: 0.75rem; color: var(--gray); margin-top: 0.75rem; }
+.gate-bundle-link { font-size: 0.82rem; color: var(--gold); margin-top: 0.5rem; cursor: pointer; text-decoration: underline; }
+.free-tier-badge { display: inline-block; background: rgba(201,168,76,0.15); color: var(--gold); font-size: 0.72rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; }
+.bundle-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 10000; align-items: center; justify-content: center; }
+.bundle-modal-overlay.visible { display: flex; }
+.bundle-modal { background: var(--navy-card); border: 1px solid rgba(201,168,76,0.3); border-radius: 20px; padding: 2.5rem; max-width: 480px; width: 90%; text-align: center; position: relative; }
+.bundle-modal-close { position: absolute; top: 12px; right: 16px; background: none; border: none; color: var(--gray); font-size: 1.5rem; cursor: pointer; }
+
 /* RESPONSIVE */
 @media(max-width:1024px){
 .main{grid-template-columns:1fr}
@@ -408,7 +430,31 @@ function getApiKey() { return localStorage.getItem(STATE_KEYS.apiKey) || ''; }
 function getEmail() { return localStorage.getItem(STATE_KEYS.email) || ''; }
 function getUseCount() { return parseInt(localStorage.getItem(STATE_KEYS.useCount) || '0', 10); }
 function incrementUseCount() { const c = getUseCount() + 1; localStorage.setItem(STATE_KEYS.useCount, String(c)); return c; }
-function escHTML(s) { const d = document.createElement('div'); d.textContent = String(s); return d.innerHTML; }
+function escHTML(s) { var d = document.createElement('div'); d.textContent = String(s); return d.innerHTML; }
+
+// ============================================
+// REPORT CREDIT MANAGEMENT
+// ============================================
+function getReportCredits() {
+  return parseInt(localStorage.getItem('ti_report_credits') || '0', 10);
+}
+function useReportCredit() {
+  var c = getReportCredits();
+  if (c > 0) {
+    localStorage.setItem('ti_report_credits', String(c - 1));
+    return true;
+  }
+  return false;
+}
+function isReportUnlocked(toolType) {
+  var unlocked = JSON.parse(localStorage.getItem('ti_unlocked_reports') || '{}');
+  return !!unlocked[toolType + '_' + (window._currentAnalysisId || 'latest')];
+}
+function markReportUnlocked(toolType) {
+  var unlocked = JSON.parse(localStorage.getItem('ti_unlocked_reports') || '{}');
+  unlocked[toolType + '_' + (window._currentAnalysisId || 'latest')] = true;
+  localStorage.setItem('ti_unlocked_reports', JSON.stringify(unlocked));
+}
 
 // ============================================
 // API KEY MANAGEMENT
@@ -560,53 +606,101 @@ async function callClaudeAPI(data) {
 // ============================================
 function displayResults(data) {
   hideLoading();
-  const el = document.getElementById('results');
+  var el = document.getElementById('results');
 
-  const profitClass = data.profitProjection.netProfit > 0 ? 'positive' : 'negative';
-  const ruleClass = data.seventyPercentRule.passes ? 'positive' : 'negative';
-  const riskColor = { LOW: 'positive', MODERATE: 'neutral', HIGH: 'negative' }[data.riskAssessment.level] || 'neutral';
+  // Store current analysis data for potential unlock
+  window._currentAnalysisData = data;
+  window._currentAnalysisId = Date.now().toString();
 
-  el.innerHTML = `
-    <div class="result-section">
-      <h3>Executive Summary</h3>
-      <p>${escHTML(data.summary)}</p>
-    </div>
-    <div class="metrics-grid">
-      <div class="result-section">
-        <h3>Net Profit</h3>
-        <div class="metric ${profitClass}">$${Math.round(data.profitProjection.netProfit).toLocaleString()}</div>
-        <p style="margin-top:.5rem;font-size:.8rem">${escHTML(data.profitProjection.breakdown)}</p>
-      </div>
-      <div class="result-section">
-        <h3>Return on Investment</h3>
-        <div class="metric ${data.roi.percentage > 0 ? 'positive' : 'negative'}">${Number(data.roi.percentage).toFixed(1)}%</div>
-        <p style="margin-top:.5rem;font-size:.8rem">${escHTML(data.roi.verdict)}</p>
-      </div>
-    </div>
-    <div class="metrics-grid">
-      <div class="result-section">
-        <h3>70% Rule Check</h3>
-        <div class="metric ${ruleClass}">${data.seventyPercentRule.passes ? 'PASSES' : 'FAILS'}</div>
-        <p style="margin-top:.5rem;font-size:.8rem">Max price: $${Math.round(data.seventyPercentRule.maxPrice).toLocaleString()}<br>${escHTML(data.seventyPercentRule.explanation)}</p>
-      </div>
-      <div class="result-section">
-        <h3>Cost-to-ARV Ratio</h3>
-        <div class="metric neutral">${(Number(data.costToArv.ratio) * 100).toFixed(1)}%</div>
-        <p style="margin-top:.5rem;font-size:.8rem">${escHTML(data.costToArv.rating)} &mdash; ${escHTML(data.costToArv.explanation)}</p>
-      </div>
-    </div>
-    <div class="result-section">
-      <h3>Risk Assessment: <span style="color:var(--${riskColor === 'positive' ? 'green' : riskColor === 'negative' ? 'red' : 'blue'})">${escHTML(data.riskAssessment.level)}</span></h3>
-      <p><strong>Risk Factors:</strong></p>
-      <ul>${(data.riskAssessment.factors || []).map(f => `<li>${escHTML(f)}</li>`).join('')}</ul>
-      <p style="margin-top:.5rem"><strong>Mitigations:</strong></p>
-      <ul>${(data.riskAssessment.mitigations || []).map(m => `<li>${escHTML(m)}</li>`).join('')}</ul>
-    </div>
-    <div class="result-section">
-      <h3>Contractor Budget Tips</h3>
-      <ul>${(data.contractorTips || []).map(t => `<li>${escHTML(t)}</li>`).join('')}</ul>
-    </div>
-  `;
+  var profitClass = data.profitProjection.netProfit > 0 ? 'positive' : 'negative';
+  var ruleClass = data.seventyPercentRule.passes ? 'positive' : 'negative';
+  var riskColor = { LOW: 'positive', MODERATE: 'neutral', HIGH: 'negative' }[data.riskAssessment.level] || 'neutral';
+
+  // === FREE TIER: Verdict + 3 key metrics ===
+  var freeHTML = '';
+  freeHTML += '<div class="free-tier-badge">Free Preview</div>';
+  freeHTML += '<div class="result-section">';
+  freeHTML += '<h3>Executive Summary</h3>';
+  freeHTML += '<p>' + escHTML(data.summary) + '</p>';
+  freeHTML += '</div>';
+  freeHTML += '<div class="metrics-grid">';
+  freeHTML += '<div class="result-section">';
+  freeHTML += '<h3>Net Profit</h3>';
+  freeHTML += '<div class="metric ' + profitClass + '">$' + Math.round(data.profitProjection.netProfit).toLocaleString() + '</div>';
+  freeHTML += '<p style="margin-top:.5rem;font-size:.8rem">' + escHTML(data.profitProjection.breakdown) + '</p>';
+  freeHTML += '</div>';
+  freeHTML += '<div class="result-section">';
+  freeHTML += '<h3>Return on Investment</h3>';
+  freeHTML += '<div class="metric ' + (data.roi.percentage > 0 ? 'positive' : 'negative') + '">' + Number(data.roi.percentage).toFixed(1) + '%</div>';
+  freeHTML += '<p style="margin-top:.5rem;font-size:.8rem">' + escHTML(data.roi.verdict) + '</p>';
+  freeHTML += '</div>';
+  freeHTML += '</div>';
+  freeHTML += '<div class="metrics-grid">';
+  freeHTML += '<div class="result-section">';
+  freeHTML += '<h3>70% Rule Check</h3>';
+  freeHTML += '<div class="metric ' + ruleClass + '">' + (data.seventyPercentRule.passes ? 'PASSES' : 'FAILS') + '</div>';
+  freeHTML += '<p style="margin-top:.5rem;font-size:.8rem">Max price: $' + Math.round(data.seventyPercentRule.maxPrice).toLocaleString() + '<br>' + escHTML(data.seventyPercentRule.explanation) + '</p>';
+  freeHTML += '</div>';
+  freeHTML += '</div>';
+
+  // === PREMIUM TIER: Cash flow, risks, market context, optimization tips, full assessment ===
+  var premiumHTML = '';
+  premiumHTML += '<div class="metrics-grid">';
+  premiumHTML += '<div class="result-section">';
+  premiumHTML += '<h3>Cost-to-ARV Ratio</h3>';
+  premiumHTML += '<div class="metric neutral">' + (Number(data.costToArv.ratio) * 100).toFixed(1) + '%</div>';
+  premiumHTML += '<p style="margin-top:.5rem;font-size:.8rem">' + escHTML(data.costToArv.rating) + ' &mdash; ' + escHTML(data.costToArv.explanation) + '</p>';
+  premiumHTML += '</div>';
+  premiumHTML += '</div>';
+  premiumHTML += '<div class="result-section">';
+  premiumHTML += '<h3>Risk Assessment: <span style="color:var(--' + (riskColor === 'positive' ? 'green' : riskColor === 'negative' ? 'red' : 'blue') + ')">' + escHTML(data.riskAssessment.level) + '</span></h3>';
+  premiumHTML += '<p><strong>Risk Factors:</strong></p>';
+  premiumHTML += '<ul>' + (data.riskAssessment.factors || []).map(function(f) { return '<li>' + escHTML(f) + '</li>'; }).join('') + '</ul>';
+  premiumHTML += '<p style="margin-top:.5rem"><strong>Mitigations:</strong></p>';
+  premiumHTML += '<ul>' + (data.riskAssessment.mitigations || []).map(function(m) { return '<li>' + escHTML(m) + '</li>'; }).join('') + '</ul>';
+  premiumHTML += '</div>';
+  premiumHTML += '<div class="result-section">';
+  premiumHTML += '<h3>Contractor Budget Tips</h3>';
+  premiumHTML += '<ul>' + (data.contractorTips || []).map(function(t) { return '<li>' + escHTML(t) + '</li>'; }).join('') + '</ul>';
+  premiumHTML += '</div>';
+
+  // Check if user has access to premium content
+  var hasAccess = isReportUnlocked('flip') || getReportCredits() > 0;
+
+  if (hasAccess) {
+    // If they have credits but report not yet marked unlocked, use a credit
+    if (!isReportUnlocked('flip') && getReportCredits() > 0) {
+      useReportCredit();
+      markReportUnlocked('flip');
+    }
+    el.innerHTML = freeHTML + premiumHTML;
+  } else {
+    // Show free tier + blurred premium with gate overlay
+    var gateHTML = '';
+    gateHTML += '<div class="premium-gate">';
+    gateHTML += '<div class="gated-content">' + premiumHTML + '</div>';
+    gateHTML += '<div class="gate-overlay">';
+    gateHTML += '<div class="gate-lock-icon">&#128274;</div>';
+    gateHTML += '<h3 class="gate-title">Unlock Your Full Report</h3>';
+    gateHTML += '<p class="gate-subtitle">Get the complete analysis including risk assessment, cost ratios, contractor tips, and actionable recommendations.</p>';
+    gateHTML += '<div class="gate-features">';
+    gateHTML += '<span>Cash Flow Analysis</span>';
+    gateHTML += '<span>Risk Assessment</span>';
+    gateHTML += '<span>Market Context</span>';
+    gateHTML += '<span>Optimization Tips</span>';
+    gateHTML += '<span>Full Assessment</span>';
+    gateHTML += '</div>';
+    gateHTML += '<div class="gate-price">';
+    gateHTML += '<span class="price-amount">$7</span>';
+    gateHTML += '<span class="price-note">one-time per report</span>';
+    gateHTML += '</div>';
+    gateHTML += '<button class="gate-btn" onclick="unlockReport()">&#128275; Unlock Full Report</button>';
+    gateHTML += '<p class="gate-guarantee">30-day money-back guarantee &bull; Instant access</p>';
+    gateHTML += '<p class="gate-bundle-link" onclick="showBundleModal()">Or save 57% with a 10-report bundle</p>';
+    gateHTML += '</div>';
+    gateHTML += '</div>';
+    el.innerHTML = freeHTML + gateHTML;
+  }
 
   el.classList.add('active');
 
@@ -617,6 +711,92 @@ function displayResults(data) {
 }
 
 // ============================================
+// PREMIUM REPORT UNLOCK
+// ============================================
+window.unlockReport = function() {
+  var email = getEmail();
+  if (!email) {
+    alert('Please enter your email first.');
+    return;
+  }
+  var btn = document.querySelector('.gate-btn');
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = 'Processing...';
+  }
+  fetch('/api/products/report-unlock', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email, toolType: 'flip' })
+  })
+  .then(function(resp) {
+    if (!resp.ok) throw new Error('Payment failed. Please try again.');
+    return resp.json();
+  })
+  .then(function(result) {
+    markReportUnlocked('flip');
+    if (window._currentAnalysisData) {
+      displayResults(window._currentAnalysisData);
+    }
+  })
+  .catch(function(err) {
+    alert(err.message || 'Something went wrong. Please try again.');
+    if (btn) {
+      btn.disabled = false;
+      btn.innerHTML = '&#128275; Unlock Full Report';
+    }
+  });
+};
+
+window.showBundleModal = function() {
+  var modal = document.getElementById('bundle-modal');
+  if (modal) modal.classList.add('visible');
+};
+
+window.closeBundleModal = function() {
+  var modal = document.getElementById('bundle-modal');
+  if (modal) modal.classList.remove('visible');
+};
+
+window.buyBundle = function() {
+  var email = getEmail();
+  if (!email) {
+    alert('Please enter your email first.');
+    return;
+  }
+  var btn = document.querySelector('#bundle-modal .gate-btn');
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = 'Processing...';
+  }
+  fetch('/api/products/report-unlock', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email, toolType: 'flip', bundle: true })
+  })
+  .then(function(resp) {
+    if (!resp.ok) throw new Error('Payment failed. Please try again.');
+    return resp.json();
+  })
+  .then(function(result) {
+    var currentCredits = getReportCredits();
+    localStorage.setItem('ti_report_credits', String(currentCredits + 10));
+    closeBundleModal();
+    markReportUnlocked('flip');
+    if (window._currentAnalysisData) {
+      displayResults(window._currentAnalysisData);
+    }
+  })
+  .catch(function(err) {
+    alert(err.message || 'Something went wrong. Please try again.');
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = 'Get 10 Reports for $29.99';
+    }
+  });
+};
+
+// ============================================
 // INIT
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -624,5 +804,20 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 <script src="/js/toinvested.js"></script>
+
+<!-- BUNDLE MODAL -->
+<div class="bundle-modal-overlay" id="bundle-modal" onclick="if(event.target===this)closeBundleModal()">
+  <div class="bundle-modal">
+    <button class="bundle-modal-close" onclick="closeBundleModal()">&times;</button>
+    <div style="background:rgba(52,211,153,0.1);color:#34D399;display:inline-block;padding:4px 14px;border-radius:20px;font-size:0.82rem;font-weight:700;margin-bottom:1rem;">SAVE 57%</div>
+    <h3 style="font-size:1.4rem;margin-bottom:0.5rem;">10 Premium Report Bundle</h3>
+    <p style="color:var(--gray);font-size:0.9rem;margin-bottom:1rem;">Use across any tool. Never expire.</p>
+    <div style="margin:1rem 0;"><span style="text-decoration:line-through;color:var(--gray);">$70</span> <span style="font-family:var(--font-heading);font-size:2rem;font-weight:800;color:var(--gold);margin-left:0.5rem;">$29.99</span></div>
+    <div style="font-size:0.85rem;color:#34D399;font-weight:600;">Just $3 per report</div>
+    <button class="gate-btn" onclick="buyBundle()" style="margin-top:1.25rem;width:100%;">Get 10 Reports for $29.99</button>
+    <p style="font-size:0.75rem;color:var(--gray);margin-top:0.75rem;">30-day money-back guarantee</p>
+  </div>
+</div>
+
 </body>
 </html>

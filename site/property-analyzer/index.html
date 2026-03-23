@@ -745,6 +745,191 @@ input::placeholder { color: var(--gray); }
 }
 .results-container.visible { display: block; }
 
+/* ==============================
+   PREMIUM REPORT GATE
+   ============================== */
+.premium-gate {
+  position: relative;
+  margin-top: 1.5rem;
+}
+.premium-gate .gated-content {
+  filter: blur(6px);
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.5;
+  max-height: 400px;
+  overflow: hidden;
+}
+.premium-gate .gate-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  background: linear-gradient(180deg, rgba(10,14,23,0) 0%, rgba(10,14,23,0.85) 25%, rgba(10,14,23,0.97) 50%);
+  padding: 2rem;
+  text-align: center;
+}
+.gate-lock-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+.gate-title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+.gate-subtitle {
+  color: var(--gray);
+  font-size: 0.95rem;
+  max-width: 400px;
+  margin: 0 auto 1rem;
+  line-height: 1.5;
+}
+.gate-features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.85rem;
+  color: var(--white-dim);
+}
+.gate-features span::before {
+  content: '\2713 ';
+  color: var(--gold);
+  font-weight: 700;
+}
+.gate-price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.gate-price .price-amount {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--gold);
+}
+.gate-price .price-note {
+  font-size: 0.82rem;
+  color: var(--gray);
+}
+.gate-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: var(--navy) !important;
+  padding: 14px 36px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.gate-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(201,168,76,0.4);
+}
+.gate-guarantee {
+  font-size: 0.75rem;
+  color: var(--gray);
+  margin-top: 0.75rem;
+}
+.gate-bundle-link {
+  font-size: 0.82rem;
+  color: var(--gold);
+  margin-top: 0.5rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.gate-bundle-link:hover { color: var(--gold-light); }
+
+/* Premium badge on free tier */
+.free-tier-badge {
+  display: inline-block;
+  background: rgba(201,168,76,0.15);
+  color: var(--gold);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+}
+
+/* Bundle modal */
+.bundle-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+}
+.bundle-modal-overlay.visible { display: flex; }
+.bundle-modal {
+  background: var(--navy-card);
+  border: 1px solid var(--gold-glow-strong);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  max-width: 480px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+}
+.bundle-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: var(--gray);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.bundle-savings {
+  background: var(--green-bg);
+  color: var(--green);
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.bundle-price-compare {
+  margin: 1rem 0;
+}
+.bundle-price-compare .old-price {
+  text-decoration: line-through;
+  color: var(--gray);
+  font-size: 1rem;
+}
+.bundle-price-compare .new-price {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--gold);
+  margin-left: 0.5rem;
+}
+.bundle-per-report {
+  font-size: 0.85rem;
+  color: var(--green);
+  font-weight: 600;
+}
+
 /* Verdict banner */
 .verdict-banner {
   border-radius: var(--radius-lg);
@@ -1696,98 +1881,255 @@ Ensure all numbers are realistic and mathematically consistent. Be honest — if
     }
   };
 
+  // ---- REPORT CREDITS ----
+  function getReportCredits() {
+    return parseInt(localStorage.getItem('ti_report_credits') || '0', 10);
+  }
+  function useReportCredit() {
+    var c = getReportCredits();
+    if (c > 0) { localStorage.setItem('ti_report_credits', String(c - 1)); return true; }
+    return false;
+  }
+  function isReportUnlocked() {
+    // Check URL params for successful purchase
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('report') === 'unlocked' || params.get('bundle') === 'purchased') {
+      if (params.get('bundle') === 'purchased') {
+        var credits = parseInt(params.get('credits') || '10', 10);
+        localStorage.setItem('ti_report_credits', String(getReportCredits() + credits));
+      }
+      // Clean URL
+      window.history.replaceState({}, '', window.location.pathname);
+      return true;
+    }
+    return getReportCredits() > 0;
+  }
+
+  // Store latest analysis for unlocking
+  var lastAnalysis = null;
+
   // ---- RENDER RESULTS ----
   function showResults(analysis) {
-    const container = $('#results');
+    lastAnalysis = analysis;
+    var container = $('#results');
+    var unlocked = isReportUnlocked();
 
     // Verdict class
-    let verdictClass = 'hold';
-    const v = (analysis.verdict || '').toUpperCase();
+    var verdictClass = 'hold';
+    var v = (analysis.verdict || '').toUpperCase();
     if (v === 'STRONG BUY') verdictClass = 'strong-buy';
     else if (v === 'BUY') verdictClass = 'buy';
     else if (v === 'HOLD') verdictClass = 'hold';
     else if (v === 'PASS') verdictClass = 'pass';
 
-    let html = '';
+    var html = '';
+
+    // =============================================
+    // FREE TIER: Verdict + Key Metrics (always shown)
+    // =============================================
+    html += '<div class="free-tier-badge">&#9889; Free Preview</div>';
 
     // Verdict banner
-    html += `
-      <div class="verdict-banner ${verdictClass}">
-        <div class="verdict-label">AI Verdict</div>
-        <div class="verdict-value">${escHTML(analysis.verdict)}</div>
-        <div class="verdict-summary">${escHTML(analysis.verdict_summary)}</div>
-      </div>
-    `;
+    html += '<div class="verdict-banner ' + verdictClass + '">' +
+      '<div class="verdict-label">AI Verdict</div>' +
+      '<div class="verdict-value">' + escHTML(analysis.verdict) + '</div>' +
+      '<div class="verdict-summary">' + escHTML(analysis.verdict_summary) + '</div>' +
+    '</div>';
 
-    // Key metrics
+    // Key metrics (show first 3 free, rest locked)
     if (analysis.metrics && analysis.metrics.length) {
-      html += `<div class="result-card"><h3>&#9889; Key Metrics</h3><div class="metrics-grid">`;
-      analysis.metrics.forEach(m => {
-        html += `<div class="metric-item"><span class="metric-value">${escHTML(m.value)}</span><span class="metric-label">${escHTML(m.label)}</span></div>`;
+      var freeMetrics = analysis.metrics.slice(0, 3);
+      html += '<div class="result-card"><h3>&#9889; Key Metrics</h3><div class="metrics-grid">';
+      freeMetrics.forEach(function(m) {
+        html += '<div class="metric-item"><span class="metric-value">' + escHTML(m.value) + '</span><span class="metric-label">' + escHTML(m.label) + '</span></div>';
       });
-      html += `</div></div>`;
+      html += '</div></div>';
     }
 
-    // Cash flow breakdown
-    if (analysis.cashflow && analysis.cashflow.length) {
-      html += `<div class="result-card"><h3>&#128176; Cash Flow Breakdown <span style="font-family:var(--font-body);font-size:0.8rem;color:var(--gray);font-weight:400;">(monthly)</span></h3>`;
-      html += `<table class="cashflow-table">`;
-      analysis.cashflow.forEach(item => {
-        const isIncome = item.type === 'income';
-        const sign = isIncome ? '+' : '-';
-        const cls = isIncome ? 'positive' : 'negative';
-        const val = Math.abs(item.amount);
-        html += `<tr><td>${escHTML(item.item)}</td><td class="${cls}">${sign}$${val.toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0})}</td></tr>`;
-      });
-      // Net
-      const net = analysis.cashflow_net || 0;
-      const netCls = net >= 0 ? 'positive' : 'negative';
-      const netSign = net >= 0 ? '+' : '-';
-      html += `<tr class="total"><td>Net Monthly Cash Flow</td><td class="${netCls}">${netSign}$${Math.abs(net).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0})}</td></tr>`;
-      html += `</table></div>`;
-    }
-
-    // Risk assessment
-    if (analysis.risks && analysis.risks.length) {
-      html += `<div class="result-card"><h3>&#9888;&#65039; Risk Assessment</h3><ul class="risk-list">`;
-      analysis.risks.forEach(r => {
-        const icon = r.level === 'high' ? '!' : (r.level === 'medium' ? '~' : '&#10003;');
-        html += `<li><span class="risk-icon ${r.level}">${icon}</span><span>${escHTML(r.text)}</span></li>`;
-      });
-      html += `</ul></div>`;
-    }
-
-    // Market context
-    if (analysis.market_context) {
-      html += `<div class="result-card"><h3>&#127758; Market Context</h3><div class="analysis-text"><p>${escHTML(analysis.market_context)}</p></div></div>`;
-    }
-
-    // Optimization tips
-    if (analysis.optimization_tips && analysis.optimization_tips.length) {
-      html += `<div class="result-card"><h3>&#128161; Optimization Tips</h3><ul class="tips-list">`;
-      analysis.optimization_tips.forEach(tip => {
-        html += `<li><span class="tip-icon">&#10148;</span><span>${escHTML(tip)}</span></li>`;
-      });
-      html += `</ul></div>`;
-    }
-
-    // Full assessment
-    if (analysis.full_assessment) {
-      html += `<div class="result-card"><h3>&#128200; Full Assessment</h3><div class="analysis-text">`;
-      analysis.full_assessment.split('\n').filter(p => p.trim()).forEach(p => {
-        html += `<p>${escHTML(p)}</p>`;
-      });
-      html += `</div></div>`;
+    // =============================================
+    // PREMIUM TIER: Everything else
+    // =============================================
+    if (unlocked) {
+      // Use a credit
+      useReportCredit();
+      html += buildPremiumContent(analysis);
+    } else {
+      // Show blurred preview + gate
+      html += '<div class="premium-gate">';
+      html += '<div class="gated-content">' + buildPremiumContent(analysis) + '</div>';
+      html += '<div class="gate-overlay">';
+      html += '<div class="gate-lock-icon">&#128274;</div>';
+      html += '<div class="gate-title">Unlock Your Full Report</div>';
+      html += '<div class="gate-subtitle">Your analysis is ready. Get the complete breakdown with cash flow details, risk assessment, market context, and optimization strategies.</div>';
+      html += '<div class="gate-features">';
+      html += '<span>Cash Flow Breakdown</span>';
+      html += '<span>Risk Assessment</span>';
+      html += '<span>Market Context</span>';
+      html += '<span>Optimization Tips</span>';
+      html += '<span>Full AI Assessment</span>';
+      html += '</div>';
+      html += '<div class="gate-price"><span class="price-amount">$7</span><span class="price-note">one-time &bull; keep forever</span></div>';
+      html += '<button class="gate-btn" onclick="unlockReport()">&#128275; Unlock Full Report</button>';
+      html += '<div class="gate-guarantee">&#128737; 30-day money-back guarantee &bull; Instant access</div>';
+      html += '<div class="gate-bundle-link" onclick="showBundleModal()">Or get 10 reports for $29.99 (save 57%)</div>';
+      html += '</div></div>';
     }
 
     container.innerHTML = html;
     container.classList.add('visible');
-    $('#upsell').classList.add('visible');
+    if (unlocked) { $('#upsell').classList.add('visible'); }
     $('#new-analysis-wrap').style.display = '';
 
     // Scroll to results
     container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // Update remaining badge
+    var rem = $('#free-remaining');
+    if (rem) {
+      var used = parseInt(localStorage.getItem('ti_analyses_used') || '0', 10) + 1;
+      localStorage.setItem('ti_analyses_used', String(used));
+      var left = Math.max(0, 3 - used);
+      rem.textContent = String(left);
+    }
   }
+
+  // Build premium content HTML (used for both real and blurred)
+  function buildPremiumContent(analysis) {
+    var html = '';
+
+    // Remaining metrics (4+)
+    if (analysis.metrics && analysis.metrics.length > 3) {
+      var premiumMetrics = analysis.metrics.slice(3);
+      html += '<div class="result-card"><h3>&#128202; Advanced Metrics</h3><div class="metrics-grid">';
+      premiumMetrics.forEach(function(m) {
+        html += '<div class="metric-item"><span class="metric-value">' + escHTML(m.value) + '</span><span class="metric-label">' + escHTML(m.label) + '</span></div>';
+      });
+      html += '</div></div>';
+    }
+
+    // Cash flow breakdown
+    if (analysis.cashflow && analysis.cashflow.length) {
+      html += '<div class="result-card"><h3>&#128176; Cash Flow Breakdown <span style="font-family:var(--font-body);font-size:0.8rem;color:var(--gray);font-weight:400;">(monthly)</span></h3>';
+      html += '<table class="cashflow-table">';
+      analysis.cashflow.forEach(function(item) {
+        var isIncome = item.type === 'income';
+        var sign = isIncome ? '+' : '-';
+        var cls = isIncome ? 'positive' : 'negative';
+        var val = Math.abs(item.amount);
+        html += '<tr><td>' + escHTML(item.item) + '</td><td class="' + cls + '">' + sign + '$' + val.toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0}) + '</td></tr>';
+      });
+      var net = analysis.cashflow_net || 0;
+      var netCls = net >= 0 ? 'positive' : 'negative';
+      var netSign = net >= 0 ? '+' : '-';
+      html += '<tr class="total"><td>Net Monthly Cash Flow</td><td class="' + netCls + '">' + netSign + '$' + Math.abs(net).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0}) + '</td></tr>';
+      html += '</table></div>';
+    }
+
+    // Risk assessment
+    if (analysis.risks && analysis.risks.length) {
+      html += '<div class="result-card"><h3>&#9888;&#65039; Risk Assessment</h3><ul class="risk-list">';
+      analysis.risks.forEach(function(r) {
+        var icon = r.level === 'high' ? '!' : (r.level === 'medium' ? '~' : '&#10003;');
+        html += '<li><span class="risk-icon ' + r.level + '">' + icon + '</span><span>' + escHTML(r.text) + '</span></li>';
+      });
+      html += '</ul></div>';
+    }
+
+    // Market context
+    if (analysis.market_context) {
+      html += '<div class="result-card"><h3>&#127758; Market Context</h3><div class="analysis-text"><p>' + escHTML(analysis.market_context) + '</p></div></div>';
+    }
+
+    // Optimization tips
+    if (analysis.optimization_tips && analysis.optimization_tips.length) {
+      html += '<div class="result-card"><h3>&#128161; Optimization Tips</h3><ul class="tips-list">';
+      analysis.optimization_tips.forEach(function(tip) {
+        html += '<li><span class="tip-icon">&#10148;</span><span>' + escHTML(tip) + '</span></li>';
+      });
+      html += '</ul></div>';
+    }
+
+    // Full assessment
+    if (analysis.full_assessment) {
+      html += '<div class="result-card"><h3>&#128200; Full Assessment</h3><div class="analysis-text">';
+      analysis.full_assessment.split('\n').filter(function(p) { return p.trim(); }).forEach(function(p) {
+        html += '<p>' + escHTML(p) + '</p>';
+      });
+      html += '</div></div>';
+    }
+
+    return html;
+  }
+
+  // ---- UNLOCK REPORT (Stripe checkout) ----
+  window.unlockReport = function() {
+    var email = localStorage.getItem('ti_user_email') || '';
+    if (!email) {
+      email = prompt('Enter your email to unlock the full report:');
+      if (!email) return;
+      localStorage.setItem('ti_user_email', email);
+    }
+
+    var btn = document.querySelector('.gate-btn');
+    if (btn) { btn.textContent = 'Processing...'; btn.disabled = true; }
+
+    fetch('/api/products/report-unlock', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, toolType: 'property', analysisData: lastAnalysis })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data.url) {
+        window.location.href = data.url;
+      } else if (data.unlocked) {
+        // Demo mode - unlock immediately
+        localStorage.setItem('ti_report_credits', String(getReportCredits() + 1));
+        showResults(lastAnalysis);
+      } else {
+        alert(data.message || 'Something went wrong. Please try again.');
+        if (btn) { btn.textContent = '\uD83D\uDD13 Unlock Full Report'; btn.disabled = false; }
+      }
+    })
+    .catch(function() {
+      alert('Connection error. Please try again.');
+      if (btn) { btn.textContent = '\uD83D\uDD13 Unlock Full Report'; btn.disabled = false; }
+    });
+  };
+
+  // ---- BUNDLE MODAL ----
+  window.showBundleModal = function() {
+    $('#bundle-modal').classList.add('visible');
+  };
+  window.closeBundleModal = function() {
+    $('#bundle-modal').classList.remove('visible');
+  };
+  window.buyBundle = function() {
+    var email = localStorage.getItem('ti_user_email') || '';
+    if (!email) {
+      email = prompt('Enter your email to purchase the bundle:');
+      if (!email) return;
+      localStorage.setItem('ti_user_email', email);
+    }
+
+    fetch('/api/products/report-bundle', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data.url) {
+        window.location.href = data.url;
+      } else if (data.credits) {
+        // Demo mode
+        localStorage.setItem('ti_report_credits', String(getReportCredits() + data.credits));
+        closeBundleModal();
+        showResults(lastAnalysis);
+      }
+    })
+    .catch(function() { alert('Connection error. Please try again.'); });
+  };
 
   // ---- RESET ----
   window.resetAnalyzer = function() {
@@ -1835,6 +2177,26 @@ Ensure all numbers are realistic and mathematically consistent. Be honest — if
 
 })();
 </script>
+
+<!-- BUNDLE MODAL -->
+<div class="bundle-modal-overlay" id="bundle-modal" onclick="if(event.target===this)closeBundleModal()">
+  <div class="bundle-modal">
+    <button class="bundle-modal-close" onclick="closeBundleModal()">&times;</button>
+    <div class="bundle-savings">SAVE 57%</div>
+    <h3 style="font-size:1.4rem;margin-bottom:0.5rem;">10 Premium Report Bundle</h3>
+    <p style="color:var(--gray);font-size:0.9rem;margin-bottom:1rem;">Use across any tool — property, flip, BRRRR, renovation, stock, or bitcoin analysis.</p>
+    <div class="bundle-price-compare">
+      <span class="old-price">$70 (10 x $7)</span>
+      <span class="new-price">$29.99</span>
+    </div>
+    <div class="bundle-per-report">Just $3 per report</div>
+    <button class="gate-btn" onclick="buyBundle()" style="margin-top:1.25rem;width:100%;">Get 10 Reports for $29.99</button>
+    <p style="font-size:0.75rem;color:var(--gray);margin-top:0.75rem;">&#128737; 30-day money-back guarantee &bull; Use anytime, never expire</p>
+    <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--navy-border);font-size:0.82rem;color:var(--gray);">
+      Already analyzed 3+ deals? <a href="/membership/" style="color:var(--gold);font-weight:600;">Get unlimited reports with Wealth Builder &rarr;</a>
+    </div>
+  </div>
+</div>
 
 <!-- STICKY MOBILE CTA -->
 <div class="sticky-cta" id="sticky-cta">
