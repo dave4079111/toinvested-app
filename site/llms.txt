@@ -1,0 +1,61 @@
+# ToInvested.com
+
+> AI-powered investment analysis platform for real estate, stocks, and cryptocurrency. Free tools, education, and coaching to help investors make data-driven decisions.
+
+## About ToInvested
+
+ToInvested is an AI-powered investment education and analysis platform. We provide free and premium tools that help investors analyze real estate deals, stock investments, and cryptocurrency allocations using artificial intelligence. Our platform serves both beginner and experienced investors looking to make smarter, data-driven financial decisions.
+
+Founded as a YPN Inc product, ToInvested combines cutting-edge AI analysis with practical investment education across multiple asset classes.
+
+## Free AI Investment Tools
+
+### Real Estate Analyzers
+- [Property Analyzer](https://toinvested.com/property-analyzer/): AI-powered rental property analysis. Enter property details and get instant cash flow projections, cap rates, ROI estimates, risk assessments, and buy/pass verdicts from Claude AI.
+- [Fix & Flip Analyzer](https://toinvested.com/flip-analyzer/): Analyze house flipping deals with AI. Get profit projections, ROI calculations, 70% rule compliance, risk assessment, and contractor budget tips.
+- [BRRRR Analyzer](https://toinvested.com/brrrr-analyzer/): Buy-Rehab-Rent-Refinance-Repeat strategy calculator. Analyze cash-out refinance scenarios, infinite return potential, monthly cash flow, cap rates, and DSCR.
+- [Renovation Analyzer](https://toinvested.com/renovation-analyzer/): Calculate renovation ROI with AI. Get value-add estimates, scope recommendations, cost comparisons, risk analysis, and agent talking points.
+
+### Stock & Crypto Analyzers
+- [Stock Analyzer](https://toinvested.com/stock-analyzer/): AI-powered stock investment growth calculator. Model investment scenarios with compound growth, dividend reinvestment, and inflation-adjusted projections.
+- [Bitcoin Analyzer](https://toinvested.com/bitcoin-analyzer/): Bitcoin and cryptocurrency DCA calculator. Model dollar-cost averaging strategies, halving cycle analysis, and portfolio allocation scenarios.
+
+## Investment Education
+
+### Sales Funnel Landing Pages
+- [Bitcoin Investing Guide](https://toinvested.com/bitcoin-investing/): Comprehensive Bitcoin investment analysis comparing crypto to stocks and real estate.
+- [Real Estate Investing Guide](https://toinvested.com/real-estate-investing/): Real estate investment education covering rental properties, house flipping, and wealth building.
+- [Stock Market Investing Guide](https://toinvested.com/stock-market-investing/): Stock market investment education with AI-powered analysis tools.
+
+### Blog & Resources
+- [Investment Blog](https://toinvested.com/blog/): Articles on cash-on-cash returns, 1031 exchanges, DSCR loans, house hacking, creative financing, cap rates, and more.
+- [AI Investment Coach](https://toinvested.com/ai-coach/): 24/7 AI-powered investment coaching.
+- [Education Hub](https://toinvested.com/education/): Structured investment learning paths.
+
+## Company Information
+- [About Us](https://toinvested.com/about/): Our mission, team, and values.
+- [Meet the Founder](https://toinvested.com/founder/): Founder bio and journey.
+- [Consulting](https://toinvested.com/consulting/): Professional investment consulting services.
+- [Coaching](https://toinvested.com/coaching/): One-on-one and group coaching sessions.
+
+## Membership Plans
+- **Free**: Access to all 6 AI investment analyzers with limited analyses per day.
+- **Premium ($49.99/mo)**: Unlimited analyses, 24/7 AI coach, advanced portfolio optimization, market alerts.
+- **Pro**: API access, advanced analytics, priority support.
+
+## Wealth Protection Services
+- [Tax Strategy](https://toinvested.com/tax-strategy/)
+- [Legal Protection](https://toinvested.com/legal-protection/)
+- [Life Insurance](https://toinvested.com/life-insurance/)
+- [Probate](https://toinvested.com/probate/)
+
+## Financing
+- [Hard Money Lending](https://toinvested.com/hard-money-lending/)
+
+## Legal
+- [Privacy Policy](https://toinvested.com/privacy/)
+- [Terms of Service](https://toinvested.com/terms/)
+
+## Contact
+Website: https://toinvested.com
+Contact: https://toinvested.com/about/

@@ -1,18 +1,60 @@
 # ToInvested.com Robots.txt
+# Last updated: 2026-03-22
+
 User-agent: *
 Allow: /
-
-# Sitemaps
-Sitemap: https://toinvested.com/sitemap.xml
-
-# Block admin and API
 Disallow: /admin/
 Disallow: /api/
 Disallow: /member-dashboard/
 
-# Allow all crawlers for public pages
-User-agent: Googlebot
+# Sitemaps
+Sitemap: https://toinvested.com/sitemap.xml
+
+# AI & LLM Crawlers - Welcome!
+User-agent: GPTBot
 Allow: /
 
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+# Traditional Search Engine Crawlers
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
 User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
 Allow: /
