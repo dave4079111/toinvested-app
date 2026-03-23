@@ -1,6 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const { logger } = require('../logger');
+const {
+  callClaude,
+  buildPropertyPrompt,
+  buildFlipPrompt,
+  buildBrrrrPrompt,
+  buildRenovationPrompt,
+  buildStockPrompt,
+  buildBitcoinPrompt
+} = require('../services/ai');
 
 // Helper: validate that a value is a positive finite number
 function isPositiveNumber(val) {
@@ -457,6 +466,124 @@ router.post('/renovation', (req, res) => {
   } catch (err) {
     logger.error('Renovation analyzer error', { error: err.message });
     res.status(500).json({ error: err.message || 'Analysis failed' });
+  }
+});
+
+// ===========================================
+// AI-ENHANCED ROUTES (server-side Claude API)
+// ===========================================
+
+// AI Property Analysis
+router.post('/ai/property', async (req, res) => {
+  try {
+    const { address, strategy } = req.body;
+    if (!address || !strategy) {
+      return res.status(400).json({ error: 'Address and strategy are required' });
+    }
+    const prompt = buildPropertyPrompt(req.body);
+    const analysis = await callClaude(prompt, 4096);
+    res.json(analysis);
+  } catch (err) {
+    logger.error('AI property analyzer error', { error: err.message });
+    if (err.message.includes('not configured')) {
+      return res.status(503).json({ error: 'AI service not configured. Please contact support.' });
+    }
+    res.status(500).json({ error: 'AI analysis failed. Please try again.' });
+  }
+});
+
+// AI Flip Analysis
+router.post('/ai/flip', async (req, res) => {
+  try {
+    const { address, purchasePrice, renobudget, arv } = req.body;
+    if (!address || !purchasePrice || !renobudget || !arv) {
+      return res.status(400).json({ error: 'Address, purchase price, renovation budget, and ARV are required' });
+    }
+    const prompt = buildFlipPrompt(req.body);
+    const analysis = await callClaude(prompt, 2500);
+    res.json(analysis);
+  } catch (err) {
+    logger.error('AI flip analyzer error', { error: err.message });
+    if (err.message.includes('not configured')) {
+      return res.status(503).json({ error: 'AI service not configured. Please contact support.' });
+    }
+    res.status(500).json({ error: 'AI analysis failed. Please try again.' });
+  }
+});
+
+// AI BRRRR Analysis
+router.post('/ai/brrrr', async (req, res) => {
+  try {
+    const { address, purchasePrice, renobudget, arv, monthlyRent } = req.body;
+    if (!address || !purchasePrice || !renobudget || !arv || !monthlyRent) {
+      return res.status(400).json({ error: 'Address, purchase price, renovation budget, ARV, and monthly rent are required' });
+    }
+    const prompt = buildBrrrrPrompt(req.body);
+    const analysis = await callClaude(prompt, 2500);
+    res.json(analysis);
+  } catch (err) {
+    logger.error('AI BRRRR analyzer error', { error: err.message });
+    if (err.message.includes('not configured')) {
+      return res.status(503).json({ error: 'AI service not configured. Please contact support.' });
+    }
+    res.status(500).json({ error: 'AI analysis failed. Please try again.' });
+  }
+});
+
+// AI Renovation Analysis
+router.post('/ai/renovation', async (req, res) => {
+  try {
+    const { address, currentValue, renoType, renoBudget } = req.body;
+    if (!address || !currentValue || !renoType || !renoBudget) {
+      return res.status(400).json({ error: 'Address, current value, renovation type, and budget are required' });
+    }
+    const prompt = buildRenovationPrompt(req.body);
+    const analysis = await callClaude(prompt, 2500);
+    res.json(analysis);
+  } catch (err) {
+    logger.error('AI renovation analyzer error', { error: err.message });
+    if (err.message.includes('not configured')) {
+      return res.status(503).json({ error: 'AI service not configured. Please contact support.' });
+    }
+    res.status(500).json({ error: 'AI analysis failed. Please try again.' });
+  }
+});
+
+// AI Stock Analysis
+router.post('/ai/stock', async (req, res) => {
+  try {
+    const { investmentAmount } = req.body;
+    if (!investmentAmount || investmentAmount <= 0) {
+      return res.status(400).json({ error: 'Investment amount must be a positive number' });
+    }
+    const prompt = buildStockPrompt(req.body);
+    const analysis = await callClaude(prompt, 2500);
+    res.json(analysis);
+  } catch (err) {
+    logger.error('AI stock analyzer error', { error: err.message });
+    if (err.message.includes('not configured')) {
+      return res.status(503).json({ error: 'AI service not configured. Please contact support.' });
+    }
+    res.status(500).json({ error: 'AI analysis failed. Please try again.' });
+  }
+});
+
+// AI Bitcoin Analysis
+router.post('/ai/bitcoin', async (req, res) => {
+  try {
+    const { investmentAmount } = req.body;
+    if (!investmentAmount || investmentAmount <= 0) {
+      return res.status(400).json({ error: 'Investment amount must be a positive number' });
+    }
+    const prompt = buildBitcoinPrompt(req.body);
+    const analysis = await callClaude(prompt, 2500);
+    res.json(analysis);
+  } catch (err) {
+    logger.error('AI bitcoin analyzer error', { error: err.message });
+    if (err.message.includes('not configured')) {
+      return res.status(503).json({ error: 'AI service not configured. Please contact support.' });
+    }
+    res.status(500).json({ error: 'AI analysis failed. Please try again.' });
   }
 });
 

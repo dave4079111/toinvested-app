@@ -1518,15 +1518,6 @@ Ensure all numbers are realistic and mathematically consistent. Be honest — if
       return;
     }
 
-    // Check API key
-    const apiKey = localStorage.getItem('ti_anthropic_key') || '';
-    if (!apiKey) {
-      hideAll();
-      $('#error-card').classList.add('visible');
-      $('#error-message').innerHTML = 'API key not configured. Visit <a href="/admin/">/admin/</a> to set up your Anthropic API key.';
-      return;
-    }
-
     // Hide form steps, show loading
     $('#step-address').style.display = 'none';
     $('#step-strategy').style.display = 'none';
@@ -1535,40 +1526,18 @@ Ensure all numbers are realistic and mathematically consistent. Be honest — if
     showLoading();
 
     try {
-      const prompt = buildPrompt(data);
-
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
+      const response = await fetch('/api/analyzers/ai/property', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': apiKey,
-          'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-direct-browser-access': 'true'
-        },
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 4096,
-          messages: [
-            { role: 'user', content: prompt }
-          ]
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
       });
 
       if (!response.ok) {
-        const errBody = await response.text();
-        throw new Error(`API returned ${response.status}: ${errBody}`);
+        const errBody = await response.json().catch(() => ({}));
+        throw new Error(errBody.error || `Server returned ${response.status}`);
       }
 
-      const result = await response.json();
-      const text = result.content[0].text;
-
-      // Parse JSON from response (handle possible markdown fences)
-      let jsonStr = text.trim();
-      if (jsonStr.startsWith('```')) {
-        jsonStr = jsonStr.replace(/^```(?:json)?\s*/, '').replace(/\s*```$/, '');
-      }
-
-      const analysis = JSON.parse(jsonStr);
+      const analysis = await response.json();
 
       hideLoading();
 
@@ -1585,15 +1554,11 @@ Ensure all numbers are realistic and mathematically consistent. Be honest — if
     } catch (e) {
       hideLoading();
       $('#error-card').classList.add('visible');
-      let msg = 'Something went wrong while analyzing your deal. Please try again.';
-      if (e.message.includes('401')) {
-        msg = 'Invalid API key. Visit <a href="/admin/">/admin/</a> to update your Anthropic API key.';
-      } else if (e.message.includes('429')) {
-        msg = 'Rate limit reached. Please wait a moment and try again.';
-      } else if (e.message.includes('Failed to fetch') || e.message.includes('NetworkError')) {
+      let msg = e.message || 'Something went wrong while analyzing your deal. Please try again.';
+      if (e.message.includes('Failed to fetch') || e.message.includes('NetworkError')) {
         msg = 'Network error. Please check your connection and try again.';
-      } else if (e instanceof SyntaxError) {
-        msg = 'The AI returned an unexpected format. Please try again.';
+      } else if (e.message.includes('not configured')) {
+        msg = 'AI analysis service is temporarily unavailable. Please try again later.';
       }
       $('#error-message').innerHTML = msg;
       console.error('Analysis error:', e);

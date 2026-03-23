@@ -274,45 +274,104 @@ a:hover { color: var(--gold-light); }
   </div>
 </section>
 
-<section class="dca-section">
+<!-- BITCOIN ANALYZER FORM -->
+<section class="dca-section" id="analyzer">
   <div class="container">
     <div class="dca-wrapper">
       <div class="dca-text">
-        <h2>See the Power of <span style="color:var(--btc-orange)">Dollar-Cost Averaging</span></h2>
-        <p>Our DCA calculator shows you exactly how consistent investing builds wealth over time, even through volatile markets. Backtest strategies against historical BTC data going back to 2013.</p>
-        <p>Compare DCA vs lump-sum, adjust frequency and amounts, and see projected outcomes across different market scenarios.</p>
-        <a href="/membership/" class="btn-gold" style="margin-top: 12px;">Try the Calculator</a>
+        <h2>Bitcoin <span style="color:var(--btc-orange)">Investment Analyzer</span></h2>
+        <p style="color:var(--gray);margin-bottom:16px;">Model your Bitcoin investment with AI-powered projections, DCA analysis, and halving cycle insights.</p>
+        <div id="formError" style="display:none;background:rgba(239,68,68,.15);color:#F87171;padding:10px 14px;border-radius:8px;font-size:.85rem;margin-bottom:12px;"></div>
+        <form id="btcForm" onsubmit="return handleSubmit(event)">
+          <div class="btc-form-group">
+            <label for="investmentAmount">Initial Investment</label>
+            <div class="btc-input-prefix" data-prefix="$">
+              <input type="number" id="investmentAmount" placeholder="5000" step="any" min="1" required>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div class="btc-form-group">
+              <label for="dcaMonthly">Monthly DCA Amount</label>
+              <div class="btc-input-prefix" data-prefix="$">
+                <input type="number" id="dcaMonthly" placeholder="200" step="any" min="0">
+              </div>
+            </div>
+            <div class="btc-form-group">
+              <label for="investmentPeriod">Investment Period</label>
+              <div class="btc-input-suffix" data-suffix="years">
+                <input type="number" id="investmentPeriod" placeholder="5" min="1" max="30" required>
+              </div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div class="btc-form-group">
+              <label for="currentPrice">Current BTC Price</label>
+              <div class="btc-input-prefix" data-prefix="$">
+                <input type="number" id="currentPrice" placeholder="87000" step="any" min="1">
+              </div>
+            </div>
+            <div class="btc-form-group">
+              <label for="expectedGrowthRate">Expected Annual Growth</label>
+              <div class="btc-input-suffix" data-suffix="%">
+                <input type="number" id="expectedGrowthRate" placeholder="30" step="1" min="-50" max="200">
+              </div>
+            </div>
+          </div>
+          <div class="btc-form-group">
+            <label for="taxRate">Tax Rate on Gains</label>
+            <div class="btc-input-suffix" data-suffix="%">
+              <input type="number" id="taxRate" placeholder="15" step="1" min="0" max="50">
+            </div>
+          </div>
+          <button type="submit" id="analyzeBtn" class="btn-gold" style="width:100%;padding:14px;font-size:1rem;margin-top:8px;">Analyze Bitcoin Investment</button>
+        </form>
       </div>
-      <div class="dca-preview">
-        <h3 style="margin-bottom: 20px; font-size: 1.1rem;">DCA Simulation: $200/week for 4 years</h3>
-        <div class="dca-row">
-          <span class="dca-label">Total Invested</span>
-          <span class="dca-value">$41,600</span>
+      <div class="dca-preview" id="resultsPanel">
+        <div id="placeholder" style="text-align:center;padding:40px 0;color:var(--gray);">
+          <div style="font-size:48px;margin-bottom:16px;">&#8383;</div>
+          <p>Enter your investment details to see AI-powered Bitcoin projections.</p>
         </div>
-        <div class="dca-row">
-          <span class="dca-label">Current Value</span>
-          <span class="dca-value highlight">$94,280</span>
+        <div id="loading" style="display:none;text-align:center;padding:40px 0;">
+          <div style="width:48px;height:48px;border:4px solid var(--navy-border);border-top-color:var(--btc-orange);border-radius:50%;animation:btcspin 1s linear infinite;margin:0 auto 20px;"></div>
+          <div id="step1" class="btc-step">Analyzing market conditions...</div>
+          <div id="step2" class="btc-step">Running AI projections...</div>
+          <div id="step3" class="btc-step">Calculating DCA scenarios...</div>
+          <div id="step4" class="btc-step">Generating halving analysis...</div>
         </div>
-        <div class="dca-row">
-          <span class="dca-label">Total Return</span>
-          <span class="dca-value profit">+126.6%</span>
-        </div>
-        <div class="dca-row">
-          <span class="dca-label">Avg. Cost Basis</span>
-          <span class="dca-value">$38,712</span>
-        </div>
-        <div class="dca-row">
-          <span class="dca-label">BTC Accumulated</span>
-          <span class="dca-value highlight">1.078 BTC</span>
-        </div>
-        <div class="dca-row">
-          <span class="dca-label">vs Lump Sum</span>
-          <span class="dca-value profit">DCA +18.4% better</span>
-        </div>
+        <div id="results" style="display:none;"></div>
       </div>
     </div>
   </div>
 </section>
+<style>
+  .btc-form-group{margin-bottom:12px;}
+  .btc-form-group label{display:block;font-size:.82rem;color:var(--gray);margin-bottom:4px;font-weight:500;}
+  .btc-form-group input{width:100%;padding:10px 12px;background:rgba(255,255,255,.05);border:1px solid var(--navy-border);border-radius:8px;color:var(--white);font-size:.95rem;transition:border-color .2s;}
+  .btc-form-group input:focus{outline:none;border-color:var(--btc-orange);}
+  .btc-input-prefix,.btc-input-suffix{position:relative;}
+  .btc-input-prefix::before{content:attr(data-prefix);position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--gray);pointer-events:none;font-size:.9rem;}
+  .btc-input-prefix input{padding-left:28px;}
+  .btc-input-suffix::after{content:attr(data-suffix);position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--gray);pointer-events:none;font-size:.9rem;}
+  .btc-input-suffix input{padding-right:52px;}
+  .btc-step{padding:6px 0;color:var(--gray);font-size:.85rem;transition:all .3s;}
+  .btc-step.active{color:var(--btc-orange);font-weight:600;}
+  .btc-step.done{color:var(--green);}
+  #results .btc-metric{font-size:1.4rem;font-weight:700;font-family:var(--font-heading);}
+  #results .btc-metric.positive{color:var(--green);}
+  #results .btc-metric.negative{color:var(--red);}
+  #results .btc-metric.orange{color:var(--btc-orange);}
+  #results .btc-result{background:rgba(255,255,255,.03);border:1px solid var(--navy-border);border-radius:10px;padding:14px;margin-bottom:10px;}
+  #results .btc-result h4{color:var(--white);font-size:.85rem;margin-bottom:6px;}
+  #results .btc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  #results ul{padding-left:1.2rem;margin:8px 0 0;}
+  #results li{margin-bottom:6px;font-size:.83rem;color:var(--gray);}
+  .btc-email-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;}
+  .btc-email-modal.active{display:flex;}
+  .btc-email-content{background:var(--navy-card,#141B2D);border:1px solid var(--navy-border);border-radius:16px;padding:32px;max-width:400px;width:90%;text-align:center;}
+  .btc-email-content input{width:100%;padding:12px;margin:16px 0;background:rgba(255,255,255,.05);border:1px solid var(--navy-border);border-radius:8px;color:var(--white);font-size:1rem;}
+  .btc-email-content button{padding:12px 24px;background:linear-gradient(135deg,var(--btc-orange),#E8820F);color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;width:100%;}
+  @keyframes btcspin{to{transform:rotate(360deg)}}
+</style>
 
 <section class="correlation-section">
   <div class="container">
@@ -416,6 +475,123 @@ a:hover { color: var(--gold-light); }
   </div>
 </footer>
 
+<!-- EMAIL GATE MODAL -->
+<div class="btc-email-modal" id="emailModal">
+  <div class="btc-email-content">
+    <h3 style="margin-bottom:8px;">Get Your Free Analysis</h3>
+    <p style="color:var(--gray);font-size:.9rem;">Enter your email to unlock your AI Bitcoin analysis.</p>
+    <input type="email" id="emailInput" placeholder="your@email.com">
+    <button onclick="submitEmail()">Unlock Results</button>
+  </div>
+</div>
+
+<script>
+const MAX_FREE=3;
+function getEmail(){return localStorage.getItem('ti_user_email')||''}
+function getUseCount(){return parseInt(localStorage.getItem('ti_btc_uses')||'0',10)}
+function incrementUseCount(){const c=getUseCount()+1;localStorage.setItem('ti_btc_uses',String(c));return c}
+function escHTML(s){const d=document.createElement('div');d.textContent=String(s);return d.innerHTML}
+
+function checkEmailGate(){return new Promise(r=>{if(getEmail()){r(true);return}document.getElementById('emailModal').classList.add('active');window._emailResolve=r})}
+function submitEmail(){const e=document.getElementById('emailInput').value.trim();if(!e||!e.includes('@')){alert('Please enter a valid email address.');return}localStorage.setItem('ti_user_email',e);document.getElementById('emailModal').classList.remove('active');if(window._emailResolve){window._emailResolve(true);window._emailResolve=null}}
+
+function showLoading(){document.getElementById('placeholder').style.display='none';document.getElementById('results').style.display='none';document.getElementById('loading').style.display='block';animateSteps()}
+function hideLoading(){document.getElementById('loading').style.display='none'}
+function animateSteps(){const s=['step1','step2','step3','step4'];let i=0;const iv=setInterval(()=>{if(i>0){document.getElementById(s[i-1]).classList.remove('active');document.getElementById(s[i-1]).classList.add('done')}if(i<s.length){document.getElementById(s[i]).classList.add('active')}else{clearInterval(iv)}i++},800)}
+function showError(m){const el=document.getElementById('formError');el.textContent=m;el.style.display='block';setTimeout(()=>{el.style.display='none'},8000)}
+
+async function handleSubmit(e){
+  e.preventDefault();
+  if(getUseCount()>=MAX_FREE){showError("You've used all 3 free analyses. Join Wealth Builder for unlimited access.");return}
+  const emailOk=await checkEmailGate();if(!emailOk)return;
+
+  const data={
+    investmentAmount:parseFloat(document.getElementById('investmentAmount').value),
+    dcaMonthly:parseFloat(document.getElementById('dcaMonthly').value)||0,
+    investmentPeriod:parseInt(document.getElementById('investmentPeriod').value)||5,
+    currentPrice:parseFloat(document.getElementById('currentPrice').value)||87000,
+    expectedGrowthRate:parseFloat(document.getElementById('expectedGrowthRate').value)||30,
+    taxRate:parseFloat(document.getElementById('taxRate').value)||15
+  };
+
+  if(!data.investmentAmount||data.investmentAmount<=0){showError('Please enter a valid investment amount.');return}
+
+  const btn=document.getElementById('analyzeBtn');btn.disabled=true;btn.textContent='Analyzing...';showLoading();
+
+  try{
+    const response=await fetch('/api/analyzers/ai/bitcoin',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+    if(!response.ok){const err=await response.json().catch(()=>({}));throw new Error(err.error||'Analysis failed')}
+    const result=await response.json();
+    displayResults(result);
+    incrementUseCount();
+  }catch(err){hideLoading();document.getElementById('placeholder').style.display='block';showError('Analysis failed: '+err.message)}
+  finally{btn.disabled=false;btn.textContent='Analyze Bitcoin Investment'}
+}
+
+function displayResults(data){
+  hideLoading();
+  const el=document.getElementById('results');
+  let html='';
+
+  if(data.summary){
+    html+=`<div class="btc-result"><h4>AI Summary</h4><p style="font-size:.85rem;color:var(--gray);">${escHTML(data.summary)}</p></div>`;
+  }
+
+  if(data.metrics&&data.metrics.length){
+    html+=`<div class="btc-grid">`;
+    data.metrics.forEach(m=>{
+      html+=`<div class="btc-result" style="text-align:center;"><div class="btc-metric orange">${escHTML(m.value)}</div><div style="font-size:.75rem;color:var(--gray);margin-top:4px;">${escHTML(m.label)}</div></div>`;
+    });
+    html+=`</div>`;
+  }
+
+  if(data.projectedValue){
+    const gainClass=(data.projectedGain||0)>0?'positive':'negative';
+    html+=`<div class="btc-grid">
+      <div class="btc-result" style="text-align:center;"><h4>Projected Value</h4><div class="btc-metric positive">$${Math.round(data.projectedValue).toLocaleString()}</div></div>
+      <div class="btc-result" style="text-align:center;"><h4>Total Return</h4><div class="btc-metric ${gainClass}">${Number(data.totalReturn||0).toFixed(1)}%</div></div>
+    </div>`;
+    html+=`<div class="btc-grid">
+      <div class="btc-result" style="text-align:center;"><h4>BTC Accumulated</h4><div class="btc-metric orange">${data.btcPurchased||'—'}</div></div>
+      <div class="btc-result" style="text-align:center;"><h4>After-Tax Gain</h4><div class="btc-metric positive">$${Math.round(data.afterTaxGain||0).toLocaleString()}</div></div>
+    </div>`;
+  }
+
+  if(data.yearByYear&&data.yearByYear.length){
+    html+=`<div class="btc-result"><h4>Year-by-Year Projection</h4><div style="overflow-x:auto;"><table style="width:100%;font-size:.8rem;color:var(--gray);border-collapse:collapse;">
+      <tr style="border-bottom:1px solid var(--navy-border);"><th style="text-align:left;padding:6px;">Year</th><th style="text-align:right;padding:6px;">BTC Price</th><th style="text-align:right;padding:6px;">Portfolio</th><th style="text-align:right;padding:6px;">Return</th></tr>`;
+    data.yearByYear.forEach(y=>{
+      const retClass=(y.portfolioValue||0)>(y.totalInvested||0)?'color:var(--green)':'color:var(--red)';
+      const ret=y.totalInvested?((y.portfolioValue-y.totalInvested)/y.totalInvested*100).toFixed(0):'0';
+      html+=`<tr style="border-bottom:1px solid rgba(255,255,255,.05);"><td style="padding:6px;">Yr ${y.year}</td><td style="text-align:right;padding:6px;">$${Math.round(y.btcPrice||0).toLocaleString()}</td><td style="text-align:right;padding:6px;">$${Math.round(y.portfolioValue||0).toLocaleString()}</td><td style="text-align:right;padding:6px;${retClass}">${ret}%</td></tr>`;
+    });
+    html+=`</table></div></div>`;
+  }
+
+  if(data.risks&&data.risks.length){
+    html+=`<div class="btc-result"><h4>Risk Assessment</h4><ul>`;
+    data.risks.forEach(r=>{
+      const color=r.level==='high'?'var(--red)':r.level==='medium'?'#FBBF24':'var(--green)';
+      html+=`<li><span style="color:${color};font-weight:600;">[${escHTML(r.level).toUpperCase()}]</span> ${escHTML(r.text)}</li>`;
+    });
+    html+=`</ul></div>`;
+  }
+
+  if(data.halvingAnalysis){
+    html+=`<div class="btc-result" style="border-left:3px solid var(--btc-orange);"><h4>Halving Cycle Analysis</h4><p style="font-size:.83rem;color:var(--gray);">${escHTML(data.halvingAnalysis)}</p></div>`;
+  }
+
+  if(data.recommendations&&data.recommendations.length){
+    html+=`<div class="btc-result"><h4>Recommendations</h4><ul>`;
+    data.recommendations.forEach(t=>{html+=`<li>${escHTML(t)}</li>`});
+    html+=`</ul></div>`;
+  }
+
+  el.innerHTML=html;
+  el.style.display='block';
+  el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+</script>
 <script src="/js/toinvested.js"></script>
 </body>
 </html>

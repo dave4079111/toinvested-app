@@ -481,10 +481,6 @@ function showError(msg) {
 async function handleSubmit(e) {
   e.preventDefault();
 
-  // Check API key
-  const apiKey = getApiKey();
-  if (!apiKey) { showError('Please enter your Anthropic API key above to use the analyzer.'); return; }
-
   // Check use count
   if (getUseCount() >= MAX_FREE) {
     document.getElementById('upsellBanner').classList.add('active');
@@ -531,79 +527,21 @@ async function handleSubmit(e) {
 }
 
 // ============================================
-// CLAUDE API CALL
+// BACKEND API CALL
 // ============================================
 async function callClaudeAPI(data) {
-  const apiKey = getApiKey();
-  const financingLabel = { cash: 'Cash Purchase', hard_money: 'Hard Money Loan', conventional: 'Conventional Loan' }[data.financing];
-
-  const prompt = `You are an expert real estate investment analyst specializing in fix & flip deals. Analyze this potential flip deal and provide a comprehensive assessment.
-
-DEAL DETAILS:
-- Property Address: ${data.address}
-- Purchase Price: $${data.purchasePrice.toLocaleString()}
-- Renovation Budget: $${data.renobudget.toLocaleString()}
-- After Repair Value (ARV): $${data.arv.toLocaleString()}
-- Holding Period: ${data.holdingPeriod} months
-- Financing: ${financingLabel}
-
-Please analyze and provide:
-
-1. **PROFIT PROJECTION**: Calculate estimated profit after all costs (purchase, renovation, holding costs, selling costs at ~8-10% of ARV for commissions/closing, financing costs). Provide the net profit number.
-
-2. **ROI PERCENTAGE**: Calculate ROI based on total cash invested vs net profit.
-
-3. **70% RULE CHECK**: The 70% rule says you should pay no more than 70% of ARV minus repairs. Calculate the max purchase price under this rule and state if this deal passes or fails.
-
-4. **COST-TO-ARV RATIO**: Calculate (Purchase + Renovation) / ARV and assess if it's healthy (under 70% is great, 70-80% is acceptable, over 80% is risky).
-
-5. **RISK ASSESSMENT**: Rate overall risk as LOW, MODERATE, or HIGH with specific factors.
-
-6. **CONTRACTOR BUDGET TIPS**: Provide 3-4 specific tips for managing the renovation budget effectively given the scope of this deal.
-
-Format your response EXACTLY as JSON with this structure (no markdown, just raw JSON):
-{
-  "profitProjection": { "netProfit": number, "totalCosts": number, "breakdown": "string description of costs" },
-  "roi": { "percentage": number, "cashInvested": number, "verdict": "string" },
-  "seventyPercentRule": { "maxPrice": number, "actualPrice": number, "passes": boolean, "explanation": "string" },
-  "costToArv": { "ratio": number, "rating": "string", "explanation": "string" },
-  "riskAssessment": { "level": "LOW|MODERATE|HIGH", "factors": ["string array of risk factors"], "mitigations": ["string array of mitigations"] },
-  "contractorTips": ["string array of 3-4 tips"],
-  "summary": "A 2-3 sentence executive summary of the deal"
-}`;
-
-  const response = await fetch('https://api.anthropic.com/v1/messages', {
+  const response = await fetch('/api/analyzers/ai/flip', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': apiKey,
-      'anthropic-version': '2023-06-01',
-      'anthropic-dangerous-direct-browser-access': 'true'
-    },
-    body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 2000,
-      messages: [{ role: 'user', content: prompt }]
-    })
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
   });
 
   if (!response.ok) {
     const err = await response.json().catch(() => ({}));
-    throw new Error(err.error?.message || `API returned ${response.status}`);
+    throw new Error(err.error || `Server returned ${response.status}`);
   }
 
-  const json = await response.json();
-  const text = json.content[0].text;
-
-  // Parse JSON from response
-  try {
-    return JSON.parse(text);
-  } catch {
-    // Try to extract JSON from markdown code blocks
-    const match = text.match(/```(?:json)?\s*([\s\S]*?)```/);
-    if (match) return JSON.parse(match[1]);
-    throw new Error('Could not parse AI response. Please try again.');
-  }
+  return await response.json();
 }
 
 // ============================================

@@ -350,8 +350,6 @@ function showError(m){const el=document.getElementById('formError');el.textConte
 
 async function handleSubmit(e){
   e.preventDefault();
-  const apiKey=getApiKey();
-  if(!apiKey){showError('Please enter your Anthropic API key above.');return}
   if(getUseCount()>=MAX_FREE){document.getElementById('upsellBanner').classList.add('active');showError("You've used all 3 free analyses. Join Wealth Builder for unlimited access.");return}
   const emailOk=await checkEmailGate();if(!emailOk)return;
 
@@ -375,58 +373,14 @@ async function handleSubmit(e){
 }
 
 async function callClaudeAPI(data){
-  const apiKey=getApiKey();
-  const prompt=`You are an expert real estate investment analyst specializing in the BRRRR strategy (Buy, Rehab, Rent, Refinance, Repeat). Analyze this BRRRR deal.
-
-DEAL DETAILS:
-- Property Address: ${data.address}
-- Purchase Price: $${data.purchasePrice.toLocaleString()}
-- Renovation Budget: $${data.renobudget.toLocaleString()}
-- After Repair Value (ARV): $${data.arv.toLocaleString()}
-- Expected Monthly Rent: $${data.monthlyRent.toLocaleString()}
-- Refinance LTV Target: ${data.refiLTV}%
-- Interest Rate Estimate: ${data.interestRate}%
-
-Total cash invested = Purchase Price + Renovation Budget.
-
-Analyze and provide:
-
-1. **CASH-OUT AMOUNT**: Calculate refinance loan amount (ARV x LTV%). Calculate cash out = refinance amount - 0 (assuming property was bought with cash initially). Calculate how much capital is left in the deal (total invested - cash out).
-
-2. **INFINITE RETURN CHECK**: If cash out >= total invested, this is an infinite return (all capital recycled). State clearly if achieved.
-
-3. **MONTHLY CASH FLOW POST-REFI**: Calculate monthly mortgage payment (30yr fixed at the given rate), estimate expenses (taxes ~1% of ARV annually, insurance ~0.5%, maintenance ~5% of rent, vacancy ~8% of rent, property management ~10% of rent). Net cash flow = rent - mortgage - expenses.
-
-4. **CAP RATE**: (Annual NOI / ARV) x 100. NOI = annual rent - annual operating expenses (no mortgage).
-
-5. **DSCR**: Net Operating Income / Annual Debt Service. Lenders want > 1.25.
-
-6. **EQUITY POSITION**: ARV - Loan Amount = Equity. Equity as % of ARV.
-
-7. **RISK FACTORS**: Identify 3-5 specific risks for this deal.
-
-Format as JSON (no markdown, raw JSON only):
-{
-  "cashOut": { "refinanceAmount": number, "totalInvested": number, "cashOutProceeds": number, "capitalLeftInDeal": number, "explanation": "string" },
-  "infiniteReturn": { "achieved": boolean, "explanation": "string" },
-  "monthlyCashFlow": { "rent": number, "mortgage": number, "expenses": number, "netCashFlow": number, "breakdown": "string" },
-  "capRate": { "percentage": number, "noi": number, "verdict": "string" },
-  "dscr": { "ratio": number, "meetsThreshold": boolean, "explanation": "string" },
-  "equityPosition": { "equity": number, "equityPercent": number, "explanation": "string" },
-  "riskFactors": ["string array of 3-5 risks"],
-  "summary": "2-3 sentence executive summary"
-}`;
-
-  const response=await fetch('https://api.anthropic.com/v1/messages',{
+  const response=await fetch('/api/analyzers/ai/brrrr',{
     method:'POST',
-    headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
-    body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:2000,messages:[{role:'user',content:prompt}]})
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(data)
   });
 
-  if(!response.ok){const err=await response.json().catch(()=>({}));throw new Error(err.error?.message||`API returned ${response.status}`)}
-  const json=await response.json();
-  const text=json.content[0].text;
-  try{return JSON.parse(text)}catch{const m=text.match(/```(?:json)?\s*([\s\S]*?)```/);if(m)return JSON.parse(m[1]);throw new Error('Could not parse AI response.')}
+  if(!response.ok){const err=await response.json().catch(()=>({}));throw new Error(err.error||`Server returned ${response.status}`)}
+  return await response.json();
 }
 
 function displayResults(data){

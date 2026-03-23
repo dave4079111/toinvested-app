@@ -207,42 +207,123 @@ a:hover { color: var(--gold-light); }
   </div>
 </section>
 
-<!-- STOCK LOOKUP -->
+<!-- STOCK ANALYZER -->
 <section class="lookup-section">
   <div class="container">
-    <div class="lookup-card animate-on-scroll">
-      <h2>Stock Lookup</h2>
-      <p>Enter a ticker symbol to get AI-powered analysis</p>
-      <div class="lookup-form">
-        <input type="text" class="lookup-input" placeholder="Enter ticker symbol (e.g., AAPL, MSFT, TSLA)" maxlength="10">
-        <button class="lookup-btn" onclick="alert('Join membership to unlock AI stock analysis')">Analyze</button>
+    <div class="lookup-card animate-on-scroll" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;">
+      <!-- LEFT: FORM -->
+      <div>
+        <h2 style="margin-bottom:6px;">Stock Investment Analyzer</h2>
+        <p style="color:var(--gray);margin-bottom:20px;">Model your stock/ETF investment growth with AI-powered projections.</p>
+        <div id="formError" class="error-msg"></div>
+        <form id="stockForm" onsubmit="return handleSubmit(event)">
+          <div class="form-group">
+            <label for="investmentAmount">Initial Investment</label>
+            <div class="input-prefix" data-prefix="$">
+              <input type="number" id="investmentAmount" placeholder="10000" step="any" min="1" required>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div class="form-group">
+              <label for="monthlyContribution">Monthly Contribution</label>
+              <div class="input-prefix" data-prefix="$">
+                <input type="number" id="monthlyContribution" placeholder="500" step="any" min="0">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="investmentPeriod">Investment Period</label>
+              <div class="input-suffix" data-suffix="years">
+                <input type="number" id="investmentPeriod" placeholder="10" min="1" max="50" required>
+              </div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div class="form-group">
+              <label for="expectedReturn">Expected Annual Return</label>
+              <div class="input-suffix" data-suffix="%">
+                <input type="number" id="expectedReturn" placeholder="10" step="0.1" min="0" max="100">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="dividendYield">Dividend Yield</label>
+              <div class="input-suffix" data-suffix="%">
+                <input type="number" id="dividendYield" placeholder="2" step="0.1" min="0" max="50">
+              </div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div class="form-group">
+              <label for="expenseRatio">Expense Ratio</label>
+              <div class="input-suffix" data-suffix="%">
+                <input type="number" id="expenseRatio" placeholder="0.5" step="0.01" min="0" max="5">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="taxRate">Tax Rate on Gains</label>
+              <div class="input-suffix" data-suffix="%">
+                <input type="number" id="taxRate" placeholder="15" step="1" min="0" max="50">
+              </div>
+            </div>
+          </div>
+          <button type="submit" id="analyzeBtn" class="lookup-btn" style="width:100%;margin-top:8px;padding:14px;">Analyze Investment</button>
+        </form>
       </div>
-      <div class="metrics-grid" style="margin-top: 32px;">
-        <div class="metric-card">
-          <div class="metric-label">P/E Ratio</div>
-          <div class="metric-value">28.4</div>
-          <div class="metric-change">Industry Avg: 25.1</div>
+
+      <!-- RIGHT: RESULTS -->
+      <div>
+        <div id="placeholder" class="results-placeholder" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;color:var(--gray);">
+          <div style="font-size:48px;margin-bottom:16px;">📈</div>
+          <p>Enter your investment details and click Analyze to see AI-powered projections.</p>
         </div>
-        <div class="metric-card">
-          <div class="metric-label">Market Cap</div>
-          <div class="metric-value">$3.2T</div>
-          <div class="metric-change up">Mega Cap</div>
+        <div id="loading" style="display:none;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;">
+          <div class="spinner" style="width:48px;height:48px;border:4px solid var(--navy-border);border-top-color:var(--stock-blue);border-radius:50%;animation:spin 1s linear infinite;margin-bottom:20px;"></div>
+          <div id="step1" class="loading-step">Gathering market data...</div>
+          <div id="step2" class="loading-step">Running AI analysis...</div>
+          <div id="step3" class="loading-step">Calculating projections...</div>
+          <div id="step4" class="loading-step">Generating recommendations...</div>
         </div>
-        <div class="metric-card">
-          <div class="metric-label">Dividend Yield</div>
-          <div class="metric-value">0.52%</div>
-          <div class="metric-change">$0.96/share</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-label">52-Week Range</div>
-          <div class="metric-value">$164-$237</div>
-          <div class="metric-change up">Near High</div>
-        </div>
+        <div id="results" style="display:none;"></div>
       </div>
-      <p style="text-align:center; color: var(--gray); font-size: 13px; margin-top: 16px; font-style: italic;">Sample data shown. Join membership for real-time analysis.</p>
     </div>
   </div>
 </section>
+<style>
+  .form-group{margin-bottom:12px;}
+  .form-group label{display:block;font-size:.82rem;color:var(--gray);margin-bottom:4px;font-weight:500;}
+  .form-group input,.form-group select{width:100%;padding:10px 12px;background:var(--navy-card);border:1px solid var(--navy-border);border-radius:8px;color:var(--white);font-size:.95rem;transition:border-color .2s;}
+  .form-group input:focus,.form-group select:focus{outline:none;border-color:var(--stock-blue);}
+  .input-prefix,.input-suffix{position:relative;}
+  .input-prefix::before{content:attr(data-prefix);position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--gray);pointer-events:none;font-size:.9rem;}
+  .input-prefix input{padding-left:28px;}
+  .input-suffix::after{content:attr(data-suffix);position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--gray);pointer-events:none;font-size:.9rem;}
+  .input-suffix input{padding-right:52px;}
+  .error-msg{display:none;background:rgba(239,68,68,.15);color:#F87171;padding:10px 14px;border-radius:8px;font-size:.85rem;margin-bottom:12px;}
+  .error-msg.active{display:block;}
+  .results-placeholder{opacity:.6;}
+  .loading-step{padding:6px 0;color:var(--gray);font-size:.85rem;transition:all .3s;}
+  .loading-step.active{color:var(--stock-blue);font-weight:600;}
+  .loading-step.done{color:var(--green);}
+  #results .result-section{background:var(--navy-card);border:1px solid var(--navy-border);border-radius:10px;padding:16px;margin-bottom:12px;}
+  #results .result-section h3{color:var(--white);font-size:.95rem;margin-bottom:8px;}
+  #results .metric{font-size:1.6rem;font-weight:700;font-family:var(--font-heading);}
+  #results .metric.positive{color:var(--green);}
+  #results .metric.negative{color:var(--red);}
+  #results .metric.neutral{color:var(--stock-blue);}
+  #results .metrics-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+  #results ul{padding-left:1.2rem;margin:0;}
+  #results li{margin-bottom:6px;font-size:.85rem;color:var(--gray);}
+  .email-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;}
+  .email-modal.active{display:flex;}
+  .email-modal-content{background:var(--navy-card);border:1px solid var(--navy-border);border-radius:16px;padding:32px;max-width:400px;width:90%;text-align:center;}
+  .email-modal-content input{width:100%;padding:12px;margin:16px 0;background:rgba(255,255,255,.05);border:1px solid var(--navy-border);border-radius:8px;color:var(--white);font-size:1rem;}
+  .email-modal-content button{padding:12px 24px;background:linear-gradient(135deg,var(--stock-blue),#2563EB);color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;width:100%;}
+  .upsell-banner{display:none;background:linear-gradient(135deg,rgba(59,130,246,.15),rgba(37,99,235,.15));border:1px solid rgba(59,130,246,.3);border-radius:12px;padding:20px;text-align:center;margin-top:16px;}
+  .upsell-banner.active{display:block;}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @media(max-width:768px){
+    .lookup-card{grid-template-columns:1fr !important;}
+  }
+</style>
 
 <!-- FEATURES -->
 <section class="section">
@@ -421,6 +502,134 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1 });
 document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+</script>
+<!-- EMAIL GATE MODAL -->
+<div class="email-modal" id="emailModal">
+  <div class="email-modal-content">
+    <h3 style="margin-bottom:8px;">Get Your Free Analysis</h3>
+    <p style="color:var(--gray);font-size:.9rem;">Enter your email to unlock your AI stock analysis results.</p>
+    <input type="email" id="emailInput" placeholder="your@email.com">
+    <button onclick="submitEmail()">Unlock Results</button>
+  </div>
+</div>
+
+<!-- UPSELL -->
+<div class="upsell-banner" id="upsellBanner">
+  <h3 style="margin-bottom:8px;">Unlock Unlimited Analyses</h3>
+  <p style="color:var(--gray);font-size:.9rem;margin-bottom:12px;">You've used your 3 free analyses. Join Wealth Builder for unlimited access to all tools.</p>
+  <a href="/membership/" class="btn btn-gold" style="display:inline-block;">Join Wealth Builder</a>
+</div>
+
+<script>
+const MAX_FREE = 3;
+function getEmail(){return localStorage.getItem('ti_user_email')||''}
+function getUseCount(){return parseInt(localStorage.getItem('ti_stock_uses')||'0',10)}
+function incrementUseCount(){const c=getUseCount()+1;localStorage.setItem('ti_stock_uses',String(c));return c}
+function escHTML(s){const d=document.createElement('div');d.textContent=String(s);return d.innerHTML}
+
+function checkEmailGate(){return new Promise(r=>{if(getEmail()){r(true);return}document.getElementById('emailModal').classList.add('active');window._emailResolve=r})}
+function submitEmail(){const e=document.getElementById('emailInput').value.trim();if(!e||!e.includes('@')){alert('Please enter a valid email address.');return}localStorage.setItem('ti_user_email',e);document.getElementById('emailModal').classList.remove('active');if(window._emailResolve){window._emailResolve(true);window._emailResolve=null}}
+
+function showLoading(){document.getElementById('placeholder').style.display='none';document.getElementById('results').style.display='none';const el=document.getElementById('loading');el.style.display='flex';animateSteps()}
+function hideLoading(){document.getElementById('loading').style.display='none'}
+function animateSteps(){const s=['step1','step2','step3','step4'];let i=0;const iv=setInterval(()=>{if(i>0){document.getElementById(s[i-1]).classList.remove('active');document.getElementById(s[i-1]).classList.add('done')}if(i<s.length){document.getElementById(s[i]).classList.add('active')}else{clearInterval(iv)}i++},800)}
+function showError(m){const el=document.getElementById('formError');el.textContent=m;el.classList.add('active');setTimeout(()=>el.classList.remove('active'),8000)}
+
+async function handleSubmit(e){
+  e.preventDefault();
+  if(getUseCount()>=MAX_FREE){document.getElementById('upsellBanner').classList.add('active');showError("You've used all 3 free analyses. Join Wealth Builder for unlimited access.");return}
+  const emailOk=await checkEmailGate();if(!emailOk)return;
+
+  const data={
+    investmentAmount:parseFloat(document.getElementById('investmentAmount').value),
+    monthlyContribution:parseFloat(document.getElementById('monthlyContribution').value)||0,
+    investmentPeriod:parseInt(document.getElementById('investmentPeriod').value)||10,
+    expectedReturn:parseFloat(document.getElementById('expectedReturn').value)||10,
+    dividendYield:parseFloat(document.getElementById('dividendYield').value)||2,
+    expenseRatio:parseFloat(document.getElementById('expenseRatio').value)||0.5,
+    taxRate:parseFloat(document.getElementById('taxRate').value)||15
+  };
+
+  if(!data.investmentAmount||data.investmentAmount<=0){showError('Please enter a valid investment amount.');return}
+
+  const btn=document.getElementById('analyzeBtn');btn.disabled=true;btn.textContent='Analyzing...';showLoading();
+
+  try{
+    const response=await fetch('/api/analyzers/ai/stock',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+    if(!response.ok){const err=await response.json().catch(()=>({}));throw new Error(err.error||'Analysis failed')}
+    const result=await response.json();
+    displayResults(result);
+    incrementUseCount();
+  }catch(err){hideLoading();document.getElementById('placeholder').style.display='flex';showError('Analysis failed: '+err.message)}
+  finally{btn.disabled=false;btn.textContent='Analyze Investment'}
+}
+
+function displayResults(data){
+  hideLoading();
+  const el=document.getElementById('results');
+  let html='';
+
+  if(data.summary){
+    html+=`<div class="result-section"><h3>AI Summary</h3><p style="font-size:.9rem;color:var(--gray);">${escHTML(data.summary)}</p></div>`;
+  }
+
+  if(data.metrics&&data.metrics.length){
+    html+=`<div class="metrics-grid">`;
+    data.metrics.forEach(m=>{
+      html+=`<div class="result-section" style="text-align:center;"><div class="metric neutral">${escHTML(m.value)}</div><div style="font-size:.78rem;color:var(--gray);margin-top:4px;">${escHTML(m.label)}</div></div>`;
+    });
+    html+=`</div>`;
+  }
+
+  if(data.projectedValue){
+    const gainClass=(data.totalGain||0)>0?'positive':'negative';
+    html+=`<div class="metrics-grid">
+      <div class="result-section" style="text-align:center;">
+        <h3>Projected Value</h3>
+        <div class="metric positive">$${Math.round(data.projectedValue).toLocaleString()}</div>
+      </div>
+      <div class="result-section" style="text-align:center;">
+        <h3>Total Return</h3>
+        <div class="metric ${gainClass}">${Number(data.totalReturn||0).toFixed(1)}%</div>
+      </div>
+    </div>`;
+    html+=`<div class="metrics-grid">
+      <div class="result-section" style="text-align:center;">
+        <h3>After-Tax Value</h3>
+        <div class="metric neutral">$${Math.round(data.afterTaxValue||0).toLocaleString()}</div>
+      </div>
+      <div class="result-section" style="text-align:center;">
+        <h3>Est. Dividends</h3>
+        <div class="metric neutral">$${Math.round(data.estimatedDividends||0).toLocaleString()}</div>
+      </div>
+    </div>`;
+  }
+
+  if(data.risks&&data.risks.length){
+    html+=`<div class="result-section"><h3>Risk Assessment</h3><ul>`;
+    data.risks.forEach(r=>{
+      const color=r.level==='high'?'var(--red)':r.level==='medium'?'#FBBF24':'var(--green)';
+      html+=`<li><span style="color:${color};font-weight:600;">[${escHTML(r.level).toUpperCase()}]</span> ${escHTML(r.text)}</li>`;
+    });
+    html+=`</ul></div>`;
+  }
+
+  if(data.recommendations&&data.recommendations.length){
+    html+=`<div class="result-section"><h3>Recommendations</h3><ul>`;
+    data.recommendations.forEach(t=>{html+=`<li>${escHTML(t)}</li>`});
+    html+=`</ul></div>`;
+  }
+
+  if(data.comparison){
+    html+=`<div class="result-section"><h3>Asset Comparison</h3><p style="font-size:.85rem;color:var(--gray);">${escHTML(data.comparison)}</p></div>`;
+  }
+
+  el.innerHTML=html;
+  el.style.display='block';
+  el.scrollIntoView({behavior:'smooth',block:'start'});
+
+  if(getUseCount()>=MAX_FREE-1){document.getElementById('upsellBanner').classList.add('active')}
+}
 </script>
 <script src="/js/toinvested.js"></script>
 </body>
