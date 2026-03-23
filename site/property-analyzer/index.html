@@ -1900,9 +1900,38 @@ Ensure all numbers are realistic and mathematically consistent. Be honest — if
       }
       // Clean URL
       window.history.replaceState({}, '', window.location.pathname);
+      // Show post-purchase upsell after single report buy (40-70% conversion window)
+      if (params.get('report') === 'unlocked') {
+        setTimeout(showPostPurchaseUpsell, 2000);
+      }
       return true;
     }
     return getReportCredits() > 0;
+  }
+
+  function showPostPurchaseUpsell() {
+    var overlay = document.createElement('div');
+    overlay.className = 'bundle-modal-overlay visible';
+    overlay.id = 'post-purchase-upsell';
+    overlay.onclick = function(e) { if (e.target === overlay) overlay.remove(); };
+    overlay.innerHTML = '<div class="bundle-modal">' +
+      '<button class="bundle-modal-close" onclick="document.getElementById(\'post-purchase-upsell\').remove()">&times;</button>' +
+      '<div style="font-size:2rem;margin-bottom:0.5rem;">&#127881;</div>' +
+      '<h3 style="font-size:1.3rem;margin-bottom:0.5rem;">Your Report is Unlocked!</h3>' +
+      '<p style="color:var(--gray);font-size:0.9rem;margin-bottom:1.5rem;">Since you\'re already analyzing deals, here are two ways to save big:</p>' +
+      '<div style="background:var(--navy-light);border-radius:12px;padding:1.25rem;margin-bottom:1rem;border:1px solid var(--navy-border);">' +
+        '<div style="font-weight:700;color:var(--white);margin-bottom:0.25rem;">10 Report Bundle</div>' +
+        '<div style="font-size:0.85rem;color:var(--gray);margin-bottom:0.5rem;">Get 10 full reports for $29.99 <span style="color:var(--green);font-weight:600;">(save 57%)</span></div>' +
+        '<button class="gate-btn" onclick="buyBundle();document.getElementById(\'post-purchase-upsell\').remove()" style="width:100%;font-size:0.9rem;padding:10px 20px;">Get 10 Reports &mdash; $29.99</button>' +
+      '</div>' +
+      '<div style="background:var(--navy-light);border-radius:12px;padding:1.25rem;border:1px solid rgba(201,168,76,0.3);">' +
+        '<div style="font-weight:700;color:var(--gold);margin-bottom:0.25rem;">&#9733; Wealth Builder &mdash; Unlimited Reports</div>' +
+        '<div style="font-size:0.85rem;color:var(--gray);margin-bottom:0.5rem;">Unlimited reports + portfolio tracker + community for just $49.99 one-time</div>' +
+        '<a href="/membership/" class="gate-btn" style="width:100%;font-size:0.9rem;padding:10px 20px;text-align:center;display:block;">Upgrade to Unlimited &mdash; $49.99</a>' +
+      '</div>' +
+      '<p style="font-size:0.72rem;color:var(--gray);margin-top:0.75rem;">You\'ve already spent $7. Upgrade to unlimited for just $43 more.</p>' +
+    '</div>';
+    document.body.appendChild(overlay);
   }
 
   // Store latest analysis for unlocking

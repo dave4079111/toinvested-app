@@ -635,7 +635,44 @@ window.buyBundle = function() {
   .catch(function() { alert('Connection error. Please try again.'); });
 };
 
-document.addEventListener('DOMContentLoaded',function(){updateApiStatus()});
+document.addEventListener('DOMContentLoaded',function(){
+  updateApiStatus();
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('report') === 'unlocked') {
+    markReportUnlocked('brrrr');
+    window.history.replaceState({}, '', window.location.pathname);
+    setTimeout(showPostPurchaseUpsell, 2000);
+  } else if (params.get('bundle') === 'purchased') {
+    var credits = parseInt(params.get('credits') || '10', 10);
+    localStorage.setItem('ti_report_credits', String(getReportCredits() + credits));
+    window.history.replaceState({}, '', window.location.pathname);
+  }
+});
+
+function showPostPurchaseUpsell() {
+  var overlay = document.createElement('div');
+  overlay.className = 'bundle-modal-overlay visible';
+  overlay.id = 'post-purchase-upsell';
+  overlay.onclick = function(e) { if (e.target === overlay) overlay.remove(); };
+  overlay.innerHTML = '<div class="bundle-modal">' +
+    '<button class="bundle-modal-close" onclick="document.getElementById(\'post-purchase-upsell\').remove()">&times;</button>' +
+    '<div style="font-size:2rem;margin-bottom:0.5rem;">&#127881;</div>' +
+    '<h3 style="font-size:1.3rem;margin-bottom:0.5rem;">Your Report is Unlocked!</h3>' +
+    '<p style="color:var(--gray);font-size:0.9rem;margin-bottom:1.5rem;">Save big on your next analyses:</p>' +
+    '<div style="background:var(--navy-light);border-radius:12px;padding:1.25rem;margin-bottom:1rem;border:1px solid rgba(255,255,255,0.06);">' +
+      '<div style="font-weight:700;color:var(--white);margin-bottom:0.25rem;">10 Report Bundle</div>' +
+      '<div style="font-size:0.85rem;color:var(--gray);margin-bottom:0.5rem;">10 reports for $29.99 <span style="color:#34D399;font-weight:600;">(save 57%)</span></div>' +
+      '<button class="gate-btn" onclick="buyBundle();document.getElementById(\'post-purchase-upsell\').remove()" style="width:100%;font-size:0.9rem;padding:10px 20px;">Get 10 Reports &mdash; $29.99</button>' +
+    '</div>' +
+    '<div style="background:var(--navy-light);border-radius:12px;padding:1.25rem;border:1px solid rgba(201,168,76,0.3);">' +
+      '<div style="font-weight:700;color:#C9A84C;margin-bottom:0.25rem;">&#9733; Wealth Builder &mdash; Unlimited</div>' +
+      '<div style="font-size:0.85rem;color:var(--gray);margin-bottom:0.5rem;">Unlimited reports + portfolio + community &mdash; $49.99 one-time</div>' +
+      '<a href="/membership/" class="gate-btn" style="width:100%;font-size:0.9rem;padding:10px 20px;text-align:center;display:block;">Upgrade to Unlimited &mdash; $49.99</a>' +
+    '</div>' +
+    '<p style="font-size:0.72rem;color:var(--gray);margin-top:0.75rem;">You already spent $7. Unlimited is just $43 more.</p>' +
+  '</div>';
+  document.body.appendChild(overlay);
+}
 </script>
 <script src="/js/toinvested.js"></script>
 
