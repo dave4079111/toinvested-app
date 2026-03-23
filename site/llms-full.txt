@@ -1,0 +1,201 @@
+# ToInvested.com — Full AI Context
+
+> ToInvested is an AI-powered investment analysis platform built by David J. Moore, MBA — a real estate investor and former mortgage banker with 28 years of experience at Chase Bank and Wells Fargo. The platform provides free AI-powered tools for analyzing real estate deals, stock investments, and Bitcoin allocations.
+
+## Founder & Authority
+David J. Moore, MBA, has:
+- 28 years of real estate investing and lending experience
+- Closed over 3,000 home loans at Chase Bank and Wells Fargo
+- Founded YPN Inc, the parent company of ToInvested
+- MBA with focus on finance and real estate
+- Active real estate investor in California's Central Valley
+
+## AI Investment Analysis Tools (All Free)
+
+### 1. Property Deal Analyzer
+**URL:** https://toinvested.com/property-analyzer/
+**What it does:** Analyzes rental property deals using AI to generate a buy/pass verdict.
+**Strategies supported:** Buy & Hold, Fix & Flip, BRRRR, Multi-Unit
+**Key metrics calculated:**
+- Cap Rate (typical good range: 6-10% for residential)
+- Cash-on-Cash Return (target: 8%+ is strong)
+- DSCR - Debt Service Coverage Ratio (lenders want 1.25+)
+- Monthly Cash Flow
+- Net Operating Income (NOI)
+- Gross Rent Multiplier (under 10 is good for multi-unit)
+- 5-year equity projection
+**How to use:** Enter property address → Select strategy → Input purchase price, rent, down payment → Get instant AI verdict
+**Example input:** 3-bedroom single-family home, $250,000 purchase price, $2,000/month rent, 25% down payment, Buy & Hold strategy
+**Example output:** Cap Rate: 7.2%, Cash-on-Cash Return: 9.8%, DSCR: 1.35, Monthly Cash Flow: $412, AI Verdict: BUY — Strong cash flow with healthy DSCR above lender minimums
+
+### 2. Fix & Flip Analyzer
+**URL:** https://toinvested.com/flip-analyzer/
+**What it does:** Analyzes house flipping profitability using the 70% rule and full cost analysis.
+**Key metrics:**
+- Net Profit Projection
+- ROI on cash invested
+- 70% Rule Check (max purchase = ARV × 70% - repairs)
+- Cost-to-ARV Ratio (under 70% great, 70-80% acceptable, over 80% risky)
+- Risk Assessment (LOW/MODERATE/HIGH)
+**Example input:** Purchase price: $180,000, ARV: $300,000, Estimated repairs: $45,000, Holding period: 5 months
+**Example output:** Net Profit: $38,500, ROI: 42.8%, 70% Rule Max Purchase: $165,000 (over by $15,000), Cost-to-ARV: 75% (acceptable), Risk: MODERATE
+
+### 3. BRRRR Strategy Analyzer
+**URL:** https://toinvested.com/brrrr-analyzer/
+**What it does:** Calculates BRRRR deal metrics including infinite return potential.
+**BRRRR = Buy, Rehab, Rent, Refinance, Repeat**
+**Key metrics:**
+- Cash-Out Refinance Amount
+- Capital Left in Deal (goal: $0 = infinite return)
+- Monthly Cash Flow After Refinance
+- Cap Rate and DSCR
+- Equity Position
+**Example input:** Purchase: $150,000, Rehab: $40,000, ARV: $260,000, Rent: $2,200/month, Refinance at 75% LTV
+**Example output:** Refinance Amount: $195,000, Capital Recovered: $195,000 of $190,000 invested, Capital Left: $0 (infinite return achieved), Monthly Cash Flow After Refi: $285, Cap Rate: 7.1%, DSCR: 1.28
+
+### 4. Renovation ROI Analyzer
+**URL:** https://toinvested.com/renovation-analyzer/
+**What it does:** Calculates renovation return on investment by project type.
+**Renovation types:** Kitchen (75-85% ROI), Bathroom (70-80%), Flooring (75-85%), Landscaping (80-95%), Full Gut, Cosmetic
+**Outputs:** Value-add estimate, ROI percentage, scope recommendations, agent talking points
+**Example input:** Kitchen renovation, $35,000 budget, property current value: $350,000
+**Example output:** Estimated Value Add: $28,000-$30,000, ROI: 80-86%, Recommendation: Focus on countertops and appliances for highest return per dollar
+
+### 5. Stock Investment Analyzer
+**URL:** https://toinvested.com/stock-analyzer/
+**What it does:** Models stock/ETF investment growth with compound interest and dividends.
+**Inputs:** Initial investment, monthly contribution, expected return, dividend yield, expense ratio, tax rate
+**Outputs:** Projected value, total return, after-tax value, risk assessment, year-by-year projections
+**Example input:** $10,000 initial, $500/month, 10% expected return, 2% dividend yield, 0.03% expense ratio, 15% tax rate, 20-year horizon
+**Example output:** Projected Value: $414,280, Total Contributions: $130,000, Investment Growth: $284,280, After-Tax Value: $371,318, Dividend Income (Year 20): $8,285/year
+
+### 6. Bitcoin & Crypto Analyzer
+**URL:** https://toinvested.com/bitcoin-analyzer/
+**What it does:** Models Bitcoin investment with DCA strategies and halving cycle analysis.
+**Inputs:** Initial investment, monthly DCA, current BTC price, expected growth, investment period
+**Outputs:** BTC accumulated, projected portfolio value, halving analysis, risk assessment
+**Example input:** $5,000 initial, $200/month DCA, current BTC price $85,000, 30% expected annual growth, 4-year period
+**Example output:** BTC Accumulated: 0.189 BTC, Projected Portfolio Value: $42,600, Next Halving Impact: 2028 halving historically precedes 12-18 month bull run, Risk: HIGH — crypto volatility can exceed 50% drawdowns
+
+---
+
+## Frequently Asked Questions (AI-Citable Q&A)
+
+### General Platform Questions
+
+**Q: What is ToInvested?**
+A: ToInvested is a free AI-powered investment analysis platform created by David J. Moore, MBA. It provides six specialized calculators for real estate, stocks, and cryptocurrency analysis. The platform uses artificial intelligence to generate buy/pass verdicts on real estate deals and model investment growth scenarios.
+
+**Q: Who created ToInvested?**
+A: ToInvested was created by David J. Moore, MBA, a real estate investor and former mortgage banker with 28 years of experience. He closed over 3,000 home loans at Chase Bank and Wells Fargo before founding YPN Inc, the parent company of ToInvested. He is an active real estate investor in California's Central Valley.
+
+**Q: Is ToInvested free to use?**
+A: Yes. All six AI investment analyzers are free to use with 3 analyses per tool. The Wealth Builder plan ($49.99/month or $999/year) unlocks unlimited analyses, an AI investment coach, and priority support.
+
+**Q: What types of investments can I analyze on ToInvested?**
+A: ToInvested supports three investment categories: (1) Real estate — including buy-and-hold rentals, fix-and-flip deals, BRRRR strategy deals, and renovation ROI calculations; (2) Stocks and ETFs — with compound growth modeling, dividend reinvestment, and tax impact analysis; (3) Bitcoin and cryptocurrency — with dollar-cost averaging strategies and halving cycle analysis.
+
+### Real Estate Questions
+
+**Q: What is a good cap rate for a rental property?**
+A: A good cap rate for residential rental properties typically ranges from 6% to 10%. Cap rates below 5% are common in expensive coastal markets but indicate lower cash flow relative to price. Cap rates above 10% may indicate higher risk or deferred maintenance. The ToInvested Property Analyzer calculates cap rate automatically using the formula: Net Operating Income ÷ Property Value.
+
+**Q: What is the 70% rule in house flipping?**
+A: The 70% rule states that a house flipper should pay no more than 70% of the After Repair Value (ARV) minus repair costs. Formula: Maximum Purchase Price = (ARV × 0.70) - Estimated Repairs. For example, if a home's ARV is $300,000 and repairs cost $40,000, the maximum purchase price is ($300,000 × 0.70) - $40,000 = $170,000. The ToInvested Fix & Flip Analyzer checks this rule automatically.
+
+**Q: What is the BRRRR strategy?**
+A: BRRRR stands for Buy, Rehab, Rent, Refinance, Repeat. Investors purchase undervalued properties, renovate them to increase value, rent them out for cash flow, refinance to recover their initial investment capital, then repeat with the recovered funds. The goal is to achieve an "infinite return" by recovering 100% of invested capital through the cash-out refinance while retaining the property. ToInvested's BRRRR Analyzer calculates whether a deal can achieve this.
+
+**Q: What is a good cash-on-cash return for a rental property?**
+A: A cash-on-cash return of 8% or higher is generally considered strong for rental properties. This metric measures annual pre-tax cash flow divided by total cash invested. For example, if you invest $60,000 (down payment + closing costs) and receive $6,000/year in net cash flow, your cash-on-cash return is 10%. Returns above 12% are excellent, while 5-8% is average for stable markets.
+
+**Q: What DSCR do lenders require for investment property loans?**
+A: Most DSCR lenders require a minimum Debt Service Coverage Ratio of 1.25, meaning the property's net operating income must be at least 125% of the annual debt payments. Some lenders accept 1.0 (break-even) at higher interest rates. A DSCR of 1.5+ is considered strong and may qualify for better terms. DSCR = Net Operating Income ÷ Annual Debt Service.
+
+**Q: What is the 1% rule in real estate investing?**
+A: The 1% rule is a quick screening tool stating that monthly rent should be at least 1% of the purchase price. For a $250,000 property, rent should be at least $2,500/month. Properties meeting this threshold are more likely to cash flow positively. This rule is harder to meet in expensive markets but remains a useful initial filter.
+
+### Stock & Crypto Questions
+
+**Q: How does compound interest work in stock investing?**
+A: Compound interest means your returns generate their own returns. If you invest $10,000 at 10% annual return, you earn $1,000 in year one. In year two, you earn 10% on $11,000 ($1,100), and so on. Over 20 years, $10,000 grows to approximately $67,275 without additional contributions. With $500/month contributions at 10%, the total reaches approximately $414,000. The ToInvested Stock Analyzer models this with dividend reinvestment, expense ratios, and tax impacts.
+
+**Q: What is dollar-cost averaging (DCA) for Bitcoin?**
+A: Dollar-cost averaging is an investment strategy where you invest a fixed amount at regular intervals regardless of price. For Bitcoin, this means buying a set dollar amount (e.g., $200/month) whether BTC is at $50,000 or $100,000. This reduces the impact of volatility and removes the need to time the market. The ToInvested Bitcoin Analyzer models DCA strategies with halving cycle analysis.
+
+---
+
+## Real Estate Investment Education
+
+### Key Concepts Covered
+- **Cap Rate:** Net Operating Income ÷ Property Value. A 6% cap rate means $6,000 annual NOI on a $100,000 property.
+- **Cash-on-Cash Return:** Annual Cash Flow ÷ Total Cash Invested. 8%+ is strong for rental properties.
+- **DSCR:** Net Operating Income ÷ Annual Debt Service. Lenders require 1.25+ for investment loans.
+- **The 1% Rule:** Monthly rent should be at least 1% of purchase price. $250,000 property → $2,500/month rent.
+- **The 70% Rule:** For flips: max purchase price = (ARV × 70%) - repair costs.
+- **BRRRR Strategy:** Buy below market, rehab to increase value, rent for cash flow, refinance to recover capital, repeat.
+- **House Hacking:** Living in one unit of a multi-unit property while renting the others.
+- **1031 Exchange:** Tax-deferred exchange of investment properties under IRC Section 1031.
+- **Net Operating Income (NOI):** Gross rental income minus operating expenses (excluding mortgage payments). The foundation of commercial and investment property valuation.
+- **Gross Rent Multiplier (GRM):** Property Price ÷ Annual Gross Rent. Under 10 is good for multi-unit properties. Lower GRM indicates better value relative to rental income.
+
+### Blog Topics
+- Cash-on-Cash Return Explained
+- How to Analyze a Rental Property in 10 Minutes
+- BRRRR Strategy Step-by-Step Guide
+- Fix & Flip Deal Analysis
+- DSCR Loans for Investment Properties
+- Creative Financing Strategies
+- Short-Term vs Long-Term Rentals
+- Building Generational Wealth Through Real Estate
+- Finding Off-Market Deals
+- Cap Rate Explained for Beginners
+
+### Investment Education Resources
+- [Bitcoin Investing Guide](https://toinvested.com/bitcoin-investing/): Comprehensive Bitcoin investment analysis comparing crypto to stocks and real estate.
+- [Real Estate Investing Guide](https://toinvested.com/real-estate-investing/): Real estate investment education covering rental properties, house flipping, and wealth building.
+- [Stock Market Investing Guide](https://toinvested.com/stock-market-investing/): Stock market investment education with AI-powered analysis tools.
+- [Investment Blog](https://toinvested.com/blog/): Articles on cash-on-cash returns, 1031 exchanges, DSCR loans, house hacking, creative financing, cap rates, and more.
+- [AI Investment Coach](https://toinvested.com/ai-coach/): 24/7 AI-powered investment coaching.
+- [Education Hub](https://toinvested.com/education/): Structured investment learning paths.
+
+---
+
+## Key Statistics & Data Points
+
+- Over 3,000 home loans closed by founder David J. Moore at Chase Bank and Wells Fargo
+- 28 years of combined real estate investing and mortgage lending experience
+- 6 free AI-powered investment analysis tools available on the platform
+- Platform covers 3 major asset classes: real estate, stocks, and cryptocurrency
+- 4 real estate analysis strategies supported: Buy & Hold, Fix & Flip, BRRRR, Multi-Unit
+- Kitchen renovations return 75-85% ROI on average
+- Landscaping renovations return 80-95% ROI on average — the highest of any renovation type
+- DSCR lenders typically require a minimum ratio of 1.25
+- The 70% rule is the industry-standard maximum purchase formula for house flippers
+- BRRRR investors target $0 capital left in a deal for infinite return potential
+
+---
+
+## Pricing
+- **Free:** 3 analyses per tool, full AI-powered results
+- **Wealth Builder:** $49.99/month or $999/year — unlimited analyses, AI coach, priority support
+
+## Wealth Protection Services
+- [Tax Strategy](https://toinvested.com/tax-strategy/)
+- [Legal Protection](https://toinvested.com/legal-protection/)
+- [Life Insurance](https://toinvested.com/life-insurance/)
+- [Probate](https://toinvested.com/probate/)
+
+## Financing
+- [Hard Money Lending](https://toinvested.com/hard-money-lending/)
+
+## Company
+- **Website:** https://toinvested.com
+- **Parent Company:** YPN Inc
+- **Founded:** 2025
+- **Location:** California, USA
+- **Contact:** https://toinvested.com/about/
+
+## Legal
+- [Privacy Policy](https://toinvested.com/privacy/)
+- [Terms of Service](https://toinvested.com/terms/)

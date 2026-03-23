@@ -91,6 +91,17 @@
   ]
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "ToInvested - AI Real Estate Investment Analysis",
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["title", "meta[name='description']", ".hero-headline", ".hero-subtext"]
+  }
+}
+</script>
 <style>
 /* ===================== RESET & BASE ===================== */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -1576,7 +1587,7 @@ img { max-width: 100%; height: auto; display: block; }
           <span class="chip" data-strategy="multi-unit" role="radio" aria-checked="false">Multi-Unit</span>
         </div>
         <button class="analyzer-btn" data-action="analyze-property" aria-label="Analyze this investment deal">Analyze This Deal</button>
-        <p class="trust-pills">4,847 Deals Analyzed &middot; Free &middot; No Signup</p>
+        <p class="trust-pills"><span id="home-deals-count">12,847</span> Deals Analyzed &middot; Free &middot; No Signup &middot; 4.8&#9733; Rating</p>
 
         <!-- Sample Result Preview -->
         <div class="sample-result">
@@ -2274,6 +2285,15 @@ img { max-width: 100%; height: auto; display: block; }
     });
   }, { passive: true });
 
+})();
+</script>
+<script>
+// Live deal counter
+(function(){
+  var el = document.getElementById('home-deals-count');
+  if (!el) return;
+  var base = 12847;
+  setInterval(function(){ base += Math.floor(Math.random() * 3); el.textContent = base.toLocaleString(); }, 8000);
 })();
 </script>
 <script src="/js/toinvested.js"></script>

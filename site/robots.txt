@@ -9,6 +9,7 @@ Disallow: /member-dashboard/
 
 # Sitemaps
 Sitemap: https://toinvested.com/sitemap.xml
+Llms-txt: https://toinvested.com/llms.txt
 
 # AI & LLM Crawlers - Welcome!
 User-agent: GPTBot
