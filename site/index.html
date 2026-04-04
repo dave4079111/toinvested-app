@@ -1323,7 +1323,7 @@ img { max-width: 100%; height: auto; display: block; }
           <span class="chip">Multi-Unit</span>
         </div>
         <button class="analyzer-btn">Analyze This Deal</button>
-        <p class="trust-pills">4,847 Deals Analyzed &middot; Free &middot; No Signup</p>
+        <p class="trust-pills"><span data-live-count="4847">4,847</span> Deals Analyzed &middot; Free &middot; No Signup</p>
 
         <!-- Sample Result Preview -->
         <div class="sample-result">
@@ -1867,12 +1867,15 @@ img { max-width: 100%; height: auto; display: block; }
         input.setAttribute('placeholder', 'Enter a property address to analyze...');
       }, 2000);
     } else {
-      analyzerBtn.textContent = 'Analyzing...';
-      analyzerBtn.style.opacity = '0.7';
+      // Route to full analyzer with address pre-filled
+      var chip = document.querySelector('.chip.active');
+      var strategy = chip ? chip.textContent.trim() : 'Buy & Hold';
+      var params = new URLSearchParams({ address: input.value.trim(), strategy: strategy });
+      analyzerBtn.textContent = 'Opening Analyzer\u2026';
+      analyzerBtn.style.opacity = '0.8';
       setTimeout(function() {
-        analyzerBtn.textContent = 'Analyze This Deal';
-        analyzerBtn.style.opacity = '1';
-      }, 2000);
+        window.location.href = '/property-analyzer/?' + params.toString();
+      }, 600);
     }
   });
 
@@ -2007,5 +2010,6 @@ img { max-width: 100%; height: auto; display: block; }
 </div>
 
 <script src="/js/conversion.js"></script>
+<script src="/js/site-enhancements.js"></script>
 </body>
 </html>

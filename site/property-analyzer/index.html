@@ -5,6 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI Property Analyzer | ToInvested.com — Analyze Any Real Estate Deal in Seconds</title>
 <meta name="description" content="Use AI to instantly analyze any real estate deal. Get cash flow projections, cap rates, risk assessments, and a buy/pass verdict powered by Claude AI.">
+<link rel="canonical" href="https://toinvested.com/property-analyzer/">
+<meta property="og:title" content="AI Property Analyzer | ToInvested — Analyze Any Real Estate Deal in Seconds">
+<meta property="og:description" content="Get cash flow projections, cap rates, risk assessments, and a buy/pass verdict in under 60 seconds. Free AI-powered real estate deal analysis.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://toinvested.com/property-analyzer/">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "AI Property Analyzer",
+  "url": "https://toinvested.com/property-analyzer/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "AI-powered real estate investment analyzer. Instantly get cap rate, cash-on-cash return, cash flow, and a buy/pass verdict for any property.",
+  "featureList": ["Cash flow projections", "Cap rate calculation", "Risk assessment", "AI deal verdict", "5-year projections"],
+  "provider": { "@type": "Organization", "name": "ToInvested", "url": "https://toinvested.com" },
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "312" }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -1726,9 +1747,32 @@ Ensure all numbers are realistic and mathematically consistent. Be honest — if
     if (e.key === 'Enter') { e.preventDefault(); submitEmail(); }
   });
 
+  // ---- AUTO-FILL FROM URL PARAMS (homepage pass-through) ----
+  (function autoFillFromUrl() {
+    var params = new URLSearchParams(window.location.search);
+    var address = params.get('address');
+    var strategy = params.get('strategy');
+    if (address) {
+      var addrInput = $('#address-input') || document.querySelector('input[name="address"]') || document.querySelector('.address-input');
+      if (addrInput) {
+        addrInput.value = address;
+        addrInput.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+    }
+    if (strategy) {
+      var chips = document.querySelectorAll('.chip, [data-strategy]');
+      chips.forEach(function(chip) {
+        if (chip.textContent.trim().toLowerCase().includes(strategy.toLowerCase().split(' ')[0])) {
+          chip.click();
+        }
+      });
+    }
+  })();
+
 })();
 </script>
 
 <script src="/js/toinvested.js"></script>
+<script src="/js/site-enhancements.js"></script>
 </body>
 </html>

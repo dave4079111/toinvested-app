@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+# Block admin and member-only areas from indexing
+Disallow: /admin/
+Disallow: /member-dashboard/
+Disallow: /api/
+
+# Allow all AI analyzers and public tools (high SEO value)
+Allow: /property-analyzer/
+Allow: /flip-analyzer/
+Allow: /brrrr-analyzer/
+Allow: /renovation-analyzer/
+Allow: /stock-analyzer/
+Allow: /bitcoin-analyzer/
+Allow: /ai-coach/
+Allow: /tools/
+
+# Sitemap location
+Sitemap: https://toinvested.com/sitemap.xml
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
