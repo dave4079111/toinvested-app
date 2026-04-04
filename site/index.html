@@ -68,6 +68,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+body.urgency-bar-visible { padding-top: 40px; }
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Playfair Display', Georgia, serif;
   line-height: 1.2;
@@ -1253,6 +1254,16 @@ img { max-width: 100%; height: auto; display: block; }
 </head>
 <body>
 
+<!-- ===================== CONVERSION: URGENCY BAR ===================== -->
+<div id="urgency-bar" style="position:fixed;top:0;left:0;right:0;z-index:2000;background:linear-gradient(90deg,#1a1200,#0A0E17,#1a1200);border-bottom:1px solid rgba(201,168,76,0.35);padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:12px;font-size:13px;font-weight:600;color:#E0C068;transform:translateY(-100%);transition:transform 0.5s ease;font-family:'DM Sans',sans-serif;">
+  <span style="display:inline-block;width:8px;height:8px;background:#C9A84C;border-radius:50%;animation:pulseGlow 1.5s ease-in-out infinite;flex-shrink:0;"></span>
+  <span>&#128293;&nbsp; <strong>4,847 investors</strong> are already building wealth &mdash; <a href="/membership/" style="color:#C9A84C;text-decoration:underline;font-weight:700;">Claim your free analysis today</a></span>
+  <button id="urgency-bar-close" aria-label="Dismiss" style="background:none;border:none;color:#8890A0;font-size:18px;cursor:pointer;margin-left:12px;line-height:1;padding:0 4px;flex-shrink:0;">&times;</button>
+</div>
+
+<!-- ===================== CONVERSION: SOCIAL PROOF TICKER ===================== -->
+<div id="social-proof-ticker" style="position:fixed;bottom:24px;left:20px;z-index:1500;background:rgba(14,20,34,0.96);border:1px solid rgba(201,168,76,0.25);border-radius:12px;padding:12px 16px;max-width:260px;box-shadow:0 8px 32px rgba(0,0,0,0.4);transform:translateX(-110%);opacity:0;transition:transform 0.4s ease,opacity 0.4s ease;font-family:'DM Sans',sans-serif;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);"></div>
+
 <!-- ===================== NAVIGATION ===================== -->
 <nav class="nav" id="nav">
   <div class="nav-inner">
@@ -1868,5 +1879,133 @@ img { max-width: 100%; height: auto; display: block; }
 })();
 </script>
 <script src="/js/toinvested.js"></script>
+
+<!-- ===================== CONVERSION MODALS ===================== -->
+<style>
+  /* Shared modal backdrop */
+  .conv-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    background: rgba(0,0,0,0.75);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .conv-modal.conv-visible { opacity: 1; }
+  .conv-modal-box {
+    background: #0D1628;
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 20px;
+    padding: 48px 40px;
+    max-width: 520px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .conv-modal.conv-visible .conv-modal-box { transform: translateY(0); }
+  .conv-modal-close {
+    position: absolute;
+    top: 16px; right: 20px;
+    background: none; border: none;
+    color: #6A7080; font-size: 22px;
+    cursor: pointer; line-height: 1;
+    transition: color 0.2s;
+  }
+  .conv-modal-close:hover { color: #C9A84C; }
+  .conv-input {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 15px;
+    color: #FFF;
+    font-family: 'DM Sans', sans-serif;
+    outline: none;
+    margin-bottom: 12px;
+    transition: border-color 0.3s;
+  }
+  .conv-input:focus { border-color: #C9A84C; }
+  .conv-input::placeholder { color: #5A6170; }
+  .conv-submit-btn {
+    width: 100%;
+    background: linear-gradient(135deg,#C9A84C,#B8943A);
+    color: #0A0E17;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .conv-submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.3); }
+  .conv-submit-btn:disabled { opacity: 0.6; cursor: default; transform: none; }
+  @media (max-width: 560px) {
+    .conv-modal-box { padding: 36px 24px; }
+  }
+</style>
+
+<!-- MODAL 1: Analyzer Email Gate -->
+<div id="analyzer-gate-modal" class="conv-modal" role="dialog" aria-modal="true" aria-label="Get your free analysis">
+  <div class="conv-modal-box">
+    <button class="conv-modal-close" id="gate-modal-close" aria-label="Close">&times;</button>
+    <p style="font-size:11px;font-weight:700;color:#C9A84C;letter-spacing:3px;margin-bottom:10px;">FREE ANALYSIS</p>
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:#FFF;margin-bottom:8px;line-height:1.25;">Your Report Is Ready</h2>
+    <p style="color:#A0A8B8;font-size:14px;margin-bottom:6px;">Analyzing: <strong style="color:#E0C068;" class="gate-address"></strong></p>
+    <p style="color:#8890A0;font-size:13px;margin-bottom:24px;">Enter your email and we'll send the full report + alert you to similar deals in this market.</p>
+    <form id="gate-form">
+      <input type="text" name="name" id="gate-name" class="conv-input" placeholder="First name (optional)">
+      <input type="email" name="email" id="gate-email" class="conv-input" placeholder="Your email address" required>
+      <button type="submit" class="conv-submit-btn">Get My Free Analysis &rarr;</button>
+    </form>
+    <p style="text-align:center;font-size:11px;color:#4A5060;margin-top:12px;">No spam. Unsubscribe anytime.</p>
+  </div>
+</div>
+
+<!-- MODAL 2: Exit Intent -->
+<div id="exit-intent-modal" class="conv-modal" role="dialog" aria-modal="true" aria-label="Don't leave yet">
+  <div class="conv-modal-box">
+    <button class="conv-modal-close" id="exit-intent-close" aria-label="Close">&times;</button>
+    <div class="exit-form-wrap">
+      <p style="font-size:11px;font-weight:700;color:#C9A84C;letter-spacing:3px;margin-bottom:10px;">WAIT &mdash; FREE GIFT</p>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.55rem;color:#FFF;margin-bottom:12px;line-height:1.25;">Grab the <span style="color:#C9A84C;">17-Point Deal Checklist</span> Before You Go</h2>
+      <p style="color:#A0A8B8;font-size:14px;margin-bottom:24px;">The exact checklist David uses to screen every deal in under 5 minutes. Free. No strings.</p>
+      <form id="exit-intent-form">
+        <input type="email" id="exit-email" class="conv-input" placeholder="Your email address" required>
+        <button type="submit" class="conv-submit-btn">Send Me the Checklist &rarr;</button>
+      </form>
+      <p style="text-align:center;font-size:11px;color:#4A5060;margin-top:12px;">No spam. Unsubscribe anytime.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL 3: Timed Offer -->
+<div id="timed-offer-modal" class="conv-modal" role="dialog" aria-modal="true" aria-label="Limited time offer">
+  <div class="conv-modal-box" style="text-align:center;">
+    <button class="conv-modal-close" id="timed-offer-close" aria-label="Close">&times;</button>
+    <p style="font-size:11px;font-weight:700;color:#C9A84C;letter-spacing:3px;margin-bottom:10px;">LIMITED-TIME OFFER</p>
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.6rem;color:#FFF;margin-bottom:12px;line-height:1.25;">Start for Just <span style="color:#C9A84C;">$0 Today</span></h2>
+    <p style="color:#A0A8B8;font-size:15px;max-width:400px;margin:0 auto 20px;">You've been exploring for a few minutes &mdash; we'd love to have you. Start your free trial right now, no card required.</p>
+    <div style="background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.25);border-radius:12px;padding:16px 24px;display:inline-block;margin-bottom:24px;">
+      <p style="font-size:12px;color:#8890A0;margin-bottom:4px;">OFFER EXPIRES IN</p>
+      <p id="offer-countdown" style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:#C9A84C;letter-spacing:4px;">10:00</p>
+    </div>
+    <br>
+    <a href="/membership/" style="display:inline-block;background:linear-gradient(135deg,#C9A84C,#B8943A);color:#0A0E17;padding:15px 40px;border-radius:12px;font-weight:700;font-size:15px;text-decoration:none;margin-bottom:12px;">Claim Free Trial &rarr;</a>
+    <br>
+    <button onclick="document.getElementById('timed-offer-modal').classList.remove('conv-visible');setTimeout(function(){document.getElementById('timed-offer-modal').style.display='none';document.body.style.overflow='';},300);" style="background:none;border:none;color:#5A6070;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;">No thanks, I don't want free analyses</button>
+  </div>
+</div>
+
+<script src="/js/conversion.js"></script>
 </body>
 </html>

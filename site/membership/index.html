@@ -218,8 +218,15 @@
             <h2 class="section-title">Choose Your Wealth Building Plan</h2>
             <p class="section-sub">Every plan includes our AI-powered analysis engine. Upgrade to unlock your full investing potential.</p>
 
+            <!-- Urgency countdown banner -->
+            <div style="background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.25);border-radius:12px;padding:14px 20px;text-align:center;margin-bottom:36px;font-family:'DM Sans',sans-serif;">
+                <span style="font-size:13px;color:#A0A8B8;">&#9201;&nbsp; Current annual pricing locks in for: </span>
+                <span id="pricing-countdown" style="font-size:15px;font-weight:700;color:#C9A84C;letter-spacing:2px;">15:00</span>
+                <span style="font-size:13px;color:#A0A8B8;">&nbsp;&mdash; <strong style="color:#E0E0E0;">47 investors</strong> viewed this page in the last hour</span>
+            </div>
+
             <div class="pricing-toggle">
-                <span class="active" id="monthlyLabel">Monthly</span>
+                <span id="monthlyLabel">Monthly</span>
                 <div class="toggle-switch" id="billingToggle" role="button" tabindex="0" aria-label="Toggle annual billing"></div>
                 <span id="annualLabel">Annual</span>
                 <span class="save-badge">Save 17%</span>
@@ -500,26 +507,47 @@
             document.getElementById('navLinks').classList.toggle('open');
         });
 
-        // Billing toggle
+        // Billing toggle — defaults to annual (higher LTV + perceived savings)
         const toggle = document.getElementById('billingToggle');
         const monthlyLabel = document.getElementById('monthlyLabel');
         const annualLabel = document.getElementById('annualLabel');
-        let isAnnual = false;
+        let isAnnual = true;
 
-        toggle.addEventListener('click', function() {
-            isAnnual = !isAnnual;
-            this.classList.toggle('annual', isAnnual);
+        function applyBillingState() {
+            toggle.classList.toggle('annual', isAnnual);
             monthlyLabel.classList.toggle('active', !isAnnual);
             annualLabel.classList.toggle('active', isAnnual);
-
             document.getElementById('proPricing').innerHTML = isAnnual
                 ? '<span class="original">$47/mo</span><span class="amount">$39</span><span class="period">/mo (billed $468/yr)</span>'
                 : '<span class="amount">$47</span><span class="period">/month</span>';
-
             document.getElementById('elitePricing').innerHTML = isAnnual
                 ? '<span class="original">$97/mo</span><span class="amount">$81</span><span class="period">/mo (billed $972/yr)</span>'
                 : '<span class="amount">$97</span><span class="period">/month</span>';
+        }
+        applyBillingState(); // set annual on load
+
+        toggle.addEventListener('click', function() {
+            isAnnual = !isAnnual;
+            applyBillingState();
         });
+
+        // Urgency countdown on pricing section
+        (function startPricingCountdown() {
+            var el = document.getElementById('pricing-countdown');
+            if (!el) return;
+            var key = 'pricingCountdownEnd';
+            var end = parseInt(sessionStorage.getItem(key), 10);
+            if (!end || end < Date.now()) {
+                end = Date.now() + 15 * 60 * 1000; // 15 min
+                sessionStorage.setItem(key, end);
+            }
+            setInterval(function() {
+                var diff = Math.max(0, end - Date.now());
+                var m = Math.floor(diff / 60000).toString().padStart(2,'0');
+                var s = Math.floor((diff % 60000) / 1000).toString().padStart(2,'0');
+                el.textContent = m + ':' + s;
+            }, 1000);
+        })();
 
         // FAQ accordion
         document.querySelectorAll('.faq-question').forEach(btn => {
@@ -541,5 +569,9 @@
         });
     </script>
 <script src="/js/toinvested.js"></script>
+
+<!-- Social proof ticker (reused from main site) -->
+<div id="social-proof-ticker" style="position:fixed;bottom:24px;left:20px;z-index:1500;background:rgba(14,20,34,0.96);border:1px solid rgba(201,168,76,0.25);border-radius:12px;padding:12px 16px;max-width:260px;box-shadow:0 8px 32px rgba(0,0,0,0.4);transform:translateX(-110%);opacity:0;transition:transform 0.4s ease,opacity 0.4s ease;font-family:'DM Sans',sans-serif;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);"></div>
+<script src="/js/conversion.js"></script>
 </body>
 </html>
